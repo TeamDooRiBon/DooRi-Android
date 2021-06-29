@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DooRiBonAndroid">
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".presenter.AddTravelActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

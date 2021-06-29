@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">DooRiBonAndroid</string>
+    <string name="start_new_travel">번들님의 새로운 여행\n같이 시작해요!</string>
+    <string name="write_travel_name">여행 이름을 지어주세요.</string>
+    <string name="travel_place">어디로 여행 가세요?</string>
+    <string name="register_travel_date">여행 일정 등록</string>
+    <string name="start_date">시작 날짜</string>
+    <string name="end_date">끝나는 날짜</string>
+    <string name="traveL_people">누구와 함께하는 여행인가요?</string>
+    <string name="traveL_people_example">예) 가족 / 친구 / 연인</string>
+    <string name="add_date">날짜 추가하기 +</string>
 </resources>
