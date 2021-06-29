@@ -2,6 +2,6 @@
 <resources>
     <declare-styleable name="DooRiBonRoundGradientImageView">
         <attr name="image_view_shadow_color" format="color" />
-        <attr name="image_view_alpha" format="float" />
+        <attr name="image_view_shadow_alpha" format="float" />
     </declare-styleable>
 </resources>

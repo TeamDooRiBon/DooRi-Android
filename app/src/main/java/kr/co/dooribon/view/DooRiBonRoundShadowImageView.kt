@@ -26,7 +26,7 @@ class DooRiBonRoundShadowImageView @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) : ShapeableImageView(context, attrs) {
 
-    private val gradientPaint = Paint()
+    private val shadowPaint = Paint()
 
     private var useWidth = 0
     private var useHeight = 0
@@ -35,7 +35,7 @@ class DooRiBonRoundShadowImageView @JvmOverloads constructor(
         update()
     }
 
-    var imageViewAlpha by OnChangeProp(0.4f) {
+    var imageViewShadowAlpha by OnChangeProp(0.4f) {
         update()
     }
 
@@ -56,9 +56,9 @@ class DooRiBonRoundShadowImageView @JvmOverloads constructor(
                 R.styleable.DooRiBonRoundGradientImageView_image_view_shadow_color,
                 shadowColor
             )
-            imageViewAlpha = it.getFloat(
-                R.styleable.DooRiBonRoundGradientImageView_image_view_alpha,
-                imageViewAlpha
+            imageViewShadowAlpha = it.getFloat(
+                R.styleable.DooRiBonRoundGradientImageView_image_view_shadow_alpha,
+                imageViewShadowAlpha
             )
         }
     }
@@ -70,16 +70,16 @@ class DooRiBonRoundShadowImageView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawCircle(useWidth / 2f, useHeight / 2f, useWidth / 2f, gradientPaint)
+        canvas.drawCircle(useWidth / 2f, useHeight / 2f, useWidth / 2f, shadowPaint)
     }
 
     private fun update() {
         useWidth = width
         useHeight = height
 
-        gradientPaint.apply {
+        shadowPaint.apply {
             color = shadowColor
-            alpha = (imageViewAlpha * 255).toInt()
+            alpha = (imageViewShadowAlpha * 255).toInt()
         }
         invalidate()
     }
