@@ -31,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
             R.color.doo_ri_bon_home_tool_bar_blue_color
         ))
 
+        // View Test Code 함수화 시켜야 합니다.
         val upComingTripAdapter = UpComingTripAdapter()
         val previousTripAdapter = PreviousTripAdapter()
 
