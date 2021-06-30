@@ -20,6 +20,8 @@ import kr.co.dooribon.utils.OnChangeProp
  *
  * app:image_view_alpha , 이미지 위에 색상을 끼얹고 싶을때 이미지가 얼마만큼 보이게 할지? 0.4~0.5이 적당함
  * app:image_view_shadow_color , 이미지 위에 끼얹고 싶은 색상 설정
+ * app:shapeAppearanceOverlay="@style/roundedImageView" , 이미자뷰를 둥그렇게 만들어줄 style Value
+ * 이렇게 3개 값을 주게 되면 그림자가 낀 원형 이미지뷰를 만들 수 있습니다.
  */
 class DooRiBonRoundShadowImageView @JvmOverloads constructor(
     context: Context,
