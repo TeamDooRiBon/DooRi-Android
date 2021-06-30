@@ -9,4 +9,5 @@
     <string name="traveL_people">누구와 함께하는 여행인가요?</string>
     <string name="traveL_people_example">예) 가족 / 친구 / 연인</string>
     <string name="add_date">날짜 추가하기 +</string>
+    <string name="build_new_travel">새로운 여행 만들기</string>
 </resources>
