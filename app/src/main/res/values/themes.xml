@@ -63,23 +63,39 @@
         <item name="android:textColor">@color/doo_ri_bon_sub_blue2</item>
     </style>
 
-    <style name="AirplaneIconTextView" parent="Widget.AppCompat.TextView">
-        <item name="android:background">@drawable/bg_black_round_textview</item>
+    <style name="AirplanePureWhiteIconTextView" parent="Widget.AppCompat.TextView">
         <item name="android:paddingStart">12dp</item>
         <item name="android:paddingEnd">12dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
-        <item name="android:drawableLeft">@drawable/ic_airplane</item>
+        <item name="android:drawableLeft">@drawable/ic_airplane_pure_white</item>
         <item name="android:drawablePadding">4dp</item>
     </style>
 
-    <style name="UserIconTextView" parent="Widget.AppCompat.TextView">
-        <item name="android:background">@drawable/bg_black_round_textview</item>
+    <style name="AirplaneBlackGrayIconTextView" parent="Widget.AppCompat.TextView">
         <item name="android:paddingStart">12dp</item>
         <item name="android:paddingEnd">12dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
-        <item name="android:drawableLeft">@drawable/ic_user</item>
+        <item name="android:drawableLeft">@drawable/ic_airplane_black_gray4</item>
+        <item name="android:drawablePadding">4dp</item>
+    </style>
+
+    <style name="UserPureWhiteIconTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:drawableLeft">@drawable/ic_user_pure_white</item>
+        <item name="android:drawablePadding">4dp</item>
+    </style>
+
+    <style name="UserBlackGrayIconTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:drawableLeft">@drawable/ic_user_black_gray4</item>
         <item name="android:drawablePadding">4dp</item>
     </style>
 </resources>

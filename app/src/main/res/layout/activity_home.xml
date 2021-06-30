@@ -164,12 +164,13 @@
 
                     <TextView
                         android:id="@+id/tv_home_place"
-                        style="@style/AirplaneIconTextView"
+                        style="@style/AirplanePureWhiteIconTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="24dp"
+                        android:background="@drawable/bg_black_round_textview"
                         android:text="강원도 속초"
                         android:textColor="@color/doo_ri_bon_pure_white"
                         android:textSize="12sp"
@@ -178,12 +179,13 @@
 
                     <TextView
                         android:id="@+id/tv_home_people"
-                        style="@style/UserIconTextView"
+                        style="@style/UserPureWhiteIconTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="OO님과 함께"
                         android:textColor="@color/doo_ri_bon_pure_white"
+                        android:background="@drawable/bg_black_round_textview"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="@id/tv_home_place"
                         app:layout_constraintStart_toEndOf="@id/tv_home_place"
