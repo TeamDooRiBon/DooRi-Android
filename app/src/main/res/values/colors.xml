@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="doo_ri_bon_orange">#FF7B5F</color>
+    <color name="doo_ri_bon_blue">#6BBFF9</color>
+    <color name="doo_ri_bon_sub_blue">#9AB4FF</color>
 </resources>
