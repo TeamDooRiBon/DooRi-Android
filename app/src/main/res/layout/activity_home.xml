@@ -54,6 +54,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_home"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -281,16 +282,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_previous_travel_title" />
 
-                    <Button
-                        android:id="@+id/btn_home_more_previous_travel"
-                        style="@style/RoundButton.DooRiBonStrokeOrange"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="지난 여행 더보기"
-                        app:layout_constraintEnd_toEndOf="@id/rv_home_previous_travel_content"
-                        app:layout_constraintStart_toStartOf="@id/rv_home_previous_travel_content"
-                        app:layout_constraintTop_toBottomOf="@id/rv_home_previous_travel_content" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.cardview.widget.CardView
@@ -319,6 +310,17 @@
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
+
+                <include
+                    android:id="@+id/home_footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    layout="@layout/view_home_footer"
+                    app:layout_constraintTop_toBottomOf="@id/card_home_travel_tendency"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
