@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="bindViewModel"
+            type="kr.co.dooribon.ui.home.viewmodel.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -101,8 +104,8 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/dummy_round_view"
                         app:gradient_alpha="0.7"
-                        app:gradient_start_color="@color/white"
                         app:gradient_end_color="@color/black"
+                        app:gradient_start_color="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_user_status_description" />
@@ -112,12 +115,12 @@
                         style="@style/RoundBlueTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
                         android:background="@drawable/bg_main_blue_round_textview"
                         android:text="진행중"
-                        android:layout_marginBottom="4dp"
                         android:textColor="@color/white"
-                        app:layout_constraintStart_toStartOf="@id/tv_home_place"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_start_date"
+                        app:layout_constraintStart_toStartOf="@id/tv_home_place"
                         tools:text="진행중" />
 
                     <TextView
@@ -127,9 +130,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="2020.05.21"
+                        app:layout_constraintBottom_toTopOf="@id/tv_home_title"
                         app:layout_constraintEnd_toStartOf="@id/tv_home_being_emoji"
-                        app:layout_constraintStart_toStartOf="@id/tv_home_place"
-                        app:layout_constraintBottom_toTopOf="@id/tv_home_title" />
+                        app:layout_constraintStart_toStartOf="@id/tv_home_place" />
 
                     <TextView
                         android:id="@+id/tv_home_being_emoji"
@@ -138,9 +141,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:text="~"
+                        app:layout_constraintBottom_toTopOf="@id/tv_home_title"
                         app:layout_constraintEnd_toStartOf="@id/tv_home_end_date"
-                        app:layout_constraintStart_toEndOf="@id/tv_home_start_date"
-                        app:layout_constraintBottom_toTopOf="@id/tv_home_title"/>
+                        app:layout_constraintStart_toEndOf="@id/tv_home_start_date" />
 
                     <TextView
                         android:id="@+id/tv_home_end_date"
@@ -149,8 +152,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:text="2020.05.27"
-                        app:layout_constraintStart_toEndOf="@id/tv_home_being_emoji"
-                        app:layout_constraintBottom_toTopOf="@id/tv_home_title"/>
+                        app:layout_constraintBottom_toTopOf="@id/tv_home_title"
+                        app:layout_constraintStart_toEndOf="@id/tv_home_being_emoji" />
 
                     <TextView
                         android:id="@+id/tv_home_title"
@@ -160,8 +163,8 @@
                         android:layout_marginBottom="8dp"
                         android:text="두리번과의 우정 여행"
                         android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="@id/tv_home_place"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_place"
+                        app:layout_constraintStart_toStartOf="@id/tv_home_place"
                         tools:text="두리번과의 우정 여행" />
 
                     <TextView
@@ -185,9 +188,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_black_round_textview"
                         android:text="OO님과 함께"
                         android:textColor="@color/doo_ri_bon_pure_white"
-                        android:background="@drawable/bg_black_round_textview"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="@id/tv_home_place"
                         app:layout_constraintStart_toEndOf="@id/tv_home_place"
@@ -199,8 +202,8 @@
                     android:id="@+id/cl_home_upcoming_travel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/cl_home_proceeding_travel"
