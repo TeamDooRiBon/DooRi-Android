@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="kr.co.dooribon.domain.entity.PreviousTrip" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <kr.co.dooribon.view.DooRiBonRoundShadowImageView
+            android:id="@+id/iv_previous_trip"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="12dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/dummy_round_view"
+            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_previous_trip_date"
+            style="@style/WhiteBoldTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.previousTripDate}"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_previous_trip"
+            app:layout_constraintEnd_toEndOf="@id/iv_previous_trip"
+            app:layout_constraintStart_toStartOf="@id/iv_previous_trip"
+            app:layout_constraintTop_toTopOf="@id/iv_previous_trip"
+            tools:text="2020.05" />
+
+        <TextView
+            android:id="@+id/tv_previous_trip_title"
+            style="@style/BlackBoldTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="@{item.previousTripTitle}"
+            app:layout_constraintBottom_toTopOf="@id/tv_previous_trip_place"
+            app:layout_constraintStart_toEndOf="@id/iv_previous_trip"
+            app:layout_constraintTop_toTopOf="@id/iv_previous_trip"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="티미들과 파리 여행!" />
+
+        <TextView
+            android:id="@+id/tv_previous_trip_place"
+            style="@style/AirplaneBlackGrayIconTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_black_gray4_round_textview"
+            android:text="@{item.previousTripPlace}"
+            android:textColor="@color/doo_ro_bon_gray_black4"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_previous_trip_people"
+            app:layout_constraintStart_toStartOf="@id/tv_previous_trip_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_previous_trip_title"
+            tools:text="강원도 속초" />
+
+        <TextView
+            android:id="@+id/tv_previous_trip_people"
+            style="@style/UserBlackGrayIconTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_black_gray4_round_textview"
+            android:text="@{Integer.toString(item.previousTripPeople)}"
+            android:textColor="@color/doo_ro_bon_gray_black4"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_previous_trip_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_previous_trip_place"
+            tools:text="미몽님 외 3명과 함께" />
+
+        <ImageView
+            android:id="@+id/iv_previous_trip_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:src="@drawable/ic_arrow_forward_gray5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
