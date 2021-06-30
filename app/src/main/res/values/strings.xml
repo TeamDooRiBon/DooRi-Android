@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DooRiBonAndroid</string>
+
+    <string name="home_app_bar_description_text">지금 여행 중이에요! ✈️</string>
 </resources>

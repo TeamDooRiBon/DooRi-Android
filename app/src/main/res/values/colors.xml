@@ -11,4 +11,8 @@
     <color name="doo_ri_bon_orange">#FF7B5F</color>
     <color name="doo_ri_bon_blue">#6BBFF9</color>
     <color name="doo_ri_bon_sub_blue">#9AB4FF</color>
+    <color name="doo_ri_bon_sub_blue2">#4E5E8C</color>
+    <color name="doo_ri_bon_home_tool_bar_blue_color">#ECF2FF</color>
+    <color name="doo_ri_bon_main_gray">#A0A4AB</color>
+    <color name="doo_ri_bon_chip_gray">#E9EBED</color>
 </resources>
