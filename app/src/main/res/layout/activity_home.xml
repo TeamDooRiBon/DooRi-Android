@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bindViewModel"
+            type="kr.co.dooribon.ui.home.viewmodel.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_home_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/text_dooribon_home"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_home_profile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_home_profile" />
+
+                <ImageView
+                    android:id="@+id/iv_home_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/ic_profile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_home"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar_home">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_home_proceeding_travel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_home_user_description"
+                        style="@style/BlackBoldTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:text="번들님은"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="번들님은" />
+
+                    <TextView
+                        android:id="@+id/tv_home_user_status_description"
+                        style="@style/BlackBoldTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_app_bar_description_text"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_home_user_description"
+                        app:layout_constraintTop_toBottomOf="@id/tv_home_user_description" />
+
+                    <kr.co.dooribon.view.DooRiBonGradientImageView
+                        android:id="@+id/iv_home_proceeding_travel"
+                        android:layout_width="0dp"
+                        android:layout_height="300dp"
+                        android:layout_marginTop="16dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/dummy_round_view"
+                        app:gradient_alpha="0.7"
+                        app:gradient_end_color="@color/black"
+                        app:gradient_start_color="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_home_user_status_description" />
+
+                    <TextView
+                        android:id="@+id/tv_home_status"
+                        style="@style/RoundBlueTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/bg_main_blue_round_textview"
+                        android:text="진행중"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toTopOf="@id/tv_home_start_date"
+                        app:layout_constraintStart_toStartOf="@id/tv_home_place"
+                        tools:text="진행중" />
+
+                    <TextView
+                        android:id="@+id/tv_home_start_date"
+                        style="@style/WhiteBoldTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="2020.05.21"
+                        app:layout_constraintBottom_toTopOf="@id/tv_home_title"
+                        app:layout_constraintEnd_toStartOf="@id/tv_home_being_emoji"
+                        app:layout_constraintStart_toStartOf="@id/tv_home_place" />
+
+                    <TextView
+                        android:id="@+id/tv_home_being_emoji"
+                        style="@style/WhiteBoldTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="~"
+                        app:layout_constraintBottom_toTopOf="@id/tv_home_title"
+                        app:layout_constraintEnd_toStartOf="@id/tv_home_end_date"
+                        app:layout_constraintStart_toEndOf="@id/tv_home_start_date" />
+
+                    <TextView
+                        android:id="@+id/tv_home_end_date"
+                        style="@style/WhiteBoldTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="2020.05.27"
+                        app:layout_constraintBottom_toTopOf="@id/tv_home_title"
+                        app:layout_constraintStart_toEndOf="@id/tv_home_being_emoji" />
+
+                    <TextView
+                        android:id="@+id/tv_home_title"
+                        style="@style/WhiteBoldTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="두리번과의 우정 여행"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toTopOf="@id/tv_home_place"
+                        app:layout_constraintStart_toStartOf="@id/tv_home_place"
+                        tools:text="두리번과의 우정 여행" />
+
+                    <TextView
+                        android:id="@+id/tv_home_place"
+                        style="@style/AirplanePureWhiteIconTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/bg_black_round_textview"
+                        android:text="강원도 속초"
+                        android:textColor="@color/doo_ri_bon_pure_white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_home_people"
+                        style="@style/UserPureWhiteIconTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_black_round_textview"
+                        android:text="OO님과 함께"
+                        android:textColor="@color/doo_ri_bon_pure_white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_home_place"
+                        app:layout_constraintStart_toEndOf="@id/tv_home_place"
+                        app:layout_constraintTop_toTopOf="@id/tv_home_place" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_home_upcoming_travel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/cl_home_proceeding_travel"
+                    app:layout_constraintTop_toBottomOf="@id/cl_home_proceeding_travel">
+
+                    <TextView
+                        android:id="@+id/tv_home_upcoming_travel_title"
+                        style="@style/BlackBoldTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="두근두근, 다가오는 여행"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vp_home_upcoming_travel_contents"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_home_upcoming_travel_title"
+                        app:layout_constraintTop_toBottomOf="@id/tv_home_upcoming_travel_title" />
+
+                    <Button
+                        android:id="@+id/btn_home_upcoming_travel_start"
+                        style="@style/RoundButton.DooRiBonOrange"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="새로운 여행 시작하기"
+                        app:layout_constraintEnd_toEndOf="@id/vp_home_upcoming_travel_contents"
+                        app:layout_constraintStart_toStartOf="@id/vp_home_upcoming_travel_contents"
+                        app:layout_constraintTop_toBottomOf="@id/vp_home_upcoming_travel_contents" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_home_previous_travel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toEndOf="@id/cl_home_upcoming_travel"
+                    app:layout_constraintStart_toStartOf="@id/cl_home_upcoming_travel"
+                    app:layout_constraintTop_toBottomOf="@id/cl_home_upcoming_travel">
+
+                    <TextView
+                        android:id="@+id/tv_home_previous_travel_title"
+                        style="@style/BlackBoldTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="추억 속 지난 여행"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_home_previous_travel_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_black_gray4_round_textview"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:text="더보기"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_home_previous_travel_title"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_home_previous_travel_title"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_home_previous_travel_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_home_previous_travel_title" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_home_travel_tendency"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="24dp"
+                    app:cardCornerRadius="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/cl_home_upcoming_travel"
+                    app:layout_constraintStart_toStartOf="@id/cl_home_upcoming_travel"
+                    app:layout_constraintTop_toBottomOf="@id/cl_home_previous_travel">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_home_tendency"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <include
+                    android:id="@+id/home_footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    layout="@layout/view_home_footer"
+                    app:layout_constraintTop_toBottomOf="@id/card_home_travel_tendency"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
