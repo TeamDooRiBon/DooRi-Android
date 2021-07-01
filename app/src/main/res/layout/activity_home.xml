@@ -228,15 +228,32 @@
                         app:layout_constraintStart_toStartOf="@id/tv_home_upcoming_travel_title"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_upcoming_travel_title" />
 
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/vpi_home_upcoming_travel"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"
+                        app:layout_constraintBottom_toTopOf="@id/btn_home_upcoming_travel_start"
+                        app:layout_constraintEnd_toEndOf="@id/vp_home_upcoming_travel_contents"
+                        app:layout_constraintStart_toStartOf="@id/vp_home_upcoming_travel_contents"
+                        app:layout_constraintTop_toBottomOf="@id/vp_home_upcoming_travel_contents"
+                        app:tabGravity="fill"
+                        app:tabBackground="@drawable/bg_home_viewpager_indicator"
+                        app:tabIndicatorColor="@color/doo_ri_bon_sub_orange1"
+                        app:tabIndicatorHeight="4dp" />
+
                     <Button
                         android:id="@+id/btn_home_upcoming_travel_start"
                         style="@style/RoundButton.DooRiBonOrange"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:text="새로운 여행 시작하기"
                         app:layout_constraintEnd_toEndOf="@id/vp_home_upcoming_travel_contents"
                         app:layout_constraintStart_toStartOf="@id/vp_home_upcoming_travel_contents"
-                        app:layout_constraintTop_toBottomOf="@id/vp_home_upcoming_travel_contents" />
+                        app:layout_constraintTop_toBottomOf="@id/vpi_home_upcoming_travel" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout

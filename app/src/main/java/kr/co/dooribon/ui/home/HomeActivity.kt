@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityHomeBinding
 import kr.co.dooribon.ui.home.adapter.PreviousTripAdapter
@@ -36,6 +37,7 @@ class HomeActivity : AppCompatActivity() {
         initializeStatusBar()
         configurePreviousTrip(previousTripAdapter)
         configureUpComingTrip(upComingTripAdapter)
+        configureViewPagerIndicator()
 
     }
 
@@ -46,6 +48,10 @@ class HomeActivity : AppCompatActivity() {
                 R.color.doo_ri_bon_home_tool_bar_blue_color
             )
         )
+    }
+
+    private fun configureViewPagerIndicator(){
+        TabLayoutMediator(binding.vpiHomeUpcomingTravel, binding.vpHomeUpcomingTravelContents) { _,_ -> }.attach()
     }
 
     private fun configureUpComingTrip(upComingTripAdapter: UpComingTripAdapter) {
