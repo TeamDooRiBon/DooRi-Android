@@ -31,8 +31,8 @@
         android:layout_marginVertical="36dp"
         android:layout_marginHorizontal="30dp">
 
-        <TextView
-            android:id="@+id/tv_code1"
+        <EditText
+            android:id="@+id/et_code1"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -40,110 +40,105 @@
             android:layout_marginVertical="10dp"
             app:layout_constraintHorizontal_chainStyle="packed"
             android:paddingBottom="12dp"
-            tools:text="2"
             android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
-            app:layout_constraintEnd_toStartOf="@id/tv_code2"
+            app:layout_constraintEnd_toStartOf="@id/et_code2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
-            android:id="@+id/tv_code2"
+        <EditText
+            android:id="@+id/et_code2"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            tools:text="2"
             android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
-            app:layout_constraintEnd_toStartOf="@id/tv_code3"
-            app:layout_constraintStart_toEndOf="@+id/tv_code1"
+            app:layout_constraintEnd_toStartOf="@id/et_code3"
+            app:layout_constraintStart_toEndOf="@+id/et_code1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
-            android:id="@+id/tv_code3"
+        <EditText
+            android:id="@+id/et_code3"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            tools:text="2"
             android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
-            app:layout_constraintEnd_toStartOf="@id/tv_code4"
-            app:layout_constraintStart_toEndOf="@+id/tv_code2"
+            app:layout_constraintEnd_toStartOf="@id/et_code4"
+            app:layout_constraintStart_toEndOf="@+id/et_code2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_code4"
+        <EditText
+            android:id="@+id/et_code4"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            tools:text="2"
             android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
-            app:layout_constraintEnd_toStartOf="@id/tv_code5"
-            app:layout_constraintStart_toEndOf="@+id/tv_code3"
+            app:layout_constraintEnd_toStartOf="@id/et_code5"
+            app:layout_constraintStart_toEndOf="@+id/et_code3"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
-            android:id="@+id/tv_code5"
+        <EditText
+            android:id="@+id/et_code5"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            tools:text="2"
             android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
-            app:layout_constraintEnd_toStartOf="@id/tv_code6"
-            app:layout_constraintStart_toEndOf="@+id/tv_code4"
+            app:layout_constraintEnd_toStartOf="@id/et_code6"
+            app:layout_constraintStart_toEndOf="@+id/et_code4"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_code6"
+        <EditText
+            android:id="@+id/et_code6"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            tools:text="2"
             android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_code5"
+            app:layout_constraintStart_toEndOf="@+id/et_code5"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/btn_participate_complete"
+        android:id="@+id/btn_participate_put"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#E9EBED"
+        android:text="@string/all_put"
+        android:textColor="@color/black"
         android:layout_marginTop="40dp"
-        android:backgroundTint="#FF7B51"
-        android:text="입력완료"
         app:layout_constraintStart_toStartOf="@+id/tv_participate_ex1"
-        app:layout_constraintTop_toBottomOf="@id/cl_buttons" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_buttons" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

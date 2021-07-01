@@ -9,9 +9,11 @@
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/tv_partici_check"
-        android:layout_width="84dp"
-        android:layout_height="80dp"
-        android:text="여행 이름을 확인해주세요!"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="@string/partici_check"
+        android:textSize="23sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +35,8 @@
         android:layout_width="168dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#E9EBED"
-        android:text="다시 할게요"
+        android:text="@string/partici_btn_again"
+        android:textColor="@color/black"
         android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="@+id/tv_partici_show"
         app:layout_constraintTop_toBottomOf="@+id/tv_partici_show" />
@@ -44,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:backgroundTint="#FF7B51"
-        android:text="맞아요!"
+        android:text="@string/partici_btn_yes"
         app:layout_constraintEnd_toEndOf="@+id/tv_partici_show"
         app:layout_constraintTop_toBottomOf="@+id/tv_partici_show" />
 

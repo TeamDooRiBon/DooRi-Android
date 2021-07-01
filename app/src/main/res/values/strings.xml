@@ -3,4 +3,7 @@
     <string name="home_app_bar_description_text">지금 여행 중이에요! ✈️</string>
     <string name="participate_text">여행 참여코드를 입력해주세요!</string>
     <string name="all_put">모두 입력해주세요</string>
+    <string name="partici_check">참여하는 여행 정보가 맞나요?</string>
+    <string name="partici_btn_again">다시 할게요!</string>
+    <string name="partici_btn_yes">맞아요!</string>
 </resources>
