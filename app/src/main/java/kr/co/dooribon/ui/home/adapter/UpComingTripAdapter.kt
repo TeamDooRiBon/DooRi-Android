@@ -2,11 +2,15 @@ package kr.co.dooribon.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import kr.co.dooribon.databinding.ViewUpComingTripBinding
 import kr.co.dooribon.domain.entity.UpComingTrip
 
-class UpComingTripAdapter : RecyclerView.Adapter<UpComingTripAdapter.UpComingTripViewHolder>() {
+class UpComingTripAdapter(
+    private val onItemClicked : (idx : Int , item : UpComingTrip) -> Unit
+) : RecyclerView.Adapter<UpComingTripAdapter.UpComingTripViewHolder>() {
 
     private val itemList = mutableListOf<UpComingTrip>()
 
@@ -22,8 +26,13 @@ class UpComingTripAdapter : RecyclerView.Adapter<UpComingTripAdapter.UpComingTri
 
     override fun getItemCount(): Int = itemList.size
 
-    class UpComingTripViewHolder(private val binding: ViewUpComingTripBinding) :
+    inner class UpComingTripViewHolder(private val binding: ViewUpComingTripBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.onClick = {
+                onItemClicked(adapterPosition,itemList[adapterPosition])
+            }
+        }
         fun bind(viewItem: UpComingTrip) {
             binding.item = viewItem
         }
@@ -33,5 +42,12 @@ class UpComingTripAdapter : RecyclerView.Adapter<UpComingTripAdapter.UpComingTri
         itemList.clear()
         itemList.addAll(list)
         notifyDataSetChanged()
+    }
+}
+
+@BindingAdapter("up_coming_trip_item")
+fun ViewPager2.setUpComingTripItem(items : List<UpComingTrip>){
+    (adapter as? UpComingTripAdapter)?.run {
+        submitItem(items)
     }
 }

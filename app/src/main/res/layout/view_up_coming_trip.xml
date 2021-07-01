@@ -8,25 +8,30 @@
         <variable
             name="item"
             type="kr.co.dooribon.domain.entity.UpComingTrip" />
+
+        <variable
+            name="on_click"
+            type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:onClick="@{() -> on_click.invoke()}">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="4dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
             android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginBottom="12dp"
+            android:elevation="4dp"
             app:cardCornerRadius="10dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -52,9 +57,9 @@
                     android:textColor="@color/doo_ri_bon_blue"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    tools:text="D-4"
                     app:layout_constraintStart_toEndOf="@id/iv_upcoming_trip"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="D-4" />
 
                 <TextView
                     android:id="@+id/tv_upcoming_trip_title"
@@ -65,41 +70,41 @@
                     android:layout_marginTop="4dp"
                     android:text="@{item.upComingTripTitle}"
                     android:textSize="16sp"
-                    tools:text="티미티미 파리 여행"
                     app:layout_constraintStart_toEndOf="@id/iv_upcoming_trip"
-                    app:layout_constraintTop_toBottomOf="@id/tv_upcoming_trip_remain_date" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_upcoming_trip_remain_date"
+                    tools:text="티미티미 파리 여행" />
 
                 <TextView
                     android:id="@+id/tv_upcoming_trip_start_date"
+                    style="@style/SubBlue2TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/SubBlue2TextView"
-                    android:text="@{item.upComingTripStartDate}"
                     android:layout_marginTop="4dp"
-                    tools:text="2020.05.21"
+                    android:text="@{item.upComingTripStartDate}"
                     app:layout_constraintStart_toStartOf="@id/tv_upcoming_trip_title"
-                    app:layout_constraintTop_toBottomOf="@id/tv_upcoming_trip_title" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_upcoming_trip_title"
+                    tools:text="2020.05.21" />
 
                 <TextView
                     android:id="@+id/tv_upcoming_trip_being_emoji"
+                    style="@style/SubBlue2TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/SubBlue2TextView"
                     android:text="~"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_upcoming_trip_start_date"
                     app:layout_constraintStart_toEndOf="@id/tv_upcoming_trip_start_date"
-                    app:layout_constraintTop_toTopOf="@id/tv_upcoming_trip_start_date"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_upcoming_trip_start_date" />
+                    app:layout_constraintTop_toTopOf="@id/tv_upcoming_trip_start_date" />
 
                 <TextView
                     android:id="@+id/tv_upcoming_trip_end_date"
+                    style="@style/SubBlue2TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/SubBlue2TextView"
                     android:text="@{item.upComingTripEndDate}"
-                    tools:text="05.27"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_upcoming_trip_start_date"
                     app:layout_constraintStart_toEndOf="@id/tv_upcoming_trip_being_emoji"
                     app:layout_constraintTop_toTopOf="@id/tv_upcoming_trip_start_date"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_upcoming_trip_start_date" />
+                    tools:text="05.27" />
 
                 <TextView
                     android:id="@+id/tv_upcoming_trip_place"
@@ -111,23 +116,23 @@
                     android:text="@{item.upComingTripLocation}"
                     android:textColor="@color/doo_ri_bon_gray_black4"
                     android:textSize="12sp"
-                    tools:text="강원도 속초"
+                    app:layout_constraintStart_toStartOf="@id/tv_upcoming_trip_start_date"
                     app:layout_constraintTop_toBottomOf="@id/tv_upcoming_trip_start_date"
-                    app:layout_constraintStart_toStartOf="@id/tv_upcoming_trip_start_date" />
+                    tools:text="강원도 속초" />
 
                 <TextView
                     android:id="@+id/tv_upcoming_trip_people"
                     style="@style/UserBlackGrayIconTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{Integer.toString(item.upComingTripPersonCount)}"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/doo_ri_bon_gray_black4"
                     android:background="@drawable/bg_black_gray4_round_textview"
+                    android:text="@{Integer.toString(item.upComingTripPersonCount)}"
+                    android:textColor="@color/doo_ri_bon_gray_black4"
                     android:textSize="12sp"
-                    tools:text="미몽님 외 3명과 함께"
                     app:layout_constraintStart_toStartOf="@id/tv_upcoming_trip_place"
-                    app:layout_constraintTop_toBottomOf="@id/tv_upcoming_trip_place" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_upcoming_trip_place"
+                    tools:text="미몽님 외 3명과 함께" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

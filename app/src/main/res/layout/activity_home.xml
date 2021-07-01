@@ -4,10 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        
         <variable
             name="bindViewModel"
             type="kr.co.dooribon.ui.home.viewmodel.HomeViewModel" />
+        
+        <variable
+            name="navigate_new_trip"
+            type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -224,6 +228,7 @@
                         android:id="@+id/vp_home_upcoming_travel_contents"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        up_coming_trip_item="@{bindViewModel.upComingTripDummyList}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/tv_home_upcoming_travel_title"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_upcoming_travel_title" />
@@ -250,6 +255,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:onClick="@{() -> navigate_new_trip.invoke()}"
                         android:text="새로운 여행 시작하기"
                         app:layout_constraintEnd_toEndOf="@id/vp_home_upcoming_travel_contents"
                         app:layout_constraintStart_toStartOf="@id/vp_home_upcoming_travel_contents"
@@ -295,6 +301,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"
+                        previous_trip_item="@{bindViewModel.previousTripDummyList}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_previous_travel_title" />
