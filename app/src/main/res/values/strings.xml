@@ -17,4 +17,8 @@
     <string name="home_app_bar_description_text">지금 여행 중이에요! ✈️</string>
     <string name="click_pic">대표 사진을 선택해주세요</string>
     <string name="we_prepared">여행의 대표사진으로 활용도리 사진을 두리번이 준비했어요!</string>
+    <string name="do_it_later">나중에 할게요</string>
+    <string name="copy_codes">참여코드 복사</string>
+    <string name="start_new_travel_with_plane">새로운 여행 시작✈️</string>
+    <string name="prepare_new_travel">아래 여행 참여 코드를 공유하여\n함께 여행을 준비해나가세요!️</string>
 </resources>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--예진님 코드에서 가져오기-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_new_travel_with_plane"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:id="@+id/tv_start_new_travel_with_plane"
+            app:layout_constraintTop_toBottomOf="@id/iv_back"
+            app:layout_constraintStart_toStartOf="@id/iv_back"
+            />
+
+        <TextView
+            android:id="@+id/prepare_travel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="10dp"
+            android:text="@string/prepare_new_travel"
+            app:layout_constraintTop_toBottomOf="@id/tv_start_new_travel_with_plane"
+            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel_with_plane"
+            android:layout_marginTop="10dp"
+            />
+
+
+
+        <Button
+            android:id="@+id/btn_later"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginStart="28dp"
+            android:text="@string/do_it_later"
+            app:layout_constraintEnd_toStartOf="@id/btn_copy_codes"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="50dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:id="@+id/btn_copy_codes"
+            android:layout_marginEnd="28dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_later"
+            app:layout_constraintBottom_toBottomOf="@id/btn_later"
+            android:text="@string/copy_codes"
+            app:layout_constraintTop_toTopOf="@id/btn_later"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
