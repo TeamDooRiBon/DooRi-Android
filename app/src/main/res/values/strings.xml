@@ -1,5 +1,26 @@
 <resources>
     <string name="app_name">DooRiBonAndroid</string>
-
+    <string name="start_new_travel">번들님의 새로운 여행\n같이 시작해요!</string>
+    <string name="write_travel_name">여행 이름을 지어주세요.</string>
+    <string name="travel_place">어디로 여행 가세요?</string>
+    <string name="register_travel_date">여행 일정 등록</string>
+    <string name="start_date">시작 날짜</string>
+    <string name="end_date">끝나는 날짜</string>
+    <string name="travel_people">누구와 함께하는 여행인가요?</string>
+    <string name="travel_people_example">예) 가족 / 친구 / 연인</string>
+    <string name="add_date">날짜 추가하기 +</string>
+    <string name="build_new_travel">새로운 여행 시작하기</string>
+    <string name="next_travel_date">번들님 여행 날짜는\n언제인가요?</string>
+    <string name="over_the_water">Ex. 물넘어 제주 속 두리번</string>
+    <string name="jeju_seogwipo">Ex. 제주도 서귀포시</string>
+    <string name="please_enter_date">해당 날짜를 눌러 일정을 선택해주세요</string>
     <string name="home_app_bar_description_text">지금 여행 중이에요! ✈️</string>
+    <string name="click_pic">대표 사진을 선택해주세요</string>
+    <string name="we_prepared">여행의 대표사진으로 활용도리 사진을 두리번이 준비했어요!</string>
+    <string name="do_it_later">나중에 할게요</string>
+    <string name="copy_codes">참여코드 복사</string>
+    <string name="start_new_travel_with_plane">새로운 여행 시작✈️</string>
+    <string name="prepare_new_travel">아래 여행 참여 코드를 공유하여\n함께 여행을 준비해나가세요!️</string>
+    <string name="done_copy">복사 완료!</string>
+    <string name="moving_to_home">새로운 여행 홈으로 이동 중</string>
 </resources>
