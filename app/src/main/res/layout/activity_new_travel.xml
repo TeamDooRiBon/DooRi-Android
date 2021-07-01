@@ -101,6 +101,7 @@
 
         <Button
             android:id="@+id/bt_add_date"
+            style="@style/RoundBlueTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_date"
@@ -154,7 +155,44 @@
             app:layout_constraintTop_toTopOf="@id/tv_start_date"
             tools:text="333" />
 
+        <TextView
+            android:id="@+id/tv_select_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/click_pic"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
+            app:layout_constraintTop_toBottomOf="@id/tv_start_date" />
+
+        <TextView
+            android:id="@+id/tv_sub_select_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/we_prepared"
+            android:textColor="#A0A4A8"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
+            app:layout_constraintTop_toBottomOf="@id/tv_select_pic" />
+
+        <GridView
+            android:id="@+id/gv_prepared_photos"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:columnCount="4"
+            android:orientation="horizontal"
+            android:rowCount="4"
+            app:layout_constraintBottom_toTopOf="@id/cl_bottom"
+            app:layout_constraintEnd_toEndOf="@id/et_travel_name"
+            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
+            app:layout_constraintTop_toBottomOf="@id/tv_sub_select_pic" />
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_bottom"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
@@ -162,8 +200,7 @@
             android:elevation="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            >
+            app:layout_constraintStart_toStartOf="parent">
 
             <Button
                 android:id="@+id/bt_start_new_travel"

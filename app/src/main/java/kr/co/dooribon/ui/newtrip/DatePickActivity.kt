@@ -1,4 +1,4 @@
-package kr.co.dooribon.presenter
+package kr.co.dooribon.ui.newtrip
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
