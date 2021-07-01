@@ -40,8 +40,6 @@
             android:layout_marginVertical="10dp"
             app:layout_constraintHorizontal_chainStyle="packed"
             android:paddingBottom="12dp"
-            tools:text="2"
-            android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
             app:layout_constraintEnd_toStartOf="@id/tv_code2"
@@ -57,8 +55,6 @@
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            tools:text="2"
-            android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
             app:layout_constraintEnd_toStartOf="@id/tv_code3"
@@ -74,8 +70,6 @@
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            tools:text="2"
-            android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
             app:layout_constraintEnd_toStartOf="@id/tv_code4"
@@ -91,8 +85,6 @@
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            tools:text="2"
-            android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
             app:layout_constraintEnd_toStartOf="@id/tv_code5"
@@ -108,8 +100,6 @@
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            tools:text="2"
-            android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
             app:layout_constraintEnd_toStartOf="@id/tv_code6"
@@ -125,8 +115,6 @@
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            tools:text="2"
-            android:textColor="#6B8FF9"
             android:elevation="10dp"
             android:background="@drawable/text_round"
             app:layout_constraintEnd_toEndOf="parent"
@@ -136,14 +124,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/btn_participate_complete"
+        android:id="@+id/btn_participate_put"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#E9EBED"
+        android:text="@string/all_put"
+        android:textColor="@color/black"
         android:layout_marginTop="40dp"
-        android:backgroundTint="#FF7B51"
-        android:text="입력완료"
         app:layout_constraintStart_toStartOf="@+id/tv_participate_ex1"
-        app:layout_constraintTop_toBottomOf="@id/cl_buttons" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_buttons" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
