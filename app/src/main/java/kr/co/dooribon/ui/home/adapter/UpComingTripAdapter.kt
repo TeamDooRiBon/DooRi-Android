@@ -12,7 +12,7 @@ class UpComingTripAdapter : RecyclerView.Adapter<UpComingTripAdapter.UpComingTri
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpComingTripViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ViewUpComingTripBinding.inflate(layoutInflater,parent,false)
+        val binding = ViewUpComingTripBinding.inflate(layoutInflater, parent, false)
         return UpComingTripViewHolder(binding)
     }
 
@@ -22,13 +22,14 @@ class UpComingTripAdapter : RecyclerView.Adapter<UpComingTripAdapter.UpComingTri
 
     override fun getItemCount(): Int = itemList.size
 
-    class UpComingTripViewHolder(private val binding : ViewUpComingTripBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(viewItem : UpComingTrip){
+    class UpComingTripViewHolder(private val binding: ViewUpComingTripBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(viewItem: UpComingTrip) {
             binding.item = viewItem
         }
     }
 
-    fun submitItem(list : List<UpComingTrip>){
+    fun submitItem(list: List<UpComingTrip>) {
         itemList.clear()
         itemList.addAll(list)
         notifyDataSetChanged()

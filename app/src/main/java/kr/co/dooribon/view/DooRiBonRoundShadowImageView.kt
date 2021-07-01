@@ -7,7 +7,6 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.core.content.res.use
 import com.google.android.material.imageview.ShapeableImageView
-import com.google.android.material.shape.ShapeAppearanceModel
 import kr.co.dooribon.R
 import kr.co.dooribon.utils.OnChangeProp
 

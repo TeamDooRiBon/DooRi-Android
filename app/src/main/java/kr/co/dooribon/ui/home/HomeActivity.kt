@@ -50,8 +50,11 @@ class HomeActivity : AppCompatActivity() {
         )
     }
 
-    private fun configureViewPagerIndicator(){
-        TabLayoutMediator(binding.vpiHomeUpcomingTravel, binding.vpHomeUpcomingTravelContents) { _,_ -> }.attach()
+    private fun configureViewPagerIndicator() {
+        TabLayoutMediator(
+            binding.vpiHomeUpcomingTravel,
+            binding.vpHomeUpcomingTravelContents
+        ) { _, _ -> }.attach()
     }
 
     private fun configureUpComingTrip(upComingTripAdapter: UpComingTripAdapter) {
