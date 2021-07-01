@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tv_welcome"
+        android:layout_width="96dp"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:layout_marginTop="28dp"
+        android:text="새로운 여행을 환영합니다!" />
+
+    <Button
+        android:id="@+id/btn_newtravel_move"
+        android:layout_width="240dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#FF7B51"
+        android:text="새로운 여행으로 이동" />
+</LinearLayout>
