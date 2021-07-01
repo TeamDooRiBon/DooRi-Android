@@ -31,13 +31,14 @@ class AddTravelActivity : AppCompatActivity() {
         val imgAdapter = RecoImgAdapter()
         val imgRV = binding.rvPreparedPhotos
         imgRV.adapter = imgAdapter
-        imgRV.setHasFixedSize(true) // scroll view 적용 여부에 따라 변경
+        //imgRV.setHasFixedSize(true) // scroll view 적용 여부에 따라 변경
+
         imgAdapter.setItemList(imgList)
     }
 
     private fun addData(){
         for(i in 0 until 16){
-            tempImgs.add(ImageData(R.drawable.dummy_round_view))
+            tempImgs.add(ImageData(R.drawable.ic_launcher_foreground))
         }
     }
 }
