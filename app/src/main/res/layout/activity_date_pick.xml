@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#9CB5FF"
+        >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_when_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/next_travel_date"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@id/iv_back"
+            app:layout_constraintTop_toBottomOf="@id/iv_back"
+            tools:text="@string/next_travel_date"/>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/frag_calendar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/ll_check_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_when_date" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_check_button"
+            android:layout_width="0dp"
+            android:layout_height="125dp"
+            android:background="#FDFEFF"
+            android:elevation="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frag_calendar" >
+
+            <Button
+                android:id="@+id/bt_enter_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="15dp"
+                android:text="@string/please_enter_date"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
