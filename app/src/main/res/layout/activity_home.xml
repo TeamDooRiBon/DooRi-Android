@@ -264,14 +264,14 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_black_gray4_round_textview"
                         android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
                         android:paddingTop="2dp"
+                        android:paddingEnd="8dp"
                         android:paddingBottom="2dp"
                         android:text="더보기"
                         android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_home_previous_travel_title"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tv_home_previous_travel_title"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_home_previous_travel_title"/>
+                        app:layout_constraintTop_toTopOf="@id/tv_home_previous_travel_title" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_home_previous_travel_content"
@@ -284,42 +284,72 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_home_travel_tendency"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_home_tendency"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    app:cardCornerRadius="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/cl_home_upcoming_travel"
-                    app:layout_constraintStart_toStartOf="@id/cl_home_upcoming_travel"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toEndOf="@id/cl_home_previous_travel"
+                    app:layout_constraintStart_toStartOf="@id/cl_home_previous_travel"
                     app:layout_constraintTop_toBottomOf="@id/cl_home_previous_travel">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tv_home_tendency_user_name"
+                        style="@style/BlackBoldTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="미몽님은"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/img_home_tendency"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tv_home_tendency_description"
+                        style="@style/BlackBoldTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="어떤 여행을 좋아하세요?"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_home_tendency_user_name"
+                        app:layout_constraintTop_toBottomOf="@id/tv_home_tendency_user_name" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_home_travel_tendency"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        app:cardCornerRadius="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_home_tendency_description">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_home_tendency"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <include
                     android:id="@+id/home_footer"
+                    layout="@layout/view_footer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    layout="@layout/view_footer"
-                    app:layout_constraintTop_toBottomOf="@id/card_home_travel_tendency"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/cl_home_tendency" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
