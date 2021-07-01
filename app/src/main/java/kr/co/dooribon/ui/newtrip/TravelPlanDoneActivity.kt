@@ -9,6 +9,7 @@ import kr.co.dooribon.databinding.ActivityTravelPlanDoneBinding
 import kr.co.dooribon.ui.home.HomeActivity
 
 class TravelPlanDoneActivity : AppCompatActivity() {
+
     private lateinit var binding : ActivityTravelPlanDoneBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +19,11 @@ class TravelPlanDoneActivity : AppCompatActivity() {
             val intent = Intent(this, HomeActivity::class.java)
             finish()
             startActivity(intent)
+        }
+
+        binding.btnCopyCodes.setOnClickListener {
+            val dlg = DoneCopyDialog(this)
+            dlg.start("temp")
         }
 
     }

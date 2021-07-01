@@ -19,6 +19,11 @@ class AddTravelActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_travel)
 
         binding.btStartNewTravel.setOnClickListener {
+            val intent = Intent(this, TravelPlanDoneActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btAddDate.setOnClickListener {
             val intent = Intent(this, DatePickActivity::class.java)
             startActivity(intent)
         }
