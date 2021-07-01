@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DooRiBonAndroid" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.DooRiBonAndroid" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -29,6 +29,73 @@
 
     <style name="RoundButton.DooRiBonOrange">
         <item name="backgroundTint">@color/doo_ri_bon_orange</item>
-        <item name="cornerRadius">40dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="RoundButton.DooRiBonStrokeOrange">
+        <item name="strokeColor">@color/doo_ri_bon_orange</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/doo_ri_bon_orange</item>
+        <item name="backgroundTint">@color/white</item>
+    </style>
+
+    <style name="RoundBlueTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/bg_main_blue_round_textview</item>
+    </style>
+
+    <style name="BlackBoldTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="WhiteBoldTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="SubBlue2TextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/doo_ri_bon_sub_blue2</item>
+    </style>
+
+    <style name="AirplanePureWhiteIconTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:drawableLeft">@drawable/ic_airplane_pure_white</item>
+        <item name="android:drawablePadding">4dp</item>
+    </style>
+
+    <style name="AirplaneBlackGrayIconTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:drawableLeft">@drawable/ic_airplane_black_gray4</item>
+        <item name="android:drawablePadding">4dp</item>
+    </style>
+
+    <style name="UserPureWhiteIconTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:drawableLeft">@drawable/ic_user_pure_white</item>
+        <item name="android:drawablePadding">4dp</item>
+    </style>
+
+    <style name="UserBlackGrayIconTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:drawableLeft">@drawable/ic_user_black_gray4</item>
+        <item name="android:drawablePadding">4dp</item>
     </style>
 </resources>
