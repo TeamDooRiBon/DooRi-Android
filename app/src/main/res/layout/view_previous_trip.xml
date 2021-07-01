@@ -8,6 +8,10 @@
         <variable
             name="item"
             type="kr.co.dooribon.domain.entity.PreviousTrip" />
+
+        <variable
+            name="on_click"
+            type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,10 +25,10 @@
             android:layout_margin="12dp"
             android:scaleType="fitXY"
             android:src="@drawable/dummy_round_view"
-            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:shapeAppearanceOverlay="@style/roundedImageView" />
 
         <TextView
             android:id="@+id/tv_previous_trip_date"
@@ -86,6 +90,7 @@
             android:id="@+id/iv_previous_trip_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> on_click.invoke()}"
             android:padding="12dp"
             android:src="@drawable/ic_arrow_forward_gray5"
             app:layout_constraintBottom_toBottomOf="parent"

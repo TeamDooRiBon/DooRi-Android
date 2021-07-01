@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.home
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -8,8 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityHomeBinding
+import kr.co.dooribon.dialog.NewTripDialog
+import kr.co.dooribon.domain.entity.PreviousTrip
+import kr.co.dooribon.domain.entity.UpComingTrip
 import kr.co.dooribon.ui.home.adapter.PreviousTripAdapter
 import kr.co.dooribon.ui.home.adapter.UpComingTripAdapter
 import kr.co.dooribon.ui.home.viewmodel.HomeViewModel
@@ -29,13 +34,20 @@ class HomeActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         binding.lifecycleOwner = this
         binding.bindViewModel = viewModel
+        binding.navigateNewTrip = { navigateNewTripDialog() }
 
-        upComingTripAdapter = UpComingTripAdapter()
-        previousTripAdapter = PreviousTripAdapter()
+        upComingTripAdapter = UpComingTripAdapter(onItemClicked = { idx, upComingTripItem ->
+            onUpComingTripItemClick(idx, upComingTripItem)
+        })
+
+        previousTripAdapter = PreviousTripAdapter(onItemClicked = { idx, previousTripItem ->
+            onPreviousTripItemClick(idx, previousTripItem)
+        })
 
         initializeStatusBar()
         configurePreviousTrip(previousTripAdapter)
         configureUpComingTrip(upComingTripAdapter)
+        configureViewPagerIndicator()
 
     }
 
@@ -48,13 +60,19 @@ class HomeActivity : AppCompatActivity() {
         )
     }
 
+    private fun configureViewPagerIndicator() {
+        TabLayoutMediator(
+            binding.vpiHomeUpcomingTravel,
+            binding.vpHomeUpcomingTravelContents
+        ) { _, _ -> }.attach()
+    }
+
     private fun configureUpComingTrip(upComingTripAdapter: UpComingTripAdapter) {
         binding.vpHomeUpcomingTravelContents.apply {
             adapter = upComingTripAdapter
             offscreenPageLimit = 1
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
         }
-        upComingTripAdapter.submitItem(viewModel.upComingTripDummyList)
     }
 
     private fun configurePreviousTrip(previousTripAdapter: PreviousTripAdapter) {
@@ -63,6 +81,21 @@ class HomeActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@HomeActivity)
             addItemDecoration(DividerItemDecoration(this@HomeActivity, 1))
         }
-        previousTripAdapter.submitItem(viewModel.previousTripDummyList)
+    }
+
+    private fun navigateNewTripDialog() {
+        NewTripDialog().show(supportFragmentManager, NEW_TRIP_DIALOG_TAG)
+    }
+
+    private fun onPreviousTripItemClick(index: Int, item: PreviousTrip) {
+        Toast.makeText(this, "$index , ${item.previousTripPlace}", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun onUpComingTripItemClick(index: Int, item: UpComingTrip) {
+        Toast.makeText(this, "$index , ${item.upComingTripLocation}", Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        const val NEW_TRIP_DIALOG_TAG = "newTripDialog"
     }
 }
