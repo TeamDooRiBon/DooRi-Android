@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.dooribon.databinding.ActivityParticipateBinding
 
-class ParticipateActivity : AppCompatActivity {
+class ParticipateActivity : AppCompatActivity() {
     private lateinit var binding: ActivityParticipateBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
