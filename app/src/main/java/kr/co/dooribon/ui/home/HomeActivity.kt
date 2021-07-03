@@ -36,17 +36,9 @@ class HomeActivity : AppCompatActivity() {
         binding.bindViewModel = viewModel
         binding.navigateNewTrip = { navigateNewTripDialog() }
 
-        upComingTripAdapter = UpComingTripAdapter(onItemClicked = { idx, upComingTripItem ->
-            onUpComingTripItemClick(idx, upComingTripItem)
-        })
-
-        previousTripAdapter = PreviousTripAdapter(onItemClicked = { idx, previousTripItem ->
-            onPreviousTripItemClick(idx, previousTripItem)
-        })
-
         initializeStatusBar()
-        configurePreviousTrip(previousTripAdapter)
-        configureUpComingTrip(upComingTripAdapter)
+        configurePreviousTrip()
+        configureUpComingTrip()
         configureViewPagerIndicator()
 
     }
@@ -67,7 +59,11 @@ class HomeActivity : AppCompatActivity() {
         ) { _, _ -> }.attach()
     }
 
-    private fun configureUpComingTrip(upComingTripAdapter: UpComingTripAdapter) {
+    private fun configureUpComingTrip() {
+        upComingTripAdapter = UpComingTripAdapter(onItemClicked = { idx, upComingTripItem ->
+            onUpComingTripItemClick(idx, upComingTripItem)
+        })
+
         binding.vpHomeUpcomingTravelContents.apply {
             adapter = upComingTripAdapter
             offscreenPageLimit = 1
@@ -75,7 +71,11 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun configurePreviousTrip(previousTripAdapter: PreviousTripAdapter) {
+    private fun configurePreviousTrip() {
+        previousTripAdapter = PreviousTripAdapter(onItemClicked = { idx, previousTripItem ->
+            onPreviousTripItemClick(idx, previousTripItem)
+        })
+
         binding.rvHomePreviousTravelContent.apply {
             adapter = previousTripAdapter
             layoutManager = LinearLayoutManager(this@HomeActivity)
