@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import kr.co.dooribon.R
 import kr.co.dooribon.databinding.DialogNewTripBinding
 import kr.co.dooribon.ui.newtrip.AddTravelActivity
 import kr.co.dooribon.utils.AutoClearBinding
@@ -16,7 +14,7 @@ import kr.co.dooribon.utils.fullScreenDialogSize
 import kr.co.dooribon.utils.getIntent
 import kr.co.dooribon.utils.shortToast
 
-class NewTripDialog : DialogFragment(){
+class NewTripDialog : DialogFragment() {
 
     private var binding by AutoClearBinding<DialogNewTripBinding>()
 
@@ -24,9 +22,10 @@ class NewTripDialog : DialogFragment(){
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = DialogNewTripBinding.inflate(inflater,container,false).also { DialogNewTripBinding ->
-        binding = DialogNewTripBinding
-    }.root
+    ): View =
+        DialogNewTripBinding.inflate(inflater, container, false).also { DialogNewTripBinding ->
+            binding = DialogNewTripBinding
+        }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
@@ -36,12 +35,12 @@ class NewTripDialog : DialogFragment(){
         fullScreenDialogSize()
     }
 
-    fun navigateNewTrip(){
+    fun navigateNewTrip() {
         startActivity(requireContext().getIntent<AddTravelActivity>())
         dismiss()
     }
 
-    fun navigateJoinTrip(){
+    fun navigateJoinTrip() {
         // 참여코드를 적을 수 있는 화면으로 넘어간다.
         requireContext().shortToast("참여 코드를 적을 수 있는 화면으로 넘어갈거에요.")
     }

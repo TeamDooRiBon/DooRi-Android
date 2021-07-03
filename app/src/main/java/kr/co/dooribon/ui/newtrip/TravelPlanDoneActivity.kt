@@ -10,12 +10,12 @@ import kr.co.dooribon.ui.home.HomeActivity
 
 class TravelPlanDoneActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityTravelPlanDoneBinding
+    private lateinit var binding: ActivityTravelPlanDoneBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_travel_plan_done)
 
-        binding.btnLater.setOnClickListener{
+        binding.btnLater.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             finish()
             startActivity(intent)

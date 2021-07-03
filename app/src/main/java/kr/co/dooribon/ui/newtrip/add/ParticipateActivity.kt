@@ -14,7 +14,8 @@ class ParticipateActivity : AppCompatActivity() {
 
         initResult()
     }
-    private fun initResult(){
+
+    private fun initResult() {
         binding.btnParticipatePut.setOnClickListener {
 
         }

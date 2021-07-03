@@ -11,7 +11,7 @@ import kr.co.dooribon.ui.newtrip.adapter.RecoImgAdapter
 
 class AddTravelActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityNewTravelBinding
+    private lateinit var binding: ActivityNewTravelBinding
     val tempImgs = mutableListOf<ImageData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class AddTravelActivity : AppCompatActivity() {
         setImgAdapter(tempImgs)
     }
 
-    private fun setImgAdapter(imgList : List<ImageData>){
+    private fun setImgAdapter(imgList: List<ImageData>) {
         val imgAdapter = RecoImgAdapter()
         val imgRV = binding.rvPreparedPhotos
         imgRV.adapter = imgAdapter
@@ -41,8 +41,8 @@ class AddTravelActivity : AppCompatActivity() {
         imgAdapter.setItemList(imgList)
     }
 
-    private fun addData(){
-        for(i in 0 until 16){
+    private fun addData() {
+        for (i in 0 until 16) {
             tempImgs.add(ImageData(R.drawable.ic_launcher_foreground))
         }
     }

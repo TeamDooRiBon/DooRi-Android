@@ -40,7 +40,6 @@ class HomeActivity : AppCompatActivity() {
         configurePreviousTrip()
         configureUpComingTrip()
         configureViewPagerIndicator()
-
     }
 
     private fun initializeStatusBar() {
