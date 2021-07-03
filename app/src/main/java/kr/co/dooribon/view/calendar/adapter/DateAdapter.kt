@@ -1,0 +1,36 @@
+package kr.co.dooribon.view.calendar.adapter
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import kr.co.dooribon.databinding.ViewCalendarDateBinding
+
+class DateAdapter : RecyclerView.Adapter<DateAdapter.DateViewHolder>() {
+
+    private val dateList = mutableListOf<String>()
+
+    class DateViewHolder(private val binding: ViewCalendarDateBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(dateItem: String) {
+            binding.date = dateItem
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ViewCalendarDateBinding.inflate(layoutInflater, parent, false)
+        return DateViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: DateViewHolder, position: Int) {
+        holder.bind(dateList[position])
+    }
+
+    override fun getItemCount(): Int = dateList.size
+
+    fun submitItem(list: List<String>) {
+        dateList.clear()
+        dateList.addAll(list)
+        notifyDataSetChanged()
+    }
+}
