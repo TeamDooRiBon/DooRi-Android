@@ -19,6 +19,11 @@ class AddTravelActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_travel)
 
         binding.btStartNewTravel.setOnClickListener {
+            val intent = Intent(this, TravelPlanDoneActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btAddDate.setOnClickListener {
             val intent = Intent(this, DatePickActivity::class.java)
             startActivity(intent)
         }
@@ -33,6 +38,7 @@ class AddTravelActivity : AppCompatActivity() {
         imgRV.adapter = imgAdapter
         imgRV.setHasFixedSize(false) // scroll view 적용 여부에 따라 변경
         //imgRV.addItemDecoration(RVItemDeco(10,10,10,10))
+
         imgAdapter.setItemList(imgList)
     }
 

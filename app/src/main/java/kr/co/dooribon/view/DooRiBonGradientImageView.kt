@@ -75,8 +75,8 @@ class DooRiBonGradientImageView @JvmOverloads constructor(
 
         gradientPaint.apply {
             shader = LinearGradient(
-                0f,0f,0f,height.toFloat(),
-                startColor,endColor,Shader.TileMode.CLAMP
+                0f, 0f, 0f, height.toFloat(),
+                startColor, endColor, Shader.TileMode.CLAMP
             )
             alpha = (gradientAlpha * 255).toInt()
         }

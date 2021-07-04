@@ -40,7 +40,6 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
             Glide
                 .with(binding.ivRecoImage)
                 .load(img.img)
-                .centerCrop()
                 .into(binding.ivRecoImage)
         }
     }
