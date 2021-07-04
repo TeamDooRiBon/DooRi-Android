@@ -10,7 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DooRiBonAndroid">
         <activity android:name=".ui.home.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ui.newtrip.DatePickActivity">
 
@@ -24,12 +28,6 @@
         <activity
             android:name=".ui.newtrip.AddTravelActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -37,5 +37,4 @@
         app:layout_constraintTop_toBottomOf="@id/iv_footer_slogun"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
