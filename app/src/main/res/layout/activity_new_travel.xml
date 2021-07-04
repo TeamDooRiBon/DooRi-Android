@@ -22,174 +22,191 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_start_new_travel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/start_new_travel"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_back"
-            tools:text="번들님의 새로운 여행\n같이 시작해요!" />
-
-        <TextView
-            android:id="@+id/tv_write_travel_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/write_travel_name"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
-            app:layout_constraintTop_toBottomOf="@id/tv_start_new_travel"
-            tools:text="여행 이름을 지어주세요." />
-
-        <EditText
-            android:id="@+id/et_travel_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="28dp"
-            android:hint="@string/over_the_water"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
-            app:layout_constraintTop_toBottomOf="@id/tv_write_travel_name" />
-
-        <TextView
-            android:id="@+id/tv_travel_place"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:text="@string/travel_place"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
-            app:layout_constraintTop_toBottomOf="@id/et_travel_name"
-            tools:text="어디로 여행 가세요?" />
-
-        <EditText
-            android:id="@+id/et_travel_place"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="28dp"
-            android:hint="@string/jeju_seogwipo"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
-            app:layout_constraintTop_toBottomOf="@id/tv_travel_place" />
-
-        <TextView
-            android:id="@+id/tv_travel_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/register_travel_date"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
-            app:layout_constraintTop_toBottomOf="@id/et_travel_place"
-            tools:text="여행 일정 등록" />
-
-        <Button
-            android:id="@+id/bt_add_date"
-            style="@style/RoundBlueTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add_date"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@id/tv_travel_date"
-            app:layout_constraintEnd_toEndOf="@id/et_travel_place"
-            app:layout_constraintTop_toTopOf="@id/tv_travel_date"
-            tools:text="날짜 추가하기 +" />
-
-        <TextView
-            android:id="@+id/tv_fix_start_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="@string/start_date"
-            android:textColor="#A0A4A8"
-            app:layout_constraintStart_toStartOf="@id/tv_travel_date"
-            app:layout_constraintTop_toBottomOf="@id/tv_travel_date"
-            tools:text="시작 날짜" />
-
-        <TextView
-            android:id="@+id/tv_start_date"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toStartOf="@id/tv_end_date"
-            app:layout_constraintStart_toStartOf="@id/tv_fix_start_date"
-            app:layout_constraintTop_toBottomOf="@id/tv_fix_start_date"
-            tools:text="333" />
-
-        <TextView
-            android:id="@+id/tv_fix_end_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="@string/end_date"
-            android:textColor="#A0A4A8"
-            app:layout_constraintStart_toStartOf="@id/tv_end_date"
-            app:layout_constraintTop_toBottomOf="@id/tv_travel_date"
-            tools:text="끝나는 날짜" />
-
-        <TextView
-            android:id="@+id/tv_end_date"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="4dp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_start_date"
-            app:layout_constraintEnd_toEndOf="@id/et_travel_place"
-            app:layout_constraintStart_toEndOf="@id/tv_start_date"
-            app:layout_constraintTop_toTopOf="@id/tv_start_date"
-            tools:text="333" />
-
-        <TextView
-            android:id="@+id/tv_select_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="@string/click_pic"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
-            app:layout_constraintTop_toBottomOf="@id/tv_start_date" />
-
-        <TextView
-            android:id="@+id/tv_sub_select_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/we_prepared"
-            android:textColor="#A0A4A8"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
-            app:layout_constraintTop_toBottomOf="@id/tv_select_pic" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_prepared_photos"
-            android:layout_width="0dp"
+        <ScrollView
+            android:id="@+id/sv_middle"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginEnd="24dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/cl_bottom"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
-            app:layout_constraintTop_toBottomOf="@id/tv_sub_select_pic"
-            app:layout_constraintVertical_bias="0.0"
-            app:spanCount="4" />
+            app:layout_constraintTop_toBottomOf="@id/iv_back">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_inside_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <TextView
+                    android:id="@+id/tv_start_new_travel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/start_new_travel"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="번들님의 새로운 여행\n같이 시작해요!" />
+
+                <TextView
+                    android:id="@+id/tv_write_travel_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/write_travel_name"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
+                    app:layout_constraintTop_toBottomOf="@id/tv_start_new_travel"
+                    tools:text="여행 이름을 지어주세요." />
+
+                <EditText
+
+                    android:id="@+id/et_travel_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="28dp"
+                    android:hint="@string/over_the_water"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
+                    app:layout_constraintTop_toBottomOf="@id/tv_write_travel_name" />
+
+                <TextView
+                    android:id="@+id/tv_travel_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/travel_place"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
+                    app:layout_constraintTop_toBottomOf="@id/et_travel_name"
+                    tools:text="어디로 여행 가세요?" />
+
+                <EditText
+                    android:id="@+id/et_travel_place"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="28dp"
+                    android:hint="@string/jeju_seogwipo"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
+                    app:layout_constraintTop_toBottomOf="@id/tv_travel_place" />
+
+                <TextView
+                    android:id="@+id/tv_travel_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/register_travel_date"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
+                    app:layout_constraintTop_toBottomOf="@id/et_travel_place"
+                    tools:text="여행 일정 등록" />
+
+                <Button
+                    android:id="@+id/bt_add_date"
+                    style="@style/RoundBlueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_date"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_travel_date"
+                    app:layout_constraintEnd_toEndOf="@id/et_travel_place"
+                    app:layout_constraintTop_toTopOf="@id/tv_travel_date"
+                    tools:text="날짜 추가하기 +" />
+
+                <TextView
+                    android:id="@+id/tv_fix_start_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/start_date"
+                    android:textColor="#A0A4A8"
+                    app:layout_constraintStart_toStartOf="@id/tv_travel_date"
+                    app:layout_constraintTop_toBottomOf="@id/tv_travel_date"
+                    tools:text="시작 날짜" />
+
+                <TextView
+                    android:id="@+id/tv_start_date"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    app:layout_constraintEnd_toStartOf="@id/tv_end_date"
+                    app:layout_constraintStart_toStartOf="@id/tv_fix_start_date"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fix_start_date"
+                    tools:text="333" />
+
+                <TextView
+                    android:id="@+id/tv_fix_end_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/end_date"
+                    android:textColor="#A0A4A8"
+                    app:layout_constraintStart_toStartOf="@id/tv_end_date"
+                    app:layout_constraintTop_toBottomOf="@id/tv_travel_date"
+                    tools:text="끝나는 날짜" />
+
+                <TextView
+                    android:id="@+id/tv_end_date"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_start_date"
+                    app:layout_constraintEnd_toEndOf="@id/et_travel_place"
+                    app:layout_constraintStart_toEndOf="@id/tv_start_date"
+                    app:layout_constraintTop_toTopOf="@id/tv_start_date"
+                    tools:text="333" />
+
+                <TextView
+                    android:id="@+id/tv_select_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/click_pic"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
+                    app:layout_constraintTop_toBottomOf="@id/tv_start_date" />
+
+                <TextView
+                    android:id="@+id/tv_sub_select_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/we_prepared"
+                    android:textColor="#A0A4A8"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
+                    app:layout_constraintTop_toBottomOf="@id/tv_select_pic" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_prepared_photos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/tv_start_new_travel"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sub_select_pic"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:spanCount="4" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_bottom"
