@@ -20,6 +20,8 @@ class AddTravelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_travel)
 
+        backBtnClickListener()
+
         binding.btStartNewTravel.setOnClickListener {
             val intent = Intent(this, TravelPlanDoneActivity::class.java)
             startActivity(intent)
@@ -29,6 +31,8 @@ class AddTravelActivity : AppCompatActivity() {
             val intent = Intent(this, DatePickActivity::class.java)
             startActivity(intent)
         }
+
+
 
         addData()
         setImgAdapter(tempImgs)
@@ -46,6 +50,12 @@ class AddTravelActivity : AppCompatActivity() {
     private fun addData(){
         for(i in 0 until 16){
             tempImgs.add(ImageData(R.drawable.ic_launcher_background))
+        }
+    }
+
+    private fun backBtnClickListener(){
+        binding.ivBack.setOnClickListener {
+            finish()
         }
     }
 }
