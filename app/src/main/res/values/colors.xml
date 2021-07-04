@@ -22,4 +22,25 @@
     <color name="doo_ri_bon_gray_black4">#5E656B</color>
     <color name="doo_ri_bon_gray6">#CACDD1</color>
     <color name="doo_ri_bon_gray7">#E9EBED</color>
+
+    <color name="main_sub_blue_2">#7c89ad</color>
+    <color name="main_sub_blue_1">#9ab4ff</color>
+    <color name="main_point_blue">#6b8ff9</color>
+    <color name="main_background_blue">#ecf2ff</color>
+    <color name="main_sub_orange_lightest">#ffe1d8</color>
+    <color name="main_point_orange">#ff7b51</color>
+    <color name="sub_sub_orange_2">#ffb09f</color>
+    <color name="main_sub_darkblue_3">#4e5e8c</color>
+    <color name="gray_black_1">#202020</color>
+    <color name="sub_sub_orange_1">#ff9984</color>
+    <color name="gray_gray_5_main">#a0a4a8</color>
+    <color name="gray_gray_6">#cacdd1</color>
+    <color name="gray_black_2">#2e3236</color>
+    <color name="sub_sub_blue_3">#c9dbff</color>
+    <color name="gray_gray_7_line">#e9ebed</color>
+    <color name="gray_black_3">#474c51</color>
+    <color name="gray_white_pure_9">#fdfeff</color>
+    <color name="result_1">#836fff</color>
+    <color name="gray_gray_black_4">#5e656b</color>
+    <color name="gray_white_8">#f7f8f9</color>
 </resources>
