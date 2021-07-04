@@ -13,7 +13,7 @@ import kr.co.dooribon.utils.RVItemDeco
 
 class AddTravelActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityNewTravelBinding
+    private lateinit var binding: ActivityNewTravelBinding
     val tempImgs = mutableListOf<ImageData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class AddTravelActivity : AppCompatActivity() {
         setImgAdapter(tempImgs)
     }
 
-    private fun setImgAdapter(imgList : List<ImageData>){
+    private fun setImgAdapter(imgList: List<ImageData>) {
         val imgAdapter = RecoImgAdapter()
         val imgRV = binding.rvPreparedPhotos
         imgRV.adapter = imgAdapter

@@ -9,7 +9,7 @@ import kr.co.dooribon.databinding.ViewUpComingTripBinding
 import kr.co.dooribon.domain.entity.UpComingTrip
 
 class UpComingTripAdapter(
-    private val onItemClicked : (idx : Int , item : UpComingTrip) -> Unit
+    private val onItemClicked: (idx: Int, item: UpComingTrip) -> Unit
 ) : RecyclerView.Adapter<UpComingTripAdapter.UpComingTripViewHolder>() {
 
     private val itemList = mutableListOf<UpComingTrip>()
@@ -30,9 +30,10 @@ class UpComingTripAdapter(
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.onClick = {
-                onItemClicked(adapterPosition,itemList[adapterPosition])
+                onItemClicked(adapterPosition, itemList[adapterPosition])
             }
         }
+
         fun bind(viewItem: UpComingTrip) {
             binding.item = viewItem
         }
@@ -46,7 +47,7 @@ class UpComingTripAdapter(
 }
 
 @BindingAdapter("up_coming_trip_item")
-fun ViewPager2.setUpComingTripItem(items : List<UpComingTrip>){
+fun ViewPager2.setUpComingTripItem(items: List<UpComingTrip>) {
     (adapter as? UpComingTripAdapter)?.run {
         submitItem(items)
     }

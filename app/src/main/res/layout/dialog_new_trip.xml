@@ -1,23 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="dialogFrament"
+            type="kr.co.dooribon.dialog.NewTripDialog" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:onClick="@{() -> dialogFrament.dismiss()}"
+        android:backgroundTint="@color/transparent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_new_trip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="NewTripDialog is Here~~~"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@id/card_join_trip"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_new_trip_title"
+                    style="@style/BlackBoldTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="새로운 여행 추가할게요!"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_new_trip_description"
+                    tools:text="새로운 여행 추가할게요!" />
+
+                <TextView
+                    android:id="@+id/tv_new_trip_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:textSize="12sp"
+                    android:text="더 나은 여행을 위해 두리번과 함께하세요"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_new_trip_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_new_trip_title"
+                    tools:text="더 나은 여행을 위해 두리번과 함께하세요" />
+
+                <Button
+                    android:id="@+id/btn_new_trip"
+                    style="@style/RoundButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/doo_ri_bon_blue"
+                    android:text="시작"
+                    android:onClick="@{() -> dialogFrament.navigateNewTrip()}"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_new_trip_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_new_trip_title" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_join_trip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/card_new_trip"
+            app:layout_constraintStart_toStartOf="@id/card_new_trip"
+            app:layout_constraintTop_toBottomOf="@id/card_new_trip">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_join_trip_title"
+                    style="@style/BlackBoldTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="다른 여행에 참여할게요!"
+                    app:layout_constraintBottom_toTopOf="@id/tv_join_trip_description"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="다른 여행에 참여할게요!" />
+
+                <TextView
+                    android:id="@+id/tv_join_trip_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="24dp"
+                    android:textSize="12sp"
+                    android:text="동행과 함께 여행을 준비하세요"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_join_trip_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_join_trip_title"
+                    tools:text="동행과 함께 여행을 준비하세요" />
+
+                <Button
+                    android:id="@+id/btn_join_trip"
+                    style="@style/RoundButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/doo_ri_bon_orange"
+                    android:text="참여"
+                    android:onClick="@{() -> dialogFrament.navigateJoinTrip()}"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_join_trip_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_join_trip_title" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

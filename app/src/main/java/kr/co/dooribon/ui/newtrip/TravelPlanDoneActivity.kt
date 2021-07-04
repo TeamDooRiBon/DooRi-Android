@@ -15,7 +15,7 @@ import kotlin.concurrent.fixedRateTimer
 
 class TravelPlanDoneActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityTravelPlanDoneBinding
+    private lateinit var binding: ActivityTravelPlanDoneBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_travel_plan_done)
