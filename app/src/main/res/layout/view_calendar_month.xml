@@ -50,7 +50,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/month"
             app:layout_constraintBottom_toBottomOf="@id/month"
-            tools:text="2021"/>
+            tools:text="2021" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_month_container"

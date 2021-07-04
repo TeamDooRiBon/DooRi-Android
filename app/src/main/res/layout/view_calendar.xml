@@ -3,8 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data class = "ViewCalendar">
-    </data>
+    <data class="ViewCalendar"></data>
 
     <merge
         android:layout_width="match_parent"
@@ -13,6 +12,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:id="@+id/day_of_week"
                 android:layout_width="match_parent"

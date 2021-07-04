@@ -22,7 +22,7 @@ class TravelPlanDoneActivity : AppCompatActivity() {
 
         backBtnClickListener()
 
-        binding.btnLater.setOnClickListener{
+        binding.btnLater.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
             finish() // 현재 액티비티 종료
@@ -32,7 +32,7 @@ class TravelPlanDoneActivity : AppCompatActivity() {
         binding.btnCopyCodes.setOnClickListener {
             val dlg = DoneCopyDialog(this)
             dlg.start()
-            fixedRateTimer("Change Indicator", false, 0L, 60*1000 ){
+            fixedRateTimer("Change Indicator", false, 0L, 60 * 1000) {
 
             }
             Handler(Looper.getMainLooper()).postDelayed({
@@ -41,31 +41,31 @@ class TravelPlanDoneActivity : AppCompatActivity() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
                 finish() // 현재 액티비티 종료
                 startActivity(intent)
-            }, 3000 )
+            }, 3000)
         }
     }
 
-    private fun changeIndicator(){
+    private fun changeIndicator() {
         var curIndi = 0
         val timer = Timer()
         val indi1 = findViewById<ImageView>(R.id.iv_indi_1)
         val indi2 = findViewById<ImageView>(R.id.iv_indi_2)
         val indi3 = findViewById<ImageView>(R.id.iv_indi_3)
 
-        timer.scheduleAtFixedRate(object: TimerTask(){
+        timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
-                when(curIndi%3){
-                    0->{
+                when (curIndi % 3) {
+                    0 -> {
                         indi1.setBackgroundResource(R.drawable.shape_selected_blue_circle)
                         indi2.setBackgroundResource(R.drawable.shape_unselected_blue_circle)
                         indi3.setBackgroundResource(R.drawable.shape_unselected_blue_circle)
                     }
-                    1->{
+                    1 -> {
                         indi1.setBackgroundResource(R.drawable.shape_unselected_blue_circle)
                         indi2.setBackgroundResource(R.drawable.shape_selected_blue_circle)
                         indi3.setBackgroundResource(R.drawable.shape_unselected_blue_circle)
                     }
-                    2->{
+                    2 -> {
                         indi1.setBackgroundResource(R.drawable.shape_unselected_blue_circle)
                         indi2.setBackgroundResource(R.drawable.shape_unselected_blue_circle)
                         indi3.setBackgroundResource(R.drawable.shape_selected_blue_circle)
@@ -73,10 +73,10 @@ class TravelPlanDoneActivity : AppCompatActivity() {
                 }
                 curIndi++
             }
-        },0, 1000)
+        }, 0, 1000)
     }
 
-    private fun backBtnClickListener(){
+    private fun backBtnClickListener() {
         binding.ivBack.setOnClickListener {
             finish()
         }
