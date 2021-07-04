@@ -15,13 +15,16 @@
         <activity android:name=".ui.newtrip.DatePickActivity">
 
         </activity>
-        <activity android:name=".ui.newtrip.AddTravelActivity">
 
-        </activity>
         <activity android:name=".ui.newtrip.TravelPlanDoneActivity">
 
         </activity>
-        <activity android:name=".ui.newtrip.add.ParticipateActivity">
+        <activity android:name=".ui.newtrip.add.ParticipateActivity"/>
+
+        <activity
+            android:name=".ui.newtrip.AddTravelActivity"
+            android:windowSoftInputMode="stateAlwaysHidden">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
