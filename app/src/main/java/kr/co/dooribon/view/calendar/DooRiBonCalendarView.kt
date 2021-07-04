@@ -2,6 +2,7 @@ package kr.co.dooribon.view.calendar
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,28 +58,35 @@ class DooRiBonCalendarView @JvmOverloads constructor(
 
     private fun daysInMonthList(date: LocalDate): CalendarMonthEntity {
         val daysInMonthList = mutableListOf<String>()
+        // 년도와 날짜
         val yearMonth = YearMonth.from(date)
 
+        // 한 달에 몇일이 있는지
         val daysInMonth = yearMonth.lengthOfMonth()
 
+        // ex. 7월이면 7월 1일 ,8월이면 8월1일 이런식
         val firstOfMonth = date.withDayOfMonth(1)
+        // ex. 7월 한주에 몇일이 있는지 , 2021년 7월은 목요일부터 시작임
         val dayOfWeek = firstOfMonth.dayOfWeek.value
 
         // daysInMonthList
+        // 여기서 주말을 감지하는 로직을 짜고 , 예를 들어 나누기를 통해서 주말이면 true ,아니면 false로
+        // boolean값을 줘서 감지를 하면 될거 같습니다.
         for (i in 1..42) {
-            if (i <= dayOfWeek || i > daysInMonth + dayOfWeek) {
-                daysInMonthList.add("")
-            } else {
-                daysInMonthList.add((i - dayOfWeek).toString())
+            if(dayOfWeek == 7){
+                if((i - dayOfWeek) > 0 && i <= daysInMonth + dayOfWeek){
+                    daysInMonthList.add((i-dayOfWeek).toString())
+                }
+            }else{
+                if (i <= dayOfWeek || i > daysInMonth + dayOfWeek) {
+                    daysInMonthList.add("")
+                } else {
+                    daysInMonthList.add((i - dayOfWeek).toString())
+                }
             }
         }
 
         return CalendarMonthEntity(yearMonth.year, yearMonth.month.value, daysInMonthList)
-    }
-
-    private fun monthYearFromDate(date: LocalDate): String {
-        val formatter = DateTimeFormatter.ofPattern("MMMM yyyy")
-        return date.format(formatter)
     }
 
     fun previous() {
