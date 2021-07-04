@@ -23,7 +23,7 @@ import java.time.format.DateTimeFormatter
  * TODO : 함수화 구성을 다시 한번 생각해야할거 같음
  * TODO : 주말의 경우 textView가 주황색으로 나와야 한다.
  * TODO : Date를 클릭했을 경우 이 값을 가져올 수 있게 해야한다.
- * TODO : 8월의 경우 1일이 일요일부터 시작하는데 이게 한칸을 전부 띄워서 나오게 된다. 이거 수정해야할 거같음
+ * TODO : 8월의 경우 1일이 일요일부터 시작하는데 이게 한칸을 전부 띄워서 나오게 된다. 이거 수정 해야할 거같음
  */
 class DooRiBonCalendarView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
