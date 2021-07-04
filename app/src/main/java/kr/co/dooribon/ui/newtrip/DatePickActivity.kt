@@ -8,7 +8,7 @@ import kr.co.dooribon.databinding.ActivityDatePickBinding
 
 class DatePickActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityDatePickBinding
+    private lateinit var binding: ActivityDatePickBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

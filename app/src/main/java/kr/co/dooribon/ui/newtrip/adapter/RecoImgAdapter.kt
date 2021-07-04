@@ -1,10 +1,7 @@
 package kr.co.dooribon.ui.newtrip.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -28,7 +25,7 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
 
     override fun getItemCount(): Int = imgs.size
 
-    fun setItemList(newList : List<ImageData>){
+    fun setItemList(newList: List<ImageData>) {
         imgs.clear()
         imgs.addAll(newList)
         notifyDataSetChanged()
@@ -38,7 +35,7 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(img: ImageData) {
             Glide
-                .with(binding.ivRecoImage)
+                .with(binding.ivRecoImage.context)
                 .load(img.img)
                 .into(binding.ivRecoImage)
         }

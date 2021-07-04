@@ -20,7 +20,7 @@ class AutoClearBinding<T : Any> : ReadWriteProperty<Fragment, T>, LifecycleObser
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy(){
+    fun onDestroy() {
         _binding = null
     }
 }

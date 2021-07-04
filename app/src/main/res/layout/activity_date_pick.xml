@@ -35,7 +35,7 @@
             app:layout_constraintTop_toBottomOf="@id/iv_back"
             tools:text="@string/next_travel_date"/>
 
-        <androidx.fragment.app.FragmentContainerView
+        <kr.co.dooribon.view.calendar.DooRiBonCalendarView
             android:id="@+id/frag_calendar"
             android:layout_width="0dp"
             android:layout_height="0dp"

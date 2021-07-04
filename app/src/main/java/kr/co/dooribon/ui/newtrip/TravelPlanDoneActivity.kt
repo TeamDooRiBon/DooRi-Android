@@ -15,14 +15,17 @@ import kotlin.concurrent.fixedRateTimer
 
 class TravelPlanDoneActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityTravelPlanDoneBinding
+    private lateinit var binding: ActivityTravelPlanDoneBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_travel_plan_done)
 
+        backBtnClickListener()
+
         binding.btnLater.setOnClickListener{
             val intent = Intent(this, HomeActivity::class.java)
-            finish()
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
+            finish() // 현재 액티비티 종료
             startActivity(intent)
         }
 
@@ -35,10 +38,10 @@ class TravelPlanDoneActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper()).postDelayed({
                 //changeIndicator()
                 val intent = Intent(this, HomeActivity::class.java)
-                finish()
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
+                finish() // 현재 액티비티 종료
                 startActivity(intent)
             }, 3000 )
-
         }
     }
 
@@ -71,5 +74,11 @@ class TravelPlanDoneActivity : AppCompatActivity() {
                 curIndi++
             }
         },0, 1000)
+    }
+
+    private fun backBtnClickListener(){
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
     }
 }
