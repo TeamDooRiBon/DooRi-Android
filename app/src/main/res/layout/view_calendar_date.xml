@@ -8,11 +8,16 @@
         <variable
             name="date"
             type="String" />
+
+        <variable
+            name="on_click"
+            type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> on_click.invoke()}">
 
         <TextView
             android:id="@+id/day"

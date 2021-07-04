@@ -1,7 +1,9 @@
 package kr.co.dooribon.view.calendar.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +34,9 @@ class CalendarMonthAdapter : RecyclerView.Adapter<CalendarMonthAdapter.CalendarV
 
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
         holder.bind(dateOfMonth[position])
-        val dateAdapter = DateAdapter()
+        val dateAdapter = DateAdapter(onDateClick = { idx , Date ->
+            onDateClick(idx,Date)
+        })
         holder.binding.rvMonthContainer.apply {
             layoutManager = GridLayoutManager(this.context,7)
             adapter = dateAdapter
@@ -46,5 +50,10 @@ class CalendarMonthAdapter : RecyclerView.Adapter<CalendarMonthAdapter.CalendarV
         dateOfMonth.clear()
         dateOfMonth.addAll(dateList)
         notifyDataSetChanged()
+    }
+
+    private fun onDateClick(idx : Int , date : String) {
+        // TODO : 여기서 어떻게 하면 그 달의 날짜임을 알 수 있을지??? 그걸 생각해봐야할거 같습니다.
+        Log.d("DateClicked!!!","$dateOfMonth")
     }
 }
