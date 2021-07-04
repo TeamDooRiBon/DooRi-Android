@@ -16,14 +16,17 @@
 
         </activity>
         <activity android:name=".ui.newtrip.AddTravelActivity">
+
+        </activity>
+        <activity android:name=".ui.newtrip.TravelPlanDoneActivity">
+
+        </activity>
+        <activity android:name=".ui.newtrip.add.ParticipateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ui.newtrip.TravelPlanDoneActivity">
-
         </activity>
     </application>
 
