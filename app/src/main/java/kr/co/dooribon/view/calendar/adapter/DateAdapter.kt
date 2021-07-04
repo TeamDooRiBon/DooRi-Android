@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.databinding.ViewCalendarDateBinding
 
+/**
+ * 날짜 1개 1개 아이템을 위한 Adapter
+ */
 class DateAdapter : RecyclerView.Adapter<DateAdapter.DateViewHolder>() {
 
     private val dateList = mutableListOf<String>()

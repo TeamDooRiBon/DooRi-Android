@@ -23,7 +23,7 @@
             android:textSize="24sp"
             android:textColor="@color/doo_ri_bon_sub_blue2"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="20dp"
             tools:text="7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{Integer.toString(calendarMonthEntity.year)}"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/month"
             app:layout_constraintBottom_toBottomOf="@id/month"

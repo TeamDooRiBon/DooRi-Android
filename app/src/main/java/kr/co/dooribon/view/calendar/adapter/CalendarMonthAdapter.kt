@@ -2,11 +2,18 @@ package kr.co.dooribon.view.calendar.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.databinding.ViewCalendarMonthBinding
 import kr.co.dooribon.view.calendar.entity.CalendarMonthEntity
 
+/**
+ * 7월      2021
+ * 1 2 3 4 5 6 -> 이런 데이터들을 보여주기 위한 Adapter
+ *
+ * 즉 년도와 달 그리고 날짜를 보여줄 수 있는 Adapter
+ */
 class CalendarMonthAdapter : RecyclerView.Adapter<CalendarMonthAdapter.CalendarViewHolder>(){
 
     private val dateOfMonth = mutableListOf<CalendarMonthEntity>()
@@ -35,9 +42,9 @@ class CalendarMonthAdapter : RecyclerView.Adapter<CalendarMonthAdapter.CalendarV
 
     override fun getItemCount(): Int = dateOfMonth.size
 
-    fun submitList(dateList : CalendarMonthEntity){
+    fun submitList(dateList : List<CalendarMonthEntity>){
         dateOfMonth.clear()
-        dateOfMonth.add(dateList)
+        dateOfMonth.addAll(dateList)
         notifyDataSetChanged()
     }
 }
