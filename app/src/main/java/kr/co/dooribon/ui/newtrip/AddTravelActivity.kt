@@ -2,12 +2,14 @@ package kr.co.dooribon.ui.newtrip
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityNewTravelBinding
 import kr.co.dooribon.ui.newtrip.adapter.ImageData
 import kr.co.dooribon.ui.newtrip.adapter.RecoImgAdapter
+import kr.co.dooribon.utils.RVItemDeco
 
 class AddTravelActivity : AppCompatActivity() {
 
@@ -36,8 +38,7 @@ class AddTravelActivity : AppCompatActivity() {
         val imgAdapter = RecoImgAdapter()
         val imgRV = binding.rvPreparedPhotos
         imgRV.adapter = imgAdapter
-        imgRV.setHasFixedSize(false) // scroll view 적용 여부에 따라 변경
-        //imgRV.addItemDecoration(RVItemDeco(10,10,10,10))
+        imgRV.addItemDecoration(RVItemDeco(10,10,10,10))
 
         imgAdapter.setItemList(imgList)
     }

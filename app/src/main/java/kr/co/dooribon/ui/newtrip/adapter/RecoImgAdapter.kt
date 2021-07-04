@@ -38,7 +38,7 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(img: ImageData) {
             Glide
-                .with(binding.ivRecoImage)
+                .with(binding.ivRecoImage.context)
                 .load(img.img)
                 .into(binding.ivRecoImage)
         }
