@@ -8,6 +8,7 @@ import kotlin.math.roundToInt
  *
  * Just use For CustomView dp , Not Whole Projects
  */
-fun Context.dpToPixel(dp : Int) : Int = (dp * resources.displayMetrics.density).roundToInt()
+fun Context.dpToPixel(dp: Int): Int = (dp * resources.displayMetrics.density).roundToInt()
 
-fun Context.dpToPixelFloat(dp : Int) : Float = (dp * resources.displayMetrics.density).roundToInt().toFloat()
+fun Context.dpToPixelFloat(dp: Int): Float =
+    (dp * resources.displayMetrics.density).roundToInt().toFloat()
