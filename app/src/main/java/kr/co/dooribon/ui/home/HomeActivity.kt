@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -91,6 +92,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onUpComingTripItemClick(index: Int, item: UpComingTrip) {
+
         Toast.makeText(this, "$index , ${item.upComingTripLocation}", Toast.LENGTH_SHORT).show()
     }
 

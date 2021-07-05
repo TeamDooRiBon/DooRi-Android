@@ -75,6 +75,7 @@ class DooRiBonCalendarView @JvmOverloads constructor(
                     daysInMonthList.add((i - dayOfWeek).toString())
                 }
             } else {
+                // 여기 조건문은 다시 한번 생각을 해봐야할 거 같습니다.
                 if (i <= dayOfWeek || i > daysInMonth + dayOfWeek) {
                     daysInMonthList.add("")
                 } else {
