@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/month"
@@ -50,16 +50,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/month"
             app:layout_constraintBottom_toBottomOf="@id/month"
-            tools:text="2021"/>
+            tools:text="2021" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_month_container"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp"
             android:overScrollMode="never"
-            app:layout_constraintTop_toBottomOf="@id/month"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/month"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

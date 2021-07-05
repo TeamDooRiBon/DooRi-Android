@@ -2,17 +2,14 @@ package kr.co.dooribon.view.calendar
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import kr.co.dooribon.databinding.ViewCalendar
 import kr.co.dooribon.view.calendar.adapter.CalendarMonthAdapter
 import kr.co.dooribon.view.calendar.entity.CalendarMonthEntity
 import java.time.LocalDate
 import java.time.YearMonth
-import java.time.format.DateTimeFormatter
 
 /**
  * Created by SSong-develop 2021.07.04
@@ -73,11 +70,12 @@ class DooRiBonCalendarView @JvmOverloads constructor(
         // 여기서 주말을 감지하는 로직을 짜고 , 예를 들어 나누기를 통해서 주말이면 true ,아니면 false로
         // boolean값을 줘서 감지를 하면 될거 같습니다.
         for (i in 1..42) {
-            if(dayOfWeek == 7){
-                if((i - dayOfWeek) > 0 && i <= daysInMonth + dayOfWeek){
-                    daysInMonthList.add((i-dayOfWeek).toString())
+            if (dayOfWeek == 7) {
+                if ((i - dayOfWeek) > 0 && i <= daysInMonth + dayOfWeek) {
+                    daysInMonthList.add((i - dayOfWeek).toString())
                 }
-            }else{
+            } else {
+                // 여기 조건문은 다시 한번 생각을 해봐야할 거 같습니다.
                 if (i <= dayOfWeek || i > daysInMonth + dayOfWeek) {
                     daysInMonthList.add("")
                 } else {
