@@ -31,6 +31,7 @@
     <string name="prepare_new_travel">아래 여행 참여 코드를 공유하여\n함께 여행을 준비해나가세요!️</string>
     <string name="done_copy">복사 완료!</string>
     <string name="moving_to_home">새로운 여행 홈으로 이동 중</string>
+    <string name="no_schedule_please_add">아직 이 날의 일정이 없어요!\n첫 일정을 등록해주세요</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

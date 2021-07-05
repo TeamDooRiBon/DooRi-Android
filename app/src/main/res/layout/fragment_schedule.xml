@@ -17,10 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/gray_white_pure_9"
+            android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:elevation="10dp">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tv_year"
@@ -29,11 +29,11 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:text="2021"
                 android:textColor="@color/main_sub_blue_1"
                 android:textSize="8sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="2021"
                 tools:text="2021" />
 
             <TextView
@@ -42,13 +42,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                android:text="7"
                 android:textColor="@color/main_point_blue"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/tv_year"
                 app:layout_constraintStart_toStartOf="@id/tv_year"
                 app:layout_constraintTop_toBottomOf="@id/tv_year"
-                android:text="7"
                 tools:text="7" />
 
             <LinearLayout
@@ -75,13 +75,53 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_schedule_main"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_schedule"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/cl_calendar"
+            android:background="@color/gray_white_8"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/cl_calendar"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_schedule_main"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_empty_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_schedule_illustplus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_schedule_main"
+                app:layout_constraintBottom_toTopOf="@id/tv_no_schedule"/>
+
+            <TextView
+                android:id="@+id/tv_no_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:gravity="center"
+                android:text="@string/no_schedule_please_add"
+                android:textColor="@color/gray_gray_5_main"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_empty_img" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
