@@ -16,10 +16,12 @@ import kr.co.dooribon.databinding.ActivityHomeBinding
 import kr.co.dooribon.dialog.NewTripDialog
 import kr.co.dooribon.domain.entity.PreviousTrip
 import kr.co.dooribon.domain.entity.UpComingTrip
+import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import kr.co.dooribon.ui.home.adapter.PreviousTripAdapter
 import kr.co.dooribon.ui.home.adapter.UpComingTripAdapter
 import kr.co.dooribon.ui.home.viewmodel.HomeViewModel
 import kr.co.dooribon.utils.StatusBarUtil
+import kr.co.dooribon.utils.getIntent
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -88,7 +90,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onPreviousTripItemClick(index: Int, item: PreviousTrip) {
-        Toast.makeText(this, "$index , ${item.previousTripPlace}", Toast.LENGTH_SHORT).show()
+        startActivity(getIntent<ExistingTripActivity>())
     }
 
     private fun onUpComingTripItemClick(index: Int, item: UpComingTrip) {
