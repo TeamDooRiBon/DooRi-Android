@@ -1,35 +1,54 @@
-package kr.co.dooribon.ui.newtrip.add
+package kr.co.dooribon.ui.newtrip.join
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kr.co.dooribon.R
-import kr.co.dooribon.databinding.FragmentParticiCheckBinding
+import kr.co.dooribon.databinding.FragmentParticipateCheckBinding
+import kr.co.dooribon.ui.home.HomeActivity
+import kr.co.dooribon.ui.newtrip.DoneCopyDialog
+import kotlin.concurrent.fixedRateTimer
 
-class ParticiCheckFragment :Fragment() {
-    private lateinit var binding: FragmentParticiCheckBinding
+class ParticipateCheckFragment :Fragment() {
+    private lateinit var binding: FragmentParticipateCheckBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentParticiCheckBinding.inflate(inflater, container, false)
+        binding = FragmentParticipateCheckBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        forCheckClickEvent()
-    }
-    private fun forCheckClickEvent(){
-        binding.btnParticiAgain.setOnClickListener {
-            val participutFragment = ParticiPutFragment()
+        binding.btnParticipateAgain.setOnClickListener {
+            val participatejoinFragment = ParticipateJoinFragment()
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.partici_fragment_container_view, participutFragment).commitNow()
+                .replace(R.id.participate_fragment_container_view, participatejoinFragment).commitNow()
         }
         // Todo : 맞아요! 버튼 누를 경우 화면 전환
+        binding.btnParticipateYes.setOnClickListener {
+            val dl = DoneJoinDialog(this)
+            dl.start()
+            fixedRateTimer("Change Indicator", false, 0L, 60*1000 ){
+
+            }
+            Handler(Looper.getMainLooper()).postDelayed({
+                //changeIndicator()
+                val intent = Intent(this, HomeActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
+                finish() // 현재 액티비티 종료
+                startActivity(intent)
+            }, 3000 )
+        }
     }
+
 
 }

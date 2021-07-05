@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="18dp"
     android:layout_marginRight="18dp"
-    tools:context=".ui.newtrip.add.ParticiPutFragment">
+    tools:context=".ui.newtrip.join.ParticipateJoinFragment">
 
     <TextView
         android:id="@+id/tv_participate_ex1"

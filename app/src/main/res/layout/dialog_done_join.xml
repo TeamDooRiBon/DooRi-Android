@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingVertical="20dp"
+    android:paddingHorizontal="60dp">
+
+    <TextView
+        android:id="@+id/tv_done_join"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/done_join"/>
+
+    <ImageView
+        android:id="@+id/img_plane"
+        android:src="@drawable/ic_airplane"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_done_join"
+        app:layout_constraintStart_toStartOf="@id/tv_done_join"
+        app:layout_constraintEnd_toEndOf="@id/tv_done_join"/>
+
+    <ImageView
+        android:id="@+id/iv_indi_1"
+        android:layout_width="wrap_content"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/img_plane"
+        app:layout_constraintStart_toStartOf="@id/img_plane"
+        app:layout_constraintEnd_toStartOf="@id/iv_indi_2"
+        android:src="@drawable/shape_selected_blue_circle"/>
+
+    <ImageView
+        android:id="@+id/iv_indi_2"
+        android:layout_width="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/img_plane"
+        app:layout_constraintStart_toEndOf="@id/iv_indi_1"
+        app:layout_constraintEnd_toStartOf="@id/iv_indi_3"
+        android:src="@drawable/shape_unselected_blue_circle"/>
+
+    <ImageView
+        android:id="@+id/iv_indi_3"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/img_plane"
+        app:layout_constraintStart_toEndOf="@id/iv_indi_2"
+        app:layout_constraintEnd_toEndOf="@id/img_plane"
+        android:src="@drawable/shape_unselected_blue_circle"/>
+
+    <TextView
+        android:id="@+id/tv_moving_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/moving_to_home"
+        app:layout_constraintTop_toBottomOf="@id/iv_indi_1"
+        app:layout_constraintStart_toStartOf="@id/tv_done_join"
+        app:layout_constraintEnd_toEndOf="@id/tv_done_join"
+        android:textColor="@color/doo_ri_bon_blue"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

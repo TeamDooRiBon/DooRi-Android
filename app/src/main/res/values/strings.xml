@@ -4,10 +4,11 @@
     <string name="home_app_bar_description_text">지금 여행 중이에요! ✈️</string>
     <string name="participate_text">여행 참여코드를 입력해주세요!</string>
     <string name="all_put">모두 입력해주세요</string>
-    <string name="partici_check">참여하는 여행 정보가 맞나요?</string>
-    <string name="partici_btn_again">다시 할게요!</string>
-    <string name="partici_btn_yes">맞아요!</string>
-    <string name="partici_check_where">떠나요 두리번 to 제주</string>
+    <string name="participate_check">참여하는 여행 정보가 맞나요?</string>
+    <string name="participate_btn_again">다시 할게요!</string>
+    <string name="participate_btn_yes">맞아요!</string>
+    <string name="participate_check_where">떠나요 두리번 to 제주</string>
+    <string name="done_join">참여 완료!</string>
 
     <string name="start_new_travel">번들님의 새로운 여행\n같이 시작해요!</string>
     <string name="write_travel_name">여행 이름을 지어주세요.</string>

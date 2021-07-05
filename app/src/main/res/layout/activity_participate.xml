@@ -25,7 +25,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/partici_fragment_container_view"
+        android:id="@+id/participate_fragment_container_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"

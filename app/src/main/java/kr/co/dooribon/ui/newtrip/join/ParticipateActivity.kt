@@ -1,4 +1,4 @@
-package kr.co.dooribon.ui.newtrip.add
+package kr.co.dooribon.ui.newtrip.join
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +14,6 @@ class ParticipateActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.partici_fragment_container_view, ParticiPutFragment()).commitNow()
+            .replace(R.id.participate_fragment_container_view, ParticipateJoinFragment()).commitNow()
     }
 }

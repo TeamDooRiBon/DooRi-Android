@@ -1,22 +1,21 @@
-package kr.co.dooribon.ui.newtrip.add
+package kr.co.dooribon.ui.newtrip.join
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kr.co.dooribon.R
-import kr.co.dooribon.databinding.FragmentParticiPutBinding
+import kr.co.dooribon.databinding.FragmentParticipateJoinBinding
 
-class ParticiPutFragment : Fragment() {
-    private lateinit var binding : FragmentParticiPutBinding
+class ParticipateJoinFragment : Fragment() {
+    private lateinit var binding : FragmentParticipateJoinBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentParticiPutBinding.inflate(inflater, container, false)
+        binding = FragmentParticipateJoinBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -91,9 +90,9 @@ class ParticiPutFragment : Fragment() {
             }
             else{
                 // Todo : 6개 모두 입력했을 경우 버튼 색상 바꾸기
-                val particicheckFragment = ParticiCheckFragment()
+                val participatecheckFragment = ParticipateCheckFragment()
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.partici_fragment_container_view, particicheckFragment).commitNow()
+                    .replace(R.id.participate_fragment_container_view, participatecheckFragment).commitNow()
             }
         }
     }
