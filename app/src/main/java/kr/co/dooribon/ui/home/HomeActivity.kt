@@ -37,6 +37,7 @@ class HomeActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         binding.lifecycleOwner = this
         binding.bindViewModel = viewModel
+        binding.homeActivity = this
         binding.navigateNewTrip = { navigateNewTripDialog() }
 
         initializeStatusBar()
@@ -90,12 +91,15 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onPreviousTripItemClick(index: Int, item: PreviousTrip) {
-        startActivity(getIntent<ExistingTripActivity>())
+        navigateExistingTrip()
     }
 
     private fun onUpComingTripItemClick(index: Int, item: UpComingTrip) {
-
         Toast.makeText(this, "$index , ${item.upComingTripLocation}", Toast.LENGTH_SHORT).show()
+    }
+
+    fun navigateExistingTrip(){
+        startActivity(getIntent<ExistingTripActivity>())
     }
 
     companion object {

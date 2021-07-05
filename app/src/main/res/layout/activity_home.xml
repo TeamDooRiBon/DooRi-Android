@@ -12,6 +12,10 @@
         <variable
             name="navigate_new_trip"
             type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />
+
+        <variable
+            name="homeActivity"
+            type="kr.co.dooribon.ui.home.HomeActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -107,6 +111,7 @@
                         android:layout_height="300dp"
                         android:layout_marginTop="16dp"
                         android:scaleType="fitXY"
+                        android:onClick="@{() -> homeActivity.navigateExistingTrip()}"
                         android:src="@drawable/dummy_round_view"
                         app:gradient_alpha="0.7"
                         app:gradient_end_color="@color/black"
