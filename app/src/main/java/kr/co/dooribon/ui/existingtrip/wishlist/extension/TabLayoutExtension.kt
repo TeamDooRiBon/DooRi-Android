@@ -1,4 +1,4 @@
-package kr.co.dooribon.ui.existingtrip.util
+package kr.co.dooribon.ui.existingtrip.extension
 
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
@@ -15,6 +15,12 @@ fun TabLayout.initializeWishListTab(){
         addTab(this.newTab().setText("관광"))
         addTab(this.newTab().setText("숙소"))
         addTab(this.newTab().setText("맛집"))
+    }
+}
+
+fun TabLayout.initializeTab(tabName : List<String>){
+    tabName.forEach {
+        addTab(this.newTab().setText(it))
     }
 }
 
