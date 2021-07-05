@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentParticiCheckBinding
 
-class ParticiCheckFragment :Fragment() {
+class ParticiCheckFragment : Fragment() {
     private lateinit var binding: FragmentParticiCheckBinding
 
     override fun onCreateView(
@@ -23,7 +23,8 @@ class ParticiCheckFragment :Fragment() {
         super.onViewCreated(view, savedInstanceState)
         forCheckClickEvent()
     }
-    private fun forCheckClickEvent(){
+
+    private fun forCheckClickEvent() {
         binding.btnParticiAgain.setOnClickListener {
             val participutFragment = ParticiPutFragment()
             requireActivity().supportFragmentManager.beginTransaction()

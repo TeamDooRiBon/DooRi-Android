@@ -9,7 +9,7 @@ import kr.co.dooribon.databinding.ViewCalendarDateBinding
  * 날짜 1개 1개 아이템을 위한 Adapter
  */
 class DateAdapter(
-    private val onDateClick : (idx : Int , date : String) -> Unit
+    private val onDateClick: (idx: Int, date: String) -> Unit
 ) : RecyclerView.Adapter<DateAdapter.DateViewHolder>() {
 
     private val dateList = mutableListOf<String>()
@@ -19,9 +19,10 @@ class DateAdapter(
 
         init {
             binding.onClick = {
-                onDateClick(adapterPosition,dateList[adapterPosition])
+                onDateClick(adapterPosition, dateList[adapterPosition])
             }
         }
+
         fun bind(dateItem: String) {
             binding.date = dateItem
         }

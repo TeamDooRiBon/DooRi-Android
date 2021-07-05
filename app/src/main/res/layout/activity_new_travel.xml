@@ -237,7 +237,6 @@
         </ScrollView>
 
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_bottom"
             android:layout_width="0dp"

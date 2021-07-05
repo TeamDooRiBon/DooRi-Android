@@ -20,7 +20,7 @@ class RVItemDeco(
         with(outRect) {
             val curPos = parent.getChildAdapterPosition(view)
             right = mRight
-            if((curPos+1)<=12){ // 맨 마지막 줄이 아니면 bottom padding 추가
+            if ((curPos + 1) <= 12) { // 맨 마지막 줄이 아니면 bottom padding 추가
                 bottom = mBottom
             }
         }

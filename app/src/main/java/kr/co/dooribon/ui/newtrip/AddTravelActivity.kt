@@ -2,11 +2,8 @@ package kr.co.dooribon.ui.newtrip
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityNewTravelBinding
 import kr.co.dooribon.ui.newtrip.adapter.ImageData
@@ -42,7 +39,7 @@ class AddTravelActivity : AppCompatActivity() {
         val imgAdapter = RecoImgAdapter()
         val imgRV = binding.rvPreparedPhotos
         imgRV.adapter = imgAdapter
-        imgRV.addItemDecoration(RVItemDeco(10,10,10,10))
+        imgRV.addItemDecoration(RVItemDeco(10, 10, 10, 10))
 
         imgAdapter.setItemList(imgList)
 //        imgAdapter.setItemClickListener(object: RecoImgAdapter.ItemClickListener{
@@ -53,13 +50,13 @@ class AddTravelActivity : AppCompatActivity() {
 //        })
     }
 
-    private fun addData(){
-        for(i in 0 until 16){
+    private fun addData() {
+        for (i in 0 until 16) {
             tempImgs.add(ImageData(R.drawable.ic_launcher_background))
         }
     }
 
-    private fun backBtnClickListener(){
+    private fun backBtnClickListener() {
         binding.ivBack.setOnClickListener {
             finish()
         }
