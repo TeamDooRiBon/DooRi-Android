@@ -101,6 +101,7 @@
 
     <Button
         android:id="@+id/btn_partici_again"
+        style="@style/RoundButton.DooRiBonGray7"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#E9EBED"
@@ -112,6 +113,7 @@
 
     <Button
         android:id="@+id/btn_partici_yes"
+        style="@style/RoundButton.DooRiBonOrange"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"

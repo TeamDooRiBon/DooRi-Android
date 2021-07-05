@@ -29,11 +29,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="36dp"
-        android:layout_marginHorizontal="30dp">
+        android:layout_marginHorizontal="20dp">
 
         <EditText
             android:id="@+id/et_code1"
-            android:layout_width="32dp"
+            android:layout_width="36dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
@@ -50,7 +50,7 @@
 
         <EditText
             android:id="@+id/et_code2"
-            android:layout_width="32dp"
+            android:layout_width="36dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center_horizontal"
@@ -66,7 +66,7 @@
 
         <EditText
             android:id="@+id/et_code3"
-            android:layout_width="32dp"
+            android:layout_width="36dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center_horizontal"
@@ -82,7 +82,7 @@
 
         <EditText
             android:id="@+id/et_code4"
-            android:layout_width="32dp"
+            android:layout_width="36dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center_horizontal"
@@ -98,7 +98,7 @@
 
         <EditText
             android:id="@+id/et_code5"
-            android:layout_width="32dp"
+            android:layout_width="36dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center_horizontal"
@@ -114,7 +114,7 @@
 
         <EditText
             android:id="@+id/et_code6"
-            android:layout_width="32dp"
+            android:layout_width="36dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center_horizontal"
@@ -131,6 +131,7 @@
 
     <Button
         android:id="@+id/btn_participate_put"
+        style="@style/RoundButton.DooRiBonGray7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#E9EBED"

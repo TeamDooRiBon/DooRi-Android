@@ -29,7 +29,7 @@ class ParticiCheckFragment :Fragment() {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.partici_fragment_container_view, participutFragment).commitNow()
         }
-
+        // Todo : 맞아요! 버튼 누를 경우 화면 전환
     }
 
 }
