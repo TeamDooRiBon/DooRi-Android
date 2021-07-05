@@ -2,9 +2,11 @@ package kr.co.dooribon.ui.newtrip
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityNewTravelBinding
 import kr.co.dooribon.ui.newtrip.adapter.ImageData
@@ -32,8 +34,6 @@ class AddTravelActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
         addData()
         setImgAdapter(tempImgs)
     }
@@ -45,6 +45,12 @@ class AddTravelActivity : AppCompatActivity() {
         imgRV.addItemDecoration(RVItemDeco(10,10,10,10))
 
         imgAdapter.setItemList(imgList)
+//        imgAdapter.setItemClickListener(object: RecoImgAdapter.ItemClickListener{
+//            override fun onClick(view: View, position: Int) {
+//                view.setBackgroundResource(R.drawable.bg_selected_img_stroke)
+//
+//            }
+//        })
     }
 
     private fun addData(){

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_selected_img_stroke.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_airplane.xml" value="0.1195" />
         <entry key="app/src/main/res/drawable/shape_blue_circle.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shape_selected_blue_circle.xml" value="0.1255" />
