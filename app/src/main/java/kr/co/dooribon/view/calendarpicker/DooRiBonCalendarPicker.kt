@@ -17,6 +17,7 @@ import java.util.Calendar.*
  * 필요없는 기능은 이제 좀 제거하면서 최적화 하면 될거 같음
  *
  * TODO : 주말을 표시해줘야 함
+ * TODO : 코드 주석좀 달아놔야할 거 같음
  */
 class DooRiBonCalendarPicker : RecyclerView {
 
