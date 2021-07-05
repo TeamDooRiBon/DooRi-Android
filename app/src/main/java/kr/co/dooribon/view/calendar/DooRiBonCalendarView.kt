@@ -14,13 +14,13 @@ import java.time.YearMonth
 /**
  * Created by SSong-develop 2021.07.04
  *
- * 현재 날짜가 뜨게 하는건 됐고 이제 다다음 달까지 나오게 하는 로직을 구상하면 될 거 같습니다.
- *
- * TODO : S6의 경우 화면이 작기 때문에 조금 짤려서 17일까지만 나오게 됨;;;
  * TODO : 함수화 구성을 다시 한번 생각해야할거 같음
  * TODO : 주말의 경우 textView가 주황색으로 나와야 한다.
  * TODO : Date를 클릭했을 경우 이 값을 가져올 수 있게 해야한다.
- * TODO : 8월의 경우 1일이 일요일부터 시작하는데 이게 한칸을 전부 띄워서 나오게 된다. 이거 수정 해야할 거같음
+ *
+ * thisMonth
+ * nextMonth
+ * afterNextMonth
  */
 class DooRiBonCalendarView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -29,19 +29,21 @@ class DooRiBonCalendarView @JvmOverloads constructor(
     private val binding: ViewCalendar =
         ViewCalendar.inflate(LayoutInflater.from(context), this, true)
 
+    // 7월 8월 9월을 보여줄 adapter
     private val calendarAdapter = CalendarMonthAdapter()
-    private var selectedDate = LocalDate.now()
-    private var selectedNextDate = selectedDate.plusMonths(1)
-    private var selectedNextNextDate = selectedNextDate.plusMonths(1)
+
+    private var thisMonth = LocalDate.now()
+    private var nextMonth = thisMonth.plusMonths(1)
+    private var afterNextMonth = thisMonth.plusMonths(2)
 
     init {
         setMonthView()
     }
 
     private fun setMonthView() {
-        val dayInMonth = daysInMonthList(selectedDate)
-        val nextDayInMonth = daysInMonthList(selectedNextDate)
-        val nextNextDayInMonth = daysInMonthList(selectedNextNextDate)
+        val dayInMonth = daysInMonthList(thisMonth)
+        val nextDayInMonth = daysInMonthList(nextMonth)
+        val nextNextDayInMonth = daysInMonthList(afterNextMonth)
 
         val calendarEntityList =
             mutableListOf(dayInMonth, nextDayInMonth, nextNextDayInMonth)
@@ -69,6 +71,8 @@ class DooRiBonCalendarView @JvmOverloads constructor(
         // daysInMonthList
         // 여기서 주말을 감지하는 로직을 짜고 , 예를 들어 나누기를 통해서 주말이면 true ,아니면 false로
         // boolean값을 줘서 감지를 하면 될거 같습니다.
+        // TODO : 여기 로직이 좀 이상하다.
+        // TODO : 7 9월 기준으로 뒤에 빈칸이 많아 지는데 이를 해결해줄 뭔가의 방법을 생각해야한다.
         for (i in 1..42) {
             if (dayOfWeek == 7) {
                 if ((i - dayOfWeek) > 0 && i <= daysInMonth + dayOfWeek) {
@@ -88,14 +92,14 @@ class DooRiBonCalendarView @JvmOverloads constructor(
     }
 
     fun previous() {
-        selectedDate = selectedDate.minusMonths(1)
+        thisMonth = thisMonth.minusMonths(1)
         setMonthView()
     }
 
     fun next() {
-        selectedDate = selectedDate.plusMonths(1)
-        selectedNextDate = selectedNextDate.plusMonths(1)
-        selectedNextNextDate = selectedNextNextDate.plusMonths(1)
+        thisMonth = thisMonth.plusMonths(1)
+        nextMonth = thisMonth.plusMonths(1)
+        afterNextMonth = thisMonth.plusMonths(2)
         setMonthView()
     }
 
