@@ -117,6 +117,6 @@
 
     <style name="OrangeTabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="tabIndicatorColor">@color/doo_ri_bon_orange</item>
-        <item name="tabTextColor">@color/doo_ri_bon_orange</item>
+        <item name="tabSelectedTextColor">@color/doo_ri_bon_orange</item>
     </style>
 </resources>
