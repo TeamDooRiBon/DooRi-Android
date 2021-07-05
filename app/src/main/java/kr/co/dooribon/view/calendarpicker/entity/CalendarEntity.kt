@@ -1,6 +1,5 @@
-package kr.co.dooribon.view.calendar.entity
+package kr.co.dooribon.view.calendarpicker.entity
 
-import android.provider.CalendarContract
 import java.util.*
 
 sealed class CalendarEntity(
@@ -8,7 +7,7 @@ sealed class CalendarEntity(
     val calendarType: Int,
     val selectionType: SelectionType
 ) {
-    data class Month(val lable: String) :
+    data class Month(val label: String , val year : String) :
         CalendarEntity(MONTH_COLUMN_COUNT, CalendarType.MONTH.ordinal, SelectionType.NONE)
 
     object Week : CalendarEntity(WEEK_COLUMN_COUNT, CalendarType.WEEK.ordinal, SelectionType.NONE)
@@ -48,4 +47,9 @@ enum class DateState {
     WEEKDAY,
     DISABLED,
     WEEKEND
+}
+
+enum class SelectionMode {
+    RANGE,
+    SINGLE
 }
