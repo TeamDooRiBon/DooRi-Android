@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        
+
         <variable
             name="bindViewModel"
             type="kr.co.dooribon.ui.home.viewmodel.HomeViewModel" />
-        
+
         <variable
             name="navigate_new_trip"
             type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />

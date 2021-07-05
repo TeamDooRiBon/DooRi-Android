@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_people"
+        android:icon="@drawable/ic_people"
+        android:title="멤버"/>
+
+    <item android:id="@+id/nav_calendar"
+        android:icon="@drawable/ic_calendar"
+        android:title="일정"/>
+
+    <item android:id="@+id/nav_board"
+        android:icon="@drawable/ic_clipboard"
+        android:title="보드"/>
+
+    <item android:id="@+id/nav_folder"
+        android:icon="@drawable/ic_folder"
+        android:title="저장"/>
+</menu>
