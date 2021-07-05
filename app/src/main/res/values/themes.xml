@@ -70,6 +70,11 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="BlueTextView" parent="BlackBoldTextView">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/doo_ri_bon_blue</item>
+    </style>
+
     <style name="SubBlue2TextView" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/doo_ri_bon_sub_blue2</item>
     </style>

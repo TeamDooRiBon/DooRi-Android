@@ -16,7 +16,7 @@
             android:id="@+id/ab_existing_trip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/doo_ri_bon_home_tool_bar_blue_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -25,23 +25,133 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/iv_existing_trip_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="24dp"
-                    android:text="기존 여행 선택 창!"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_existing_trip_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_profile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_existing_trip_start_date"
+                    style="@style/BlueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textSize="16sp"
+                    android:text="2021.07.29"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_existing_trip_date_divider"
+                    app:layout_constraintEnd_toStartOf="@id/tv_existing_trip_date_divider"
+                    app:layout_constraintStart_toStartOf="@id/iv_existing_trip_back"
+                    app:layout_constraintTop_toBottomOf="@id/iv_existing_trip_back"
+                    tools:text="2021.07.29" />
+
+                <TextView
+                    android:id="@+id/tv_existing_trip_date_divider"
+                    style="@style/BlueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="~"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_existing_trip_start_date"
+                    app:layout_constraintEnd_toStartOf="@id/tv_existing_trip_end_date"
+                    app:layout_constraintStart_toEndOf="@id/tv_existing_trip_start_date"
+                    app:layout_constraintTop_toTopOf="@id/tv_existing_trip_start_date" />
+
+                <TextView
+                    android:id="@+id/tv_existing_trip_end_date"
+                    style="@style/BlueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textSize="16sp"
+                    android:text="08.02"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_existing_trip_date_divider"
+                    app:layout_constraintStart_toEndOf="@id/tv_existing_trip_date_divider"
+                    app:layout_constraintTop_toTopOf="@id/tv_existing_trip_date_divider"
+                    tools:text="08.02" />
+
+                <TextView
+                    android:id="@+id/tv_existing_trip_title"
+                    style="@style/BlackBoldTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="23sp"
+                    android:text="떠나요 두리번 to 제주"
+                    app:layout_constraintStart_toStartOf="@id/tv_existing_trip_start_date"
+                    app:layout_constraintTop_toBottomOf="@id/tv_existing_trip_start_date"
+                    tools:text="떠나요 두리번 to 제주" />
+
+                <ImageView
+                    android:id="@+id/iv_existing_trip_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_setting"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_existing_trip_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_existing_trip_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_existing_trip_title" />
+
+                <TextView
+                    android:id="@+id/tv_existing_trip_place"
+                    style="@style/AirplaneBlackGrayIconTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/bg_black_gray4_round_textview"
+                    android:textSize="12sp"
+                    android:text="제주도 제주시"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_existing_trip_start_date"
+                    app:layout_constraintTop_toBottomOf="@id/tv_existing_trip_title"
+                    tools:text="제주도 제주시" />
+
+                <TextView
+                    android:id="@+id/tv_existing_trip_people"
+                    style="@style/UserBlackGrayIconTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_black_gray4_round_textview"
+                    android:paddingEnd="30dp"
+                    android:textSize="12sp"
+                    android:layout_marginStart="8dp"
+                    android:text="김민영님 외 4명과 함께"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_existing_trip_place"
+                    app:layout_constraintStart_toEndOf="@id/tv_existing_trip_place"
+                    app:layout_constraintTop_toTopOf="@id/tv_existing_trip_place"
+                    tools:text="김민영님 외 4명과 함께" />
+
+                <ImageView
+                    android:id="@+id/iv_existing_trip_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_existing_trip_plus_btn"
+                    android:padding="4dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_existing_trip_people"
+                    app:layout_constraintEnd_toEndOf="@id/tv_existing_trip_people"
+                    app:layout_constraintStart_toEndOf="@id/tv_existing_trip_people"
+                    app:layout_constraintTop_toTopOf="@id/tv_existing_trip_people" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fcv_existing_trip"
+            android:name="kr.co.dooribon.ui.existingtrip.tendency.TendencyFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:name="kr.co.dooribon.ui.existingtrip.tendency.TendencyFragment"
             app:layout_constraintBottom_toTopOf="@id/bottom_nav_existing_trip"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
