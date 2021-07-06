@@ -33,6 +33,10 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="RoundButton.DooRiBonOrange.RadiusSix">
+        <item name="cornerRadius">10dp</item>
+    </style>
+
     <!-- 요청 사항 2번 -->
     <style name="RoundButton.DooRiBonMainBlue">
         <item name="backgroundTint">@color/doo_ri_bon_blue</item>
