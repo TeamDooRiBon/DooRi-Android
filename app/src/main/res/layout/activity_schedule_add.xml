@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_schedule_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#9ab4ff"
+        android:paddingStart="8dp"
+        android:paddingTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_schedule_add_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/ic_back_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_schedule_add_description"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/schedule_add"
+                android:textColor="@color/doo_ri_bon_pure_white"
+                android:textSize="23sp"
+                app:layout_constraintStart_toStartOf="@id/iv_schedule_add_back"
+                app:layout_constraintTop_toBottomOf="@id/iv_schedule_add_back" />
+
+            <ImageView
+                android:id="@+id/iv_schedule_illust"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_schedule_add_description"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_schedule_illust" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_schedule_add"
+        android:layout_width="match_parent"
+        android:layout_height="568dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar_schedule_add">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingTop="36dp">
+
+            <TextView
+                android:id="@+id/tv_schedule_add_what"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule_what"
+                android:textColor="@color/gray_black_3"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_schedule_add_what"
+                android:layout_width="320dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/schedule_what_hint"
+                android:background="@drawable/bg_edit_text_gray"
+                app:layout_constraintStart_toStartOf="@+id/tv_schedule_add_what"
+                app:layout_constraintTop_toBottomOf="@+id/tv_schedule_add_what" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
