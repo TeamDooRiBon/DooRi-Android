@@ -76,5 +76,97 @@
         app:layout_constraintStart_toStartOf="@id/iv_profile_pic"
         app:layout_constraintTop_toBottomOf="@id/tv_main_todo" />
 
+    <TextView
+        android:id="@+id/tv_user_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:text="오전 10:00 - 오후 12:00"
+        android:textColor="@color/main_point_blue"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_time"
+        app:layout_constraintStart_toEndOf="@id/tv_time"
+        app:layout_constraintTop_toTopOf="@id/tv_time" />
+
+    <TextView
+        android:id="@+id/tv_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:text="@string/place"
+        android:textColor="@color/gray_gray_5_main"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/iv_profile_pic"
+        app:layout_constraintTop_toBottomOf="@id/tv_time" />
+
+    <TextView
+        android:id="@+id/tv_user_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:text="서울특별시 강서구"
+        android:textColor="@color/main_point_blue"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_place"
+        app:layout_constraintStart_toEndOf="@id/tv_place"
+        app:layout_constraintTop_toTopOf="@id/tv_place" />
+
+    <TextView
+        android:id="@+id/tv_memo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:text="@string/place"
+        android:textColor="@color/gray_gray_5_main"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/iv_profile_pic"
+        app:layout_constraintTop_toBottomOf="@id/tv_place" />
+
+    <TextView
+        android:id="@+id/tv_user_memo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:text="2304 버스 정류장 찾아보기"
+        android:textColor="@color/main_point_blue"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_memo"
+        app:layout_constraintStart_toEndOf="@id/tv_memo"
+        app:layout_constraintTop_toTopOf="@id/tv_memo" />
+
+    <Button
+        android:id="@+id/btn_delete"
+        style="@style/RoundButton.DooRiBonGray7"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        android:text="@string/delete"
+        android:textColor="@color/gray_gray_black_4"
+        app:layout_constraintEnd_toStartOf="@id/btn_edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_memo" />
+
+    <Button
+        android:id="@+id/btn_edit"
+        style="@style/RoundButton.DooRiBonOrange"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        android:text="@string/edit"
+        android:textColor="@color/gray_white_pure_9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_delete"
+        app:layout_constraintTop_toBottomOf="@id/tv_memo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

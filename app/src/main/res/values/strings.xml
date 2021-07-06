@@ -41,6 +41,10 @@
     <string name="no_schedule_please_add">아직 이 날의 일정이 없어요!\n첫 일정을 등록해주세요</string>
     <string name="add_schedule">+ 일정 추가하기</string>
     <string name="time">시간</string>
+    <string name="place">장소</string>
+    <string name="memo">메모</string>
+    <string name="delete">삭제하기</string>
+    <string name="edit">편집하기</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
