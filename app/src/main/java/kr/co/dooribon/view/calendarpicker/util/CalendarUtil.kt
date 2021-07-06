@@ -39,3 +39,8 @@ fun Calendar.totalMonthDifference(startCalendar : Calendar) : Int {
 
     return monthDiff + (yearDiff * 12)
 }
+
+// 주말을 알려주는 함수
+fun Calendar.isWeekend() : Boolean {
+    return get(DAY_OF_WEEK) == SATURDAY || get(DAY_OF_WEEK) == SUNDAY
+}

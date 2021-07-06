@@ -178,6 +178,8 @@ class DooRiBonCalendarPicker : RecyclerView {
                     || cal.isAfter(endCalendar)
                 ) {
                     DateState.DISABLED
+                } else if(cal.isWeekend()){
+                    DateState.WEEKEND
                 } else {
                     DateState.WEEKDAY
                 }

@@ -42,7 +42,6 @@ class NewTripDialog : DialogFragment() {
     }
 
     fun navigateJoinTrip() {
-        // 참여코드를 적을 수 있는 화면으로 넘어간다.
         startActivity(requireContext().getIntent<ParticipateActivity>())
         dismiss()
     }
