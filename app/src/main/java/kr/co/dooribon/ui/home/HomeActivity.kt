@@ -41,19 +41,9 @@ class HomeActivity : AppCompatActivity() {
         binding.homeActivity = this
         binding.navigateNewTrip = { navigateNewTripDialog() }
 
-        initializeStatusBar()
         configurePreviousTrip()
         configureUpComingTrip()
         configureViewPagerIndicator()
-    }
-
-    private fun initializeStatusBar() {
-        StatusBarUtil.changeColor(
-            this, ContextCompat.getColor(
-                this,
-                R.color.doo_ri_bon_home_tool_bar_blue_color
-            )
-        )
     }
 
     private fun configureViewPagerIndicator() {
