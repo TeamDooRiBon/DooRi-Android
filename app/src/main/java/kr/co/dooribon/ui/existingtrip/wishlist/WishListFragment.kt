@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kr.co.dooribon.databinding.FragmentWishListBinding
-import kr.co.dooribon.ui.existingtrip.extension.initializeWishListTab
+import kr.co.dooribon.ui.existingtrip.extension.initializeTab
 import kr.co.dooribon.ui.existingtrip.extension.initializeWishListTabNavigation
 import kr.co.dooribon.utils.AutoClearBinding
 
@@ -22,7 +22,7 @@ class WishListFragment : Fragment() {
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.tabWishList.initializeWishListTab()
+        binding.tabWishList.initializeTab(listOf("전체","관광","숙소","맛집"))
         binding.tabWishList.initializeWishListTabNavigation(childFragmentManager)
     }
 }

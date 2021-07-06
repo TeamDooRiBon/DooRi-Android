@@ -8,16 +8,6 @@ import kr.co.dooribon.ui.existingtrip.wishlist.fragment.AllWishListFragment
 import kr.co.dooribon.ui.existingtrip.wishlist.fragment.HotRestaurantFragment
 import kr.co.dooribon.ui.existingtrip.wishlist.fragment.TourismFragment
 
-
-fun TabLayout.initializeWishListTab(){
-    this.apply {
-        addTab(this.newTab().setText("전체"))
-        addTab(this.newTab().setText("관광"))
-        addTab(this.newTab().setText("숙소"))
-        addTab(this.newTab().setText("맛집"))
-    }
-}
-
 fun TabLayout.initializeTab(tabName : List<String>){
     tabName.forEach {
         addTab(this.newTab().setText(it))
