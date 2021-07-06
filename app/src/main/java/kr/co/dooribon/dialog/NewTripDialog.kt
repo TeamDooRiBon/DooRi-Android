@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import kr.co.dooribon.databinding.DialogNewTripBinding
 import kr.co.dooribon.ui.newtrip.AddTravelActivity
+import kr.co.dooribon.ui.newtrip.join.ParticipateActivity
 import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.fullScreenDialogSize
 import kr.co.dooribon.utils.getIntent
@@ -42,6 +43,8 @@ class NewTripDialog : DialogFragment() {
 
     fun navigateJoinTrip() {
         // 참여코드를 적을 수 있는 화면으로 넘어간다.
-        requireContext().shortToast("참여 코드를 적을 수 있는 화면으로 넘어갈거에요.")
+        startActivity(requireContext().getIntent<ParticipateActivity>())
+        dismiss()
     }
+
 }

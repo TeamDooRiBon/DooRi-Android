@@ -6,9 +6,16 @@
     </declare-styleable>
 
     <declare-styleable name="DooRiBonGradientImageView">
-        <attr name="gradient_start_color" format="color"/>
-        <attr name="gradient_end_color" format="color"/>
-        <attr name="gradient_alpha" format="float"/>
+        <attr name="gradient_start_color" format="color" />
+        <attr name="gradient_end_color" format="color" />
+        <attr name="gradient_alpha" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="DooRiBonCalendarPicker">
+        <attr name="picker_type" format="enum">
+            <enum name="single" value="0" />
+            <enum name="range" value="1" />
+        </attr>
     </declare-styleable>
 
 </resources>

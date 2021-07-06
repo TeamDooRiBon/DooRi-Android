@@ -6,15 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kr.co.dooribon.R
+import kr.co.dooribon.databinding.FragmentBoardBinding
+import kr.co.dooribon.ui.existingtrip.board.extension.initializeBoardTabNavigation
+import kr.co.dooribon.ui.existingtrip.extension.initializeTab
+import kr.co.dooribon.utils.AutoClearBinding
 
 class BoardFragment : Fragment() {
+
+    private var binding by AutoClearBinding<FragmentBoardBinding>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_board, container, false)
-    }
+    ): View = FragmentBoardBinding.inflate(layoutInflater,container,false).also { FragmentBoardBinding ->
+        binding = FragmentBoardBinding
+    }.root
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.tabBoard.initializeTab(listOf("소통","체크리스트"))
+        binding.tabBoard.initializeBoardTabNavigation(childFragmentManager)
+    }
 }

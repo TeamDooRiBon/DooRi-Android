@@ -75,6 +75,11 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="BlueTextView" parent="BlackBoldTextView">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/doo_ri_bon_blue</item>
+    </style>
+
     <style name="SubBlue2TextView" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/doo_ri_bon_sub_blue2</item>
     </style>
@@ -113,5 +118,10 @@
         <item name="android:paddingBottom">4dp</item>
         <item name="android:drawableLeft">@drawable/ic_user_black_gray4</item>
         <item name="android:drawablePadding">4dp</item>
+    </style>
+
+    <style name="OrangeTabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabIndicatorColor">@color/doo_ri_bon_orange</item>
+        <item name="tabSelectedTextColor">@color/doo_ri_bon_orange</item>
     </style>
 </resources>
