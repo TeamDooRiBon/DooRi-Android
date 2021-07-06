@@ -20,6 +20,7 @@ import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import kr.co.dooribon.ui.home.adapter.PreviousTripAdapter
 import kr.co.dooribon.ui.home.adapter.UpComingTripAdapter
 import kr.co.dooribon.ui.home.viewmodel.HomeViewModel
+import kr.co.dooribon.ui.newtrip.add.ParticipateActivity
 import kr.co.dooribon.utils.StatusBarUtil
 import kr.co.dooribon.utils.getIntent
 
@@ -37,6 +38,7 @@ class HomeActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         binding.lifecycleOwner = this
         binding.bindViewModel = viewModel
+        binding.homeActivity = this
         binding.navigateNewTrip = { navigateNewTripDialog() }
 
         initializeStatusBar()
@@ -90,12 +92,15 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onPreviousTripItemClick(index: Int, item: PreviousTrip) {
-        startActivity(getIntent<ExistingTripActivity>())
+        navigateExistingTrip()
     }
 
     private fun onUpComingTripItemClick(index: Int, item: UpComingTrip) {
-
         Toast.makeText(this, "$index , ${item.upComingTripLocation}", Toast.LENGTH_SHORT).show()
+    }
+
+    fun navigateExistingTrip(){
+        startActivity(getIntent<ExistingTripActivity>())
     }
 
     companion object {
