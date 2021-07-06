@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import kr.co.dooribon.databinding.DialogNewTripBinding
 import kr.co.dooribon.ui.newtrip.AddTravelActivity
-import kr.co.dooribon.ui.newtrip.add.ParticipateActivity
+import kr.co.dooribon.ui.newtrip.join.ParticipateActivity
 import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.fullScreenDialogSize
 import kr.co.dooribon.utils.getIntent
