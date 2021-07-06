@@ -8,7 +8,9 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
+import kr.co.dooribon.databinding.ActivityExistingTripBinding
 import kr.co.dooribon.databinding.ActivityTravelPlanDoneBinding
+import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import kr.co.dooribon.ui.home.HomeActivity
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
@@ -23,7 +25,7 @@ class TravelPlanDoneActivity : AppCompatActivity() {
         backBtnClickListener()
 
         binding.btnLater.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, ExistingTripActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
             finish() // 현재 액티비티 종료
             startActivity(intent)
@@ -37,7 +39,7 @@ class TravelPlanDoneActivity : AppCompatActivity() {
             }
             Handler(Looper.getMainLooper()).postDelayed({
                 //changeIndicator()
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, ExistingTripActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
                 finish() // 현재 액티비티 종료
                 startActivity(intent)
