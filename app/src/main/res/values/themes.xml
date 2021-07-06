@@ -34,7 +34,7 @@
     </style>
 
     <style name="RoundButton.DooRiBonOrange.RadiusSix">
-        <item name="cornerRadius">10dp</item>
+        <item name="cornerRadius">6dp</item>
     </style>
 
     <!-- 요청 사항 2번 -->
