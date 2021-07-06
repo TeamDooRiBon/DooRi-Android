@@ -19,7 +19,7 @@
     <string name="start_new_travel">번들님의 새로운 여행\n같이 시작해요!</string>
     <string name="write_travel_name">여행 이름을 지어주세요.</string>
     <string name="travel_place">어디로 여행 가세요?</string>
-    <string name="register_travel_date">여행 일정 등록</string>
+    <string name="register_travel_date">여행 일정 등록해주세요</string>
     <string name="start_date">시작 날짜</string>
     <string name="end_date">끝나는 날짜</string>
     <string name="travel_people">누구와 함께하는 여행인가요?</string>
@@ -38,6 +38,19 @@
     <string name="prepare_new_travel">아래 여행 참여 코드를 공유하여\n함께 여행을 준비해나가세요!️</string>
     <string name="done_copy">복사 완료!</string>
     <string name="moving_to_home">새로운 여행 홈으로 이동 중</string>
+    <string name="no_schedule_please_add">아직 이 날의 일정이 없어요!\n첫 일정을 등록해주세요</string>
+    <string name="add_schedule">+ 일정 추가하기</string>
+    <string name="time">시간</string>
+    <string name="place">장소</string>
+    <string name="memo">메모</string>
+    <string name="delete">삭제하기</string>
+    <string name="edit">편집하기</string>
+    <string name="really_delete_question">정말 삭제하시겠습니까?</string>
+    <string name="i_wont">안할게요</string>
+    <string name="will_delete">삭제할게요</string>
+    <string name="with_people">함께하는 사람</string>
+    <string name="copy_code">참여코드 복사하기</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
