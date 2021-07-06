@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentParticipateJoinBinding
 
@@ -19,6 +20,7 @@ class ParticipateJoinFragment : Fragment() {
         return binding.root
     }
 
+    // TODO : edittext 포커스 이동, back 버튼 누를 경우 그 전 화면으로 가기
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -86,10 +88,12 @@ class ParticipateJoinFragment : Fragment() {
             val code4 = binding.etCode4.text
             val code5 = binding.etCode5.text
             val code6 = binding.etCode6.text
-            if (code1.isNullOrBlank() || code2.isNullOrBlank() || code3.isNullOrBlank() || code4.isNullOrBlank() || code5.isNullOrBlank() || code6.isNullOrBlank()){
-            }
-            else{
-                // Todo : 6개 모두 입력했을 경우 버튼 색상 바꾸기
+            // TODO : 6개의 edittext 모두 null 값이 아닐 때 버튼 변환
+            if (!code1.isNullOrBlank() && !code2.isNullOrBlank() && !code3.isNullOrBlank() && !code4.isNullOrBlank() && !code5.isNullOrBlank() && !code6.isNullOrBlank()){
+                binding.btnParticipatePut.apply {
+                    text = "입력 완료"
+                    setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.doo_ri_bon_orange))
+                }
                 val participatecheckFragment = ParticipateCheckFragment()
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.participate_fragment_container_view, participatecheckFragment).commitNow()

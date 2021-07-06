@@ -24,6 +24,7 @@ class ParticipateCheckFragment :Fragment() {
         binding = FragmentParticipateCheckBinding.inflate(inflater, container, false)
         return binding.root
 
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,7 +34,6 @@ class ParticipateCheckFragment :Fragment() {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.participate_fragment_container_view, participatejoinFragment).commitNow()
         }
-        // Todo : 맞아요! 버튼 누를 경우 화면 전환
         binding.btnParticipateYes.setOnClickListener {
             val dl = DoneJoinDialog(this)
             dl.start()
@@ -42,12 +42,12 @@ class ParticipateCheckFragment :Fragment() {
             }
             Handler(Looper.getMainLooper()).postDelayed({
                 //changeIndicator()
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(getActivity(), HomeActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
-                finish() // 현재 액티비티 종료
                 startActivity(intent)
             }, 3000 )
         }
+
     }
 
 
