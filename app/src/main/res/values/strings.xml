@@ -10,6 +10,11 @@
     <string name="participate_check_where">떠나요 두리번 to 제주</string>
     <string name="done_join">참여 완료!</string>
     <string name="schedule_add">일정을 추가하세요</string>
+    <string name="schedule_what">어떤 일정인가요?</string>
+    <string name="schedule_time">시간 추가하기</string>
+    <string name="schedule_location">위치 추가하기</string>
+    <string name="schedule_memo">메모하기</string>
+    <string name="schedule_memo_condition">| 25자 이하로 작성해주세요</string>
 
     <string name="start_new_travel">번들님의 새로운 여행\n같이 시작해요!</string>
     <string name="write_travel_name">여행 이름을 지어주세요.</string>
