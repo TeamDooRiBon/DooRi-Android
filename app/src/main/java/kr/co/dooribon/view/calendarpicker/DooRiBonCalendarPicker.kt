@@ -16,7 +16,10 @@ import java.util.Calendar.*
 /**
  * 필요없는 기능은 이제 좀 제거하면서 최적화 하면 될거 같음
  *
- * TODO : 주말을 표시해줘야 함
+ * Calendar.MONTH = 0~11의 값이 존재
+ * Calendar.DAY_OF_WEEK = 요일 , 1~7을 리턴 , 각각 일,월 ~금,토를 의미한다
+ *
+ * @sample https://jamesdreaming.tistory.com/94 Calendar instance를 사용하는 방법
  * TODO : 코드 주석좀 달아놔야할 거 같음
  */
 class DooRiBonCalendarPicker : RecyclerView {
@@ -158,7 +161,6 @@ class DooRiBonCalendarPicker : RecyclerView {
         calendarAdapter.submitList(calendarData)
     }
 
-    // TODO : 여기서 WEEKEND임을 알려줄 로직이 필요하다.
     private fun buildCalendarData(): MutableList<CalendarEntity> {
         val calendarData = mutableListOf<CalendarEntity>()
         val cal = getInstance(timeZone, locale)
