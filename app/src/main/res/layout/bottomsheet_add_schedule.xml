@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_white_pure9_top_round_layout">
+
+    <ImageView
+        android:id="@+id/iv_profile_pic"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="26dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_writer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:text="김민영님이 작성"
+        android:textColor="#868686"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_profile_pic"
+        app:layout_constraintStart_toEndOf="@id/iv_profile_pic"
+        app:layout_constraintTop_toTopOf="@id/iv_profile_pic" />
+
+    <LinearLayout
+        android:id="@+id/ll_div_line"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/gray_gray_6"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/iv_profile_pic"
+        app:layout_constraintStart_toEndOf="@id/tv_writer"
+        app:layout_constraintTop_toTopOf="@id/iv_profile_pic" />
+
+    <TextView
+        android:id="@+id/tv_written_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:text="2021. 07. 14 오후 1:18 마지막 작성"
+        android:textColor="@color/gray_gray_6"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_profile_pic"
+        app:layout_constraintStart_toEndOf="@id/ll_div_line"
+        app:layout_constraintTop_toTopOf="@id/iv_profile_pic" />
+
+    <TextView
+        android:id="@+id/tv_main_todo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        android:text="김포공항 앞에서 모이기"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/iv_profile_pic"
+        app:layout_constraintTop_toBottomOf="@id/iv_profile_pic" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:text="@string/time"
+        android:textColor="@color/gray_gray_5_main"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/iv_profile_pic"
+        app:layout_constraintTop_toBottomOf="@id/tv_main_todo" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
