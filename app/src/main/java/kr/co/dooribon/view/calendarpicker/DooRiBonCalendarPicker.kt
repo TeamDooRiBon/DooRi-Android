@@ -21,19 +21,30 @@ import java.util.Calendar.*
  */
 class DooRiBonCalendarPicker : RecyclerView {
 
+    // TimeZone
     private val timeZone = TimeZone.getDefault()
+    // 한국 날짜
     private val locale = Locale.KOREA
 
+    // 년도 , 달 , 일을 보여줄 어댑터
     private val calendarAdapter = CalendarAdapter()
+    // 처음 보여줄 캘린더 , 만약 오늘이 2021년 7월이면 2021년 7월부터
     private val startCalendar = getInstance(timeZone, locale)
+    // 마지막으로 보여줄 캘린더 , 1년 단위라고 한다면 2022년 7월까지
     private val endCalendar = getInstance(timeZone, locale)
 
+    // 달력 데이터를 모아놓을 데이터리스트
     private var calendarData: MutableList<CalendarEntity> = mutableListOf()
+    // 선택된 시작 Date
     private var startDateSelection: SelectedDate? = null
+    // 선택된 끝 Date
     private var endDateSelection: SelectedDate? = null
+    // Picker Mode
     private var pickerSelectionType = SelectionMode.RANGE
 
+    // 선택 Listener
     private var onStartSelectedListener: (startDate: Date, label: String) -> Unit = { _, _ -> }
+    // 범위 선택 Listener
     private var onRangeSelectedListener: (startDate: Date, endDate: Date, startLabel: String, endLabel: String) -> Unit =
         { _, _, _, _ -> }
 
@@ -51,20 +62,25 @@ class DooRiBonCalendarPicker : RecyclerView {
     }
 
     init {
+        // 현재 시간을 startCalendar에 담고
         startCalendar.set(HOUR_OF_DAY, 0)
         startCalendar.set(MINUTE, 0)
         startCalendar.set(SECOND, 0)
         startCalendar.set(MILLISECOND, 0)
 
+        // 끝 캘린더에는 1년뒤의 시간을 담아둔다.
         endCalendar.time = startCalendar.time
         endCalendar.add(YEAR, 1)
 
+        // 배경은 흰색
         setBackgroundColor(ContextCompat.getColor(context, R.color.doo_ri_bon_calendar_picker_bg))
+        // 어댑터 , 리스너 초기화
         initAdapter()
         initListener()
     }
 
     // region setter
+    // Range Date를 set하게 해주는 함수
     fun setRangeDate(startDate: Date, endDate: Date) {
         require(startDate.time <= endDate.time) { "startDate can't be higher than endDate" }
 
@@ -95,12 +111,14 @@ class DooRiBonCalendarPicker : RecyclerView {
         onStartSelectedListener = callback
     }
 
+    // RangeSelectedListener 달아주는 함수
     fun setOnRangeSelectedListener(callback: (startDate: Date, endDate: Date, startLabel: String, endLabel: String) -> Unit) {
         onRangeSelectedListener = callback
     }
     // endregion setter
 
     // region getter
+    // 선택된 범위 Date를 가져오는 함수
     fun getSelectedDate(): Pair<Date?, Date?> {
         return Pair(startDateSelection?.day?.date, endDateSelection?.day?.date)
     }
