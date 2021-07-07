@@ -23,6 +23,10 @@ class BoardFragment : Fragment() {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        configureTabNavigation()
+    }
+
+    private fun configureTabNavigation(){
         binding.tabBoard.initializeTab(listOf("소통", "체크리스트"))
         binding.tabBoard.initializeBoardTabNavigation(childFragmentManager)
     }

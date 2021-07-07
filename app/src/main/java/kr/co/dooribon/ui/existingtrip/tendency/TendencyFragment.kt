@@ -23,6 +23,10 @@ class TendencyFragment : Fragment() {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        configureTabNavigation()
+    }
+
+    private fun configureTabNavigation(){
         binding.tabTendency.initializeTab(listOf("우리들", "살펴보기"))
         binding.tabTendency.initializeTendencyNavigation(childFragmentManager)
     }

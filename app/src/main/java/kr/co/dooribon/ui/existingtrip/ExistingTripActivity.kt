@@ -15,6 +15,17 @@ class ExistingTripActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_existing_trip)
 
+        configureBackButton()
+        configureBottomNavigation()
+    }
+
+    private fun configureBackButton(){
+        binding.ivExistingTripBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun configureBottomNavigation(){
         binding.bottomNavExistingTrip.initExistingTripBottomNavigation(supportFragmentManager)
     }
 }

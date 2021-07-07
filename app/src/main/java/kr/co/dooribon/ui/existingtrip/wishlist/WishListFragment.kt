@@ -23,6 +23,10 @@ class WishListFragment : Fragment() {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        configureTabNavigation()
+    }
+
+    private fun configureTabNavigation(){
         binding.tabWishList.initializeTab(listOf("전체", "관광", "숙소", "맛집"))
         binding.tabWishList.initializeWishListTabNavigation(childFragmentManager)
     }
