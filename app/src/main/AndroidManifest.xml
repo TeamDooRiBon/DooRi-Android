@@ -3,36 +3,28 @@
     package="kr.co.dooribon">
 
     <application
+        android:name=".application.MainApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:name=".application.MainApplication"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DooRiBonAndroid">
-        <activity android:name=".ui.existingtrip.ExistingTripActivity"></activity>
+        <activity android:name=".ui.triptendency.TripTendencyActivity"></activity>
+        <activity android:name=".ui.existingtrip.ExistingTripActivity" />
         <activity android:name=".ui.home.HomeActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".ui.newtrip.DatePickActivity"></activity>
-
-        <activity android:name=".ui.newtrip.TravelPlanDoneActivity"></activity>
-        <activity android:name=".ui.newtrip.join.ParticipateActivity">
-
-        </activity>
+        <activity android:name=".ui.newtrip.DatePickActivity" />
+        <activity android:name=".ui.newtrip.TravelPlanDoneActivity" />
+        <activity android:name=".ui.newtrip.join.ParticipateActivity"></activity>
         <activity
             android:name=".ui.newtrip.AddTravelActivity"
-            android:windowSoftInputMode="stateAlwaysHidden">
-
-
-
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
     </application>
 
 </manifest>
