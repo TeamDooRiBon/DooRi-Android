@@ -16,6 +16,7 @@ import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
  * 이제 12개의 프래그먼트를 viewPager에 보여줘야 하는데
  * 문제가 뭐냐면 tabLayout 현재 viewPager가 가지고 있는 fragment의 갯수를 알아야한다는 것이 문제다.
  *
+ * ViewPager.setCurrentItem 메소드를 사용해서 뷰모델에 보여지는 뷰의 포지션을 담아두고 이에 맞춰 작업을 하면 될거 같음!!!!
  */
 class TripTendencyActivity : AppCompatActivity() {
 
@@ -41,6 +42,7 @@ class TripTendencyActivity : AppCompatActivity() {
             binding.tabTripTendency,
             binding.vpTripTendencyTest
         ){ _, _ -> }.attach()
+
         tripTendencyAdapter.submitItem(
             listOf(
                 TripTendency(
