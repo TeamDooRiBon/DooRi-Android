@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityDatePickBinding
 import kr.co.dooribon.view.calendarpicker.entity.SelectionMode
-import java.util.*
 
 class DatePickActivity : AppCompatActivity() {
 

@@ -8,16 +8,16 @@ import kr.co.dooribon.ui.existingtrip.wishlist.fragment.AllWishListFragment
 import kr.co.dooribon.ui.existingtrip.wishlist.fragment.HotRestaurantFragment
 import kr.co.dooribon.ui.existingtrip.wishlist.fragment.TourismFragment
 
-fun TabLayout.initializeTab(tabName : List<String>){
+fun TabLayout.initializeTab(tabName: List<String>) {
     tabName.forEach {
         addTab(this.newTab().setText(it))
     }
 }
 
-fun TabLayout.initializeWishListTabNavigation(fragmentManager: FragmentManager){
-    this.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+fun TabLayout.initializeWishListTabNavigation(fragmentManager: FragmentManager) {
+    this.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab) {
-            when(tab.position){
+            when (tab.position) {
                 0 -> {
                     fragmentManager.beginTransaction().replace(
                         R.id.fcv_wish_list,

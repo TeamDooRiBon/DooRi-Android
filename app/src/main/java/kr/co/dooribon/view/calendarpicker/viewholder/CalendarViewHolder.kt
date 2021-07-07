@@ -17,7 +17,7 @@ class MonthViewHolder(private val view: View) : BaseCalendarViewHolder(view) {
 
     private val name by lazy { view.findViewById<TextView>(R.id.tv_month_name) }
     override fun onBind(item: CalendarEntity, actionListener: (CalendarEntity, Int) -> Unit) {
-        if(item is CalendarEntity.Month){
+        if (item is CalendarEntity.Month) {
             name.text = item.label
         }
     }

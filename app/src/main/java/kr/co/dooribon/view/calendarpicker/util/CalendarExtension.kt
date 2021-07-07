@@ -2,7 +2,7 @@ package kr.co.dooribon.view.calendarpicker.util
 
 import java.util.*
 
-fun Date.isTheSameDay(comparedDate : Date) : Boolean {
+fun Date.isTheSameDay(comparedDate: Date): Boolean {
     val calendar = Calendar.getInstance()
     calendar.withTime(this)
     val comparedCalendarDate = Calendar.getInstance()
@@ -12,11 +12,11 @@ fun Date.isTheSameDay(comparedDate : Date) : Boolean {
     ) == comparedCalendarDate.get(Calendar.YEAR)
 }
 
-fun Calendar.withTime(date : Date){
+fun Calendar.withTime(date: Date) {
     clear()
     time = date
-    set(Calendar.HOUR_OF_DAY,0)
-    set(Calendar.MINUTE,0)
-    set(Calendar.SECOND,0)
-    set(Calendar.MILLISECOND,0)
+    set(Calendar.HOUR_OF_DAY, 0)
+    set(Calendar.MINUTE, 0)
+    set(Calendar.SECOND, 0)
+    set(Calendar.MILLISECOND, 0)
 }

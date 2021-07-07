@@ -8,10 +8,8 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
-import kr.co.dooribon.databinding.ActivityExistingTripBinding
 import kr.co.dooribon.databinding.ActivityTravelPlanDoneBinding
 import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
-import kr.co.dooribon.ui.home.HomeActivity
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
 

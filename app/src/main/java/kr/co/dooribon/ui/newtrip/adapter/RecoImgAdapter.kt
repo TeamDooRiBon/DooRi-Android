@@ -1,7 +1,6 @@
 package kr.co.dooribon.ui.newtrip.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +11,8 @@ import kr.co.dooribon.databinding.ItemRecommendedPhotosBinding
 class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
 
     private var imgs = mutableListOf<ImageData>()
-//    private lateinit var itemClickListener : ItemClickListener // Item click Listener
+
+    //    private lateinit var itemClickListener : ItemClickListener // Item click Listener
     private var selectedIndex = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImgViewHolder {
@@ -30,9 +30,9 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
             notifyDataSetChanged()
         }
 
-        if(selectedIndex == position){
+        if (selectedIndex == position) {
             holder.itemView.setBackgroundResource(R.drawable.bg_selected_img_stroke)
-        }else {
+        } else {
             holder.itemView.setBackgroundResource(0)
         }
 
@@ -69,7 +69,7 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
             //imgClickListener() // 여기 말고 다른 곳으로 넣어둬야 할
         }
 
-        private fun imgClickListener(){
+        private fun imgClickListener() {
             binding.ivRecoImage.setOnClickListener {
                 //binding.ivRecoImage.etBackgroundResource(R.drawable.bg_selected_img_stroke)
             }
