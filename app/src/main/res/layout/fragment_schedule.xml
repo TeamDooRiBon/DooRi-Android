@@ -86,13 +86,55 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_calendar">
 
+            <TextView
+                android:id="@+id/tv_dday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14sp"
+                android:layout_marginTop="14sp"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                android:text="DAY 1"
+                android:textColor="@color/main_point_blue"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="DAY 1" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_light"
+                android:text="2021. 07. 29 수요일"
+                android:textColor="@color/gray_gray_5_main"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_dday"
+                app:layout_constraintStart_toEndOf="@id/tv_dday"
+                app:layout_constraintTop_toTopOf="@id/tv_dday" />
+
+            <Button
+                android:id="@+id/bt_add_schedule"
+                style="@style/RoundButton.DooRiBonOrange.RadiusSix"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:padding="5dp"
+                android:text="@string/add_schedule"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_dday"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_dday" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_schedule_main"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/tv_dday" />
 
             <ImageView
                 android:id="@+id/iv_empty_img"
@@ -102,7 +144,7 @@
                 app:layout_constraintBottom_toTopOf="@id/tv_no_schedule"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_schedule_main"
+                app:layout_constraintTop_toBottomOf="@id/tv_dday"
                 app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
