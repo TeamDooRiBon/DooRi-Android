@@ -37,7 +37,7 @@ class DetailFragment : Fragment() {
         binding.rvDetail.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = detailAdapter
-            addItemDecoration(DividerItemDecoration(requireContext(),1))
+            addItemDecoration(DividerItemDecoration(requireContext(), 1))
         }
 
         // Dummy Data
@@ -46,37 +46,45 @@ class DetailFragment : Fragment() {
                 ExpandableAnswerQuestion(
                     ExpandableAnswerQuestion.PARENT, AnswerQuestion.Question(
                         1, "훈기를살려줄까?",
-                        listOf(AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 3),
+                        listOf(
+                            AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 3),
                             AnswerQuestion.Question.ChildQuestion(2, "살리지말자!", 4),
-                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 2))
+                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 2)
+                        )
                     )
                 ),
                 ExpandableAnswerQuestion(
                     ExpandableAnswerQuestion.PARENT, AnswerQuestion.Question(
                         2, "예진이살려줄까?",
-                        listOf(AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 8),
+                        listOf(
+                            AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 8),
                             AnswerQuestion.Question.ChildQuestion(2, "살리지말자!", 9),
-                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 10))
+                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 10)
+                        )
                     )
-                ),ExpandableAnswerQuestion(
+                ), ExpandableAnswerQuestion(
                     ExpandableAnswerQuestion.PARENT, AnswerQuestion.Question(
                         3, "원중이살려줄까?",
-                        listOf(AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 100),
+                        listOf(
+                            AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 100),
                             AnswerQuestion.Question.ChildQuestion(2, "살리지말자!", 101),
-                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 102))
+                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 102)
+                        )
                     )
                 ),
                 ExpandableAnswerQuestion(
                     ExpandableAnswerQuestion.PARENT, AnswerQuestion.Question(
                         4, "왜 다죽일까?",
-                        listOf(AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 3),
+                        listOf(
+                            AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 3),
                             AnswerQuestion.Question.ChildQuestion(2, "살리지말자!", 4),
-                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 2))
+                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 2)
+                        )
                     )
                 )
             )
         )
 
-        Log.d("helll",detailAdapter.itemCount.toString())
+        Log.d("helll", detailAdapter.itemCount.toString())
     }
 }

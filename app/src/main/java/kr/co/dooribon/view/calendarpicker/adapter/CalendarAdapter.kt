@@ -12,9 +12,10 @@ import kr.co.dooribon.view.calendarpicker.viewholder.DayViewHolder
 import kr.co.dooribon.view.calendarpicker.viewholder.EmptyViewHolder
 import kr.co.dooribon.view.calendarpicker.viewholder.MonthViewHolder
 
-class CalendarAdapter : ListAdapter<CalendarEntity,BaseCalendarViewHolder>(CalendarDiffCallback()){
+class CalendarAdapter :
+    ListAdapter<CalendarEntity, BaseCalendarViewHolder>(CalendarDiffCallback()) {
 
-    var onActionListener : (CalendarEntity , Int) -> Unit = {_,_ -> }
+    var onActionListener: (CalendarEntity, Int) -> Unit = { _, _ -> }
 
     override fun submitList(list: MutableList<CalendarEntity>?) {
         super.submitList(list?.toMutableList())
@@ -22,21 +23,21 @@ class CalendarAdapter : ListAdapter<CalendarEntity,BaseCalendarViewHolder>(Calen
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseCalendarViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return when(viewType){
+        return when (viewType) {
             CalendarType.MONTH.ordinal -> {
-                MonthViewHolder(layoutInflater.inflate(R.layout.calendar_month_view,parent,false))
+                MonthViewHolder(layoutInflater.inflate(R.layout.calendar_month_view, parent, false))
             }
             CalendarType.DAY.ordinal -> {
-                DayViewHolder(layoutInflater.inflate(R.layout.calendar_day_view,parent,false))
+                DayViewHolder(layoutInflater.inflate(R.layout.calendar_day_view, parent, false))
             }
             else -> {
-                EmptyViewHolder(layoutInflater.inflate(R.layout.calendar_empty_view,parent,false))
+                EmptyViewHolder(layoutInflater.inflate(R.layout.calendar_empty_view, parent, false))
             }
         }
     }
 
     override fun onBindViewHolder(holder: BaseCalendarViewHolder, position: Int) {
-        holder.onBind(getItem(position),onActionListener)
+        holder.onBind(getItem(position), onActionListener)
     }
 
     override fun getItemViewType(position: Int): Int {

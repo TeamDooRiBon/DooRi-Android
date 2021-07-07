@@ -6,10 +6,10 @@ import kr.co.dooribon.R
 import kr.co.dooribon.ui.existingtrip.tendency.fragment.DetailFragment
 import kr.co.dooribon.ui.existingtrip.tendency.fragment.MemberFragment
 
-fun TabLayout.initializeTendencyNavigation(fragmentManager: FragmentManager){
-    this.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+fun TabLayout.initializeTendencyNavigation(fragmentManager: FragmentManager) {
+    this.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab) {
-            when(tab.position){
+            when (tab.position) {
                 0 -> {
                     fragmentManager.beginTransaction().replace(
                         R.id.fcv_tendency,

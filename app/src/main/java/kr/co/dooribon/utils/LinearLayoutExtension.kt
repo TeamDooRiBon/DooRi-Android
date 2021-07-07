@@ -6,8 +6,9 @@ import android.widget.LinearLayout
 import com.google.android.material.chip.Chip
 import kr.co.dooribon.R
 
-fun LinearLayout.addChip(chipText : String){
-    val chip = LayoutInflater.from(context).inflate(R.layout.view_chip_member_trip_type,null) as Chip
+fun LinearLayout.addChip(chipText: String) {
+    val chip =
+        LayoutInflater.from(context).inflate(R.layout.view_chip_member_trip_type, null) as Chip
 
     val layoutParams = ViewGroup.MarginLayoutParams(
         ViewGroup.MarginLayoutParams.WRAP_CONTENT,
@@ -15,5 +16,5 @@ fun LinearLayout.addChip(chipText : String){
     )
     chip.text = chipText
     layoutParams.rightMargin = context.dpToPixel(6)
-    addView(chip,layoutParams)
+    addView(chip, layoutParams)
 }

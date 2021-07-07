@@ -17,12 +17,13 @@ class WishListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = FragmentWishListBinding.inflate(layoutInflater,container,false).also { FragmentWishListBinding ->
-        binding = FragmentWishListBinding
-    }.root
+    ): View = FragmentWishListBinding.inflate(layoutInflater, container, false)
+        .also { FragmentWishListBinding ->
+            binding = FragmentWishListBinding
+        }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.tabWishList.initializeTab(listOf("전체","관광","숙소","맛집"))
+        binding.tabWishList.initializeTab(listOf("전체", "관광", "숙소", "맛집"))
         binding.tabWishList.initializeWishListTabNavigation(childFragmentManager)
     }
 }

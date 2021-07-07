@@ -26,27 +26,34 @@ class DooRiBonCalendarPicker : RecyclerView {
 
     // TimeZone
     private val timeZone = TimeZone.getDefault()
+
     // 한국 날짜
     private val locale = Locale.KOREA
 
     // 년도 , 달 , 일을 보여줄 어댑터
     private val calendarAdapter = CalendarAdapter()
+
     // 처음 보여줄 캘린더 , 만약 오늘이 2021년 7월이면 2021년 7월부터
     private val startCalendar = getInstance(timeZone, locale)
+
     // 마지막으로 보여줄 캘린더 , 1년 단위라고 한다면 2022년 7월까지
     private val endCalendar = getInstance(timeZone, locale)
 
     // 달력 데이터를 모아놓을 데이터리스트
     private var calendarData: MutableList<CalendarEntity> = mutableListOf()
+
     // 선택된 시작 Date
     private var startDateSelection: SelectedDate? = null
+
     // 선택된 끝 Date
     private var endDateSelection: SelectedDate? = null
+
     // Picker Mode
     private var pickerSelectionType = SelectionMode.RANGE
 
     // 선택 Listener
     private var onStartSelectedListener: (startDate: Date, label: String) -> Unit = { _, _ -> }
+
     // 범위 선택 Listener
     private var onRangeSelectedListener: (startDate: Date, endDate: Date, startLabel: String, endLabel: String) -> Unit =
         { _, _, _, _ -> }
@@ -180,7 +187,7 @@ class DooRiBonCalendarPicker : RecyclerView {
                     || cal.isAfter(endCalendar)
                 ) {
                     DateState.DISABLED
-                } else if(cal.isWeekend()){
+                } else if (cal.isWeekend()) {
                     DateState.WEEKEND
                 } else {
                     DateState.WEEKDAY
@@ -276,39 +283,39 @@ class DooRiBonCalendarPicker : RecyclerView {
                 }
                 assignAsStartDate(item, position)
             }
-            startDateSelection == null -> assignAsStartDate(item,position)
+            startDateSelection == null -> assignAsStartDate(item, position)
             endDateSelection == null -> {
-                if(startDateSelection!!.position > position){
+                if (startDateSelection!!.position > position) {
                     calendarData[startDateSelection!!.position] =
                         startDateSelection!!.day.copy(selection = SelectionType.NONE)
-                    assignAsStartDate(item,position)
-                }else {
+                    assignAsStartDate(item, position)
+                } else {
                     assignAsStartDate(
                         startDateSelection!!.day,
                         startDateSelection!!.position,
                         true
                     )
-                    assignAsEndDate(item,position)
-                    highlightDateBetween(startDateSelection!!.position,position)
+                    assignAsEndDate(item, position)
+                    highlightDateBetween(startDateSelection!!.position, position)
                 }
             }
             else -> {
                 resetSelection()
-                assignAsStartDate(item,position)
+                assignAsStartDate(item, position)
             }
         }
         calendarAdapter.submitList(calendarData)
     }
 
     // Range를 바꾸는 경우엔 기존에 선택되어 있는 녀석들을 초기화 해주어야 한다.
-    private fun resetSelection(){
+    private fun resetSelection() {
         val startDatePosition = startDateSelection?.position
         val endDatePosition = endDateSelection?.position
 
-        if(startDatePosition != null && endDatePosition != null) {
+        if (startDatePosition != null && endDatePosition != null) {
             (startDatePosition..endDatePosition).forEach {
                 val entity = calendarData[it]
-                if(entity is CalendarEntity.Day)
+                if (entity is CalendarEntity.Day)
                     calendarData[it] = entity.copy(selection = SelectionType.NONE)
             }
         }
@@ -317,12 +324,12 @@ class DooRiBonCalendarPicker : RecyclerView {
 
     // 선택되어 있는 녀석들을 기준으로 끼어있는 녀석들은 전부 선택됐음을 표기해주는 함수
     private fun highlightDateBetween(
-        startIndex : Int,
-        endIndex : Int
+        startIndex: Int,
+        endIndex: Int
     ) {
         ((startIndex + 1) until endIndex).forEach {
             val entity = calendarData[it]
-            if(entity is CalendarEntity.Day){
+            if (entity is CalendarEntity.Day) {
                 calendarData[it] = entity.copy(selection = SelectionType.BETWEEN)
             }
         }

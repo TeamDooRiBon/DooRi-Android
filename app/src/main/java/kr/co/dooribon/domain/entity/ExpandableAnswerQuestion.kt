@@ -19,7 +19,12 @@ class ExpandableAnswerQuestion {
         this.isCloseShown = isCloseShown
     }
 
-    constructor(type : Int , questionChild : AnswerQuestion.Question.ChildQuestion , isExpanded : Boolean = false , isCloseShown: Boolean = false){
+    constructor(
+        type: Int,
+        questionChild: AnswerQuestion.Question.ChildQuestion,
+        isExpanded: Boolean = false,
+        isCloseShown: Boolean = false
+    ) {
         this.type = type
         this.questionChild = questionChild
         this.isExpanded = isExpanded

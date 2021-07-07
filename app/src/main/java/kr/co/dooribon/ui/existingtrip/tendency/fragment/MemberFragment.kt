@@ -23,14 +23,15 @@ class MemberFragment : Fragment() {
 
     private var binding by AutoClearBinding<FragmentMemberBinding>()
 
-    private lateinit var memberTripTypeAdapter : MemberTripTypeAdapter
+    private lateinit var memberTripTypeAdapter: MemberTripTypeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = FragmentMemberBinding.inflate(inflater,container,false).also { FragmentMemberBinding ->
-        binding = FragmentMemberBinding
-    }.root
+    ): View =
+        FragmentMemberBinding.inflate(inflater, container, false).also { FragmentMemberBinding ->
+            binding = FragmentMemberBinding
+        }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.liChips.addChip("#안녕")
@@ -43,10 +44,12 @@ class MemberFragment : Fragment() {
             adapter = memberTripTypeAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-        memberTripTypeAdapter.submitList(listOf(
-            MemberTripType("응애", listOf("#안녕","#반가워","#화이팅"),"송훈기","1"),
-            MemberTripType("응애", listOf("#안녕","#반가워","#화이팅"),"송훈기","1"),
-            MemberTripType("응애", listOf("#안녕","#반가워","#화이팅"),"송훈기","1")
-        ))
+        memberTripTypeAdapter.submitList(
+            listOf(
+                MemberTripType("응애", listOf("#안녕", "#반가워", "#화이팅"), "송훈기", "1"),
+                MemberTripType("응애", listOf("#안녕", "#반가워", "#화이팅"), "송훈기", "1"),
+                MemberTripType("응애", listOf("#안녕", "#반가워", "#화이팅"), "송훈기", "1")
+            )
+        )
     }
 }

@@ -12,20 +12,20 @@ import kr.co.dooribon.databinding.ItemRecommendedPhotosBinding
 class DiffRecoImgAdapter : RecyclerView.Adapter<DiffRecoImgAdapter.RecoImgViewHolder>() {
 
     private var oldImgList = emptyList<ImageData>()
-    private lateinit var itemClickListener : ItemClickListener
+    private lateinit var itemClickListener: ItemClickListener
 
     class RecoImgViewHolder(val binding: ItemRecommendedPhotosBinding) :
-        RecyclerView.ViewHolder(binding.root){
-            fun bind(img : ImageData){
-                Glide
-                    .with(binding.ivRecoImage.context)
-                    .load(img.img)
-                    .into(binding.ivRecoImage)
-                if(img.isChecked){
-                    binding.ivRecoImage.setBackgroundResource(R.drawable.bg_selected_img_stroke)
-                }
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(img: ImageData) {
+            Glide
+                .with(binding.ivRecoImage.context)
+                .load(img.img)
+                .into(binding.ivRecoImage)
+            if (img.isChecked) {
+                binding.ivRecoImage.setBackgroundResource(R.drawable.bg_selected_img_stroke)
             }
         }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecoImgViewHolder =
         RecoImgViewHolder(
@@ -47,18 +47,18 @@ class DiffRecoImgAdapter : RecyclerView.Adapter<DiffRecoImgAdapter.RecoImgViewHo
 
     override fun getItemCount(): Int = oldImgList.size
 
-    fun setImgData(newImgList : List<ImageData>){
+    fun setImgData(newImgList: List<ImageData>) {
         val diffUtil = RecoImgDiffUtil(oldImgList, newImgList)
         val diffResults = DiffUtil.calculateDiff(diffUtil)
         oldImgList = newImgList
         diffResults.dispatchUpdatesTo(this)
     }
 
-    interface ItemClickListener{
+    interface ItemClickListener {
         fun onClick(view: View, position: Int)
     }
 
-    fun setItemClickListener(itemClickListener : ItemClickListener){
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListener = itemClickListener
     }
 }

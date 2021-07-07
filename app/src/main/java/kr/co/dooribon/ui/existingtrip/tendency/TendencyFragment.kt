@@ -17,12 +17,13 @@ class TendencyFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = FragmentTendencyBinding.inflate(inflater,container,false).also { FragmentTendencyBinding ->
-        binding = FragmentTendencyBinding
-    }.root
+    ): View = FragmentTendencyBinding.inflate(inflater, container, false)
+        .also { FragmentTendencyBinding ->
+            binding = FragmentTendencyBinding
+        }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.tabTendency.initializeTab(listOf("우리들","살펴보기"))
+        binding.tabTendency.initializeTab(listOf("우리들", "살펴보기"))
         binding.tabTendency.initializeTendencyNavigation(childFragmentManager)
     }
 }

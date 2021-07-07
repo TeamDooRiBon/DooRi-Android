@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.databinding.ViewTendencyDetailChildBinding
 import kr.co.dooribon.databinding.ViewTendencyDetailParentBinding
 import kr.co.dooribon.domain.entity.ExpandableAnswerQuestion
-import kr.co.dooribon.domain.entity.TripDetail
 import kr.co.dooribon.ui.existingtrip.tendency.viewholder.ChildViewHolder
 import kr.co.dooribon.ui.existingtrip.tendency.viewholder.ParentViewHolder
 
@@ -73,7 +72,7 @@ class TripDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int = testQuestionList[position].type
 
-    fun submitList(list : List<ExpandableAnswerQuestion>) {
+    fun submitList(list: List<ExpandableAnswerQuestion>) {
         testQuestionList.clear()
         testQuestionList.addAll(list)
         notifyDataSetChanged()
@@ -85,7 +84,10 @@ class TripDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when (row.type) {
             ExpandableAnswerQuestion.PARENT -> {
                 for (child in row.questionParent.questionSubject) {
-                    testQuestionList.add(++nextPosition, ExpandableAnswerQuestion(ExpandableAnswerQuestion.CHILD, child))
+                    testQuestionList.add(
+                        ++nextPosition,
+                        ExpandableAnswerQuestion(ExpandableAnswerQuestion.CHILD, child)
+                    )
                 }
                 notifyDataSetChanged()
             }
@@ -95,13 +97,13 @@ class TripDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    private fun collapseRow(position : Int) {
+    private fun collapseRow(position: Int) {
         val row = testQuestionList[position]
         var nextPosition = position + 1
-        when(row.type) {
+        when (row.type) {
             ExpandableAnswerQuestion.PARENT -> {
-                outerloop@ while(true){
-                    if(nextPosition == testQuestionList.size || testQuestionList[nextPosition].type == ExpandableAnswerQuestion.PARENT){
+                outerloop@ while (true) {
+                    if (nextPosition == testQuestionList.size || testQuestionList[nextPosition].type == ExpandableAnswerQuestion.PARENT) {
                         break@outerloop
                     }
 

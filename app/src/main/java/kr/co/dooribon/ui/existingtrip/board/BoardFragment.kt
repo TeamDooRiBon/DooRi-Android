@@ -17,12 +17,13 @@ class BoardFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = FragmentBoardBinding.inflate(layoutInflater,container,false).also { FragmentBoardBinding ->
-        binding = FragmentBoardBinding
-    }.root
+    ): View = FragmentBoardBinding.inflate(layoutInflater, container, false)
+        .also { FragmentBoardBinding ->
+            binding = FragmentBoardBinding
+        }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.tabBoard.initializeTab(listOf("소통","체크리스트"))
+        binding.tabBoard.initializeTab(listOf("소통", "체크리스트"))
         binding.tabBoard.initializeBoardTabNavigation(childFragmentManager)
     }
 }
