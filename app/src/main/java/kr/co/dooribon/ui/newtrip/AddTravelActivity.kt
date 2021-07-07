@@ -10,7 +10,6 @@ import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityNewTravelBinding
 import kr.co.dooribon.ui.newtrip.adapter.DiffRecoImgAdapter
 import kr.co.dooribon.ui.newtrip.adapter.ImageData
-import kr.co.dooribon.ui.newtrip.adapter.RecoImgAdapter
 import kr.co.dooribon.utils.RVItemDeco
 
 class AddTravelActivity : AppCompatActivity() {

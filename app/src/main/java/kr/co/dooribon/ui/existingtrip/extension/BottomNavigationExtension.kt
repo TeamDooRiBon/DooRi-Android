@@ -8,9 +8,9 @@ import kr.co.dooribon.ui.existingtrip.schedule.ScheduleFragment
 import kr.co.dooribon.ui.existingtrip.tendency.TendencyFragment
 import kr.co.dooribon.ui.existingtrip.wishlist.WishListFragment
 
-fun BottomNavigationView.initExistingTripBottomNavigation(fragmentManager: FragmentManager){
+fun BottomNavigationView.initExistingTripBottomNavigation(fragmentManager: FragmentManager) {
     this.setOnNavigationItemSelectedListener {
-        when(it.itemId){
+        when (it.itemId) {
             R.id.nav_people -> {
                 fragmentManager.beginTransaction().replace(
                     R.id.fcv_existing_trip,

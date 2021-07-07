@@ -12,11 +12,13 @@ fun DialogFragment.fullScreenDialogSize() {
 }
 
 // DialogFragment 사이즈를 조정해주는 함수
-fun DialogFragment.adjustDialogSize(widthRatio : Float , heightRatio : Float){
-    val dialogParams : WindowManager.LayoutParams = dialog!!.window!!.attributes
+fun DialogFragment.adjustDialogSize(widthRatio: Float, heightRatio: Float) {
+    val dialogParams: WindowManager.LayoutParams = dialog!!.window!!.attributes
 
-    dialogParams.width = ((this.requireContext().resources.displayMetrics.widthPixels) * widthRatio).toInt()
-    dialogParams.height = ((this.requireContext().resources.displayMetrics.heightPixels) * heightRatio).toInt()
+    dialogParams.width =
+        ((this.requireContext().resources.displayMetrics.widthPixels) * widthRatio).toInt()
+    dialogParams.height =
+        ((this.requireContext().resources.displayMetrics.heightPixels) * heightRatio).toInt()
 
     this.dialog!!.window!!.apply {
         attributes = dialogParams

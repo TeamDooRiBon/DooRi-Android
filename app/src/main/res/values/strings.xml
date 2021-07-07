@@ -15,6 +15,19 @@
     <string name="schedule_location">위치 추가하기</string>
     <string name="schedule_memo">메모하기</string>
     <string name="schedule_memo_condition">| 25자 이하로 작성해주세요</string>
+    <string name="schedule_what_hint">Ex. 인천공항 이동하기</string>
+    <string name="schedule_time_hint1">2021.01.01(일)</string>
+    <string name="schedule_time_hint2">오후 12:00</string>
+    <string name="schedule_location_hint">Ex. 인천광역시 중구</string>
+    <string name="schedule_memo_hint">Ex. 여권 챙기기</string>
+    <string name="schedule_notadd">추가 안함</string>
+    <string name="schedule_add_btn">새로운 일정 추가</string>
+    <string name="schedule_edit">일정을 편집하세요</string>
+    <string name="schedule_edit_what">인천공항 이동하기</string>
+    <string name="schedule_edit_location">인천광역시 중구</string>
+    <string name="schedule_edit_memo">준비물 챙기기</string>
+    <string name="schedule_edit_btn">일정 편집하기</string>
+    <string name="schedule_edit_date">2021.07.29(목)</string>
 
     <string name="start_new_travel">번들님의 새로운 여행\n같이 시작해요!</string>
     <string name="write_travel_name">여행 이름을 지어주세요.</string>
