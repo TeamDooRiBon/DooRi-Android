@@ -22,7 +22,7 @@ import kr.co.dooribon.utils.drawTopRoundRectPath
  *
  * cornerRadius = top left , right에 얼마만큼 radius를 줄 것인지
  */
-class DooRiBonGradienTopRoundImageView @JvmOverloads constructor(
+class DooRiBonGradientTopRoundImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
