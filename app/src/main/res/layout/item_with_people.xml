@@ -10,6 +10,7 @@
         android:layout_height="40dp"
         android:layout_marginBottom="12dp"
         android:src="@drawable/ic_launcher_background"
+        app:image_view_shadow_color="@color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
