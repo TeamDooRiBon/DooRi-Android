@@ -11,15 +11,16 @@ import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentScheduleBinding
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.DateScheduleAdapter
+import kr.co.dooribon.ui.existingtrip.schedule.adapters.PlanData
+import kr.co.dooribon.ui.existingtrip.schedule.adapters.TimeScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TravelDate
-import kr.co.dooribon.ui.existingtrip.schedule.dialog.AddScheduleBottomSheet
-import kr.co.dooribon.ui.newtrip.DatePickActivity
 import java.time.LocalDate
 
 class ScheduleFragment : Fragment() {
 
     private lateinit var binding: FragmentScheduleBinding
     private lateinit var datesList: List<TravelDate>
+    private lateinit var timeList: List<PlanData>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +29,9 @@ class ScheduleFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
 
         setDataAdapter()
+
+        setTimeScheduleAdapter()
+
         binding.btAddSchedule.setOnClickListener { // bottom sheet dialog 잘 뜨는지 확인 위해 추가해두었음
 //            val bs = AddScheduleBottomSheet()
 //            bs.show(childFragmentManager, bs.tag)
@@ -38,6 +42,23 @@ class ScheduleFragment : Fragment() {
         return binding.root
     }
 
+    private fun setTimeScheduleAdapter(){
+        val timeAdapter = TimeScheduleAdapter()
+        val timeRV = binding.rvScheduleMain
+
+        timeList = listOf( // dummy data
+            PlanData("10:00", "김포공항 앞에서 모이기", "2304 버스 정류장 찾아보기", PlanData.FIRST_DATE_PLAN),
+            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
+            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
+            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
+            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
+            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.LAST_DATE_PLAN)
+        )
+        timeAdapter.setItemList(timeList)
+
+        timeRV.adapter = timeAdapter
+    }
+
     /**
      * Horizontal Recyclerview adapter 연결하는 부분,
      * 서버에서 data 받기 전까지는 dummy data로 적용시켜봄.
@@ -46,7 +67,7 @@ class ScheduleFragment : Fragment() {
         val dateAdapter = DateScheduleAdapter()
         val dateRV = binding.rvDays
         dateRV.adapter = dateAdapter
-        datesList = listOf(
+        datesList = listOf( // dummy data
             TravelDate("D1", 2021, 7, 29),
             TravelDate("D2", 2021, 7, 30),
             TravelDate("D3", 2021, 7, 31),
@@ -63,7 +84,7 @@ class ScheduleFragment : Fragment() {
         )
 
         dateAdapter.setItemClickListener(object : DateScheduleAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) {
+            override fun onClick(view: View, position: Int) { // 아이템 클릭 리스너
                 Log.e("position", position.toString())
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
