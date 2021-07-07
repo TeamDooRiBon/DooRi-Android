@@ -1,5 +1,6 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import kr.co.dooribon.databinding.FragmentScheduleBinding
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.DateScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TravelDate
 import kr.co.dooribon.ui.existingtrip.schedule.dialog.AddScheduleBottomSheet
+import kr.co.dooribon.ui.newtrip.DatePickActivity
 import java.time.LocalDate
 
 class ScheduleFragment : Fragment() {
@@ -26,9 +28,11 @@ class ScheduleFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
 
         setDataAdapter()
-        binding.btAddSchedule.setOnClickListener {
-            val bs = AddScheduleBottomSheet()
-            bs.show(childFragmentManager, bs.tag)
+        binding.btAddSchedule.setOnClickListener { // bottom sheet dialog 잘 뜨는지 확인 위해 추가해두었음
+//            val bs = AddScheduleBottomSheet()
+//            bs.show(childFragmentManager, bs.tag)
+            val intent = Intent(requireContext(), ScheduleAddActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root
