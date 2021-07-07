@@ -11,7 +11,7 @@ import kr.co.dooribon.ui.existingtrip.tendency.viewholder.ChildViewHolder
 import kr.co.dooribon.ui.existingtrip.tendency.viewholder.ParentViewHolder
 
 class TripDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val testQuestionList = mutableListOf<ExpandableAnswerQuestion>()
+    private val questionList = mutableListOf<ExpandableAnswerQuestion>()
 
     private var isFirstItemExpaned: Boolean = true
     private var actionLock = false
@@ -36,7 +36,7 @@ class TripDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val row = testQuestionList[position]
+        val row = questionList[position]
         when (row.type) {
             ExpandableAnswerQuestion.PARENT -> {
                 (holder as ParentViewHolder).bind(row)
@@ -68,23 +68,23 @@ class TripDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int = testQuestionList.size
+    override fun getItemCount(): Int = questionList.size
 
-    override fun getItemViewType(position: Int): Int = testQuestionList[position].type
+    override fun getItemViewType(position: Int): Int = questionList[position].type
 
     fun submitList(list: List<ExpandableAnswerQuestion>) {
-        testQuestionList.clear()
-        testQuestionList.addAll(list)
+        questionList.clear()
+        questionList.addAll(list)
         notifyDataSetChanged()
     }
 
     private fun expandRow(position: Int) {
-        val row = testQuestionList[position]
+        val row = questionList[position]
         var nextPosition = position
         when (row.type) {
             ExpandableAnswerQuestion.PARENT -> {
                 for (child in row.questionParent.questionSubject) {
-                    testQuestionList.add(
+                    questionList.add(
                         ++nextPosition,
                         ExpandableAnswerQuestion(ExpandableAnswerQuestion.CHILD, child)
                     )
@@ -98,16 +98,16 @@ class TripDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     private fun collapseRow(position: Int) {
-        val row = testQuestionList[position]
+        val row = questionList[position]
         var nextPosition = position + 1
         when (row.type) {
             ExpandableAnswerQuestion.PARENT -> {
                 outerloop@ while (true) {
-                    if (nextPosition == testQuestionList.size || testQuestionList[nextPosition].type == ExpandableAnswerQuestion.PARENT) {
+                    if (nextPosition == questionList.size || questionList[nextPosition].type == ExpandableAnswerQuestion.PARENT) {
                         break@outerloop
                     }
 
-                    testQuestionList.removeAt(nextPosition)
+                    questionList.removeAt(nextPosition)
                 }
                 notifyDataSetChanged()
             }
