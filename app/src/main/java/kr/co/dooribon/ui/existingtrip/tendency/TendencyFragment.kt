@@ -1,11 +1,10 @@
 package kr.co.dooribon.ui.existingtrip.tendency
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kr.co.dooribon.R
+import androidx.fragment.app.Fragment
 import kr.co.dooribon.databinding.FragmentTendencyBinding
 import kr.co.dooribon.ui.existingtrip.extension.initializeTab
 import kr.co.dooribon.ui.existingtrip.tendency.extension.initializeTendencyNavigation

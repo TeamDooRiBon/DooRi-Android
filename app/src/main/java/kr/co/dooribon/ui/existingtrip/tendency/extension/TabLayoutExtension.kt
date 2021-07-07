@@ -3,9 +3,6 @@ package kr.co.dooribon.ui.existingtrip.tendency.extension
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
 import kr.co.dooribon.R
-import kr.co.dooribon.ui.existingtrip.board.extension.initializeBoardTabNavigation
-import kr.co.dooribon.ui.existingtrip.board.fragment.CheckListFragment
-import kr.co.dooribon.ui.existingtrip.board.fragment.CommunicationFragment
 import kr.co.dooribon.ui.existingtrip.tendency.fragment.DetailFragment
 import kr.co.dooribon.ui.existingtrip.tendency.fragment.MemberFragment
 

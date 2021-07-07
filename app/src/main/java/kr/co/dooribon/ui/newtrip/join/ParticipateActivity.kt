@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityParticipateBinding
 import kr.co.dooribon.ui.home.HomeActivity
-import kr.co.dooribon.ui.newtrip.DatePickActivity
 
 class ParticipateActivity : AppCompatActivity() {
     private lateinit var binding: ActivityParticipateBinding

@@ -1,11 +1,10 @@
 package kr.co.dooribon.ui.existingtrip.board
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kr.co.dooribon.R
+import androidx.fragment.app.Fragment
 import kr.co.dooribon.databinding.FragmentBoardBinding
 import kr.co.dooribon.ui.existingtrip.board.extension.initializeBoardTabNavigation
 import kr.co.dooribon.ui.existingtrip.extension.initializeTab

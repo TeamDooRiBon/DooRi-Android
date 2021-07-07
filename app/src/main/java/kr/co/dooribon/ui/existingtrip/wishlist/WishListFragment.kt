@@ -1,10 +1,10 @@
 package kr.co.dooribon.ui.existingtrip.wishlist
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import kr.co.dooribon.databinding.FragmentWishListBinding
 import kr.co.dooribon.ui.existingtrip.extension.initializeTab
 import kr.co.dooribon.ui.existingtrip.extension.initializeWishListTabNavigation

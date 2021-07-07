@@ -1,11 +1,9 @@
 package kr.co.dooribon.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,8 +18,6 @@ import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import kr.co.dooribon.ui.home.adapter.PreviousTripAdapter
 import kr.co.dooribon.ui.home.adapter.UpComingTripAdapter
 import kr.co.dooribon.ui.home.viewmodel.HomeViewModel
-import kr.co.dooribon.ui.newtrip.join.ParticipateActivity
-import kr.co.dooribon.utils.StatusBarUtil
 import kr.co.dooribon.utils.getIntent
 
 class HomeActivity : AppCompatActivity() {

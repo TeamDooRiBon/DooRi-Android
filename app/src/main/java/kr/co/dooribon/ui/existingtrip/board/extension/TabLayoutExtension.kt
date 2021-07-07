@@ -5,10 +5,6 @@ import com.google.android.material.tabs.TabLayout
 import kr.co.dooribon.R
 import kr.co.dooribon.ui.existingtrip.board.fragment.CheckListFragment
 import kr.co.dooribon.ui.existingtrip.board.fragment.CommunicationFragment
-import kr.co.dooribon.ui.existingtrip.wishlist.fragment.AccommodationFragment
-import kr.co.dooribon.ui.existingtrip.wishlist.fragment.AllWishListFragment
-import kr.co.dooribon.ui.existingtrip.wishlist.fragment.HotRestaurantFragment
-import kr.co.dooribon.ui.existingtrip.wishlist.fragment.TourismFragment
 
 fun TabLayout.initializeBoardTabNavigation(fragmentManager: FragmentManager){
     this.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{

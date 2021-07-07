@@ -1,19 +1,25 @@
 package kr.co.dooribon.ui.existingtrip.tendency.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kr.co.dooribon.R
+import androidx.fragment.app.Fragment
+import kr.co.dooribon.databinding.FragmentDetailBinding
+import kr.co.dooribon.utils.AutoClearBinding
 
 class DetailFragment : Fragment() {
+
+    private var binding by AutoClearBinding<FragmentDetailBinding>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+    ): View = FragmentDetailBinding.inflate(inflater,container,false).also { FragmentDetailBinding ->
+        binding = FragmentDetailBinding
+    }.root
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
     }
 }
