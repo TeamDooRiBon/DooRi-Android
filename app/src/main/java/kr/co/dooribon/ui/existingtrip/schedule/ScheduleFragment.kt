@@ -11,9 +11,8 @@ import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentScheduleBinding
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.DateScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TravelDate
-import java.text.DateFormat
+import kr.co.dooribon.ui.existingtrip.schedule.dialog.AddScheduleBottomSheet
 import java.time.LocalDate
-import java.util.*
 
 class ScheduleFragment : Fragment() {
 
@@ -25,10 +24,20 @@ class ScheduleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
+
         setDataAdapter()
+        binding.btAddSchedule.setOnClickListener {
+            val bs = AddScheduleBottomSheet()
+            bs.show(requireFragmentManager(), bs.tag)
+        }
+
         return binding.root
     }
 
+    /**
+     * Horizontal Recyclerview adapter 연결하는 부분,
+     * 서버에서 data 받기 전까지는 dummy data로 적용시켜봄.
+     */
     private fun setDataAdapter() {
         val dateAdapter = DateScheduleAdapter()
         val dateRV = binding.rvDays
