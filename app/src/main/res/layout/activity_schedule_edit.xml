@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -9,7 +8,7 @@
         android:background="#9ab4ff">
 
         <ImageView
-            android:id="@+id/iv_schedule_add_back"
+            android:id="@+id/iv_schedule_edit_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -19,28 +18,28 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_schedule_add_description"
+            android:id="@+id/tv_schedule_edit_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
-            android:text="@string/schedule_add"
+            android:text="@string/schedule_edit"
             android:textColor="@color/doo_ri_bon_pure_white"
             android:textSize="23sp"
-            app:layout_constraintStart_toStartOf="@id/iv_schedule_add_back"
-            app:layout_constraintTop_toBottomOf="@id/iv_schedule_add_back" />
+            app:layout_constraintStart_toStartOf="@id/iv_schedule_edit_back"
+            app:layout_constraintTop_toBottomOf="@id/iv_schedule_edit_back" />
 
         <ImageView
             android:id="@+id/iv_schedule_illust"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_schedule_add_description"
-            app:layout_constraintTop_toTopOf="@+id/iv_schedule_add_back"
+            app:layout_constraintStart_toEndOf="@+id/tv_schedule_edit_description"
+            app:layout_constraintTop_toTopOf="@+id/iv_schedule_edit_back"
             app:srcCompat="@drawable/ic_schedule_illust" />
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/nsv_schedule_add"
+            android:id="@+id/nsv_schedule_edit"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="28dp"
@@ -48,7 +47,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_schedule_add_description">
+            app:layout_constraintTop_toBottomOf="@+id/tv_schedule_edit_description">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -75,8 +74,8 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_edit_text_gray"
-                    android:hint="@string/schedule_what_hint"
-                    android:textColor="@color/gray_gray_5_main"
+                    android:text="@string/schedule_edit_what"
+                    android:textColor="@color/gray_black_2"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_what"
                     app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_what" />
@@ -92,14 +91,13 @@
                     app:layout_constraintStart_toStartOf="@id/et_schedule_add_what"
                     app:layout_constraintTop_toBottomOf="@id/et_schedule_add_what" />
 
-
                 <FrameLayout
-                    android:id="@+id/fl_add_timebox"
+                    android:id="@+id/fl_edit_timebox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    app:layout_constraintStart_toStartOf="@id/tv_schedule_add_time"
-                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_time">
+                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_time"
+                    app:layout_constraintStart_toStartOf="@id/tv_schedule_add_time">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
@@ -129,8 +127,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="28dp"
                             android:layout_marginTop="12dp"
-                            android:text="@string/schedule_time_hint1"
-                            android:textColor="@color/gray_gray_5_main"
+                            android:text="@string/schedule_edit_date"
+                            android:textColor="@color/main_point_blue"
                             android:textSize="14sp"
                             app:layout_constraintStart_toStartOf="@id/iv_schedule_time_start"
                             app:layout_constraintTop_toTopOf="@id/iv_schedule_time_start" />
@@ -142,7 +140,7 @@
                             android:layout_marginStart="36dp"
                             android:layout_marginTop="4dp"
                             android:text="@string/schedule_time_hint2"
-                            android:textColor="@color/gray_gray_5_main"
+                            android:textColor="@color/gray_black_1"
                             android:textSize="16sp"
                             app:layout_constraintStart_toStartOf="@id/iv_schedule_time_start"
                             app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_start1" />
@@ -153,8 +151,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:layout_marginEnd="28dp"
-                            android:text="@string/schedule_time_hint1"
-                            android:textColor="@color/gray_gray_5_main"
+                            android:text="@string/schedule_edit_date"
+                            android:textColor="@color/main_point_blue"
                             android:textSize="14sp"
                             app:layout_constraintEnd_toEndOf="@id/iv_schedule_time_end"
                             app:layout_constraintTop_toTopOf="@id/iv_schedule_time_end" />
@@ -166,11 +164,10 @@
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="40dp"
                             android:text="@string/schedule_time_hint2"
-                            android:textColor="@color/gray_gray_5_main"
+                            android:textColor="@color/gray_black_1"
                             android:textSize="16sp"
                             app:layout_constraintEnd_toEndOf="@id/iv_schedule_time_end"
                             app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_end1" />
-
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -185,7 +182,7 @@
                     android:textColor="@color/gray_black_3"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_time"
-                    app:layout_constraintTop_toBottomOf="@id/fl_add_timebox" />
+                    app:layout_constraintTop_toBottomOf="@id/fl_edit_timebox" />
 
                 <EditText
                     android:id="@+id/et_schedule_add_location"
@@ -193,8 +190,8 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_edit_text_gray"
-                    android:hint="@string/schedule_location_hint"
-                    android:textColor="@color/gray_gray_5_main"
+                    android:text="@string/schedule_edit_location"
+                    android:textColor="@color/gray_black_2"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_location"
                     app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_location" />
@@ -251,25 +248,27 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_edit_text_gray"
                     android:hint="@string/schedule_memo_hint"
-                    android:textColor="@color/gray_gray_5_main"
+                    android:text="@string/schedule_edit_memo"
+                    android:textColor="@color/gray_black_2"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_memo"
                     app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_memo" />
 
                 <Button
-                    android:id="@+id/btn_schedule_add"
-                    style="@style/RoundButton.DooRiBonGray7"
+                    android:id="@+id/btn_schedule_edit"
+                    style="@style/RoundButton.DooRiBonOrange"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="28dp"
-                    android:text="@string/schedule_add_btn"
-                    android:textColor="@color/gray_gray_black_4"
+                    android:text="@string/schedule_edit_btn"
+                    android:textColor="@color/gray_white_8"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_schedule_add_memo" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
