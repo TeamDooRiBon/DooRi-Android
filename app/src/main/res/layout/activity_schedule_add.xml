@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#9ab4ff">
+
+        <ImageView
+            android:id="@+id/iv_schedule_add_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_back_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_schedule_add_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/schedule_add"
+            android:textColor="@color/doo_ri_bon_pure_white"
+            android:textSize="23sp"
+            app:layout_constraintStart_toStartOf="@id/iv_schedule_add_back"
+            app:layout_constraintTop_toBottomOf="@id/iv_schedule_add_back" />
+
+        <ImageView
+            android:id="@+id/iv_schedule_illust"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_schedule_add_description"
+            app:layout_constraintTop_toTopOf="@+id/iv_schedule_add_back"
+            app:srcCompat="@drawable/ic_schedule_illust" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_schedule_add"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_gray_white8_top_round_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_schedule_add_description">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingTop="36dp"
+                android:paddingBottom="16dp"
+                android:paddingEnd="12dp">
+
+                <TextView
+                    android:id="@+id/tv_schedule_add_what"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/schedule_what"
+                    android:textColor="@color/gray_black_3"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/et_schedule_add_what"
+                    android:layout_width="320dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_edit_text_gray"
+                    android:hint="@string/schedule_what_hint"
+                    android:textColor="@color/gray_gray_5_main"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_schedule_add_what"
+                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_what" />
+
+                <TextView
+                    android:id="@+id/tv_schedule_add_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/schedule_time"
+                    android:textColor="@color/gray_black_3"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/et_schedule_add_what"
+                    app:layout_constraintTop_toBottomOf="@id/et_schedule_add_what" />
+
+
+                <FrameLayout
+                    android:id="@+id/fl_add_timebox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_schedule_add_time"
+                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_time">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/iv_schedule_time_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/gray_white_pure_9"
+                            android:paddingStart="158dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_time_end_boxline" />
+
+                        <ImageView
+                            android:id="@+id/iv_schedule_time_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="@+id/iv_schedule_time_end"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_time_start_boxline" />
+
+                        <TextView
+                            android:id="@+id/tv_schedule_time_start1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="28dp"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/schedule_time_hint1"
+                            android:textColor="@color/gray_gray_5_main"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="@id/iv_schedule_time_start"
+                            app:layout_constraintTop_toTopOf="@id/iv_schedule_time_start" />
+
+                        <TextView
+                            android:id="@+id/tv_schedule_time_start2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="36dp"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/schedule_time_hint2"
+                            android:textColor="@color/gray_gray_5_main"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="@id/iv_schedule_time_start"
+                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_start1" />
+
+                        <TextView
+                            android:id="@+id/tv_schedule_time_end1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="28dp"
+                            android:text="@string/schedule_time_hint1"
+                            android:textColor="@color/gray_gray_5_main"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="@id/iv_schedule_time_end"
+                            app:layout_constraintTop_toTopOf="@id/iv_schedule_time_end" />
+
+                        <TextView
+                            android:id="@+id/tv_schedule_time_end2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="40dp"
+                            android:text="@string/schedule_time_hint2"
+                            android:textColor="@color/gray_gray_5_main"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="@id/iv_schedule_time_end"
+                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_end1" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_schedule_add_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/schedule_location"
+                    android:textColor="@color/gray_black_3"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_schedule_add_time"
+                    app:layout_constraintTop_toBottomOf="@id/fl_add_timebox" />
+
+                <EditText
+                    android:id="@+id/et_schedule_add_location"
+                    android:layout_width="208dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_edit_text_gray"
+                    android:hint="@string/schedule_location_hint"
+                    android:textColor="@color/gray_gray_5_main"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_schedule_add_location"
+                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_location" />
+
+                <ImageView
+                    android:id="@+id/iv_schedule_notadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toEndOf="@id/et_schedule_add_location"
+                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_location"
+                    app:srcCompat="@drawable/ic_btn_notadd" />
+
+                <TextView
+                    android:id="@+id/tv_schedule_notadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/schedule_notadd"
+                    android:textColor="@color/gray_gray_5_main"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@id/iv_schedule_notadd"
+                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_location" />
+
+                <TextView
+                    android:id="@+id/tv_schedule_add_memo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/schedule_memo"
+                    android:textColor="@color/gray_black_3"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/et_schedule_add_location"
+                    app:layout_constraintTop_toBottomOf="@id/et_schedule_add_location" />
+
+                <TextView
+                    android:id="@+id/tv_schedule_add_memo_condition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="22dp"
+                    android:text="@string/schedule_memo_condition"
+                    android:textColor="@color/main_sub_blue_2"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/tv_schedule_add_memo"
+                    app:layout_constraintTop_toBottomOf="@id/et_schedule_add_location" />
+
+                <EditText
+                    android:id="@+id/et_schedule_add_memo"
+                    android:layout_width="320dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_edit_text_gray"
+                    android:hint="@string/schedule_memo_hint"
+                    android:textColor="@color/gray_gray_5_main"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_schedule_add_memo"
+                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_memo" />
+
+                <Button
+                    android:id="@+id/btn_schedule_add"
+                    style="@style/RoundButton.DooRiBonGray7"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/schedule_add_btn"
+                    android:textColor="@color/gray_gray_black_4"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_schedule_add_memo" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

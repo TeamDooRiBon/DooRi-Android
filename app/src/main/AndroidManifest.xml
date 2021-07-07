@@ -12,7 +12,6 @@
         android:theme="@style/Theme.DooRiBonAndroid">
         <activity android:name=".ui.existingtrip.ExistingTripActivity"></activity>
         <activity android:name=".ui.home.HomeActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,9 +29,11 @@
             android:name=".ui.newtrip.AddTravelActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
 
-
+        </activity>
+        <activity android:name=".ui.existingtrip.schedule.ScheduleAddActivity">
 
         </activity>
+        <activity android:name=".ui.existingtrip.schedule.ScheduleEditActivity"></activity>
     </application>
 
 </manifest>

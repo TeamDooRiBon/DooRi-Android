@@ -13,7 +13,6 @@ import kr.co.dooribon.ui.newtrip.join.ParticipateActivity
 import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.fullScreenDialogSize
 import kr.co.dooribon.utils.getIntent
-import kr.co.dooribon.utils.shortToast
 
 class NewTripDialog : DialogFragment() {
 
