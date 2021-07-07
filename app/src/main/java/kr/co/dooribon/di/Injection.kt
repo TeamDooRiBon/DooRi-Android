@@ -1,4 +1,7 @@
 package kr.co.dooribon.di
 
-object Injection {
+import android.app.Application
+
+class Injection(private val application: Application) {
+
 }
