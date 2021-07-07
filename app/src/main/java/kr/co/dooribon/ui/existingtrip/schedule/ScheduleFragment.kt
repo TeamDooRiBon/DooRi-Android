@@ -20,7 +20,9 @@ class ScheduleFragment : Fragment() {
 
     private lateinit var binding: FragmentScheduleBinding
     private lateinit var datesList: List<TravelDate>
-    private lateinit var timeList: List<PlanData>
+    private lateinit var timeList1: List<PlanData>
+    private lateinit var timeList2: List<PlanData>
+    private lateinit var timeList3: List<PlanData>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +30,10 @@ class ScheduleFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
 
+        setDummyTimeList()
         setDataAdapter()
 
-        setTimeScheduleAdapter()
+        setTimeScheduleAdapter(timeList1)
 
         binding.btAddSchedule.setOnClickListener { // bottom sheet dialog 잘 뜨는지 확인 위해 추가해두었음
 //            val bs = AddScheduleBottomSheet()
@@ -42,21 +45,32 @@ class ScheduleFragment : Fragment() {
         return binding.root
     }
 
-    private fun setTimeScheduleAdapter(){
+    private fun setTimeScheduleAdapter(planList : List<PlanData>){
         val timeAdapter = TimeScheduleAdapter()
         val timeRV = binding.rvScheduleMain
+        timeAdapter.setItemList(planList)
+        timeRV.adapter = timeAdapter
+    }
 
-        timeList = listOf( // dummy data
+    private fun setDummyTimeList(){
+        timeList1 = listOf( // dummy data
             PlanData("10:00", "김포공항 앞에서 모이기", "2304 버스 정류장 찾아보기", PlanData.FIRST_DATE_PLAN),
             PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
+            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.LAST_DATE_PLAN),
             PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
             PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.LAST_DATE_PLAN)
+            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN)
         )
-        timeAdapter.setItemList(timeList)
-
-        timeRV.adapter = timeAdapter
+        timeList2 = listOf( // dummy data
+            PlanData("10:00", "여행 가즈아", "여행 갈 곳 찾아보기", PlanData.FIRST_DATE_PLAN),
+            PlanData("12:00", "가즈아 여행", "제주도갈까요", PlanData.MIDDLE_DATE_PLAN),
+            PlanData("12:00", "송훈기", "기훈송", PlanData.LAST_DATE_PLAN),
+            PlanData("12:00", "조예진", "진예조", PlanData.MIDDLE_DATE_PLAN),
+            PlanData("12:00", "이원중", "중원이", PlanData.MIDDLE_DATE_PLAN),
+            PlanData("12:00", "두리번", "두리안", PlanData.MIDDLE_DATE_PLAN)
+        )
+        timeList3 = listOf( // dummy data
+        )
     }
 
     /**
@@ -68,16 +82,16 @@ class ScheduleFragment : Fragment() {
         val dateRV = binding.rvDays
         dateRV.adapter = dateAdapter
         datesList = listOf( // dummy data
-            TravelDate("D1", 2021, 7, 29),
-            TravelDate("D2", 2021, 7, 30),
-            TravelDate("D3", 2021, 7, 31),
-            TravelDate("D4", 2021, 8, 1),
-            TravelDate("D5", 2021, 8, 2),
-            TravelDate("D6", 2021, 8, 3),
-            TravelDate("D7", 2021, 8, 4),
-            TravelDate("D8", 2021, 8, 5),
-            TravelDate("D9", 2021, 8, 6),
-            TravelDate("D10", 2022, 9, 7),
+            TravelDate("D1", 2021, 7, 29, timeList1),
+            TravelDate("D2", 2021, 7, 30, timeList2),
+            TravelDate("D3", 2021, 7, 31, timeList3),
+            TravelDate("D4", 2021, 8, 1, timeList2),
+            TravelDate("D5", 2021, 8, 2, timeList1),
+            TravelDate("D6", 2021, 8, 3, timeList2),
+            TravelDate("D7", 2021, 8, 4, timeList1),
+            TravelDate("D8", 2021, 8, 5, timeList1),
+            TravelDate("D9", 2021, 8, 6,timeList1),
+            TravelDate("D10", 2022, 9, 7, timeList1)
         )
         dateAdapter.setItemList( // dummy data
             datesList
@@ -88,6 +102,20 @@ class ScheduleFragment : Fragment() {
                 Log.e("position", position.toString())
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
+                if(datesList[position].planData.isNullOrEmpty()){
+                    binding.apply {
+                        rvScheduleMain.visibility = View.GONE
+                        ivEmptyImg.visibility = View.VISIBLE
+                        tvNoSchedule.visibility = View.VISIBLE
+                    }
+                }else{
+                    binding.apply {
+                        rvScheduleMain.visibility = View.VISIBLE
+                        ivEmptyImg.visibility = View.GONE
+                        tvNoSchedule.visibility = View.GONE
+                    }
+                    setTimeScheduleAdapter(datesList[position].planData)
+                }
             }
         })
     }

@@ -135,25 +135,24 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="18dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_dday"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_dday" />
 
             <ImageView
                 android:id="@+id/iv_empty_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_schedule_illustplus"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@id/tv_no_schedule"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_dday"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:visibility="gone"/>
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_no_schedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -163,6 +162,7 @@
                 android:text="@string/no_schedule_please_add"
                 android:textColor="@color/gray_gray_5_main"
                 android:textSize="14sp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
