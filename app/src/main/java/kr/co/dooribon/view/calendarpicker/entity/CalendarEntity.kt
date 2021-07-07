@@ -7,7 +7,7 @@ sealed class CalendarEntity(
     val calendarType: Int,
     val selectionType: SelectionType
 ) {
-    data class Month(val label: String , val year : String) :
+    data class Month(val label: String, val year: String) :
         CalendarEntity(MONTH_COLUMN_COUNT, CalendarType.MONTH.ordinal, SelectionType.NONE)
 
     object Week : CalendarEntity(WEEK_COLUMN_COUNT, CalendarType.WEEK.ordinal, SelectionType.NONE)
@@ -18,9 +18,10 @@ sealed class CalendarEntity(
         val selection: SelectionType = SelectionType.NONE,
         val state: DateState = DateState.WEEKDAY,
         val isRange: Boolean = false
-    ) : CalendarEntity(DAY_COLUMN_COUNT,CalendarType.DAY.ordinal,selection)
+    ) : CalendarEntity(DAY_COLUMN_COUNT, CalendarType.DAY.ordinal, selection)
 
-    object Empty : CalendarEntity(EMPTY_COLUMN_COUNT,CalendarType.EMPTY.ordinal,SelectionType.NONE)
+    object Empty :
+        CalendarEntity(EMPTY_COLUMN_COUNT, CalendarType.EMPTY.ordinal, SelectionType.NONE)
 }
 
 const val TOTAL_COLUMN_COUNT = 7

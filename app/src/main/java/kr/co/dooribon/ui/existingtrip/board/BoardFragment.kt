@@ -1,11 +1,10 @@
 package kr.co.dooribon.ui.existingtrip.board
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kr.co.dooribon.R
+import androidx.fragment.app.Fragment
 import kr.co.dooribon.databinding.FragmentBoardBinding
 import kr.co.dooribon.ui.existingtrip.board.extension.initializeBoardTabNavigation
 import kr.co.dooribon.ui.existingtrip.extension.initializeTab
@@ -18,12 +17,17 @@ class BoardFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = FragmentBoardBinding.inflate(layoutInflater,container,false).also { FragmentBoardBinding ->
-        binding = FragmentBoardBinding
-    }.root
+    ): View = FragmentBoardBinding.inflate(layoutInflater, container, false)
+        .also { FragmentBoardBinding ->
+            binding = FragmentBoardBinding
+        }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.tabBoard.initializeTab(listOf("소통","체크리스트"))
+        configureTabNavigation()
+    }
+
+    private fun configureTabNavigation(){
+        binding.tabBoard.initializeTab(listOf("소통", "체크리스트"))
         binding.tabBoard.initializeBoardTabNavigation(childFragmentManager)
     }
 }

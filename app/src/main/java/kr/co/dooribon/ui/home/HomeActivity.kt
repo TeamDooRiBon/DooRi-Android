@@ -1,11 +1,9 @@
 package kr.co.dooribon.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +18,6 @@ import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import kr.co.dooribon.ui.home.adapter.PreviousTripAdapter
 import kr.co.dooribon.ui.home.adapter.UpComingTripAdapter
 import kr.co.dooribon.ui.home.viewmodel.HomeViewModel
-import kr.co.dooribon.utils.StatusBarUtil
 import kr.co.dooribon.utils.getIntent
 
 class HomeActivity : AppCompatActivity() {
@@ -40,19 +37,9 @@ class HomeActivity : AppCompatActivity() {
         binding.homeActivity = this
         binding.navigateNewTrip = { navigateNewTripDialog() }
 
-        initializeStatusBar()
         configurePreviousTrip()
         configureUpComingTrip()
         configureViewPagerIndicator()
-    }
-
-    private fun initializeStatusBar() {
-        StatusBarUtil.changeColor(
-            this, ContextCompat.getColor(
-                this,
-                R.color.doo_ri_bon_home_tool_bar_blue_color
-            )
-        )
     }
 
     private fun configureViewPagerIndicator() {
@@ -98,7 +85,7 @@ class HomeActivity : AppCompatActivity() {
         Toast.makeText(this, "$index , ${item.upComingTripLocation}", Toast.LENGTH_SHORT).show()
     }
 
-    fun navigateExistingTrip(){
+    fun navigateExistingTrip() {
         startActivity(getIntent<ExistingTripActivity>())
     }
 

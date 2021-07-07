@@ -9,9 +9,9 @@ class CalendarDiffCallback : DiffUtil.ItemCallback<CalendarEntity>() {
     }
 
     override fun areContentsTheSame(oldItem: CalendarEntity, newItem: CalendarEntity): Boolean {
-        return if(oldItem is CalendarEntity.Day && newItem is CalendarEntity.Day){
+        return if (oldItem is CalendarEntity.Day && newItem is CalendarEntity.Day) {
             oldItem.selection == newItem.selection && oldItem.isRange == newItem.isRange
-        }else{
+        } else {
             oldItem.selectionType == newItem.selectionType
         }
     }

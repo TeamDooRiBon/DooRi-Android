@@ -15,11 +15,11 @@ class RecoImgDiffUtil(
 
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-        when{
-            oldList[oldItemPosition].img != newList[newItemPosition].img->{
+        when {
+            oldList[oldItemPosition].img != newList[newItemPosition].img -> {
                 false
             }
-            else->{
+            else -> {
                 true
             }
         }

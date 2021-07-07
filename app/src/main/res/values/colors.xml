@@ -45,6 +45,7 @@
     <color name="gray_gray_black_4">#5e656b</color>
     <color name="gray_white_8">#f7f8f9</color>
     <color name="white_pure_9">#fdfeff</color>
+    <color name="member_trip_chip_gray">#868686</color>
 
     <color name="doo_ri_bon_calendar_picker_bg">#00FFFFFF</color>
     <color name="doo_ri_bon_calendar_day_unselected_bg">#00000000</color>
