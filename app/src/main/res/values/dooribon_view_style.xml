@@ -9,6 +9,7 @@
         <attr name="gradient_start_color" format="color" />
         <attr name="gradient_end_color" format="color" />
         <attr name="gradient_alpha" format="float" />
+        <attr name="gradient_corner_radius" format="dimension"/>
     </declare-styleable>
 
     <declare-styleable name="DooRiBonCalendarPicker">

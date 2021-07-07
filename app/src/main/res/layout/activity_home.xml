@@ -104,7 +104,7 @@
                         app:layout_constraintStart_toStartOf="@id/tv_home_user_description"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_user_description" />
 
-                    <kr.co.dooribon.view.DooRiBonGradientImageView
+                    <kr.co.dooribon.view.DooRiBonGradienTopRoundImageView
                         android:id="@+id/iv_home_proceeding_travel"
                         android:layout_width="0dp"
                         android:layout_height="300dp"
@@ -115,6 +115,7 @@
                         app:gradient_alpha="0.7"
                         app:gradient_end_color="@color/black"
                         app:gradient_start_color="@color/white"
+                        app:gradient_corner_radius="32dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_user_status_description" />

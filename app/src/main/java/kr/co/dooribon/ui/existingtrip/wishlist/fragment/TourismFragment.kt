@@ -17,5 +17,4 @@ class TourismFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_tourism, container, false)
     }
 
-
 }

@@ -3,10 +3,13 @@ package kr.co.dooribon.view
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.use
+import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.shape.CornerFamily
 import kr.co.dooribon.R
 import kr.co.dooribon.utils.OnChangeProp
+import kr.co.dooribon.utils.dpToPixelFloat
+import kr.co.dooribon.utils.drawTopRoundRectPath
 
 /**
  * Created by SSong-develop 2021.06.30
@@ -16,12 +19,14 @@ import kr.co.dooribon.utils.OnChangeProp
  * endColor = gradient 끝나는 컬러
  *
  * gradientAlpha = gradient의 alpha 값 , 이미자가 보여져야 하기 때문에 0.8의 alpha를 주면 잘 보여짐
+ *
+ * cornerRadius = top left , right에 얼마만큼 radius를 줄 것인지
  */
-class DooRiBonGradientImageView @JvmOverloads constructor(
+class DooRiBonGradienTopRoundImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : AppCompatImageView(context, attrs, defStyleAttr) {
+) : ShapeableImageView(context, attrs, defStyleAttr) {
     private val gradientRectF = RectF()
     private val gradientPaint = Paint()
 
@@ -35,6 +40,10 @@ class DooRiBonGradientImageView @JvmOverloads constructor(
 
     var gradientAlpha by OnChangeProp(0.6f) {
         update()
+    }
+
+    var cornerRadius by OnChangeProp(context.dpToPixelFloat(12)) {
+        updateBackground()
     }
 
     init {
@@ -54,6 +63,11 @@ class DooRiBonGradientImageView @JvmOverloads constructor(
                     it.getColor(R.styleable.DooRiBonGradientImageView_gradient_end_color, endColor)
                 gradientAlpha =
                     it.getFloat(R.styleable.DooRiBonGradientImageView_gradient_alpha, gradientAlpha)
+                cornerRadius =
+                    it.getDimension(
+                        R.styleable.DooRiBonGradientImageView_gradient_corner_radius,
+                        cornerRadius
+                    )
             }
     }
 
@@ -64,7 +78,7 @@ class DooRiBonGradientImageView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawRect(gradientRectF, gradientPaint)
+        canvas.drawTopRoundRectPath(gradientRectF, cornerRadius, gradientPaint)
     }
 
     private fun update() {
@@ -82,5 +96,12 @@ class DooRiBonGradientImageView @JvmOverloads constructor(
         }
 
         invalidate()
+    }
+
+    private fun updateBackground() {
+        shapeAppearanceModel = shapeAppearanceModel.toBuilder()
+            .setTopRightCorner(CornerFamily.ROUNDED, cornerRadius)
+            .setTopLeftCorner(CornerFamily.ROUNDED, cornerRadius)
+            .build()
     }
 }
