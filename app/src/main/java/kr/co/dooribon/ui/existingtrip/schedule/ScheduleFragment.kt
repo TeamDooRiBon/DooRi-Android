@@ -28,7 +28,7 @@ class ScheduleFragment : Fragment() {
         setDataAdapter()
         binding.btAddSchedule.setOnClickListener {
             val bs = AddScheduleBottomSheet()
-            bs.show(requireFragmentManager(), bs.tag)
+            bs.show(childFragmentManager, bs.tag)
         }
 
         return binding.root
