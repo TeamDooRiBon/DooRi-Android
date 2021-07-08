@@ -13,7 +13,7 @@ class TripTendencyViewModel : ViewModel() {
     // 질문들에서 유저가 선택한 포지션이 몇번인지를 담아두는 변수
     // 최대 질문수가 12개이므로 12개만
     private val _lastQuestionSelectedPosition =
-        MutableLiveData<MutableList<Int>>(MutableList(MAX_QUESTION_COUNT) { _ -> -1 })
+        MutableLiveData(MutableList(MAX_QUESTION_COUNT) { _ -> -1 })
     val lastQuestionSelectedPosition: LiveData<MutableList<Int>>
         get() = _lastQuestionSelectedPosition
 
