@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            android:src="@drawable/ic_back_white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,6 +26,7 @@
             android:id="@+id/tv_when_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
             android:layout_marginTop="16dp"
             android:text="@string/next_travel_date"
             android:textColor="@color/white"
@@ -68,13 +69,16 @@
 
             <Button
                 android:id="@+id/bt_enter_button"
+                style="@style/RoundButton.DooRiBonGray7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
                 android:layout_marginHorizontal="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="15dp"
+                android:textColor="@color/gray_gray_black_4"
                 android:text="@string/please_enter_date" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
