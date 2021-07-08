@@ -1,14 +1,21 @@
 package kr.co.dooribon.dialog
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kr.co.dooribon.R
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
 import kr.co.dooribon.utils.AutoClearBinding
+import kr.co.dooribon.utils.setNumberPickerTextColor
 
 /**
  * TODO : NumberPicker 위에 그 검정 줄을 못없앰;;;
@@ -27,6 +34,7 @@ class ScheduleTimeBottomSheetDialog : BottomSheetDialogFragment() {
             binding = DialogScheduleTimeBottomSheetBinding
         }.root
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
