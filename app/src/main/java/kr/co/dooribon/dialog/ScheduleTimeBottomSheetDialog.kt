@@ -18,7 +18,6 @@ import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.setNumberPickerTextColor
 
 /**
- * TODO : NumberPicker 위에 그 검정 줄을 못없앰;;;
  * TODO : 바텀 시트 둥그렇게 해야함
  */
 class ScheduleTimeBottomSheetDialog : BottomSheetDialogFragment() {
