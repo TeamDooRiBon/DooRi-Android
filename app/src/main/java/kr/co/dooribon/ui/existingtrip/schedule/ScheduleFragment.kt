@@ -1,11 +1,13 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -198,7 +200,6 @@ class ScheduleFragment : Fragment() {
         val fullDateStr =
             dateInfo.year.toString().plus(". ").plus(monthStr).plus(". ")
                 .plus(dateStr).plus(" ").plus(dayOfWeekKr) // "2021.07.29 목요일" 과같은 스트링
-
         binding.tvDday.text = ddayStr
         binding.tvDate.text = fullDateStr
     }
@@ -211,6 +212,14 @@ class ScheduleFragment : Fragment() {
 //                bs.show(childFragmentManager, bs.tag)
                 val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
                 val sheetView = LayoutInflater.from(requireContext()).inflate(R.layout.bottomsheet_add_schedule, requireActivity().findViewById(R.id.cl_bottom_sheet_root))
+                sheetView.findViewById<Button>(R.id.btn_delete).setOnClickListener {
+                    val deleteDlg = Dialog(requireContext())
+                    deleteDlg.setContentView(R.layout.dialog_delete_question)
+                    deleteDlg.findViewById<Button>(R.id.btn_no).setOnClickListener {
+                        deleteDlg.dismiss()
+                    }
+                    deleteDlg.show()
+                }
                 bsDialog.setContentView(sheetView)
                 bsDialog.show()
             }
