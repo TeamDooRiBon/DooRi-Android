@@ -83,13 +83,11 @@ class ParticipateJoinFragment : Fragment() {
         val code4 = binding.etCode4.text
         val code5 = binding.etCode5.text
         val code6 = binding.etCode6.text
-        if (!code1.isNullOrBlank() && !code2.isNullOrBlank() && !code3.isNullOrBlank() && !code4.isNullOrBlank() && !code5.isNullOrBlank() && !code6.isNullOrBlank()) {
+        if (code1.isNotEmpty() && code2.isNotEmpty() && code3.isNotEmpty() && code4.isNotEmpty() && code5.isNotEmpty() && code6.isNotEmpty()) {
             binding.btnParticipatePut.apply {
-                setText("입력완료")
+                text = "입력완료"
                 setBackgroundColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.doo_ri_bon_orange
+                    ContextCompat.getColor(requireContext(), R.color.doo_ri_bon_orange
                     )
                 )
             }
