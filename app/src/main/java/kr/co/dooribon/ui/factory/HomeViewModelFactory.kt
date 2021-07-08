@@ -8,7 +8,7 @@ class HomeViewModelFactory(
 
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        require(modelClass.isAssignableFrom(HomeViewModel::class.java)) {"unknown class name"}
+        require(modelClass.isAssignableFrom(HomeViewModel::class.java)) { "unknown class name" }
         return HomeViewModel() as T
     }
 }

@@ -132,11 +132,4 @@
     <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
     </style>
-
-    <style name="AppTheme.WhiteNumberPicker" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorControlNormal">@color/white</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <item name="android:textColorHighlight">@color/doo_ri_bon_blue</item>
-        <item name="android:textColorPrimary">@color/gray_gray_5_main</item>
-    </style>
 </resources>

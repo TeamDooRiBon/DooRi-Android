@@ -19,4 +19,9 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="DooRiBonNumberPicker">
+        <attr name="picker_text_color" format="color"/>
+        <attr name="picker_text_size" format="float"/>
+    </declare-styleable>
+
 </resources>

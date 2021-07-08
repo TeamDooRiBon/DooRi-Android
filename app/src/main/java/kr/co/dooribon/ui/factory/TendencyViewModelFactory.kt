@@ -8,8 +8,11 @@ class TendencyViewModelFactory(
 
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        require(modelClass.isAssignableFrom(
-            TendencyViewModel::class.java)) {"unknown class name"}
+        require(
+            modelClass.isAssignableFrom(
+                TendencyViewModel::class.java
+            )
+        ) { "unknown class name" }
         return TendencyViewModel() as T
     }
 }

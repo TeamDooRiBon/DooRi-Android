@@ -52,6 +52,6 @@ class RetrofitModule {
         private const val BASE_URL = "https://github.com"
 
         // Retrofit 객체가 필요할 경우 가져오게하는 함수수
-       fun getRetrofitInstance() = RetrofitModule().provideRetrofit()
+        fun getRetrofitInstance() = RetrofitModule().provideRetrofit()
     }
 }

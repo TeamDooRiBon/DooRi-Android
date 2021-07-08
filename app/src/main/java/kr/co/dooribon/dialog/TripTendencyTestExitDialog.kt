@@ -18,9 +18,10 @@ class TripTendencyTestExitDialog : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = DialogTripTendencyTestExitBinding.inflate(inflater,container,false).also { DialogTripTendencyTestExitBinding ->
-        binding = DialogTripTendencyTestExitBinding
-    }.root
+    ): View = DialogTripTendencyTestExitBinding.inflate(inflater, container, false)
+        .also { DialogTripTendencyTestExitBinding ->
+            binding = DialogTripTendencyTestExitBinding
+        }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.dialog = this
@@ -28,12 +29,12 @@ class TripTendencyTestExitDialog : DialogFragment() {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
-    fun navigateExit(){
+    fun navigateExit() {
         dismiss()
         requireActivity().finish()
     }
 
-    fun navigateKeepGoing(){
+    fun navigateKeepGoing() {
         dismiss()
     }
 }

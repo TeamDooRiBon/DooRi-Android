@@ -11,12 +11,12 @@ import kr.co.dooribon.ui.factory.TripTendencyViewModelFactory
  */
 class ViewModelModule(private val application: Application) {
 
-    fun provideHomeViewModelFactory() : ViewModelProvider.Factory =
+    fun provideHomeViewModelFactory(): ViewModelProvider.Factory =
         HomeViewModelFactory()
 
-    fun provideTripTendencyViewModelFactory() : ViewModelProvider.Factory =
+    fun provideTripTendencyViewModelFactory(): ViewModelProvider.Factory =
         TripTendencyViewModelFactory()
 
-    fun provideTendencyViewModelFactory() : ViewModelProvider.Factory =
+    fun provideTendencyViewModelFactory(): ViewModelProvider.Factory =
         TendencyViewModelFactory()
 }

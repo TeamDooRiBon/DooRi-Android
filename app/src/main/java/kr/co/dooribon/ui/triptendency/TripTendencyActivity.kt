@@ -9,7 +9,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTripTendencyBinding
 import kr.co.dooribon.dialog.ScheduleTimeBottomSheetDialog
-import kr.co.dooribon.dialog.TripTendencyTestExitDialog
 import kr.co.dooribon.dialog.TripTendencyTestResultLoadingDialog
 import kr.co.dooribon.domain.entity.TripTendency
 import kr.co.dooribon.ui.triptendency.adapter.TripTendencyAdapter
@@ -26,7 +25,6 @@ class TripTendencyActivity : AppCompatActivity() {
     private val viewModel by viewModels<TripTendencyViewModel>()
 
     private lateinit var tripTendencyAdapter: TripTendencyAdapter
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -183,7 +181,7 @@ class TripTendencyActivity : AppCompatActivity() {
     }
 
     fun exitTripTendencyTest() {
-        TripTendencyTestExitDialog().show(supportFragmentManager, EXIT_NAVIGATE_TAG)
+        ScheduleTimeBottomSheetDialog().show(supportFragmentManager, EXIT_NAVIGATE_TAG)
     }
 
     companion object {

@@ -25,8 +25,8 @@ class MainApplication : Application() {
     companion object {
         lateinit var pixelRatio: PixelRatio
         lateinit var retrofitModule: RetrofitModule
-        lateinit var viewModelModule : ViewModelModule
-        lateinit var repositoryModule : RepositoryModule
-        lateinit var localDatabaseModule : LocalDatabaseModule
+        lateinit var viewModelModule: ViewModelModule
+        lateinit var repositoryModule: RepositoryModule
+        lateinit var localDatabaseModule: LocalDatabaseModule
     }
 }

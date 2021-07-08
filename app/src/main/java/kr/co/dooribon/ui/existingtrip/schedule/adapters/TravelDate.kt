@@ -5,4 +5,5 @@ data class TravelDate(
     val year: Int,
     val month: Int,
     val date: Int,
-    val planData: List<PlanData>)
+    val planData: List<PlanData>
+)

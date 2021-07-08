@@ -31,20 +31,38 @@ class ScheduleTimeBottomSheetDialog : BottomSheetDialogFragment() {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.npAmPm.apply {
+            // 0이면 오전 1이면 오후
             minValue = 0
             maxValue = 1
             displayedValues = arrayOf("오전", "오후")
+            wrapSelectorWheel = false
         }
-        binding.npHour.apply {
+        binding.npHour.apply { // 얘는 문제가 없어 해봐야 시간이다 보니까
             minValue = 0
             maxValue = 12
-            value = 1
+            displayedValues = arrayOf(
+                "00",
+                "01",
+                "02",
+                "03",
+                "04",
+                "05",
+                "06",
+                "07",
+                "08",
+                "09",
+                "10",
+                "11",
+                "12"
+            )
+            wrapSelectorWheel = false
         }
-
-        binding.npMinute.apply {
+        binding.npMinute.apply { // 이 녀석한테서 값을 가져올 때는 무조건 *10 으로 반환을 해주면 됩니다. ex. 10을 선택했다면 1 * 10 = 10 으로 되게끔
+            // 이게 10분 단위로 끊다보니까 넘버 피킹에서는 그냥 0~5를 선택하는 것이고 우리가 값을 가져올떈 10을 곱해주면 됩니다.
             minValue = 0
-            maxValue = 50
-            value = 10
+            maxValue = 5
+            displayedValues = arrayOf("00", "10", "20", "30", "40", "50")
+            wrapSelectorWheel = false
         }
     }
 }

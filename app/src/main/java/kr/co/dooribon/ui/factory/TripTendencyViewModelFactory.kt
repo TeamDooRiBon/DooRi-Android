@@ -8,7 +8,7 @@ class TripTendencyViewModelFactory(
 
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        require(modelClass.isAssignableFrom(TripTendencyViewModel::class.java)) {"unknown class name"}
+        require(modelClass.isAssignableFrom(TripTendencyViewModel::class.java)) { "unknown class name" }
         return TripTendencyViewModel() as T
     }
 }

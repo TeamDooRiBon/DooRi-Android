@@ -211,7 +211,10 @@ class ScheduleFragment : Fragment() {
 //                val bs = AddScheduleBottomSheet()
 //                bs.show(childFragmentManager, bs.tag)
                 val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
-                val sheetView = LayoutInflater.from(requireContext()).inflate(R.layout.bottomsheet_add_schedule, requireActivity().findViewById(R.id.cl_bottom_sheet_root))
+                val sheetView = LayoutInflater.from(requireContext()).inflate(
+                    R.layout.bottomsheet_add_schedule,
+                    requireActivity().findViewById(R.id.cl_bottom_sheet_root)
+                )
                 sheetView.findViewById<Button>(R.id.btn_delete).setOnClickListener {
                     val deleteDlg = Dialog(requireContext())
                     deleteDlg.setContentView(R.layout.dialog_delete_question)
