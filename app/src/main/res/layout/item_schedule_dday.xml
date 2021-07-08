@@ -8,13 +8,17 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/cl_root"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_dday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:textColor="@color/gray_gray_6"
             android:textSize="10sp"
@@ -24,12 +28,13 @@
             tools:text="D1" />
 
         <TextView
-            android:id="@+id/tv_date"
+            android:id="@+id/tv_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:textColor="@color/main_point_blue"
             android:textSize="12sp"
+            android:elevation="1dp"
             app:layout_constraintEnd_toEndOf="@id/tv_dday"
             app:layout_constraintStart_toStartOf="@id/tv_dday"
             app:layout_constraintTop_toBottomOf="@+id/tv_dday"
@@ -40,11 +45,11 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/shape_selected_blue_circle"
-            app:layout_constraintBottom_toBottomOf="@id/tv_date"
-            app:layout_constraintEnd_toEndOf="@id/tv_date"
-            app:layout_constraintStart_toStartOf="@id/tv_date"
-            app:layout_constraintTop_toTopOf="@id/tv_date"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/tv_item_date"
+            app:layout_constraintEnd_toEndOf="@id/tv_item_date"
+            app:layout_constraintStart_toStartOf="@id/tv_item_date"
+            app:layout_constraintTop_toTopOf="@id/tv_item_date" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

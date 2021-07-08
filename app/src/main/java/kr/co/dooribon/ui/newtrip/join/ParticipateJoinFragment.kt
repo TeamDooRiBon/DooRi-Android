@@ -20,7 +20,7 @@ class ParticipateJoinFragment : Fragment() {
         return binding.root
     }
 
-    // TODO : edittext 포커스 이동, back 버튼 누를 경우 그 전 화면으로 가기
+    // TODO : edittext 포커스 이동
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -72,33 +72,31 @@ class ParticipateJoinFragment : Fragment() {
             }
 
         }
-        forPutClickEvent()
+        fullEditEvent()
     }
 
-    private fun forPutClickEvent() {
-        binding.btnParticipatePut.setOnClickListener {
-            val code1 = binding.etCode1.text
-            val code2 = binding.etCode2.text
-            val code3 = binding.etCode3.text
-            val code4 = binding.etCode4.text
-            val code5 = binding.etCode5.text
-            val code6 = binding.etCode6.text
-            // TODO : 6개의 edittext 모두 null 값이 아닐 때 버튼 변환
-            if (!code1.isNullOrBlank() && !code2.isNullOrBlank() && !code3.isNullOrBlank() && !code4.isNullOrBlank() && !code5.isNullOrBlank() && !code6.isNullOrBlank()) {
-                binding.btnParticipatePut.apply {
-                    text = "입력 완료"
-                    setBackgroundColor(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            R.color.doo_ri_bon_orange
-                        )
+    // TODO : Edittext 6개 모두 채워졌을 경우 버튼 변경
+    private fun fullEditEvent() {
+        val code1 = binding.etCode1.text
+        val code2 = binding.etCode2.text
+        val code3 = binding.etCode3.text
+        val code4 = binding.etCode4.text
+        val code5 = binding.etCode5.text
+        val code6 = binding.etCode6.text
+        if (!code1.isNullOrBlank() && !code2.isNullOrBlank() && !code3.isNullOrBlank() && !code4.isNullOrBlank() && !code5.isNullOrBlank() && !code6.isNullOrBlank()) {
+            binding.btnParticipatePut.apply {
+                setText("입력완료")
+                setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.doo_ri_bon_orange
                     )
-                }
-                val participatecheckFragment = ParticipateCheckFragment()
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.participate_fragment_container_view, participatecheckFragment)
-                    .commitNow()
+                )
             }
+            val participatecheckFragment = ParticipateCheckFragment()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.participate_fragment_container_view, participatecheckFragment)
+                .commitNow()
         }
     }
 }

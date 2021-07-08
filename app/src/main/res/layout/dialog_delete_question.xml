@@ -1,79 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="312dp"
+    android:layout_height="136dp"
+    android:layout_gravity="center">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cv_delete_question"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tv_delete_question"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:background="@drawable/bg_white_pure9_round_layout"
-        android:elevation="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        android:text="정말 삭제하시겠습니까?"
+        android:textColor="@color/gray_black_1"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_delete_question"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/spoqa_han_sans_neo_medium"
-            android:text="정말 삭제하시겠습니까?"
-            android:textColor="@color/gray_black_1"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/btn_no"
+        style="@style/RoundButton.DooRiBonGray7"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        android:text="@string/i_wont"
+        android:textColor="@color/gray_gray_black_4"
+        app:layout_constraintEnd_toStartOf="@id/btn_delete"
+        app:layout_constraintStart_toStartOf="@id/tv_delete_question"
+        app:layout_constraintTop_toBottomOf="@id/tv_delete_question" />
 
-        <ImageView
-            android:id="@+id/iv_btn_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="26dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="4dp"
-            android:paddingVertical="4dp"
-            android:src="@drawable/ic_icon_close"
-            app:layout_constraintBottom_toBottomOf="@id/tv_delete_question"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_delete_question" />
-
-        <Button
-            android:id="@+id/btn_no"
-            style="@style/RoundButton.DooRiBonGray7"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/spoqa_han_sans_neo_medium"
-            android:text="@string/i_wont"
-            android:textColor="@color/gray_gray_black_4"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_delete"
-            app:layout_constraintStart_toStartOf="@id/tv_delete_question"
-            app:layout_constraintTop_toBottomOf="@id/tv_delete_question" />
-
-        <Button
-            android:id="@+id/btn_delete"
-            style="@style/RoundButton.DooRiBonOrange"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="20dp"
-            android:fontFamily="@font/spoqa_han_sans_neo_medium"
-            android:text="@string/will_delete"
-            app:layout_constraintBottom_toBottomOf="@id/btn_no"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_no"
-            app:layout_constraintTop_toTopOf="@id/btn_no" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btn_delete"
+        style="@style/RoundButton.DooRiBonOrange"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        android:text="@string/will_delete"
+        app:layout_constraintBottom_toBottomOf="@id/btn_no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_no"
+        app:layout_constraintTop_toTopOf="@id/btn_no" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
