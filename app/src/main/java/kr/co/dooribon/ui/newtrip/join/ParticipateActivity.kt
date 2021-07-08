@@ -19,15 +19,12 @@ class ParticipateActivity : AppCompatActivity() {
             .replace(R.id.participate_fragment_container_view, ParticipateJoinFragment())
             .commitNow()
 
-        BackBtnClickListener()
+        backBtnClickListener()
     }
 
-    // 일단 뒤로가기 버튼을 누르면 HomeActivity로 넘어가도록 했습니다!
-    private fun BackBtnClickListener() {
+    private fun backBtnClickListener() {
         binding.ivParticiBack.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
             finish()
-            startActivity(intent)
         }
     }
 }

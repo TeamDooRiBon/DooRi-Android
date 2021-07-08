@@ -76,7 +76,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_edit_text_gray"
                     android:hint="@string/schedule_what_hint"
-                    android:textColor="@color/gray_gray_5_main"
+                    android:textColor="@color/gray_black_2"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_what"
                     app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_what" />
@@ -194,7 +194,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_edit_text_gray"
                     android:hint="@string/schedule_location_hint"
-                    android:textColor="@color/gray_gray_5_main"
+                    android:textColor="@color/gray_black_2"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_location"
                     app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_location" />
@@ -251,7 +251,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_edit_text_gray"
                     android:hint="@string/schedule_memo_hint"
-                    android:textColor="@color/gray_gray_5_main"
+                    android:textColor="@color/gray_black_2"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_memo"
                     app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_memo" />
