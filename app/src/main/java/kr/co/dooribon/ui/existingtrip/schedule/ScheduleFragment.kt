@@ -3,7 +3,6 @@ package kr.co.dooribon.ui.existingtrip.schedule
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +10,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentScheduleBinding
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.DateScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.PlanData
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TimeScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TravelDate
+import kr.co.dooribon.ui.existingtrip.schedule.dialog.AddScheduleBottomSheet
 import java.time.LocalDate
 
 class ScheduleFragment : Fragment() {
@@ -48,14 +49,16 @@ class ScheduleFragment : Fragment() {
         return binding.root
     }
 
-    private fun setTimeScheduleAdapter(planList : List<PlanData>){
+    private fun setTimeScheduleAdapter(planList: List<PlanData>) {
         val timeAdapter = TimeScheduleAdapter()
         val timeRV = binding.rvScheduleMain
         timeAdapter.setItemList(planList)
         timeRV.adapter = timeAdapter
+
+        onBelowItemClickListener(timeAdapter) // 아이템 클릭 리스너
     }
 
-    private fun setDummyTimeList(){
+    private fun setDummyTimeList() {
         timeList1 = listOf( // dummy data
             PlanData("10:00", "김포공항 앞에서 모이기", "2304 버스 정류장 찾아보기", PlanData.FIRST_DATE_PLAN),
             PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
@@ -93,7 +96,7 @@ class ScheduleFragment : Fragment() {
             TravelDate("D6", 2021, 8, 3, timeList2),
             TravelDate("D7", 2021, 8, 4, timeList1),
             TravelDate("D8", 2021, 8, 5, timeList1),
-            TravelDate("D9", 2021, 8, 6,timeList1),
+            TravelDate("D9", 2021, 8, 6, timeList1),
             TravelDate("D10", 2022, 9, 7, timeList1)
         )
         dateAdapter.setItemList( // dummy data
@@ -105,13 +108,13 @@ class ScheduleFragment : Fragment() {
                 Log.e("position", position.toString())
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
-                if(datesList[position].planData.isNullOrEmpty()){ // plan이 아직 없다면
+                if (datesList[position].planData.isNullOrEmpty()) { // plan이 아직 없다면
                     binding.apply {
                         rvScheduleMain.visibility = View.GONE
                         ivEmptyImg.visibility = View.VISIBLE
                         tvNoSchedule.visibility = View.VISIBLE
                     }
-                }else{
+                } else {
                     binding.apply { // plan이 있다면
                         rvScheduleMain.visibility = View.VISIBLE
                         ivEmptyImg.visibility = View.GONE
@@ -123,7 +126,12 @@ class ScheduleFragment : Fragment() {
                 val chkImg = view.findViewById<ImageView>(R.id.iv_selected_date)
                 val chkdText = view.findViewById<TextView>(R.id.tv_item_date)
                 chkImg.visibility = View.VISIBLE
-                chkdText.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_white_pure_9))
+                chkdText.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.gray_white_pure_9
+                    )
+                )
             }
         })
     }
@@ -193,6 +201,17 @@ class ScheduleFragment : Fragment() {
 
         binding.tvDday.text = ddayStr
         binding.tvDate.text = fullDateStr
+
+
+    }
+
+    private fun onBelowItemClickListener(timeAdapter: TimeScheduleAdapter) {
+        timeAdapter.setItemClickListener(object : TimeScheduleAdapter.ItemClickListener {
+            override fun onTimeScheduleClick(view: View, position: Int) {
+                val bs = AddScheduleBottomSheet()
+                bs.show(childFragmentManager, bs.tag)
+            }
+        })
     }
 
 }

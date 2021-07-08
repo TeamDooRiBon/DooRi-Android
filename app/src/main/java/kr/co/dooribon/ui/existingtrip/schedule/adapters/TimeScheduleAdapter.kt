@@ -11,6 +11,16 @@ import kr.co.dooribon.databinding.ItemDateScheduleBinding
 class TimeScheduleAdapter : RecyclerView.Adapter<TimeScheduleAdapter.PlanViewHolder>() {
 
     private var plans = mutableListOf<PlanData>()
+    private lateinit var itemClickListener: ItemClickListener
+
+    // 클릭 interface
+    interface ItemClickListener {
+        fun onTimeScheduleClick(view: View, position: Int)
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener){
+        this.itemClickListener = itemClickListener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -21,6 +31,9 @@ class TimeScheduleAdapter : RecyclerView.Adapter<TimeScheduleAdapter.PlanViewHol
 
     override fun onBindViewHolder(holder: PlanViewHolder, position: Int) {
         holder.bind(plans[position])
+        holder.itemView.setOnClickListener {
+            itemClickListener.onTimeScheduleClick(it, position)
+        }
     }
 
     override fun getItemCount(): Int = plans.size
