@@ -1,98 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/ll_top_line"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@color/gray_gray_7_line"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/iv_color_circle"
-        app:layout_constraintEnd_toEndOf="@id/iv_color_circle"
-        app:layout_constraintStart_toStartOf="@id/iv_color_circle"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-
-    <ImageView
-        android:id="@+id/iv_color_circle"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/shape_selected_blue_circle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/cl_timeline_card" />
-
-    <LinearLayout
-        android:id="@+id/ll_bottom_line"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@color/gray_gray_7_line"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/iv_color_circle"
-        app:layout_constraintStart_toStartOf="@id/iv_color_circle"
-        app:layout_constraintTop_toBottomOf="@id/iv_color_circle" />
-
-    <TextView
-        android:id="@+id/tv_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/spoqa_han_sans_neo_regular"
-        android:text="10:00AM"
-        android:textColor="@color/main_sub_blue_2"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@id/iv_color_circle"
-        app:layout_constraintStart_toEndOf="@id/iv_color_circle"
-        app:layout_constraintTop_toTopOf="@id/iv_color_circle" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_timeline_card"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/bg_white_pure9_round_layout"
-        android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_time"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_timeline_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            android:text="인천공항으로 출발"
-            android:textColor="@color/gray_black_1"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
+        <LinearLayout
+            android:id="@+id/ll_top_line"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/gray_gray_7_line"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/iv_color_circle"
+            app:layout_constraintEnd_toEndOf="@id/iv_color_circle"
+            app:layout_constraintStart_toStartOf="@id/iv_color_circle"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <ImageView
+            android:id="@+id/iv_color_circle"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/shape_selected_blue_circle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cl_timeline_card" />
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_line"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/gray_gray_7_line"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/iv_color_circle"
+            app:layout_constraintStart_toStartOf="@id/iv_color_circle"
+            app:layout_constraintTop_toBottomOf="@id/iv_color_circle" />
+
         <TextView
-            android:id="@+id/tv_timeline_sub"
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            android:text="여권 꼭 챙기기"
+            android:text="10:00AM"
+            android:textColor="@color/main_sub_blue_2"
             android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_timeline_main"
-            app:layout_constraintTop_toBottomOf="@id/tv_timeline_main" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_color_circle"
+            app:layout_constraintStart_toEndOf="@id/iv_color_circle"
+            app:layout_constraintTop_toTopOf="@id/iv_color_circle" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_timeline_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/bg_white_pure9_round_layout"
+            android:elevation="3dp"
+            app:layout_constraintBottom_toBottomOf="parent "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_time"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_timeline_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:text="인천공항으로 출발"
+                android:textColor="@color/gray_black_1"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_timeline_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:text="여권 꼭 챙기기"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_timeline_main"
+                app:layout_constraintTop_toBottomOf="@id/tv_timeline_main" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
