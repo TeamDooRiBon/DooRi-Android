@@ -13,6 +13,7 @@ import kr.co.dooribon.ui.triptendency.adapter.TripTendencyAdapter
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
 
 /**
+ * Issue 사항
  * TODO : Data를 12개로 늘렸는데 데이터가 겹치는 문제가 발생한다 음...
  */
 class TripTendencyActivity : AppCompatActivity() {
