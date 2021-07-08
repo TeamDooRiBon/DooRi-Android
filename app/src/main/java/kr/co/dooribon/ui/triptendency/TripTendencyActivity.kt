@@ -183,7 +183,7 @@ class TripTendencyActivity : AppCompatActivity() {
     }
 
     fun exitTripTendencyTest() {
-        ScheduleTimeBottomSheetDialog().show(supportFragmentManager, EXIT_NAVIGATE_TAG)
+        TripTendencyTestExitDialog().show(supportFragmentManager, EXIT_NAVIGATE_TAG)
     }
 
     companion object {
