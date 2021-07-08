@@ -13,10 +13,7 @@ import kr.co.dooribon.ui.triptendency.adapter.TripTendencyAdapter
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
 
 /**
- * 이제 12개의 프래그먼트를 viewPager에 보여줘야 하는데
- * 문제가 뭐냐면 tabLayout 현재 viewPager가 가지고 있는 fragment의 갯수를 알아야한다는 것이 문제다.
- *
- * ViewPager.setCurrentItem 메소드를 사용해서 뷰모델에 보여지는 뷰의 포지션을 담아두고 이에 맞춰 작업을 하면 될거 같음!!!!
+ * TODO : Data를 12개로 늘렸는데 데이터가 겹치는 문제가 발생한다 음...
  */
 class TripTendencyActivity : AppCompatActivity() {
 
@@ -87,6 +84,78 @@ class TripTendencyActivity : AppCompatActivity() {
                         TripTendency.TripTendencyQuestion(2, "방금 선그어서 멋져보임"),
                         TripTendency.TripTendencyQuestion(3, "가끔 킹받게 함"),
                         TripTendency.TripTendencyQuestion(4, "처치대상 2호")
+                    )
+                ),
+                TripTendency(
+                    4, "김태현 이대로 괜찮은가", listOf(
+                        TripTendency.TripTendencyQuestion(1, "개잘함"),
+                        TripTendency.TripTendencyQuestion(2, "아요대장"),
+                        TripTendency.TripTendencyQuestion(3, "노는거 좋아함"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 3호")
+                    )
+                ),
+                TripTendency(
+                    5, "한상진 이대로 괜찮은가", listOf(
+                        TripTendency.TripTendencyQuestion(1, "개잘함"),
+                        TripTendency.TripTendencyQuestion(2, "캘린더 장인"),
+                        TripTendency.TripTendencyQuestion(3, "합숙중임"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 4호")
+                    )
+                ),
+                TripTendency(
+                    6, "이민재 이대로 괜찮은가", listOf(
+                        TripTendency.TripTendencyQuestion(1, "개잘함"),
+                        TripTendency.TripTendencyQuestion(2, "야구장인"),
+                        TripTendency.TripTendencyQuestion(3, "홈화면 중인걸로 암"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 5호")
+                    )
+                ),
+                TripTendency(
+                    7, "박유진 이대로 괜찮은가", listOf(
+                        TripTendency.TripTendencyQuestion(1, "개잘함"),
+                        TripTendency.TripTendencyQuestion(2, "피엠임"),
+                        TripTendency.TripTendencyQuestion(3, "기획대장"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 6호")
+                    )
+                ),
+                TripTendency(
+                    8, "김민영 이대로 괜찮은가", listOf(
+                        TripTendency.TripTendencyQuestion(1, "개잘함"),
+                        TripTendency.TripTendencyQuestion(2, "디자인 잘함"),
+                        TripTendency.TripTendencyQuestion(3, "내가 마니또 였음"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 7호")
+                    )
+                ),
+                TripTendency(
+                    9, "유지인 이대로 괜찮은가", listOf(
+                        TripTendency.TripTendencyQuestion(1, "개잘함"),
+                        TripTendency.TripTendencyQuestion(2, "디자인 잘함"),
+                        TripTendency.TripTendencyQuestion(3, "낯가린다고 했는데 잘 안가리는거 같음"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 8호")
+                    )
+                ),
+                TripTendency(
+                    10, "김인우 이대로 괜찮은가", listOf(
+                        TripTendency.TripTendencyQuestion(1, "개잘함"),
+                        TripTendency.TripTendencyQuestion(2, "디자인 잘함"),
+                        TripTendency.TripTendencyQuestion(3, "말 속에 뼈가 있을거같음"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 9호")
+                    )
+                ),
+                TripTendency(
+                    11, "채정아 이대로 괜찮은가", listOf(
+                        TripTendency.TripTendencyQuestion(1, "개잘함"),
+                        TripTendency.TripTendencyQuestion(2, "서버 대장"),
+                        TripTendency.TripTendencyQuestion(3, "개그 코드 이상함"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 10호")
+                    )
+                ),
+                TripTendency(
+                    12, "정설희 이대로 괜찮은가", listOf(
+                        TripTendency.TripTendencyQuestion(1, "개잘함"),
+                        TripTendency.TripTendencyQuestion(2, "서버 잘함"),
+                        TripTendency.TripTendencyQuestion(3, "응애"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 11호")
                     )
                 )
             )
