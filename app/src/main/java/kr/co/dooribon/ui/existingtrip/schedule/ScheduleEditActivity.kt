@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.dooribon.databinding.ActivityScheduleEditBinding
 
-class ScheduleEditActivity: AppCompatActivity() {
+class ScheduleEditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScheduleEditBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -26,7 +26,7 @@ class WishListFragment : Fragment() {
         configureTabNavigation()
     }
 
-    private fun configureTabNavigation(){
+    private fun configureTabNavigation() {
         binding.tabWishList.initializeTab(listOf("전체", "관광", "숙소", "맛집"))
         binding.tabWishList.initializeWishListTabNavigation(childFragmentManager)
     }

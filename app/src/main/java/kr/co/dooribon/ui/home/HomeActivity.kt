@@ -90,7 +90,7 @@ class HomeActivity : AppCompatActivity() {
         startActivity(getIntent<ExistingTripActivity>())
     }
 
-    fun navigateTripTendencyTest(){
+    fun navigateTripTendencyTest() {
         startActivity(getIntent<TripTendencyActivity>())
     }
 

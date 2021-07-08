@@ -30,46 +30,74 @@ class TripTendencyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_trip_tendency)
+        binding.vm = viewModel
+        binding.activity = this
+        tripTendencyAdapter = TripTendencyAdapter(viewModel)
 
-        tripTendencyAdapter = TripTendencyAdapter()
+        configureQuestionPager()
+        configureTab()
+        observeQuestionPosition()
+        setDummy()
+    }
 
+    private fun observeQuestionPosition() {
+        viewModel.questionPosition.observe(this) {
+            binding.vpTripTendencyTest.currentItem = it
+        }
+    }
+
+    private fun configureTab() {
+        TabLayoutMediator(
+            binding.tabTripTendency,
+            binding.vpTripTendencyTest
+        ) { _, _ -> }.attach()
+    }
+
+    private fun configureQuestionPager() {
         binding.vpTripTendencyTest.apply {
             adapter = tripTendencyAdapter
             offscreenPageLimit = 1
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            isUserInputEnabled = false
         }
-        TabLayoutMediator(
-            binding.tabTripTendency,
-            binding.vpTripTendencyTest
-        ){ _, _ -> }.attach()
+    }
 
+    private fun setDummy() {
         tripTendencyAdapter.submitItem(
             listOf(
                 TripTendency(
                     1, "송훈기 이대로 괜찮은가", listOf(
-                        TripTendency.TripTendencyQuestion(1,"안괜찮아"),
-                        TripTendency.TripTendencyQuestion(2,"괜찮아"),
-                        TripTendency.TripTendencyQuestion(3,"공감 못함"),
-                        TripTendency.TripTendencyQuestion(4,"처치대상 0호")
+                        TripTendency.TripTendencyQuestion(1, "안괜찮아"),
+                        TripTendency.TripTendencyQuestion(2, "괜찮아"),
+                        TripTendency.TripTendencyQuestion(3, "공감 못함"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 0호")
                     )
                 ),
                 TripTendency(
                     2, "조예진 이대로 괜찮은가", listOf(
-                        TripTendency.TripTendencyQuestion(1,"호기심 대마왕"),
-                        TripTendency.TripTendencyQuestion(2,"아니 근데"),
-                        TripTendency.TripTendencyQuestion(3,"킹받게 함"),
-                        TripTendency.TripTendencyQuestion(4,"처치대상 1호...")
+                        TripTendency.TripTendencyQuestion(1, "호기심 대마왕"),
+                        TripTendency.TripTendencyQuestion(2, "아니 근데"),
+                        TripTendency.TripTendencyQuestion(3, "킹받게 함"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 1호...")
                     )
                 ),
                 TripTendency(
                     3, "이원중 이대로 괜찮은가", listOf(
-                        TripTendency.TripTendencyQuestion(1,"개잘함"),
-                        TripTendency.TripTendencyQuestion(2,"방금 선그어서 멋져보임"),
-                        TripTendency.TripTendencyQuestion(3,"가끔 킹받게 함"),
-                        TripTendency.TripTendencyQuestion(4,"처치대상 2호")
+                        TripTendency.TripTendencyQuestion(1, "개잘함"),
+                        TripTendency.TripTendencyQuestion(2, "방금 선그어서 멋져보임"),
+                        TripTendency.TripTendencyQuestion(3, "가끔 킹받게 함"),
+                        TripTendency.TripTendencyQuestion(4, "처치대상 2호")
                     )
                 )
             )
         )
+    }
+
+    fun nextQuestion() {
+        viewModel.nextPage(tripTendencyAdapter.itemCount)
+    }
+
+    fun previousQuestion() {
+        viewModel.previousPage()
     }
 }

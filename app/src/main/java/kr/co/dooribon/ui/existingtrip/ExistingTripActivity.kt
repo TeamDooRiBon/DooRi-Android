@@ -19,13 +19,13 @@ class ExistingTripActivity : AppCompatActivity() {
         configureBottomNavigation()
     }
 
-    private fun configureBackButton(){
+    private fun configureBackButton() {
         binding.ivExistingTripBack.setOnClickListener {
             finish()
         }
     }
 
-    private fun configureBottomNavigation(){
+    private fun configureBottomNavigation() {
         binding.bottomNavExistingTrip.initExistingTripBottomNavigation(supportFragmentManager)
     }
 }

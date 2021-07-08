@@ -5,6 +5,14 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel" />
+
+        <variable
+            name="activity"
+            type="kr.co.dooribon.ui.triptendency.TripTendencyActivity" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,6 +61,7 @@
             android:textColor="@color/gray_gray_black_4"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="16dp"
+            android:onDebounceClick="@{() -> activity.previousQuestion()}"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintTop_toBottomOf="@id/tab_trip_tendency"
             app:layout_constraintStart_toStartOf="@id/vp_trip_tendency_test"
@@ -67,6 +76,7 @@
             android:textColor="@color/white_pure_9"
             android:text="다음 문항"
             android:layout_marginBottom="16dp"
+            android:onDebounceClick="@{() -> activity.nextQuestion()}"
             app:layout_constraintTop_toTopOf="@id/btn_previous"
             app:layout_constraintStart_toEndOf="@id/btn_previous"
             app:layout_constraintEnd_toEndOf="@id/vp_trip_tendency_test"

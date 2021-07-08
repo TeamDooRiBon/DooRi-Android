@@ -18,6 +18,6 @@ class MainApplication : Application() {
 
     companion object {
         lateinit var pixelRatio: PixelRatio
-        lateinit var injection : Injection
+        lateinit var injection: Injection
     }
 }

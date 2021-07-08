@@ -8,15 +8,22 @@
         <variable
             name="item"
             type="kr.co.dooribon.domain.entity.TripTendency.TripTendencyQuestion" />
+
+        <variable
+            name="on_click"
+            type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="8dp"
+        android:onClick="@{() -> on_click.invoke()}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
