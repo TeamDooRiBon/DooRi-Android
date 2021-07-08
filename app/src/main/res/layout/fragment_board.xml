@@ -25,7 +25,7 @@
             android:id="@+id/fcv_board"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:name="kr.co.dooribon.ui.existingtrip.board.fragment.CommunicationFragment"
+            android:name="kr.co.dooribon.ui.existingtrip.board.fragment.CheckListFragment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tab_board"
