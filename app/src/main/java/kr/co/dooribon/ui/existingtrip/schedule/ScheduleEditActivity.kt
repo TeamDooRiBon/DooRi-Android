@@ -11,5 +11,18 @@ class ScheduleEditActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityScheduleEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        scheduleEditBtnClickListener()
+        editBackBtnClickListener()
+    }
+    private fun scheduleEditBtnClickListener(){
+        binding.btnScheduleEdit.setOnClickListener {
+            finish()
+        }
+    }
+    private fun editBackBtnClickListener() {
+        binding.ivScheduleEditBack.setOnClickListener {
+            finish()
+        }
     }
 }
