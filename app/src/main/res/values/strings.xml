@@ -63,6 +63,10 @@
     <string name="will_delete">삭제할게요</string>
     <string name="with_people">함께하는 사람</string>
     <string name="copy_code">참여코드 복사하기</string>
+    <string name="travel_goal">여행 목표</string>
+    <string name="must_know">꼭 알아줘</string>
+    <string name="role_alloc">역할 분담</string>
+    <string name="checklist">체크리스트</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
