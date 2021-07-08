@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.dooribon.R
+import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.ActivityHomeBinding
 import kr.co.dooribon.dialog.NewTripDialog
 import kr.co.dooribon.domain.entity.PreviousTrip
@@ -24,7 +25,9 @@ import kr.co.dooribon.utils.getIntent
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
 
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModels<HomeViewModel> {
+        viewModelModule.provideHomeViewModelFactory()
+    }
 
     private lateinit var previousTripAdapter: PreviousTripAdapter
 
