@@ -70,4 +70,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="our_goal">우리의 여행 목표</string>
+    <string name="plus_add">+ 추가하기</string>
+    <string name="share_goals">여행 목표를 공유하세요!</string>
+    <string name="goal_detail">이번 여행에서 어떤 것을\n얻고 싶은지 작성해보세요</string>
+    <string name="please_know_this">이것만은 꼭 알아줘!</string>
+    <string name="share_first">꼭 알려야 할 것들을 미리 공유하세요!</string>
+    <string name="share_first_detail">서로 미리 알면 좋을 습관이나\n생활 패턴 등을 함께 이야기해보세요</string>
+    <string name="set_role_first">여행 멤버들의 역할을 정하세요!</string>
+    <string name="set_role_first_detail">예약 담당, 돈 관리, 드라이버 등\n각자의 역할을 정해보세요</string>
+    <string name="our_role">우리의 역할</string>
+    <string name="our_checklist">우리의 체크리스트</string>
+    <string name="chk_first">여행 전에 미리 체크하세요!</string>
+    <string name="chk_first_detail">이번 여행에서 꼭 확인해야\n하는 것들을 미리 공유해요</string>
 </resources>
