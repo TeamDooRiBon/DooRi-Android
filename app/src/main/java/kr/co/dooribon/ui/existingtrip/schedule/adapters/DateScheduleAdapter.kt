@@ -1,8 +1,11 @@
 package kr.co.dooribon.ui.existingtrip.schedule.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.R
@@ -34,6 +37,7 @@ class DateScheduleAdapter : RecyclerView.Adapter<DateScheduleAdapter.DateSchedul
 
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
+
         }
     }
 
@@ -48,9 +52,11 @@ class DateScheduleAdapter : RecyclerView.Adapter<DateScheduleAdapter.DateSchedul
 
     class DateScheduleViewHolder(val binding: ItemScheduleDdayBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private val chkImg = itemView.findViewById<ImageView>(R.id.iv_selected_date)
+
         fun bind(item: TravelDate) {
             binding.apply {
-                tvDate.text = item.date.toString()
+                tvItemDate.text = item.date.toString()
                 tvDday.text = item.dday
             }
         }

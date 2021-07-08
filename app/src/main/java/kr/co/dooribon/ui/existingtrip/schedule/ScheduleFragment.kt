@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentScheduleBinding
@@ -56,18 +59,18 @@ class ScheduleFragment : Fragment() {
         timeList1 = listOf( // dummy data
             PlanData("10:00", "김포공항 앞에서 모이기", "2304 버스 정류장 찾아보기", PlanData.FIRST_DATE_PLAN),
             PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.LAST_DATE_PLAN),
             PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
             PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN)
+            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
+            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.LAST_DATE_PLAN)
         )
         timeList2 = listOf( // dummy data
             PlanData("10:00", "여행 가즈아", "여행 갈 곳 찾아보기", PlanData.FIRST_DATE_PLAN),
             PlanData("12:00", "가즈아 여행", "제주도갈까요", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "송훈기", "기훈송", PlanData.LAST_DATE_PLAN),
+            PlanData("12:00", "송훈기", "기훈송", PlanData.MIDDLE_DATE_PLAN),
             PlanData("12:00", "조예진", "진예조", PlanData.MIDDLE_DATE_PLAN),
             PlanData("12:00", "이원중", "중원이", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "두리번", "두리안", PlanData.MIDDLE_DATE_PLAN)
+            PlanData("12:00", "두리번", "두리안", PlanData.LAST_DATE_PLAN)
         )
         timeList3 = listOf( // dummy data
         )
@@ -102,20 +105,25 @@ class ScheduleFragment : Fragment() {
                 Log.e("position", position.toString())
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
-                if(datesList[position].planData.isNullOrEmpty()){
+                if(datesList[position].planData.isNullOrEmpty()){ // plan이 아직 없다면
                     binding.apply {
                         rvScheduleMain.visibility = View.GONE
                         ivEmptyImg.visibility = View.VISIBLE
                         tvNoSchedule.visibility = View.VISIBLE
                     }
                 }else{
-                    binding.apply {
+                    binding.apply { // plan이 있다면
                         rvScheduleMain.visibility = View.VISIBLE
                         ivEmptyImg.visibility = View.GONE
                         tvNoSchedule.visibility = View.GONE
                     }
-                    setTimeScheduleAdapter(datesList[position].planData)
+                    setTimeScheduleAdapter(datesList[position].planData) // recyclerview에 plan update
                 }
+
+                val chkImg = view.findViewById<ImageView>(R.id.iv_selected_date)
+                val chkdText = view.findViewById<TextView>(R.id.tv_item_date)
+                chkImg.visibility = View.VISIBLE
+                chkdText.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_white_pure_9))
             }
         })
     }
