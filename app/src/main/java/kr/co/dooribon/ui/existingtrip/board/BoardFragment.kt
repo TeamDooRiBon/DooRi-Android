@@ -37,33 +37,121 @@ class BoardFragment : Fragment() {
     }
 
     private fun onTabClickListener() {
-        binding.tabBoard.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        binding.tabBoard.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 Log.e("position", tab?.position.toString())
-                when(tab?.position){
-                    0->{
-                        tab.customView!!.findViewById<ImageView>(R.id.iv_tab_img).setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icon_board_goal_active))
+                setTabItem(tab?.position ?: Log.e("BoardFragment", "position null error"), tab!!)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+    }
+
+    // 사실 이전에 클릭했던 pos갖고 있어서 그 뷰만 바꿔주면 되기는 함
+    private fun setTabItem(pos: Int, tab: TabLayout.Tab) {
+        tab.customView!!.findViewById<ImageView>(R.id.iv_tab_img).setImageDrawable(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.ic_icon_board_goal_active
+            )
+        )
+        // 아이템 클릭시 아이템 색을 바꾼다. 클릭되지 않은 것은 회색으로 다시 처리해준다.
+        for (i in 0 until 4) {
+            if (i != pos) {
+                binding.tabBoard.getTabAt(i)!!.customView!!.findViewById<TextView>(R.id.tv_tab_text)
+                    .setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.gray_gray_5_main
+                        )
+                    )
+                when (i) {
+                    0 -> {
+                        binding.tabBoard.getTabAt(i)!!.customView!!.findViewById<ImageView>(R.id.iv_tab_img)
+                            .setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_icon_board_goal_inactive
+                                )
+                            )
                     }
-                    1->{
-                        tab.customView!!.findViewById<ImageView>(R.id.iv_tab_img).setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icon_board_aim_inactive))
+                    1 -> {
+                        binding.tabBoard.getTabAt(i)!!.customView!!.findViewById<ImageView>(R.id.iv_tab_img)
+                            .setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_icon_board_aim_inactive
+                                )
+                            )
                     }
-                    2->{
-                        tab.customView!!.findViewById<ImageView>(R.id.iv_tab_img).setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icon_board_role_inactive))
+                    2 -> {
+                        binding.tabBoard.getTabAt(i)!!.customView!!.findViewById<ImageView>(R.id.iv_tab_img)
+                            .setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_icon_board_role_inactive
+                                )
+                            )
                     }
-                    3->{
-                        tab.customView!!.findViewById<ImageView>(R.id.iv_tab_img).setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icon_board_check_inactive))
+                    3 -> {
+                        binding.tabBoard.getTabAt(i)!!.customView!!.findViewById<ImageView>(R.id.iv_tab_img)
+                            .setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_icon_board_check_inactive
+                                )
+                            )
+                    }
+                }
+            } else {
+                binding.tabBoard.getTabAt(i)!!.customView!!.findViewById<TextView>(R.id.tv_tab_text)
+                    .setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.main_point_orange
+                        )
+                    )
+                when (i) {
+                    0 -> {
+                        binding.tabBoard.getTabAt(i)!!.customView!!.findViewById<ImageView>(R.id.iv_tab_img)
+                            .setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_icon_board_goal_active
+                                )
+                            )
+                    }
+                    1 -> {
+                        binding.tabBoard.getTabAt(i)!!.customView!!.findViewById<ImageView>(R.id.iv_tab_img)
+                            .setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_icon_board_aim_active
+                                )
+                            )
+                    }
+                    2 -> {
+                        binding.tabBoard.getTabAt(i)!!.customView!!.findViewById<ImageView>(R.id.iv_tab_img)
+                            .setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_icon_board_role_active
+                                )
+                            )
+                    }
+                    3 -> {
+                        binding.tabBoard.getTabAt(i)!!.customView!!.findViewById<ImageView>(R.id.iv_tab_img)
+                            .setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_icon_board_check_active
+                                )
+                            )
                     }
                 }
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-        })
+        }
     }
 
     private fun setTabAttribute() {
@@ -89,7 +177,7 @@ class BoardFragment : Fragment() {
         val fourthImg = fourthView.findViewById<ImageView>(R.id.iv_tab_img)
         val fourthTxt = fourthView.findViewById<TextView>(R.id.tv_tab_text)
 
-        firstImg?.setImageResource(R.drawable.ic_icon_board_goal_inactive)
+        firstImg?.setImageResource(R.drawable.ic_icon_board_goal_active)
         firstTxt?.text = getString(R.string.travel_goal)
         binding.tabBoard.getTabAt(0)!!.customView = firstView
 
