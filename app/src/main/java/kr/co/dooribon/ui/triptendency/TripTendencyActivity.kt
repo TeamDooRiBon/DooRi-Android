@@ -8,6 +8,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTripTendencyBinding
+import kr.co.dooribon.dialog.ScheduleTimeBottomSheetDialog
 import kr.co.dooribon.dialog.TripTendencyTestExitDialog
 import kr.co.dooribon.dialog.TripTendencyTestResultLoadingDialog
 import kr.co.dooribon.domain.entity.TripTendency
@@ -182,7 +183,7 @@ class TripTendencyActivity : AppCompatActivity() {
     }
 
     fun exitTripTendencyTest() {
-        TripTendencyTestExitDialog().show(supportFragmentManager, EXIT_NAVIGATE_TAG)
+        ScheduleTimeBottomSheetDialog().show(supportFragmentManager, EXIT_NAVIGATE_TAG)
     }
 
     companion object {

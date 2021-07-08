@@ -9,7 +9,46 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        style="@style/BottomSheetTheme"
+        android:background="@drawable/bg_white_pure9_top_round_layout">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <NumberPicker
+                android:id="@+id/np_am_pm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:solidColor="@color/white"
+                app:layout_constraintEnd_toStartOf="@id/np_hour"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <NumberPicker
+                android:id="@+id/np_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:solidColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@id/np_minute"
+                app:layout_constraintStart_toEndOf="@id/np_am_pm"
+                app:layout_constraintTop_toTopOf="@id/np_am_pm" />
+
+            <NumberPicker
+                android:id="@+id/np_minute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:solidColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/np_hour"
+                app:layout_constraintTop_toTopOf="@id/np_am_pm" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
