@@ -9,13 +9,6 @@ import kr.co.dooribon.databinding.ViewTestTripTendencyQuestionBinding
 import kr.co.dooribon.domain.entity.TripTendency
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
 
-/**
- * 클릭 로직을 처리해야하는건 이쪽부분에서
- *
- * TODO :클릭 시 notifyItemRangeChange 때문에 깜빡이는 현상이 너무 심함
- *
- * TODO : 2번째 아이템에서는 왜그런지 모르겠는데 클릭 이벤트가 진행되지 않음 이유 모르겠음;;;
- */
 class TripTendencyQuestionAdapter(
     private val onItemClicked: (idx: Int) -> Unit,
     private val viewModel: TripTendencyViewModel
