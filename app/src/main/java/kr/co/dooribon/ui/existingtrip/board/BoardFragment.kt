@@ -26,7 +26,7 @@ class BoardFragment : Fragment() {
         configureTabNavigation()
     }
 
-    private fun configureTabNavigation(){
+    private fun configureTabNavigation() {
         binding.tabBoard.initializeTab(listOf("소통", "체크리스트"))
         binding.tabBoard.initializeBoardTabNavigation(childFragmentManager)
     }

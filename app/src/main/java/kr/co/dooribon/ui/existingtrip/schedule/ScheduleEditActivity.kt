@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityScheduleEditBinding
 
-class ScheduleEditActivity: AppCompatActivity() {
+class ScheduleEditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScheduleEditBinding
     private var isClickable = true
 

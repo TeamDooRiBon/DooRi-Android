@@ -13,9 +13,6 @@ import kr.co.dooribon.ui.existingtrip.tendency.viewholder.ParentViewHolder
 class TripDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val questionList = mutableListOf<ExpandableAnswerQuestion>()
 
-    private var isFirstItemExpaned: Boolean = true
-    private var actionLock = false
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {

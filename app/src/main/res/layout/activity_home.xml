@@ -109,13 +109,13 @@
                         android:layout_width="0dp"
                         android:layout_height="300dp"
                         android:layout_marginTop="16dp"
-                        android:scaleType="fitXY"
                         android:onClick="@{() -> homeActivity.navigateExistingTrip()}"
+                        android:scaleType="fitXY"
                         android:src="@drawable/dummy_round_view"
                         app:gradient_alpha="0.7"
+                        app:gradient_corner_radius="32dp"
                         app:gradient_end_color="@color/black"
                         app:gradient_start_color="@color/white"
-                        app:gradient_corner_radius="32dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_user_status_description" />
@@ -231,9 +231,9 @@
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/vp_home_upcoming_travel_contents"
+                        up_coming_trip_item="@{bindViewModel.upComingTripDummyList}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        up_coming_trip_item="@{bindViewModel.upComingTripDummyList}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/tv_home_upcoming_travel_title"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_upcoming_travel_title" />
@@ -249,8 +249,8 @@
                         app:layout_constraintEnd_toEndOf="@id/vp_home_upcoming_travel_contents"
                         app:layout_constraintStart_toStartOf="@id/vp_home_upcoming_travel_contents"
                         app:layout_constraintTop_toBottomOf="@id/vp_home_upcoming_travel_contents"
-                        app:tabGravity="fill"
                         app:tabBackground="@drawable/bg_home_viewpager_indicator"
+                        app:tabGravity="fill"
                         app:tabIndicatorColor="@color/doo_ri_bon_sub_orange1"
                         app:tabIndicatorHeight="4dp" />
 
@@ -303,10 +303,10 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_home_previous_travel_content"
+                        previous_trip_item="@{bindViewModel.previousTripDummyList}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"
-                        previous_trip_item="@{bindViewModel.previousTripDummyList}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_previous_travel_title" />
@@ -346,7 +346,11 @@
                         android:id="@+id/card_home_travel_tendency"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginBottom="2dp"
+                        app:cardBackgroundColor="@color/doo_ri_bon_home_tool_bar_blue_color"
                         app:cardCornerRadius="12dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -355,16 +359,53 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
 
                             <ImageView
+                                android:id="@+id/iv_card_home_travel_tendency"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/img_home_tendency"
-                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_card_home_travel_tendency_description"
+                                style="@style/BlackBoldTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="여행마다 다른 내 성향"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@id/iv_card_home_travel_tendency"
+                                app:layout_constraintStart_toStartOf="@id/iv_card_home_travel_tendency"
+                                app:layout_constraintTop_toBottomOf="@id/iv_card_home_travel_tendency" />
+
+                            <TextView
+                                android:id="@+id/tv_card_home_travel_tendency_description2"
+                                style="@style/BlackBoldTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="이번에는 어떤 여행 하고 싶으세요?"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@id/iv_card_home_travel_tendency"
+                                app:layout_constraintStart_toStartOf="@id/iv_card_home_travel_tendency"
+                                app:layout_constraintTop_toBottomOf="@id/tv_card_home_travel_tendency_description" />
+
+                            <Button
+                                android:id="@+id/btn_card_home_travel"
+                                style="@style/RoundButton.DooRiBonOrange"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="40dp"
+                                android:layout_marginBottom="16dp"
+                                android:onClick="@{() -> homeActivity.navigateTripTendencyTest()}"
+                                android:text="내 여행 성향 알아보기!"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@id/iv_card_home_travel_tendency"
+                                app:layout_constraintStart_toStartOf="@id/iv_card_home_travel_tendency"
+                                app:layout_constraintTop_toBottomOf="@id/tv_card_home_travel_tendency_description2" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>

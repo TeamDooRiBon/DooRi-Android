@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="kr.co.dooribon.domain.entity.TripTendency" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_test_trip_tendency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Q"
+            android:textColor="@color/doo_ri_bon_blue"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tv_test_trip_tendency_question_number"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_test_trip_tendency_question_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/doo_ri_bon_blue"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:text="@{Integer.toString(item.questionNumber)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_test_trip_tendency"
+            app:layout_constraintTop_toTopOf="@id/tv_test_trip_tendency"
+            tools:text="1" />
+
+        <View
+            android:id="@+id/view_question_divider"
+            android:layout_width="1dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/doo_ri_bon_blue"
+            app:layout_constraintEnd_toStartOf="@id/tv_test_trip_tendency_question_number"
+            app:layout_constraintStart_toEndOf="@id/tv_test_trip_tendency"
+            app:layout_constraintTop_toBottomOf="@id/tv_test_trip_tendency" />
+
+        <TextView
+            android:id="@+id/tv_test_trip_tendency_question_title"
+            style="@style/BlackBoldTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            android:text="@{item.questionTitle}"
+            tools:text="계획을 세울 때 나는?"
+            app:layout_constraintStart_toStartOf="@id/tv_test_trip_tendency"
+            app:layout_constraintEnd_toEndOf="@id/tv_test_trip_tendency"
+            app:layout_constraintTop_toBottomOf="@id/view_question_divider" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintTop_toBottomOf="@id/tv_test_trip_tendency_question_title"
+            app:layout_constraintStart_toStartOf="@id/tv_test_trip_tendency"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tv_test_trip_tendency" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
