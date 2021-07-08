@@ -50,5 +50,8 @@ class RetrofitModule {
     companion object {
         // example baseCode , 서버 나오면 바꿔야 됨
         private const val BASE_URL = "https://github.com"
+
+        // Retrofit 객체가 필요할 경우 가져오게하는 함수수
+       fun getRetrofitInstance() = RetrofitModule().provideRetrofit()
     }
 }
