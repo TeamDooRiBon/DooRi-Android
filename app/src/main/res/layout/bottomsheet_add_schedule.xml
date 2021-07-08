@@ -7,6 +7,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_bottom_sheet_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="10dp"
@@ -127,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            android:text="@string/place"
+            android:text="@string/memo"
             android:textColor="@color/gray_gray_5_main"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/iv_profile_pic"

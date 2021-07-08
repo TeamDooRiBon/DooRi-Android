@@ -11,13 +11,13 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentScheduleBinding
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.DateScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.PlanData
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TimeScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TravelDate
-import kr.co.dooribon.ui.existingtrip.schedule.dialog.AddScheduleBottomSheet
 import java.time.LocalDate
 
 class ScheduleFragment : Fragment() {
@@ -201,17 +201,19 @@ class ScheduleFragment : Fragment() {
 
         binding.tvDday.text = ddayStr
         binding.tvDate.text = fullDateStr
-
-
     }
 
     private fun onBelowItemClickListener(timeAdapter: TimeScheduleAdapter) {
         timeAdapter.setItemClickListener(object : TimeScheduleAdapter.ItemClickListener {
             override fun onTimeScheduleClick(view: View, position: Int) {
-                val bs = AddScheduleBottomSheet()
-                bs.show(childFragmentManager, bs.tag)
+                //아래 주석 두줄은 커스텀 클래스를 만들었던건데 굳이 필요 없을 것 같음.
+//                val bs = AddScheduleBottomSheet()
+//                bs.show(childFragmentManager, bs.tag)
+                val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
+                val sheetView = LayoutInflater.from(requireContext()).inflate(R.layout.bottomsheet_add_schedule, requireActivity().findViewById(R.id.cl_bottom_sheet_root))
+                bsDialog.setContentView(sheetView)
+                bsDialog.show()
             }
         })
     }
-
 }
