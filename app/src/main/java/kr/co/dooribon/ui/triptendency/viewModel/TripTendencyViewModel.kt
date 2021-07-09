@@ -34,12 +34,14 @@ class TripTendencyViewModel : ViewModel() {
     }
 
     fun selectQuestion(selectedPosition: Int) {
-        synchronized(this){
+        synchronized(_lastQuestionSelectedPosition.value!![_questionPosition.value!!]){
             _lastQuestionSelectedPosition.value!![_questionPosition.value!!] = selectedPosition
         }
     }
 
+    fun getQuestionPosition() = _questionPosition.value
+
     companion object {
-        private const val MAX_QUESTION_COUNT = 12
+        private const val MAX_QUESTION_COUNT = 10
     }
 }
