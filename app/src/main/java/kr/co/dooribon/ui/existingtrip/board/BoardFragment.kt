@@ -1,6 +1,5 @@
 package kr.co.dooribon.ui.existingtrip.board
 
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -34,6 +33,22 @@ class BoardFragment : Fragment() {
         setTabDesign()
         setTabAttribute()
         onTabClickListener()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setDefaultTab()
+    }
+
+    /**
+     * 탭 레이아웃에 커스텀 뷰를 넣으면 처음으로 나오는 Default tab이
+     * 첫 번째 탬으로 선택되지 않는 현상이 있어서 아래 코드를 추가해서 해결함.
+     * https://stackoverflow.com/a/52013898/14155735
+     * 위 링크 참고했음.
+     * */
+    private fun setDefaultTab() {
+        binding.tabBoard.getTabAt(1)!!.select()
+        binding.tabBoard.getTabAt(0)!!.select()
     }
 
     private fun onTabClickListener() {
@@ -179,6 +194,7 @@ class BoardFragment : Fragment() {
 
         firstImg?.setImageResource(R.drawable.ic_icon_board_goal_active)
         firstTxt?.text = getString(R.string.travel_goal)
+        firstTxt?.setTextColor(ContextCompat.getColor(requireContext(), R.color.main_point_orange))
         binding.tabBoard.getTabAt(0)!!.customView = firstView
 
         secondImg?.setImageResource(R.drawable.ic_icon_board_aim_inactive)

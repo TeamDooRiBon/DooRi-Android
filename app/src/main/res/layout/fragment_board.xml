@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.existingtrip.board.BoardFragment">
 
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_board"
             style="@style/OrangeTabLayout"
@@ -21,6 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tabIndicator="@null" />
+
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fcv_board"
