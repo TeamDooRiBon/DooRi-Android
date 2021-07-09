@@ -1,10 +1,17 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
+import android.app.TimePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
+import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityScheduleAddBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ScheduleAddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScheduleAddBinding
@@ -19,6 +26,7 @@ class ScheduleAddActivity : AppCompatActivity() {
         scheduleAddBtnClickListener()
         addBackBtnClickListener()
     }
+
     private fun notAddClickListener(){
         binding.ivScheduleNotadd.setOnClickListener{
             if (isClickable) {

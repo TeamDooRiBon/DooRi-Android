@@ -1,17 +1,20 @@
 package kr.co.dooribon.ui.newtrip.join
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentParticipateJoinBinding
 
 class ParticipateJoinFragment : Fragment() {
     private lateinit var binding: FragmentParticipateJoinBinding
-
+    var count =0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -72,10 +75,10 @@ class ParticipateJoinFragment : Fragment() {
             }
 
         }
+        // TODO : Edittext 6개 모두 채워졌을 경우 버튼 변경
         fullEditEvent()
     }
 
-    // TODO : Edittext 6개 모두 채워졌을 경우 버튼 변경
     private fun fullEditEvent() {
         val code1 = binding.etCode1.text
         val code2 = binding.etCode2.text
@@ -83,18 +86,155 @@ class ParticipateJoinFragment : Fragment() {
         val code4 = binding.etCode4.text
         val code5 = binding.etCode5.text
         val code6 = binding.etCode6.text
-        if (code1.isNotEmpty() && code2.isNotEmpty() && code3.isNotEmpty() && code4.isNotEmpty() && code5.isNotEmpty() && code6.isNotEmpty()) {
-            binding.btnParticipatePut.apply {
-                text = "입력완료"
-                setBackgroundColor(
-                    ContextCompat.getColor(requireContext(), R.color.doo_ri_bon_orange
-                    )
-                )
+        binding.etCode1.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                TODO("Not yet implemented")
             }
-            val participatecheckFragment = ParticipateCheckFragment()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.participate_fragment_container_view, participatecheckFragment)
-                .commitNow()
-        }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                count ++
+                if (count == 6) {
+                    binding.btnParticipatePut.apply {
+                        text = "입력완료"
+                        setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.doo_ri_bon_orange
+                            )
+                        )
+                    }
+                } else {
+
+                }
+            }
+        })
+        binding.etCode2.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                count ++
+                if (count == 6) {
+                    binding.btnParticipatePut.apply {
+                        text = "입력완료"
+                        setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.doo_ri_bon_orange
+                            )
+                        )
+                    }
+                } else {
+
+                }
+            }
+        })
+        binding.etCode3.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                count ++
+                if (count == 6) {
+                    binding.btnParticipatePut.apply {
+                        text = "입력완료"
+                        setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.doo_ri_bon_orange
+                            )
+                        )
+                    }
+                } else {
+
+                }
+            }
+        })
+        binding.etCode4.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                count ++
+                if (count == 6) {
+                    binding.btnParticipatePut.apply {
+                        text = "입력완료"
+                        setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.doo_ri_bon_orange
+                            )
+                        )
+                    }
+                } else {
+
+                }
+            }
+        })
+        binding.etCode5.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                count ++
+                if (count == 6) {
+                    binding.btnParticipatePut.apply {
+                        text = "입력완료"
+                        setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.doo_ri_bon_orange
+                            )
+                        )
+                    }
+                } else {
+
+                }
+            }
+        })
+        binding.etCode6.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                count ++
+                if (count == 6) {
+                    binding.btnParticipatePut.apply {
+                        text = "입력완료"
+                        setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.doo_ri_bon_orange
+                            )
+                        )
+                    }
+                } else {
+
+                }
+            }
+        })
     }
 }
