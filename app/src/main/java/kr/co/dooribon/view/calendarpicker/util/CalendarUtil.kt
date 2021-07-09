@@ -11,12 +11,18 @@ fun Calendar.toPrettyMonthString(
     val month = getDisplayName(MONTH, style, locale)
     val year = get(YEAR).toString()
     return if (month == null) throw IllegalStateException("Cannot get pretty name")
-    else "$month $year"
+    else "$month $year "
 }
 
 fun Calendar.toPrettyDateString(locale: Locale = Locale.getDefault()): String {
-    val day = get(DAY_OF_MONTH).toString()
-    return "$day ${this.toPrettyMonthString(SHORT, locale)}"
+    var month = get(MONTH).toString()
+    if (month.length == 1)
+        month = "0$month"
+    val year = get(YEAR).toString()
+    var day = get(DAY_OF_MONTH).toString()
+    if (day.length == 1)
+        day = "0$day"
+    return "$year.$month.$day "
 }
 
 // 현재 날짜로 부터 날이 이미 지났는지
