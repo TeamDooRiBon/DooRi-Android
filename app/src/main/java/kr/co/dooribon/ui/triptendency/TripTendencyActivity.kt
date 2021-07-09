@@ -151,33 +151,9 @@ class TripTendencyActivity : AppCompatActivity() {
                         TripTendency.TripTendencyQuestion(3, "말 속에 뼈가 있을거같음"),
                         TripTendency.TripTendencyQuestion(4, "처치대상 9호")
                     )
-                ),
-                TripTendency(
-                    11, "채정아 이대로 괜찮은가", listOf(
-                        TripTendency.TripTendencyQuestion(1, "개잘함"),
-                        TripTendency.TripTendencyQuestion(2, "서버 대장"),
-                        TripTendency.TripTendencyQuestion(3, "개그 코드 이상함"),
-                        TripTendency.TripTendencyQuestion(4, "처치대상 10호")
-                    )
-                ),
-                TripTendency(
-                    12, "정설희 이대로 괜찮은가", listOf(
-                        TripTendency.TripTendencyQuestion(1, "개잘함"),
-                        TripTendency.TripTendencyQuestion(2, "서버 잘함"),
-                        TripTendency.TripTendencyQuestion(3, "응애"),
-                        TripTendency.TripTendencyQuestion(4, "처치대상 11호")
-                    )
                 )
             )
         )
-    }
-
-    fun nextQuestion() {
-        viewModel.nextPage(tripTendencyAdapter.itemCount)
-    }
-
-    fun previousQuestion() {
-        viewModel.previousPage()
     }
 
     fun exitTripTendencyTest() {

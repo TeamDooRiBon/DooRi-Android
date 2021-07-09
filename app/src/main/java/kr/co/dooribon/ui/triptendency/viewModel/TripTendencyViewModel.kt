@@ -21,8 +21,8 @@ class TripTendencyViewModel : ViewModel() {
         _questionPosition.value = 0
     }
 
-    fun nextPage(maxPageCount: Int) {
-        if (_questionPosition.value!! < (maxPageCount)) {
+    fun nextPage() {
+        if (_questionPosition.value!! < MAX_QUESTION_COUNT) {
             _questionPosition.value = _questionPosition.value?.plus(1)
         }
     }
