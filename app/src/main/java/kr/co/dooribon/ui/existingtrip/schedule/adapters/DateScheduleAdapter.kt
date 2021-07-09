@@ -35,12 +35,10 @@ class DateScheduleAdapter : RecyclerView.Adapter<DateScheduleAdapter.DateSchedul
 
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
-
         }
     }
 
     override fun getItemCount(): Int = dates.size
-
 
     fun setItemList(newList: List<TravelDate>) {
         dates.clear()
