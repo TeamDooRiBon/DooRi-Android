@@ -18,11 +18,12 @@ class ScheduleEditActivity : AppCompatActivity() {
         scheduleEditBtnClickListener()
         editBackBtnClickListener()
     }
-    private fun notEditClickListener(){
-        binding.ivScheduleNotadd.setOnClickListener{
+
+    private fun notEditClickListener() {
+        binding.ivScheduleNotadd.setOnClickListener {
             if (isClickable) {
                 binding.ivScheduleNotadd.setImageResource(R.drawable.ic_btn_notadd_active)
-                binding.etScheduleAddLocation.apply{
+                binding.etScheduleAddLocation.apply {
                     setText(null)
                     isClickable = false
                     isEnabled = false
@@ -30,10 +31,9 @@ class ScheduleEditActivity : AppCompatActivity() {
                     hint = ""
                 }
                 isClickable = false
-            }
-            else if (!isClickable){
+            } else if (!isClickable) {
                 binding.ivScheduleNotadd.setImageResource(R.drawable.ic_btn_notadd)
-                binding.etScheduleAddLocation.apply{
+                binding.etScheduleAddLocation.apply {
                     isEnabled = true
                     setBackgroundResource(R.drawable.bg_edit_text_gray)
                 }
@@ -42,11 +42,13 @@ class ScheduleEditActivity : AppCompatActivity() {
 
         }
     }
-    private fun scheduleEditBtnClickListener(){
+
+    private fun scheduleEditBtnClickListener() {
         binding.btnScheduleEdit.setOnClickListener {
             finish()
         }
     }
+
     private fun editBackBtnClickListener() {
         binding.ivScheduleEditBack.setOnClickListener {
             finish()

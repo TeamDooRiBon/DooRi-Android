@@ -19,7 +19,7 @@ class DateScheduleAdapter : RecyclerView.Adapter<DateScheduleAdapter.DateSchedul
         fun onClick(view: View, position: Int)
     }
 
-    fun setItemClickListener(itemClickListener: ItemClickListener){
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListener = itemClickListener
     }
 
