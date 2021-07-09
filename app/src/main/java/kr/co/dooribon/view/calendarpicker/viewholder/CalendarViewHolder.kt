@@ -74,7 +74,7 @@ class DayViewHolder(private val view: View) : BaseCalendarViewHolder(view) {
         return if (item.selection == SelectionType.START || item.selection == SelectionType.END) {
             // range Click의 시작과 끝점의 textColor는 white로
             ContextCompat.getColor(itemView.context, R.color.doo_ri_bon_calendar_day_selected_font)
-        } else if (item.selection == SelectionType.BETWEEN) {
+        } else if (item.selection == SelectionType.BETWEEN && item.state != DateState.WEEKEND) {
             ContextCompat.getColor(itemView.context,R.color.main_point_blue)
         } else {
             val color = when (item.state) {
