@@ -34,7 +34,9 @@ class TripTendencyViewModel : ViewModel() {
     }
 
     fun selectQuestion(selectedPosition: Int) {
-        _lastQuestionSelectedPosition.value!![_questionPosition.value!!] = selectedPosition
+        synchronized(this){
+            _lastQuestionSelectedPosition.value!![_questionPosition.value!!] = selectedPosition
+        }
     }
 
     companion object {
