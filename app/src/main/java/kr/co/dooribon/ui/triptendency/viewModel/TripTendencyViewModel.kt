@@ -21,8 +21,8 @@ class TripTendencyViewModel : ViewModel() {
         _questionPosition.value = 0
     }
 
-    fun nextPage(maxPageCount: Int) {
-        if (_questionPosition.value!! < (maxPageCount - 1)) {
+    fun nextPage() {
+        if (_questionPosition.value!! < MAX_QUESTION_COUNT) {
             _questionPosition.value = _questionPosition.value?.plus(1)
         }
     }
@@ -34,7 +34,9 @@ class TripTendencyViewModel : ViewModel() {
     }
 
     fun selectQuestion(selectedPosition: Int) {
-        _lastQuestionSelectedPosition.value!![_questionPosition.value!!] = selectedPosition
+        synchronized(this){
+            _lastQuestionSelectedPosition.value!![_questionPosition.value!!] = selectedPosition
+        }
     }
 
     companion object {

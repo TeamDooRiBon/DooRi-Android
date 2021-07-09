@@ -16,7 +16,6 @@
 
         <activity android:name=".ui.triptendency.TripTendencyActivity"></activity>
         <activity android:name=".ui.home.HomeActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
