@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="24dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:includeFontPadding="false"
         android:textColor="@color/doo_ri_bon_sub_blue2"
         android:layout_marginTop="16dp"
         android:layout_marginStart="20dp"

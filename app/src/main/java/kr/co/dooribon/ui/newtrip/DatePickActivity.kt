@@ -18,7 +18,10 @@ class DatePickActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_date_pick)
 
         binding.fragCalendar.setOnRangeSelectedListener { startDate, endDate, startLabel, endLabel ->
-            binding.btEnterButton.text = "$startLabel ~ $endLabel"
+            binding.btEnterButton.text = "$startLabel ~ $endLabel 등록하기"
+        }
+        binding.fragCalendar.setOnStartSelectedListener { startDate, label ->
+            binding.btEnterButton.text = "시작과 끝나는 날짜를 눌러주세요"
         }
         binding.fragCalendar.setMode(SelectionMode.RANGE)
     }
