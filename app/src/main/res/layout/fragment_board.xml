@@ -17,19 +17,21 @@
             style="@style/OrangeTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIndicator="@null" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fcv_board"
+            android:name="kr.co.dooribon.ui.existingtrip.board.fragment.CheckListFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:name="kr.co.dooribon.ui.existingtrip.board.fragment.CommunicationFragment"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/gray_white_8"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab_board"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tab_board" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
