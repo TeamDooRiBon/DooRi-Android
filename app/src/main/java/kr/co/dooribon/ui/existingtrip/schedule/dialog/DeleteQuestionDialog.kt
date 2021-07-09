@@ -6,7 +6,7 @@ import kr.co.dooribon.R
 
 class DeleteQuestionDialog(context: Context) {
     private val dlg = Dialog(context)
-    fun start(){
+    fun start() {
         dlg.setContentView(R.layout.dialog_delete_question)
         dlg.show()
     }

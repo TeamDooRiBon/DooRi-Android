@@ -8,6 +8,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTripTendencyBinding
+import kr.co.dooribon.dialog.ScheduleTimeBottomSheetDialog
+import kr.co.dooribon.dialog.TripTendencyTestExitDialog
+import kr.co.dooribon.dialog.TripTendencyTestResultLoadingDialog
 import kr.co.dooribon.domain.entity.TripTendency
 import kr.co.dooribon.ui.triptendency.adapter.TripTendencyAdapter
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
@@ -24,7 +27,6 @@ class TripTendencyActivity : AppCompatActivity() {
 
     private lateinit var tripTendencyAdapter: TripTendencyAdapter
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_trip_tendency)
@@ -40,7 +42,15 @@ class TripTendencyActivity : AppCompatActivity() {
 
     private fun observeQuestionPosition() {
         viewModel.questionPosition.observe(this) {
-            binding.vpTripTendencyTest.currentItem = it
+            if (it == tripTendencyAdapter.itemCount) {
+                // 질문지에 대한 선택들이 전부 선택이 되었는지 검사하는 로직이 필요하다.
+                TripTendencyTestResultLoadingDialog().show(
+                    supportFragmentManager,
+                    RESULT_LOADING_NAVIGATE_TAG
+                )
+            } else {
+                binding.vpTripTendencyTest.currentItem = it
+            }
         }
     }
 
@@ -142,32 +152,17 @@ class TripTendencyActivity : AppCompatActivity() {
                         TripTendency.TripTendencyQuestion(3, "말 속에 뼈가 있을거같음"),
                         TripTendency.TripTendencyQuestion(4, "처치대상 9호")
                     )
-                ),
-                TripTendency(
-                    11, "채정아 이대로 괜찮은가", listOf(
-                        TripTendency.TripTendencyQuestion(1, "개잘함"),
-                        TripTendency.TripTendencyQuestion(2, "서버 대장"),
-                        TripTendency.TripTendencyQuestion(3, "개그 코드 이상함"),
-                        TripTendency.TripTendencyQuestion(4, "처치대상 10호")
-                    )
-                ),
-                TripTendency(
-                    12, "정설희 이대로 괜찮은가", listOf(
-                        TripTendency.TripTendencyQuestion(1, "개잘함"),
-                        TripTendency.TripTendencyQuestion(2, "서버 잘함"),
-                        TripTendency.TripTendencyQuestion(3, "응애"),
-                        TripTendency.TripTendencyQuestion(4, "처치대상 11호")
-                    )
                 )
             )
         )
     }
 
-    fun nextQuestion() {
-        viewModel.nextPage(tripTendencyAdapter.itemCount)
+    fun exitTripTendencyTest() {
+        TripTendencyTestExitDialog().show(supportFragmentManager, EXIT_NAVIGATE_TAG)
     }
 
-    fun previousQuestion() {
-        viewModel.previousPage()
+    companion object {
+        private const val EXIT_NAVIGATE_TAG = "EXIT"
+        private const val RESULT_LOADING_NAVIGATE_TAG = "LOADING"
     }
 }

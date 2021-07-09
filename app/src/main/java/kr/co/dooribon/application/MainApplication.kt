@@ -1,7 +1,10 @@
 package kr.co.dooribon.application
 
 import android.app.Application
-import kr.co.dooribon.di.Injection
+import kr.co.dooribon.di.LocalDatabaseModule
+import kr.co.dooribon.di.RepositoryModule
+import kr.co.dooribon.di.RetrofitModule
+import kr.co.dooribon.di.ViewModelModule
 import kr.co.dooribon.utils.PixelRatio
 
 class MainApplication : Application() {
@@ -13,11 +16,17 @@ class MainApplication : Application() {
 
     private fun initializeSingleton() {
         pixelRatio = PixelRatio(this)
-        injection = Injection(this)
+        retrofitModule = RetrofitModule()
+        viewModelModule = ViewModelModule(this)
+        repositoryModule = RepositoryModule()
+        localDatabaseModule = LocalDatabaseModule(this)
     }
 
     companion object {
         lateinit var pixelRatio: PixelRatio
-        lateinit var injection: Injection
+        lateinit var retrofitModule: RetrofitModule
+        lateinit var viewModelModule: ViewModelModule
+        lateinit var repositoryModule: RepositoryModule
+        lateinit var localDatabaseModule: LocalDatabaseModule
     }
 }

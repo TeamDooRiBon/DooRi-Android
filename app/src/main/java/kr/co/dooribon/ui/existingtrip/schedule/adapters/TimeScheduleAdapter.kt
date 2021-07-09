@@ -18,7 +18,7 @@ class TimeScheduleAdapter : RecyclerView.Adapter<TimeScheduleAdapter.PlanViewHol
         fun onTimeScheduleClick(view: View, position: Int)
     }
 
-    fun setItemClickListener(itemClickListener: ItemClickListener){
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListener = itemClickListener
     }
 
@@ -53,11 +53,11 @@ class TimeScheduleAdapter : RecyclerView.Adapter<TimeScheduleAdapter.PlanViewHol
                 tvTimelineSub.text = item.subTodo
             }
 
-            when(item.viewType){
-                PlanData.FIRST_DATE_PLAN->{
+            when (item.viewType) {
+                PlanData.FIRST_DATE_PLAN -> {
                     binding.llTopLine.visibility = View.INVISIBLE
                 }
-                PlanData.LAST_DATE_PLAN->{
+                PlanData.LAST_DATE_PLAN -> {
                     binding.llBottomLine.visibility = View.INVISIBLE
                 }
             }

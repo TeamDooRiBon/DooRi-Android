@@ -1,11 +1,9 @@
 package kr.co.dooribon.ui.newtrip.join
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityParticipateBinding
-import kr.co.dooribon.ui.home.HomeActivity
 
 class ParticipateActivity : AppCompatActivity() {
     private lateinit var binding: ActivityParticipateBinding
