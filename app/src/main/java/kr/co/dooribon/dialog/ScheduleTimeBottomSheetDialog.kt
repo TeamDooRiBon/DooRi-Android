@@ -33,7 +33,6 @@ class ScheduleTimeBottomSheetDialog : BottomSheetDialogFragment() {
             binding = DialogScheduleTimeBottomSheetBinding
         }.root
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
