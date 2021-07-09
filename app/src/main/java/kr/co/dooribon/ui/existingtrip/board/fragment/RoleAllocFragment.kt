@@ -7,15 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kr.co.dooribon.R
 
-class CommunicationFragment : Fragment() {
+class RoleAllocFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_communication, container, false)
+        return inflater.inflate(R.layout.fragment_role_alloc, container, false)
     }
-
-
 }
