@@ -43,6 +43,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
+
         <kr.co.dooribon.view.calendarpicker.DooRiBonCalendarPicker
             android:id="@+id/frag_calendar"
             android:layout_width="0dp"
