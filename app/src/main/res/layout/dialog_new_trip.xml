@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
-                    android:text="새로운 여행 추가할게요!"
+                    android:text="새로운 여행을 추가할게요!"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/tv_new_trip_description"
