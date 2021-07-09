@@ -101,7 +101,7 @@ class DayViewHolder(private val view: View) : BaseCalendarViewHolder(view) {
     }
 
     private fun View.highlight() {
-        val color = ContextCompat.getColor(context, R.color.doo_ri_bon_sub_blue)
+        val color = ContextCompat.getColor(context, R.color.doo_ri_bon_calendar_highlight_background_color)
         setBackgroundColor(color)
     }
 }
@@ -109,5 +109,4 @@ class DayViewHolder(private val view: View) : BaseCalendarViewHolder(view) {
 class EmptyViewHolder(view: View) : BaseCalendarViewHolder(view) {
     override fun onBind(item: CalendarEntity, actionListener: (CalendarEntity, Int) -> Unit) {
     }
-
 }

@@ -18,8 +18,10 @@
         android:textColor="@color/doo_ri_bon_sub_blue2"
         android:layout_marginTop="16dp"
         android:layout_marginStart="20dp"
+        android:layout_marginBottom="8dp"
         tools:text="7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

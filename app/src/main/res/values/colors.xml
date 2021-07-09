@@ -59,4 +59,6 @@
 
     <color name="doo_ri_bon_calendar_month_font">#000000</color>
     <color name="doo_ri_bon_calendar_week_font">#333333</color>
+
+    <color name="doo_ri_bon_calendar_highlight_background_color">#4D6b8ff9</color>
 </resources>
