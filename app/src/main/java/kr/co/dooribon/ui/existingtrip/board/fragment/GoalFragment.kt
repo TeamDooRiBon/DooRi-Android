@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
-import kr.co.dooribon.databinding.FragmentGoalBinding
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardListData
 
