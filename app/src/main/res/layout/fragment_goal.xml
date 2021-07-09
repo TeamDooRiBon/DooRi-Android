@@ -1,75 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.existingtrip.board.fragment.CheckListFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/tv_our_goal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/spoqa_han_sans_neo_bold"
-        android:text="@string/our_goal"
-        android:textColor="@color/gray_black_2"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <Button
-        android:id="@+id/bt_add_goal"
-        style="@style/RoundButton.DooRiBonOrange.RadiusSix"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/spoqa_han_sans_neo_regular"
-        android:padding="5dp"
-        android:text="@string/plus_add"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/tv_our_goal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_our_goal" />
+    </data>
 
-    <ImageView
-        android:id="@+id/iv_flag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_flag"
-        app:layout_constraintBottom_toTopOf="@id/tv_share_goal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_our_goal"
-        app:layout_constraintVertical_chainStyle="packed" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.existingtrip.board.fragment.CheckListFragment">
 
-    <TextView
-        android:id="@+id/tv_share_goal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/spoqa_han_sans_neo_medium"
-        android:text="@string/share_goals"
-        android:textColor="@color/gray_gray_5_main"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/tv_goal_detail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_flag" />
+        <TextView
+            android:id="@+id/tv_our_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:text="@string/our_goal"
+            android:textColor="@color/gray_black_2"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_goal_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/spoqa_han_sans_neo_regular"
-        android:gravity="center"
-        android:text="@string/goal_detail"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_share_goal" />
+        <Button
+            android:id="@+id/bt_add_goal"
+            style="@style/RoundButton.DooRiBonOrange.RadiusSix"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:padding="5dp"
+            android:text="@string/plus_add"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_our_goal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_our_goal" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/iv_flag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_flag"
+            app:layout_constraintBottom_toTopOf="@id/tv_share_goal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_our_goal"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_share_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="@string/share_goals"
+            android:textColor="@color/gray_gray_5_main"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_goal_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_flag" />
+
+        <TextView
+            android:id="@+id/tv_goal_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:gravity="center"
+            android:text="@string/goal_detail"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_share_goal" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_goal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_our_goal" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
