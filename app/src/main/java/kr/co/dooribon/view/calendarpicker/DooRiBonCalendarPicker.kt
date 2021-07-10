@@ -20,7 +20,6 @@ import java.util.Calendar.*
  * Calendar.DAY_OF_WEEK = 요일 , 1~7을 리턴 , 각각 일,월 ~금,토를 의미한다
  *
  * @sample https://jamesdreaming.tistory.com/94 Calendar instance를 사용하는 방법
- * TODO : 코드 주석좀 달아놔야할 거 같음
  */
 class DooRiBonCalendarPicker : RecyclerView {
 
