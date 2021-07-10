@@ -6,7 +6,6 @@ import kr.co.dooribon.R
 import kr.co.dooribon.ui.existingtrip.board.BoardFragment
 import kr.co.dooribon.ui.existingtrip.schedule.ScheduleFragment
 import kr.co.dooribon.ui.existingtrip.tendency.TendencyFragment
-import kr.co.dooribon.ui.existingtrip.wishlist.WishListFragment
 
 fun BottomNavigationView.initExistingTripBottomNavigation(fragmentManager: FragmentManager) {
     this.setOnNavigationItemSelectedListener {
@@ -27,12 +26,6 @@ fun BottomNavigationView.initExistingTripBottomNavigation(fragmentManager: Fragm
                 fragmentManager.beginTransaction().replace(
                     R.id.fcv_existing_trip,
                     BoardFragment()
-                ).commit()
-            }
-            R.id.nav_folder -> {
-                fragmentManager.beginTransaction().replace(
-                    R.id.fcv_existing_trip,
-                    WishListFragment()
                 ).commit()
             }
             else -> throw IllegalArgumentException("No Such Fragment inside this Project!")
