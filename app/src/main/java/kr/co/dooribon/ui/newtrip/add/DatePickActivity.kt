@@ -1,4 +1,4 @@
-package kr.co.dooribon.ui.newtrip
+package kr.co.dooribon.ui.newtrip.add
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityDatePickBinding
+import kr.co.dooribon.domain.entity.PickDatePair
 import kr.co.dooribon.utils.DateUtil
 import kr.co.dooribon.utils.shortToast
 import kr.co.dooribon.view.calendarpicker.entity.SelectionMode
@@ -27,13 +28,20 @@ class DatePickActivity : AppCompatActivity() {
 
     private fun configureEnterButton() {
         binding.btEnterButton.setOnClickListener {
-            // TODO : 화면 네비게이팅만 해주시면 될거 같습니다
             binding.fragCalendar.getSelectedDate().let {
                 if (it.first != null && it.second != null) {
-                    val intent = Intent(this, AddTravelActivity::class.java)
-                    intent.putExtra("startDate", DateUtil.convertStringToDateDot(it.first!!))
-                    intent.putExtra("endDate", DateUtil.convertStringToDateDot(it.second!!))
-                    startActivity(intent)
+                    setResult(
+                        RESULT_OK,
+                        Intent().apply {
+                            putExtra(
+                                "datePair",
+                                PickDatePair(
+                                    DateUtil.convertStringToDateDot(it.first!!),
+                                    DateUtil.convertStringToDateDot(it.second!!)
+                                )
+                            )
+                        }
+                    )
                     finish()
                 } else {
                     shortToast("선택된 날짜가 없습니다.")
