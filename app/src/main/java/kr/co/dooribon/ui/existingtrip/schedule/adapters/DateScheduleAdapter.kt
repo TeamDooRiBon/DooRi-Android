@@ -17,6 +17,7 @@ class DateScheduleAdapter : RecyclerView.Adapter<DateScheduleAdapter.DateSchedul
 
     private lateinit var itemClickListener: ItemClickListener
     private var lastSelectedPosition = -1
+    private var clicked = false // 뷰가 처음으로 생성됐을 때 첫째 날은 클릭되어 있어야 한다. 한 번이라도 클릭되면 clicked = true로 변경
 
     // 클릭 interface
     interface ItemClickListener {
@@ -38,8 +39,35 @@ class DateScheduleAdapter : RecyclerView.Adapter<DateScheduleAdapter.DateSchedul
         holder.bind(dates[position])
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
+            //setFirstItem(holder)
+            if (!clicked) clicked = true
         }
         if (position != lastSelectedPosition) modifyPrevClickedView(holder)
+        if (!clicked && position == 0) {
+            holder.itemView.findViewById<TextView>(R.id.tv_item_date)
+                .setTextColor(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.gray_white_pure_9
+                    )
+                )
+            holder.itemView.findViewById<ImageView>(R.id.iv_selected_date).visibility = View.VISIBLE
+        } else if (clicked && position == 0) {
+            holder.itemView.findViewById<TextView>(R.id.tv_item_date)
+                .setTextColor(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.main_point_blue
+                    )
+                )
+            holder.itemView.findViewById<ImageView>(R.id.iv_selected_date).visibility =
+                View.INVISIBLE
+        }
+    }
+
+    fun setFirstItem() {
+        clicked = true
+        notifyItemChanged(0)
     }
 
     override fun getItemCount(): Int = dates.size
@@ -82,6 +110,5 @@ class DateScheduleAdapter : RecyclerView.Adapter<DateScheduleAdapter.DateSchedul
                 tvDday.text = item.dday
             }
         }
-
     }
 }

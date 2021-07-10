@@ -30,6 +30,7 @@ class ScheduleFragment : Fragment() {
     private lateinit var timeList2: List<PlanData>
     private lateinit var timeList3: List<PlanData>
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -102,6 +103,7 @@ class ScheduleFragment : Fragment() {
             datesList
         )
 
+        var itemClicked = false
         // Item Click Listener
         dateAdapter.setItemClickListener(object : DateScheduleAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
@@ -109,6 +111,11 @@ class ScheduleFragment : Fragment() {
                 setBelowDate(datesList[position])
                 setPlanData(position)
                 modifyClickedView(view, dateAdapter, position)
+
+                itemClicked = true
+                if(itemClicked){
+                    dateAdapter.setFirstItem()
+                }
             }
         })
     }
