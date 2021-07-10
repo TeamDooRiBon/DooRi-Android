@@ -1,7 +1,6 @@
 package kr.co.dooribon.ui.triptendency
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -9,7 +8,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTripTendencyBinding
-import kr.co.dooribon.dialog.ScheduleTimeBottomSheetDialog
 import kr.co.dooribon.dialog.TripTendencyTestExitDialog
 import kr.co.dooribon.dialog.TripTendencyTestResultLoadingDialog
 import kr.co.dooribon.domain.entity.TripTendency
@@ -51,8 +49,8 @@ class TripTendencyActivity : AppCompatActivity() {
         viewModel.questionPosition.observe(this) {
             if (it == tripTendencyAdapter.itemCount) {
                 // 질문지에 대한 선택들이 전부 선택이 되었는지 검사하는 로직이 필요하다.
-                for(i in 0 until tripTendencyAdapter.itemCount){
-                    if(viewModel.lastQuestionSelectedPosition.value!![i] == -1) {
+                for (i in 0 until tripTendencyAdapter.itemCount) {
+                    if (viewModel.lastQuestionSelectedPosition.value!![i] == -1) {
                         shortToast("질문을 전부 선택하셨는지 확인해주세요")
                         break
                     }

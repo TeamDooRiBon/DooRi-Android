@@ -1,22 +1,11 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
-import android.app.Dialog
-import android.app.TimePickerDialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.media.tv.TvContract
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.Button
-import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityScheduleAddBinding
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
-import kr.co.dooribon.dialog.ScheduleTimeBottomSheetDialog
-import java.util.*
 
 class ScheduleAddActivity : AppCompatActivity() {
 
@@ -35,7 +24,7 @@ class ScheduleAddActivity : AppCompatActivity() {
         addBackBtnClickListener()
     }
 
-    private fun timePickerClickListener(){
+    private fun timePickerClickListener() {
         binding.clTimepicker1.setOnClickListener {
             val bsDialog = BottomSheetDialog(this, R.style.BottomSheetTheme)
             val sheetView = DialogScheduleTimeBottomSheetBinding.inflate(layoutInflater)
@@ -79,10 +68,9 @@ class ScheduleAddActivity : AppCompatActivity() {
             bsDialog.show()
 
             sheetView.btnok.setOnClickListener {
-                if(sheetView.npAmPm.value == 0) {
+                if (sheetView.npAmPm.value == 0) {
                     binding.tvTimepickerAmpm1.text = "오전"
-                }
-                else {
+                } else {
                     binding.tvTimepickerAmpm1.text = "오후"
                 }
                 binding.tvTimepickerHour1.text = sheetView.npHour.value.toString()
@@ -95,7 +83,7 @@ class ScheduleAddActivity : AppCompatActivity() {
         }
     }
 
-    private fun timePickerClickListener2(){
+    private fun timePickerClickListener2() {
         binding.clTimepicker2.setOnClickListener {
             val bsDialog = BottomSheetDialog(this, R.style.BottomSheetTheme)
             val sheetView = DialogScheduleTimeBottomSheetBinding.inflate(layoutInflater)
@@ -139,10 +127,9 @@ class ScheduleAddActivity : AppCompatActivity() {
             bsDialog.show()
 
             sheetView.btnok.setOnClickListener {
-                if(sheetView.npAmPm.value == 0) {
+                if (sheetView.npAmPm.value == 0) {
                     binding.tvTimepickerAmpm2.text = "오전"
-                }
-                else {
+                } else {
                     binding.tvTimepickerAmpm2.text = "오후"
                 }
                 binding.tvTimepickerHour2.text = sheetView.npHour.value.toString()

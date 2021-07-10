@@ -37,7 +37,7 @@ class TripTendencyAdapter(
 
     override fun onBindViewHolder(holder: TripTendencyViewHolder, position: Int) {
         holder.bind(questionList[position])
-        
+
         holder.binding.rvQuestion.apply {
             layoutManager = LinearLayoutManager(this.context)
             adapter = adapterList[position]

@@ -1,20 +1,17 @@
 package kr.co.dooribon.ui.newtrip.join
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentParticipateJoinBinding
 
 class ParticipateJoinFragment : Fragment() {
     private lateinit var binding: FragmentParticipateJoinBinding
-    var count =0
+    var count = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
