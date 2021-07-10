@@ -13,8 +13,8 @@ import com.google.android.material.tabs.TabLayout
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentBoardBinding
 import kr.co.dooribon.ui.existingtrip.board.extension.initializeBoardTabNavigation
-import kr.co.dooribon.ui.existingtrip.extension.initializeTab
 import kr.co.dooribon.utils.AutoClearBinding
+import kr.co.dooribon.utils.initializeTab
 
 class BoardFragment : Fragment() {
 
