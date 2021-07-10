@@ -22,6 +22,13 @@ class AddTravelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_travel)
 
+        intent.extras?.get("startDate")?.let {
+            binding.tvStartDate.text = it.toString()
+        }
+        intent.extras?.get("endDate")?.let {
+            binding.tvEndDate.text = it.toString()
+        }
+
         backBtnClickListener()
 
         binding.btStartNewTravel.setOnClickListener {
