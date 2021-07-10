@@ -14,6 +14,14 @@ class TripTendencyAdapter(
 
     private val questionList = mutableListOf<TripTendency>()
 
+    private val adapterList = MutableList(10) { _ ->
+        TripTendencyQuestionAdapter(onItemClicked = { idx ->
+            onItemClicked(idx)
+        }, viewModel)
+    }
+
+    private val isSubmitItemCheckList = BooleanArray(10) { _ -> false }
+
     class TripTendencyViewHolder(val binding: ViewTestTripTendencyBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TripTendency) {
@@ -29,14 +37,17 @@ class TripTendencyAdapter(
 
     override fun onBindViewHolder(holder: TripTendencyViewHolder, position: Int) {
         holder.bind(questionList[position])
-        val tripTendencyQuestionAdapter = TripTendencyQuestionAdapter(onItemClicked = { idx ->
-            onItemClicked(idx)
-        }, viewModel)
+        
         holder.binding.rvQuestion.apply {
             layoutManager = LinearLayoutManager(this.context)
-            adapter = tripTendencyQuestionAdapter
+            adapter = adapterList[position]
         }
-        tripTendencyQuestionAdapter.submitItem(questionList[position].questionList)
+        if (!isSubmitItemCheckList[position]) {
+            adapterList[position].submitItem(questionList[position].questionList)
+            isSubmitItemCheckList[position] = true
+        } else {
+            adapterList[position].notifyItemRangeChanged(0, adapterList[position].itemCount)
+        }
     }
 
     override fun getItemCount(): Int = questionList.size
@@ -50,4 +61,5 @@ class TripTendencyAdapter(
     private fun onItemClicked(idx: Int) {
         viewModel.selectQuestion(idx)
     }
+
 }

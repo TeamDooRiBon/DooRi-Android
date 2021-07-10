@@ -41,6 +41,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_test_trip_tendency"
             app:layout_constraintTop_toTopOf="@id/tv_test_trip_tendency"
+            app:layout_constraintBottom_toBottomOf="@id/tv_test_trip_tendency"
             tools:text="1" />
 
         <View
