@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kr.co.dooribon.databinding.FragmentTendencyBinding
-import kr.co.dooribon.ui.existingtrip.extension.initializeTab
 import kr.co.dooribon.ui.existingtrip.tendency.extension.initializeTendencyNavigation
 import kr.co.dooribon.utils.AutoClearBinding
+import kr.co.dooribon.utils.initializeTab
 
 class TendencyFragment : Fragment() {
 
