@@ -24,6 +24,7 @@ class AddTravelActivity : AppCompatActivity() {
     // ActivityContract
     private val datePickLauncher =
         registerForActivityResult(DatePickerActivityContract()){ result: PickDatePair ->
+            // 데이터가 반환되어서 왔을 때, 어떤 로직을 실행할지를 적어놓습니다.
             binding.apply {
                 tvStartDate.text = result.startDate
                 tvEndDate.text = result.endDate

@@ -30,6 +30,7 @@ class DatePickActivity : AppCompatActivity() {
         binding.btEnterButton.setOnClickListener {
             binding.fragCalendar.getSelectedDate().let {
                 if (it.first != null && it.second != null) {
+                    // setResult로 데이터를 반환하고 종료합니다.
                     setResult(
                         RESULT_OK,
                         Intent().apply {
