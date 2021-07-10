@@ -25,8 +25,8 @@ import java.util.*
  */
 class ScheduleTimeBottomSheetDialog : BottomSheetDialogFragment() {
 
-    // 원래는 private var
-    var binding by AutoClearBinding<DialogScheduleTimeBottomSheetBinding>()
+
+    private var binding by AutoClearBinding<DialogScheduleTimeBottomSheetBinding>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
