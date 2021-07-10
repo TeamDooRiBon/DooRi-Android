@@ -43,7 +43,9 @@ class DateScheduleAdapter : RecyclerView.Adapter<DateScheduleAdapter.DateSchedul
             if (!clicked) clicked = true
         }
         if (position != lastSelectedPosition) modifyPrevClickedView(holder)
-        if (!clicked && position == 0) {
+
+
+        if (!clicked && position == 0) { // 처음 바인딩 시
             holder.itemView.findViewById<TextView>(R.id.tv_item_date)
                 .setTextColor(
                     ContextCompat.getColor(

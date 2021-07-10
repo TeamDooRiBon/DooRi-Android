@@ -29,7 +29,9 @@ class ScheduleFragment : Fragment() {
     private lateinit var timeList1: List<PlanData>
     private lateinit var timeList2: List<PlanData>
     private lateinit var timeList3: List<PlanData>
-
+    private var onceDone = false // 날짜 리사이클러뷰 아이템 클릭하면 true로 변경.
+    // 날짜 리사이클러 뷰에서 두 번째 클릭부터는 리사이클러 뷰 첫번째 날짜를 다시
+    // 바꿔줄 필요가 없어 true로 변경해서 다시 접근하지 않도록 해준다.
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -112,10 +114,12 @@ class ScheduleFragment : Fragment() {
                 setPlanData(position)
                 modifyClickedView(view, dateAdapter, position)
 
+                // 날짜 리사이클러 뷰 첫 번째 아이템(날짜) 뷰 변경시켜주는 부분
                 itemClicked = true
-                if(itemClicked){
+                if (itemClicked && !onceDone) {
                     dateAdapter.setFirstItem()
                 }
+                onceDone = true
             }
         })
     }
@@ -124,7 +128,7 @@ class ScheduleFragment : Fragment() {
      * 클릭한 뷰 동그란 체크표시와
      * 텍스트 색상 변경하는 함수
      */
-    private fun modifyClickedView(view : View, dateAdapter : DateScheduleAdapter, position : Int){
+    private fun modifyClickedView(view: View, dateAdapter: DateScheduleAdapter, position: Int) {
         view.apply {
             findViewById<ImageView>(R.id.iv_selected_date).visibility = View.VISIBLE
             findViewById<TextView>(R.id.tv_item_date).setTextColor(
@@ -140,7 +144,7 @@ class ScheduleFragment : Fragment() {
     /***
      * 하단 부분 시간 별로 여행 일정을 보여주는 뷰 구현 함수
      */
-    private fun setPlanData(position : Int){
+    private fun setPlanData(position: Int) {
         if (datesList[position].planData.isNullOrEmpty()) { // plan이 아직 없다면
             binding.apply {
                 rvScheduleMain.visibility = View.GONE
