@@ -9,10 +9,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_root"
-        android:clickable="true"
-        android:focusable="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true">
 
         <TextView
             android:id="@+id/tv_dday"
@@ -32,9 +32,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:background="@color/transparent"
+            android:elevation="1dp"
             android:textColor="@color/main_point_blue"
             android:textSize="12sp"
-            android:elevation="1dp"
             app:layout_constraintEnd_toEndOf="@id/tv_dday"
             app:layout_constraintStart_toStartOf="@id/tv_dday"
             app:layout_constraintTop_toBottomOf="@+id/tv_dday"

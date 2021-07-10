@@ -105,37 +105,27 @@ class ScheduleFragment : Fragment() {
             datesList
         )
 
-        dateAdapter.setItemClickListener(object : DateScheduleAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) { // 아이템 클릭 리스너
-                Log.e("position", position.toString())
-                setDate(datesList[position].year, datesList[position].month)
-                setBelowDate(datesList[position])
-                if (datesList[position].planData.isNullOrEmpty()) { // plan이 아직 없다면
-                    binding.apply {
-                        rvScheduleMain.visibility = View.GONE
-                        ivEmptyImg.visibility = View.VISIBLE
-                        tvNoSchedule.visibility = View.VISIBLE
-                    }
-                } else {
-                    binding.apply { // plan이 있다면
-                        rvScheduleMain.visibility = View.VISIBLE
-                        ivEmptyImg.visibility = View.GONE
-                        tvNoSchedule.visibility = View.GONE
-                    }
-                    setTimeScheduleAdapter(datesList[position].planData) // recyclerview에 plan update
-                }
-
-                val chkImg = view.findViewById<ImageView>(R.id.iv_selected_date)
-                val chkdText = view.findViewById<TextView>(R.id.tv_item_date)
-                chkImg.visibility = View.VISIBLE
-                chkdText.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.gray_white_pure_9
-                    )
-                )
-            }
-        })
+//        dateAdapter.setItemClickListener(object : DateScheduleAdapter.ItemClickListener {
+//            override fun onClick(view: View, position: Int) { // 아이템 클릭 리스너
+//                //Log.e("position", position.toString())
+//                setDate(datesList[position].year, datesList[position].month)
+//                setBelowDate(datesList[position])
+//                if (datesList[position].planData.isNullOrEmpty()) { // plan이 아직 없다면
+//                    binding.apply {
+//                        rvScheduleMain.visibility = View.GONE
+//                        ivEmptyImg.visibility = View.VISIBLE
+//                        tvNoSchedule.visibility = View.VISIBLE
+//                    }
+//                } else {
+//                    binding.apply { // plan이 있다면
+//                        rvScheduleMain.visibility = View.VISIBLE
+//                        ivEmptyImg.visibility = View.GONE
+//                        tvNoSchedule.visibility = View.GONE
+//                    }
+//                    setTimeScheduleAdapter(datesList[position].planData) // recyclerview에 plan update
+//                }
+//            }
+//        })
     }
 
     /**
