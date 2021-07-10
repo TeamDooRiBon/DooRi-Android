@@ -65,7 +65,7 @@
                 android:fontFamily="@font/spoqa_han_sans_neo_regular"
                 android:includeFontPadding="false"
                 android:text="유지인"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="유지인" />

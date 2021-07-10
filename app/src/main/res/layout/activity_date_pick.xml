@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            android:src="@drawable/ic_back_white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,6 +26,8 @@
             android:id="@+id/tv_when_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
             android:layout_marginTop="16dp"
             android:text="@string/next_travel_date"
             android:textColor="@color/white"
@@ -85,17 +87,16 @@
                 style="@style/RoundButton.DooRiBonStrokeOrange"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/please_enter_date"
                 android:textColor="@color/main_point_orange"
-                android:fontFamily="@font/spoqa_han_sans_neo_medium"
-                android:includeFontPadding="false"
+                android:text="@string/please_enter_date"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
