@@ -38,7 +38,14 @@ class TripTendencyActivity : AppCompatActivity() {
         configureQuestionPager()
         configureTab()
         observeQuestionPosition()
+        observeToastEvent()
         setDummy()
+    }
+
+    private fun observeToastEvent() {
+        viewModel.toastEventLiveData.observe(this){
+            shortToast(it)
+        }
     }
 
     override fun onBackPressed() {

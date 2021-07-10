@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.co.dooribon.domain.entity.TripTendency
+import kr.co.dooribon.utils.SingleLiveEvent
 
 class TripTendencyViewModel : ViewModel() {
 
@@ -12,11 +13,13 @@ class TripTendencyViewModel : ViewModel() {
         get() = _questionPosition
 
     // 질문들에서 유저가 선택한 포지션이 몇번인지를 담아두는 변수
-    // 최대 질문수가 12개이므로 12개만
+    // 최대 질문수가 10개이므로 10개만
     private val _lastQuestionSelectedPosition =
         MutableLiveData(MutableList(MAX_QUESTION_COUNT) { _ -> -1 })
     val lastQuestionSelectedPosition: LiveData<MutableList<Int>>
         get() = _lastQuestionSelectedPosition
+
+    val toastEventLiveData = SingleLiveEvent<String>()
 
     init {
         _questionPosition.value = 0
@@ -24,13 +27,21 @@ class TripTendencyViewModel : ViewModel() {
 
     fun nextPage() {
         if (_questionPosition.value!! < MAX_QUESTION_COUNT) {
-            _questionPosition.value = _questionPosition.value?.plus(1)
+            if(_lastQuestionSelectedPosition.value!![_questionPosition.value!!] != -1){
+                _questionPosition.value = _questionPosition.value?.plus(1)
+            }else{
+                toastEventLiveData.value = "질문을 클릭해주세요"
+            }
         }
     }
 
     fun previousPage() {
         if (_questionPosition.value!! > 0) {
-            _questionPosition.value = _questionPosition.value?.minus(1)
+            if(_lastQuestionSelectedPosition.value!![_questionPosition.value!!] != -1){
+                _questionPosition.value = _questionPosition.value?.minus(1)
+            }else{
+                toastEventLiveData.value = "질문을 클릭해주세요"
+            }
         }
     }
 
