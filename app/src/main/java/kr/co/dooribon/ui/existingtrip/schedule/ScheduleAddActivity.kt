@@ -1,9 +1,12 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
+import android.app.Dialog
 import android.app.TimePickerDialog
 import android.media.tv.TvContract
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -21,28 +24,12 @@ class ScheduleAddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityScheduleAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        timePickerClickListener()
+        
         notAddClickListener()
         scheduleAddBtnClickListener()
         addBackBtnClickListener()
     }
-    val timechange = ScheduleTimeBottomSheetDialog()
-    fun timeChange(ampm : String, hour : String, minute : String){
-        if(binding.tvTimepickerAmpm1.text != ampm){
-            binding.tvTimepickerAmpm1.text = ampm
-        }
-    }
 
-    private fun timePickerClickListener(){
-        binding.clTimepicker1.setOnClickListener{
-            ScheduleTimeBottomSheetDialog().show(supportFragmentManager,"timepicker")
-            //timeChange(timechange.binding.npAmPm.toString(), timechange.binding.npHour.toString(), timechange.binding.npMinute.toString())
-        }
-        binding.clTimepicker2.setOnClickListener {
-            ScheduleTimeBottomSheetDialog().show(supportFragmentManager, "timepicker")
-        }
-    }
     private fun notAddClickListener() {
         binding.ivScheduleNotadd.setOnClickListener {
             if (isClickable) {
