@@ -39,7 +39,6 @@ class DateScheduleAdapter : RecyclerView.Adapter<DateScheduleAdapter.DateSchedul
         holder.bind(dates[position])
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
-            //setFirstItem(holder)
             if (!clicked) clicked = true
         }
         if (position != lastSelectedPosition) modifyPrevClickedView(holder)

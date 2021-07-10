@@ -86,7 +86,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onUpComingTripItemClick(index: Int, item: UpComingTrip) {
-        Toast.makeText(this, "$index , ${item.upComingTripLocation}", Toast.LENGTH_SHORT).show()
+        startActivity(getIntent<ExistingTripActivity>())
     }
 
     fun navigateExistingTrip() {

@@ -19,42 +19,46 @@
             android:id="@+id/tv_tendency_detail_child_number"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@drawable/circle"
-            android:text="@{Integer.toString(item.questionChild.questionNumber)}"
-            android:gravity="center"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/circle"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@{Integer.toString(item.questionChild.questionNumber)}"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_tendency_detail_child_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:textSize="12sp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:includeFontPadding="false"
             android:text="@{item.questionChild.questionSubject}"
-            tools:text="경비를 아낄 수 있다면 최대한 아낄래"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_child_number"
             app:layout_constraintStart_toEndOf="@id/tv_tendency_detail_child_number"
             app:layout_constraintTop_toTopOf="@id/tv_tendency_detail_child_number"
-            app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_child_number" />
+            tools:text="경비를 아낄 수 있다면 최대한 아낄래" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_orange_background_round_textview"
+            android:paddingStart="12dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="2dp"
             android:text="@{Integer.toString(item.questionChild.resultMemberNumber) + `명`}"
             android:textColor="@color/white"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:background="@drawable/bg_orange_background_round_textview"
-            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_child_number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_tendency_detail_child_number"
-            app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_child_number"/>
+            app:layout_constraintTop_toTopOf="@id/tv_tendency_detail_child_number" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
