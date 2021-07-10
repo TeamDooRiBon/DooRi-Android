@@ -9,6 +9,8 @@
 
     <TextView
         android:id="@+id/tv_done_join"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/spoqa_han_sans_neo_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -65,6 +67,8 @@
         android:id="@+id/tv_moving_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
         android:layout_marginTop="15dp"
         android:text="@string/moving_to_home"
         app:layout_constraintTop_toBottomOf="@id/iv_indi_1"

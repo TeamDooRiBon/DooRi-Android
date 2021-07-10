@@ -1,11 +1,19 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
+import android.app.TimePickerDialog
+import android.media.tv.TvContract
 import android.os.Bundle
+import android.view.View
+import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityScheduleAddBinding
+import kr.co.dooribon.dialog.ScheduleTimeBottomSheetDialog
+import java.util.*
 
 class ScheduleAddActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityScheduleAddBinding
     private var isClickable = true
 
@@ -14,11 +22,27 @@ class ScheduleAddActivity : AppCompatActivity() {
         binding = ActivityScheduleAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        timePickerClickListener()
         notAddClickListener()
         scheduleAddBtnClickListener()
         addBackBtnClickListener()
     }
+    val timechange = ScheduleTimeBottomSheetDialog()
+    fun timeChange(ampm : String, hour : String, minute : String){
+        if(binding.tvTimepickerAmpm1.text != ampm){
+            binding.tvTimepickerAmpm1.text = ampm
+        }
+    }
 
+    private fun timePickerClickListener(){
+        binding.clTimepicker1.setOnClickListener{
+            ScheduleTimeBottomSheetDialog().show(supportFragmentManager,"timepicker")
+            //timeChange(timechange.binding.npAmPm.toString(), timechange.binding.npHour.toString(), timechange.binding.npMinute.toString())
+        }
+        binding.clTimepicker2.setOnClickListener {
+            ScheduleTimeBottomSheetDialog().show(supportFragmentManager, "timepicker")
+        }
+    }
     private fun notAddClickListener() {
         binding.ivScheduleNotadd.setOnClickListener {
             if (isClickable) {

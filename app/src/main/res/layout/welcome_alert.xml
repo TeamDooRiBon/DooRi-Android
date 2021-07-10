@@ -9,6 +9,8 @@
         android:id="@+id/tv_welcome"
         android:layout_width="96dp"
         android:layout_height="48dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
         android:gravity="center"
         android:layout_marginTop="28dp"
         android:text="새로운 여행을 환영합니다!" />
@@ -17,6 +19,8 @@
         android:id="@+id/btn_newtravel_move"
         android:layout_width="240dp"
         android:layout_height="48dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
         android:backgroundTint="#FF7B51"
         android:text="새로운 여행으로 이동" />
 </LinearLayout>

@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         android:background="#9ab4ff">
 
+
         <ImageView
             android:id="@+id/iv_schedule_add_back"
             android:layout_width="wrap_content"
@@ -22,6 +23,8 @@
             android:id="@+id/tv_schedule_add_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
             android:text="@string/schedule_add"
@@ -62,6 +65,8 @@
                     android:id="@+id/tv_schedule_add_what"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:layout_marginStart="4dp"
                     android:text="@string/schedule_what"
                     android:textColor="@color/gray_black_3"
@@ -73,7 +78,10 @@
                     android:id="@+id/et_schedule_add_what"
                     android:layout_width="320dp"
                     android:layout_height="40dp"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:layout_marginTop="8dp"
+                    android:paddingStart="12dp"
                     android:background="@drawable/bg_edit_text_gray"
                     android:hint="@string/schedule_what_hint"
                     android:textColor="@color/gray_black_2"
@@ -85,6 +93,8 @@
                     android:id="@+id/tv_schedule_add_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:layout_marginTop="20dp"
                     android:text="@string/schedule_time"
                     android:textColor="@color/gray_black_3"
@@ -127,6 +137,8 @@
                             android:id="@+id/tv_schedule_time_start1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/spoqa_han_sans_neo_medium"
                             android:layout_marginStart="28dp"
                             android:layout_marginTop="12dp"
                             android:text="@string/schedule_time_hint1"
@@ -135,22 +147,68 @@
                             app:layout_constraintStart_toStartOf="@id/iv_schedule_time_start"
                             app:layout_constraintTop_toTopOf="@id/iv_schedule_time_start" />
 
-                        <TextView
-                            android:id="@+id/tv_schedule_time_start2"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_timepicker1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="36dp"
                             android:layout_marginTop="4dp"
-                            android:text="@string/schedule_time_hint2"
-                            android:textColor="@color/gray_gray_5_main"
-                            android:textSize="16sp"
                             app:layout_constraintStart_toStartOf="@id/iv_schedule_time_start"
-                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_start1" />
+                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_start1" >
+
+                            <TextView
+                                android:id="@+id/tv_timepicker_ampm1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                android:text="오후"
+                                android:textColor="@color/gray_gray_5_main"
+                                android:textSize="16sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"/>
+                            <TextView
+                                android:id="@+id/tv_timepicker_hour1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                android:layout_marginStart="3dp"
+                                android:text="12"
+                                android:textColor="@color/gray_gray_5_main"
+                                android:textSize="16sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_ampm1"/>
+                            <TextView
+                                android:id="@+id/tv_timepicker_colon1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                android:text=":"
+                                android:textColor="@color/gray_gray_5_main"
+                                android:textSize="16sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_hour1"/>
+                            <TextView
+                                android:id="@+id/tv_timepicker_minute1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                android:text="00"
+                                android:textColor="@color/gray_gray_5_main"
+                                android:textSize="16sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_colon1"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
                             android:id="@+id/tv_schedule_time_end1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/spoqa_han_sans_neo_medium"
                             android:layout_marginTop="12dp"
                             android:layout_marginEnd="28dp"
                             android:text="@string/schedule_time_hint1"
@@ -159,17 +217,61 @@
                             app:layout_constraintEnd_toEndOf="@id/iv_schedule_time_end"
                             app:layout_constraintTop_toTopOf="@id/iv_schedule_time_end" />
 
-                        <TextView
-                            android:id="@+id/tv_schedule_time_end2"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_timepicker2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:layout_marginEnd="40dp"
-                            android:text="@string/schedule_time_hint2"
-                            android:textColor="@color/gray_gray_5_main"
-                            android:textSize="16sp"
+                            android:layout_marginTop="4dp"
                             app:layout_constraintEnd_toEndOf="@id/iv_schedule_time_end"
-                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_end1" />
+                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_end1" >
+
+                            <TextView
+                                android:id="@+id/tv_timepicker_ampm2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                android:text="오후"
+                                android:textColor="@color/gray_gray_5_main"
+                                android:textSize="16sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"/>
+                            <TextView
+                                android:id="@+id/tv_timepicker_hour2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                android:layout_marginStart="3dp"
+                                android:text="12"
+                                android:textColor="@color/gray_gray_5_main"
+                                android:textSize="16sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_ampm2"/>
+                            <TextView
+                                android:id="@+id/tv_timepicker_colon2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                android:text=":"
+                                android:textColor="@color/gray_gray_5_main"
+                                android:textSize="16sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_hour2"/>
+                            <TextView
+                                android:id="@+id/tv_timepicker_minute2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                                android:text="00"
+                                android:textColor="@color/gray_gray_5_main"
+                                android:textSize="16sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_colon2"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -180,6 +282,8 @@
                     android:id="@+id/tv_schedule_add_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:layout_marginTop="20dp"
                     android:text="@string/schedule_location"
                     android:textColor="@color/gray_black_3"
@@ -191,7 +295,10 @@
                     android:id="@+id/et_schedule_add_location"
                     android:layout_width="208dp"
                     android:layout_height="40dp"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:layout_marginTop="8dp"
+                    android:paddingStart="12dp"
                     android:background="@drawable/bg_edit_text_gray"
                     android:hint="@string/schedule_location_hint"
                     android:textColor="@color/gray_black_2"
@@ -213,8 +320,10 @@
                     android:id="@+id/tv_schedule_notadd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="20dp"
                     android:text="@string/schedule_notadd"
                     android:textColor="@color/gray_gray_5_main"
                     android:textSize="14sp"
@@ -225,6 +334,8 @@
                     android:id="@+id/tv_schedule_add_memo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:layout_marginTop="20dp"
                     android:text="@string/schedule_memo"
                     android:textColor="@color/gray_black_3"
@@ -236,6 +347,8 @@
                     android:id="@+id/tv_schedule_add_memo_condition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="22dp"
                     android:text="@string/schedule_memo_condition"
@@ -248,7 +361,10 @@
                     android:id="@+id/et_schedule_add_memo"
                     android:layout_width="320dp"
                     android:layout_height="40dp"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:layout_marginTop="8dp"
+                    android:paddingStart="12dp"
                     android:background="@drawable/bg_edit_text_gray"
                     android:hint="@string/schedule_memo_hint"
                     android:textColor="@color/gray_black_2"
@@ -261,6 +377,8 @@
                     style="@style/RoundButton.DooRiBonGray7"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:layout_marginTop="28dp"
                     android:text="@string/schedule_add_btn"
                     android:textColor="@color/gray_gray_black_4"
