@@ -7,33 +7,64 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coor_tab_board"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.existingtrip.board.BoardFragment">
+        android:layout_height="match_parent">
 
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_board"
-            style="@style/OrangeTabLayout"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/ab_tab_board"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicator="@null" />
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat">
 
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fcv_board"
-            android:name="kr.co.dooribon.ui.existingtrip.board.fragment.CheckListFragment"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab_board"
+                        style="@style/OrangeTabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tabIndicator="@null" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/gray_white_8"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab_board" />
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.existingtrip.board.BoardFragment">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fcv_board"
+                    android:name="kr.co.dooribon.ui.existingtrip.board.fragment.CheckListFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/gray_white_8"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
