@@ -16,14 +16,16 @@ class DatePickActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDatePickBinding
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_date_pick)
 
         configureCalendar()
         configureBackButton()
+        configureEnterButton()
+    }
 
+    private fun configureEnterButton(){
         binding.btEnterButton.setOnClickListener {
             // TODO : 화면 네비게이팅만 해주시면 될거 같습니다
             binding.fragCalendar.getSelectedDate().let {
@@ -46,6 +48,8 @@ class DatePickActivity : AppCompatActivity() {
         }
     }
 
+    // BindingAdapter로 빼버릴 수도 있습니다.
+    @SuppressLint("SetTextI18n")
     private fun configureCalendar() {
         binding.fragCalendar.apply {
             setOnRangeSelectedListener { startDate, endDate, startLabel, endLabel ->
