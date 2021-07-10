@@ -15,7 +15,7 @@ object DateUtil {
         }
     }
 
-    fun convertStringToDateDot(date : Date) : String {
+    fun convertStringToDateDot(date: Date): String {
         return simpleDateFormatDot.format(date)
     }
 }

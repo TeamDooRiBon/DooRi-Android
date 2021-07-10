@@ -25,17 +25,17 @@ class DatePickActivity : AppCompatActivity() {
         configureEnterButton()
     }
 
-    private fun configureEnterButton(){
+    private fun configureEnterButton() {
         binding.btEnterButton.setOnClickListener {
             // TODO : 화면 네비게이팅만 해주시면 될거 같습니다
             binding.fragCalendar.getSelectedDate().let {
-                if(it.first != null && it.second != null){
-                    val intent = Intent(this,AddTravelActivity::class.java)
-                    intent.putExtra("startDate",DateUtil.convertStringToDateDot(it.first!!))
-                    intent.putExtra("endDate",DateUtil.convertStringToDateDot(it.second!!))
+                if (it.first != null && it.second != null) {
+                    val intent = Intent(this, AddTravelActivity::class.java)
+                    intent.putExtra("startDate", DateUtil.convertStringToDateDot(it.first!!))
+                    intent.putExtra("endDate", DateUtil.convertStringToDateDot(it.second!!))
                     startActivity(intent)
                     finish()
-                }else{
+                } else {
                     shortToast("선택된 날짜가 없습니다.")
                 }
             }

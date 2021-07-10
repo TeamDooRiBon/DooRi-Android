@@ -75,7 +75,7 @@ class DayViewHolder(private val view: View) : BaseCalendarViewHolder(view) {
             // range Click의 시작과 끝점의 textColor는 white로
             ContextCompat.getColor(itemView.context, R.color.doo_ri_bon_calendar_day_selected_font)
         } else if (item.selection == SelectionType.BETWEEN && item.state != DateState.WEEKEND) {
-            ContextCompat.getColor(itemView.context,R.color.main_point_blue)
+            ContextCompat.getColor(itemView.context, R.color.main_point_blue)
         } else {
             val color = when (item.state) {
                 DateState.DISABLED -> R.color.gray_gray_7_line
@@ -101,7 +101,8 @@ class DayViewHolder(private val view: View) : BaseCalendarViewHolder(view) {
     }
 
     private fun View.highlight() {
-        val color = ContextCompat.getColor(context, R.color.doo_ri_bon_calendar_highlight_background_color)
+        val color =
+            ContextCompat.getColor(context, R.color.doo_ri_bon_calendar_highlight_background_color)
         setBackgroundColor(color)
     }
 }

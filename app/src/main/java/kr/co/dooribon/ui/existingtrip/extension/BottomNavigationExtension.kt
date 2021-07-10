@@ -8,7 +8,7 @@ import kr.co.dooribon.ui.existingtrip.board.BoardFragment
 import kr.co.dooribon.ui.existingtrip.schedule.ScheduleFragment
 import kr.co.dooribon.ui.existingtrip.tendency.TendencyFragment
 
-fun TabLayout.initializeTab(list : List<String>){
+fun TabLayout.initializeTab(list: List<String>) {
     list.forEach {
         this.addTab(newTab().setText(it))
     }

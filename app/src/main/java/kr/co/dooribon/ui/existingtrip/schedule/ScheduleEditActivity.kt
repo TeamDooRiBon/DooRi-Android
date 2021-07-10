@@ -23,7 +23,7 @@ class ScheduleEditActivity : AppCompatActivity() {
         editBackBtnClickListener()
     }
 
-    private fun timePickerClickListener3(){
+    private fun timePickerClickListener3() {
         binding.clTimepicker3.setOnClickListener {
             val bsDialog = BottomSheetDialog(this, R.style.BottomSheetTheme)
             val sheetView = DialogScheduleTimeBottomSheetBinding.inflate(layoutInflater)
@@ -67,10 +67,9 @@ class ScheduleEditActivity : AppCompatActivity() {
             bsDialog.show()
 
             sheetView.btnok.setOnClickListener {
-                if(sheetView.npAmPm.value == 0) {
+                if (sheetView.npAmPm.value == 0) {
                     binding.tvTimepickerAmpm3.text = "오전"
-                }
-                else {
+                } else {
                     binding.tvTimepickerAmpm3.text = "오후"
                 }
                 binding.tvTimepickerHour3.text = sheetView.npHour.value.toString()
@@ -83,7 +82,7 @@ class ScheduleEditActivity : AppCompatActivity() {
         }
     }
 
-    private fun timePickerClickListener4(){
+    private fun timePickerClickListener4() {
         binding.clTimepicker4.setOnClickListener {
             val bsDialog = BottomSheetDialog(this, R.style.BottomSheetTheme)
             val sheetView = DialogScheduleTimeBottomSheetBinding.inflate(layoutInflater)
@@ -127,10 +126,9 @@ class ScheduleEditActivity : AppCompatActivity() {
             bsDialog.show()
 
             sheetView.btnok.setOnClickListener {
-                if(sheetView.npAmPm.value == 0) {
+                if (sheetView.npAmPm.value == 0) {
                     binding.tvTimepickerAmpm4.text = "오전"
-                }
-                else {
+                } else {
                     binding.tvTimepickerAmpm4.text = "오후"
                 }
                 binding.tvTimepickerHour4.text = sheetView.npHour.value.toString()
