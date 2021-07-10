@@ -18,9 +18,9 @@
             android:id="@+id/tv_test_trip_tendency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:fontFamily="@font/spoqa_han_sans_neo_bold"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:includeFontPadding="false"
             android:text="Q"
             android:textColor="@color/doo_ri_bon_blue"
             android:textSize="23sp"
@@ -34,12 +34,10 @@
             android:id="@+id/tv_test_trip_tendency_question_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:text="@{Integer.toString(item.questionNumber)}"
             android:textColor="@color/doo_ri_bon_blue"
             android:textSize="23sp"
             android:textStyle="bold"
-            android:text="@{Integer.toString(item.questionNumber)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_test_trip_tendency"
             app:layout_constraintTop_toTopOf="@id/tv_test_trip_tendency"
@@ -57,31 +55,31 @@
 
         <TextView
             android:id="@+id/tv_test_trip_tendency_question_title"
-            style="@style/BlackBoldTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:fontFamily="@font/spoqa_han_sans_neo_bold"
-            android:textSize="20sp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:includeFontPadding="false"
             android:text="@{item.questionTitle}"
-            tools:text="계획을 세울 때 나는?"
-            app:layout_constraintStart_toStartOf="@id/tv_test_trip_tendency"
+            android:textSize="20sp"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/tv_test_trip_tendency"
-            app:layout_constraintTop_toBottomOf="@id/view_question_divider" />
+            app:layout_constraintStart_toStartOf="@id/tv_test_trip_tendency"
+            app:layout_constraintTop_toBottomOf="@id/view_question_divider"
+            tools:text="계획을 세울 때 나는?" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintVertical_bias="0.4"
-            app:layout_constraintTop_toBottomOf="@id/tv_test_trip_tendency_question_title"
-            app:layout_constraintStart_toStartOf="@id/tv_test_trip_tendency"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/tv_test_trip_tendency" />
+            app:layout_constraintEnd_toEndOf="@id/tv_test_trip_tendency"
+            app:layout_constraintStart_toStartOf="@id/tv_test_trip_tendency"
+            app:layout_constraintTop_toBottomOf="@id/tv_test_trip_tendency_question_title"
+            app:layout_constraintVertical_bias="0.4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

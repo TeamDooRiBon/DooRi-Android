@@ -29,6 +29,9 @@ class ScheduleFragment : Fragment() {
     private lateinit var timeList1: List<PlanData>
     private lateinit var timeList2: List<PlanData>
     private lateinit var timeList3: List<PlanData>
+    private var onceDone = false // 날짜 리사이클러뷰 아이템 클릭하면 true로 변경.
+    // 날짜 리사이클러 뷰에서 두 번째 클릭부터는 리사이클러 뷰 첫번째 날짜를 다시
+    // 바꿔줄 필요가 없어 true로 변경해서 다시 접근하지 않도록 해준다.
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,12 +41,9 @@ class ScheduleFragment : Fragment() {
 
         setDummyTimeList()
         setDataAdapter()
-
         setTimeScheduleAdapter(timeList1)
 
-        binding.btAddSchedule.setOnClickListener { // bottom sheet dialog 잘 뜨는지 확인 위해 추가해두었음
-//            val bs = AddScheduleBottomSheet()
-//            bs.show(childFragmentManager, bs.tag)
+        binding.btAddSchedule.setOnClickListener {
             val intent = Intent(requireContext(), ScheduleAddActivity::class.java)
             startActivity(intent)
         }
@@ -105,37 +105,60 @@ class ScheduleFragment : Fragment() {
             datesList
         )
 
+        var itemClicked = false
+        // Item Click Listener
         dateAdapter.setItemClickListener(object : DateScheduleAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) { // 아이템 클릭 리스너
-                Log.e("position", position.toString())
+            override fun onClick(view: View, position: Int) {
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
-                if (datesList[position].planData.isNullOrEmpty()) { // plan이 아직 없다면
-                    binding.apply {
-                        rvScheduleMain.visibility = View.GONE
-                        ivEmptyImg.visibility = View.VISIBLE
-                        tvNoSchedule.visibility = View.VISIBLE
-                    }
-                } else {
-                    binding.apply { // plan이 있다면
-                        rvScheduleMain.visibility = View.VISIBLE
-                        ivEmptyImg.visibility = View.GONE
-                        tvNoSchedule.visibility = View.GONE
-                    }
-                    setTimeScheduleAdapter(datesList[position].planData) // recyclerview에 plan update
-                }
+                setPlanData(position)
+                modifyClickedView(view, dateAdapter, position)
 
-                val chkImg = view.findViewById<ImageView>(R.id.iv_selected_date)
-                val chkdText = view.findViewById<TextView>(R.id.tv_item_date)
-                chkImg.visibility = View.VISIBLE
-                chkdText.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.gray_white_pure_9
-                    )
-                )
+                // 날짜 리사이클러 뷰 첫 번째 아이템(날짜) 뷰 변경시켜주는 부분
+                itemClicked = true
+                if (itemClicked && !onceDone) {
+                    dateAdapter.setFirstItem()
+                }
+                onceDone = true
             }
         })
+    }
+
+    /**
+     * 클릭한 뷰 동그란 체크표시와
+     * 텍스트 색상 변경하는 함수
+     */
+    private fun modifyClickedView(view: View, dateAdapter: DateScheduleAdapter, position: Int) {
+        view.apply {
+            findViewById<ImageView>(R.id.iv_selected_date).visibility = View.VISIBLE
+            findViewById<TextView>(R.id.tv_item_date).setTextColor(
+                ContextCompat.getColor(
+                    view.context,
+                    R.color.gray_white_pure_9
+                )
+            )
+            dateAdapter.dateScheduleNotifyItemChanged(position)
+        }
+    }
+
+    /***
+     * 하단 부분 시간 별로 여행 일정을 보여주는 뷰 구현 함수
+     */
+    private fun setPlanData(position: Int) {
+        if (datesList[position].planData.isNullOrEmpty()) { // plan이 아직 없다면
+            binding.apply {
+                rvScheduleMain.visibility = View.GONE
+                ivEmptyImg.visibility = View.VISIBLE
+                tvNoSchedule.visibility = View.VISIBLE
+            }
+        } else { // plan이 있다면
+            binding.apply {
+                rvScheduleMain.visibility = View.VISIBLE
+                ivEmptyImg.visibility = View.GONE
+                tvNoSchedule.visibility = View.GONE
+            }
+            setTimeScheduleAdapter(datesList[position].planData) // recyclerview에 plan update
+        }
     }
 
     /**
@@ -153,7 +176,6 @@ class ScheduleFragment : Fragment() {
 
     /**
      * Horizontal Recyclerview 아래에 며칠 째 여행인지 표시해주는 textview와 오늘 며칠인지 보여주는 textview 설정하는 부분
-     * TODO 서버
      */
     private fun setBelowDate(dateInfo: TravelDate) {
         val dday = dateInfo.dday
@@ -207,9 +229,6 @@ class ScheduleFragment : Fragment() {
     private fun onBelowItemClickListener(timeAdapter: TimeScheduleAdapter) {
         timeAdapter.setItemClickListener(object : TimeScheduleAdapter.ItemClickListener {
             override fun onTimeScheduleClick(view: View, position: Int) {
-                //아래 주석 두줄은 커스텀 클래스를 만들었던건데 굳이 필요 없을 것 같음.
-//                val bs = AddScheduleBottomSheet()
-//                bs.show(childFragmentManager, bs.tag)
                 val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
                 val sheetView = LayoutInflater.from(requireContext()).inflate(
                     R.layout.bottomsheet_add_schedule,

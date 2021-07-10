@@ -34,10 +34,12 @@
             android:includeFontPadding="false"
             android:fontFamily="@font/spoqa_han_sans_neo_bold"
             android:layout_marginStart="12dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:includeFontPadding="false"
+            android:text="@{Integer.toString(item.questionParent.questionNumber)}"
             android:textColor="@color/doo_ri_bon_blue"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:text="@{Integer.toString(item.questionParent.questionNumber)}"
             app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_parent_dot"
             app:layout_constraintStart_toEndOf="@id/tv_tendency_detail_parent_dot"
             app:layout_constraintTop_toTopOf="@id/tv_tendency_detail_parent_dot"
@@ -50,33 +52,35 @@
             android:includeFontPadding="false"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:includeFontPadding="false"
+            android:text="@{item.questionParent.questionTitle}"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:text="@{item.questionParent.questionTitle}"
-            tools:text="돈을 쓸 때 나는?"
+            app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_parent_dot"
             app:layout_constraintStart_toEndOf="@id/tv_tendency_detail_parent_number"
             app:layout_constraintTop_toTopOf="@id/tv_tendency_detail_parent_dot"
-            app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_parent_dot"/>
+            tools:text="돈을 쓸 때 나는?" />
 
         <ImageView
             android:id="@+id/iv_tendency_detail_show"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_down"
             android:padding="16dp"
+            android:src="@drawable/ic_arrow_down"
+            app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_parent_dot"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_tendency_detail_parent_dot"
-            app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_parent_dot"/>
+            app:layout_constraintTop_toTopOf="@id/tv_tendency_detail_parent_dot" />
 
         <ImageView
             android:id="@+id/iv_tendency_detail_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_up"
             android:padding="16dp"
+            android:src="@drawable/ic_arrow_up"
             android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_parent_dot"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_tendency_detail_parent_dot"
-            app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_parent_dot"/>
+            app:layout_constraintTop_toTopOf="@id/tv_tendency_detail_parent_dot" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

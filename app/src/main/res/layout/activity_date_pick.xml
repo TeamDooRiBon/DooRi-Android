@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#9CB5FF">
+        android:background="@color/main_point_blue">
 
         <ImageView
             android:id="@+id/iv_back"
@@ -32,57 +32,71 @@
             android:text="@string/next_travel_date"
             android:textColor="@color/white"
             android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/cl_calendar_picker"
             app:layout_constraintStart_toStartOf="@id/iv_back"
             app:layout_constraintTop_toBottomOf="@id/iv_back"
             tools:text="@string/next_travel_date" />
 
-        <include
-            android:id="@+id/li_calendar_week_view"
-            layout="@layout/calendar_week_view"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_calendar_picker"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_when_date"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
-        <kr.co.dooribon.view.calendarpicker.DooRiBonCalendarPicker
-            android:id="@+id/frag_calendar"
-            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/white"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_white_pure9_top_round_layout"
             app:layout_constraintBottom_toTopOf="@id/ll_check_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/li_calendar_week_view"
-            app:picker_type="range"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_when_date">
+
+            <include
+                android:id="@+id/li_calendar_week_view"
+                layout="@layout/calendar_week_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <kr.co.dooribon.view.calendarpicker.DooRiBonCalendarPicker
+                android:id="@+id/frag_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="@id/li_calendar_week_view"
+                app:layout_constraintStart_toStartOf="@id/li_calendar_week_view"
+                app:layout_constraintTop_toBottomOf="@id/li_calendar_week_view"
+                app:picker_type="range" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_check_button"
             android:layout_width="0dp"
-            android:layout_height="125dp"
+            android:layout_height="84dp"
             android:background="#FDFEFF"
             android:elevation="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/frag_calendar">
+            app:layout_constraintTop_toBottomOf="@id/cl_calendar_picker">
 
             <Button
                 android:id="@+id/bt_enter_button"
-                style="@style/RoundButton.DooRiBonGray7"
+                style="@style/RoundButton.DooRiBonStrokeOrange"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/spoqa_han_sans_neo_medium"
                 android:layout_marginHorizontal="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="15dp"
-                android:textColor="@color/gray_gray_black_4"
-                android:text="@string/please_enter_date" />
-
+                android:textColor="@color/main_point_orange"
+                android:text="@string/please_enter_date"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,6 +40,10 @@ class TripTendencyActivity : AppCompatActivity() {
         setDummy()
     }
 
+    override fun onBackPressed() {
+        exitTripTendencyTest()
+    }
+
     private fun observeQuestionPosition() {
         viewModel.questionPosition.observe(this) {
             if (it == tripTendencyAdapter.itemCount) {
