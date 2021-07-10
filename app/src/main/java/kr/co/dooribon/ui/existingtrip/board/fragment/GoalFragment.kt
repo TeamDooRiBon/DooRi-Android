@@ -21,7 +21,8 @@ class GoalFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board_bottom, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_board_bottom, container, false)
         return binding.root
     }
 
@@ -40,7 +41,12 @@ class GoalFragment : Fragment() {
     private fun setFragmentDetails() {
         binding.apply {
             tvTopic.text = getString(R.string.our_goal)
-            ivTopic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_flag))
+            ivTopic.setImageDrawable(
+                ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_flag
+                )
+            )
             tvMainTodo.text = getString(R.string.share_goals)
             tvSubTodo.text = getString(R.string.goal_detail)
         }

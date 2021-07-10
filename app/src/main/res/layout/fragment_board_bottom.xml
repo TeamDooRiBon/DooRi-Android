@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.existingtrip.board.fragment.CheckListFragment">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/sv_goal"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -66,7 +66,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
         <ImageView
             android:id="@+id/iv_topic"
