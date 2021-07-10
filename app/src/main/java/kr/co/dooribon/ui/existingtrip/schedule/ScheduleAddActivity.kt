@@ -13,6 +13,7 @@ import kr.co.dooribon.dialog.ScheduleTimeBottomSheetDialog
 import java.util.*
 
 class ScheduleAddActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityScheduleAddBinding
     private var isClickable = true
 
@@ -26,14 +27,20 @@ class ScheduleAddActivity : AppCompatActivity() {
         scheduleAddBtnClickListener()
         addBackBtnClickListener()
     }
+    val timechange = ScheduleTimeBottomSheetDialog()
+    fun timeChange(ampm : String, hour : String, minute : String){
+        if(binding.tvTimepickerAmpm1.text != ampm){
+            binding.tvTimepickerAmpm1.text = ampm
+        }
+    }
 
     private fun timePickerClickListener(){
-        binding.tvScheduleTimeStart2.setOnClickListener{
-            val schedule = ScheduleTimeBottomSheetDialog()
-            val ampm = schedule.binding.npAmPm
-            val hour = schedule.binding.npHour
-            val minute = schedule.binding.npMinute
+        binding.clTimepicker1.setOnClickListener{
             ScheduleTimeBottomSheetDialog().show(supportFragmentManager,"timepicker")
+            //timeChange(timechange.binding.npAmPm.toString(), timechange.binding.npHour.toString(), timechange.binding.npMinute.toString())
+        }
+        binding.clTimepicker2.setOnClickListener {
+            ScheduleTimeBottomSheetDialog().show(supportFragmentManager, "timepicker")
         }
     }
     private fun notAddClickListener() {
