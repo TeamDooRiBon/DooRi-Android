@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.triptendency
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -14,10 +15,12 @@ import kr.co.dooribon.dialog.TripTendencyTestResultLoadingDialog
 import kr.co.dooribon.domain.entity.TripTendency
 import kr.co.dooribon.ui.triptendency.adapter.TripTendencyAdapter
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
+import kr.co.dooribon.utils.shortToast
 
 /**
  * Issue 사항
- * TODO : Data를 12개로 늘렸는데 데이터가 겹치는 문제가 발생한다 음...
+ * TODO : 데이터의 선택된 순서는 리스트에 정확하게 들어가는데 문제는 문제지를 뒤로 돌아갔을 떄 데이터가 겹쳐서 보여지는 문제가 발생한다.
+ * TODO : 밀리는 거 같음 lastSelectedPosition의 로직을 다시한번 생각해봐야할거 같습니다.
  */
 class TripTendencyActivity : AppCompatActivity() {
 
@@ -48,6 +51,12 @@ class TripTendencyActivity : AppCompatActivity() {
         viewModel.questionPosition.observe(this) {
             if (it == tripTendencyAdapter.itemCount) {
                 // 질문지에 대한 선택들이 전부 선택이 되었는지 검사하는 로직이 필요하다.
+                for(i in 0 until tripTendencyAdapter.itemCount){
+                    if(viewModel.lastQuestionSelectedPosition.value!![i] == -1) {
+                        shortToast("질문을 전부 선택하셨는지 확인해주세요")
+                        break
+                    }
+                }
                 TripTendencyTestResultLoadingDialog().show(
                     supportFragmentManager,
                     RESULT_LOADING_NAVIGATE_TAG
