@@ -1,6 +1,5 @@
 package kr.co.dooribon.dialog
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -10,19 +9,24 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
+import kr.co.dooribon.ui.existingtrip.schedule.ScheduleAddActivity
 import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.setNumberPickerTextColor
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * TODO : 바텀 시트 둥그렇게 해야함
  */
 class ScheduleTimeBottomSheetDialog : BottomSheetDialogFragment() {
 
-    private var binding by AutoClearBinding<DialogScheduleTimeBottomSheetBinding>()
+    // 원래는 private var
+    var binding by AutoClearBinding<DialogScheduleTimeBottomSheetBinding>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
