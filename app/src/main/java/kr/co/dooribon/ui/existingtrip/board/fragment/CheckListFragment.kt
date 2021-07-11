@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -39,22 +42,40 @@ class CheckListFragment : Fragment() {
     }
 
     /* 추가하기 버튼 클릭 이벤트 처리 함수 */
-    private fun onAddBtnClickListener(){
+    private fun onAddBtnClickListener() {
         binding.btAdd.setOnClickListener {
             // TODO view persentation할 때 여기 아래 들어가는 다이얼로그 바꿔줘야 함.
             val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
             val sheetView = LayoutInflater.from(requireContext()).inflate(
-                R.layout.bottomsheet_add_schedule,
-                requireActivity().findViewById(R.id.cl_bottom_sheet_root)
+                R.layout.bottomsheet_add_board_list,
+                requireActivity().findViewById(R.id.cl_add_board_bottom_sheet_root)
             )
-            sheetView.findViewById<Button>(R.id.btn_delete).setOnClickListener {
-                val deleteDlg = Dialog(requireContext())
-                deleteDlg.setContentView(R.layout.dialog_delete_question)
-                deleteDlg.findViewById<Button>(R.id.btn_no).setOnClickListener {
-                    deleteDlg.dismiss()
+//            sheetView.findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener {
+//                val deleteDlg = Dialog(requireContext())
+//                deleteDlg.setContentView(R.layout.dialog_delete_question)
+//                deleteDlg.findViewById<Button>(R.id.btn_no).setOnClickListener {
+//                    deleteDlg.dismiss()
+//                }
+//                deleteDlg.show()
+//            }
+            sheetView.apply {
+                findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener { // TODO 삭제하는 기능 추가해야함.
+                    bsDialog.dismiss()
                 }
-                deleteDlg.show()
+                findViewById<Button>(R.id.btn_add_board_edit).setOnClickListener {
+                    val editDlg = Dialog(requireContext())
+                    editDlg.setContentView(R.layout.dialog_edit_travel)
+                    editDlg.findViewById<Button>(R.id.bt_edit_travel_cancel).setOnClickListener {
+                        editDlg.dismiss()
+                    }
+                    editDlg.findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                        editDlg.dismiss()
+                    }
+                    editDlg.show()
+                }
             }
+
+
             bsDialog.setContentView(sheetView)
             bsDialog.show()
         }
