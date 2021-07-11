@@ -33,8 +33,7 @@
             android:windowSoftInputMode="stateAlwaysHidden">
 
         </activity>
-        <activity android:name=".ui.existingtrip.schedule.ScheduleAddActivity">
-        </activity>
+        <activity android:name=".ui.existingtrip.schedule.ScheduleAddActivity"></activity>
         <activity android:name=".ui.existingtrip.schedule.ScheduleEditActivity">
 
         </activity>
