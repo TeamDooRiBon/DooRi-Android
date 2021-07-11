@@ -111,7 +111,7 @@
                     <kr.co.dooribon.view.DooRiBonGradientTopRoundImageView
                         android:id="@+id/iv_home_proceeding_travel"
                         android:layout_width="0dp"
-                        android:layout_height="300dp"
+                        android:layout_height="280dp"
                         android:layout_marginTop="16dp"
                         android:onClick="@{() -> homeActivity.navigateExistingTrip()}"
                         android:scaleType="fitXY"
@@ -120,6 +120,7 @@
                         app:gradient_corner_radius="32dp"
                         app:gradient_end_color="@color/black"
                         app:gradient_start_color="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_user_status_description" />

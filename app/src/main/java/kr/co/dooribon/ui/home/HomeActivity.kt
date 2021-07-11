@@ -19,6 +19,7 @@ import kr.co.dooribon.ui.home.adapter.PreviousTripAdapter
 import kr.co.dooribon.ui.home.adapter.UpComingTripAdapter
 import kr.co.dooribon.ui.home.viewmodel.HomeViewModel
 import kr.co.dooribon.ui.triptendency.TripTendencyActivity
+import kr.co.dooribon.utils.extension.resizeHomeProgressTripImageView
 import kr.co.dooribon.utils.getIntent
 
 class HomeActivity : AppCompatActivity() {
@@ -40,9 +41,14 @@ class HomeActivity : AppCompatActivity() {
         binding.homeActivity = this
         binding.navigateNewTrip = { navigateNewTripDialog() }
 
+        configureImageViewSize()
         configurePreviousTrip()
         configureUpComingTrip()
         configureViewPagerIndicator()
+    }
+
+    private fun configureImageViewSize() {
+        binding.ivHomeProceedingTravel.resizeHomeProgressTripImageView(0.4f)
     }
 
     private fun configureViewPagerIndicator() {
