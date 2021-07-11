@@ -1,9 +1,14 @@
 package kr.co.dooribon.ui.existingtrip.board.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -34,6 +39,30 @@ class MustKnowFragment : Fragment() {
         //setDummyList()
         setBoardAdapter()
         setBgVisibility()
+        onAddBtnClickListener()
+    }
+
+    /* 추가하기 버튼 클릭 이벤트 처리 함수 */
+    private fun onAddBtnClickListener() {
+        binding.btAdd.setOnClickListener {
+            val editDlg = Dialog(requireContext())
+            editDlg.apply {
+                setContentView(R.layout.dialog_edit_travel)
+                findViewById<TextView>(R.id.tv_category).text = "꼭 알아줘"
+                findViewById<TextView>(R.id.tv_category_detail).text =
+                    "이번여행에 함께하는 사람들에게\n나에 대해 꼭 알리고 싶은 것을 작성해주세요!"
+                findViewById<EditText>(R.id.et_add_content).hint =
+                    "Ex. 밝으면 잘 못 자기 때문에 꼭 불은 끄고 잤으면 좋겠어:)"
+                findViewById<ImageView>(R.id.iv_category).setBackgroundResource(R.drawable.ic_icon_board_aim_active)
+                findViewById<Button>(R.id.bt_edit_travel_cancel).setOnClickListener {
+                    dismiss()
+                }
+                findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                    dismiss()
+                }
+                show()
+            }
+        }
     }
 
     /***

@@ -1,9 +1,14 @@
 package kr.co.dooribon.ui.existingtrip.board.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -34,6 +39,28 @@ class RoleAllocFragment : Fragment() {
         //setDummyList()
         setBoardAdapter()
         setBgVisibility()
+        onAddBtnClickListener()
+    }
+
+    /* 추가하기 버튼 클릭 이벤트 처리 함수 */
+    private fun onAddBtnClickListener() {
+        binding.btAdd.setOnClickListener {
+            val editDlg = Dialog(requireContext())
+            editDlg.apply {
+                setContentView(R.layout.dialog_edit_travel)
+                findViewById<TextView>(R.id.tv_category).text = "역할 분담"
+                findViewById<TextView>(R.id.tv_category_detail).text = "이번 여행에서 나는 이런 역할을 담당하게!"
+                findViewById<EditText>(R.id.et_add_content).hint = "Ex. 인생사진은 나한테 맡겨!"
+                findViewById<ImageView>(R.id.iv_category).setBackgroundResource(R.drawable.ic_icon_board_role_active)
+                findViewById<Button>(R.id.bt_edit_travel_cancel).setOnClickListener {
+                    dismiss()
+                }
+                findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                    dismiss()
+                }
+                show()
+            }
+        }
     }
 
     /***

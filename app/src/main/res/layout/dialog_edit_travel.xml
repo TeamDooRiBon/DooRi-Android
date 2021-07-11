@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="330dp"
     android:layout_height="wrap_content"
     android:paddingVertical="16dp"
@@ -37,10 +38,9 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_icon_board_goal_active"
-        app:layout_constraintBottom_toBottomOf="@id/tv_category_detail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_category" />
+        app:layout_constraintTop_toTopOf="@id/tv_category"
+        tools:src="@drawable/ic_icon_board_goal_active" />
 
     <EditText
         android:id="@+id/et_add_content"
