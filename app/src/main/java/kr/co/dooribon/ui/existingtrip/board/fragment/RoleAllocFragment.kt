@@ -15,6 +15,7 @@ import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardListData
 class RoleAllocFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
+
     //private lateinit var dummyList: List<BoardListData>
     private var dummyList = listOf<BoardListData>()
 
@@ -22,7 +23,8 @@ class RoleAllocFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board_bottom, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_board_bottom, container, false)
         return binding.root
     }
 
@@ -41,7 +43,12 @@ class RoleAllocFragment : Fragment() {
     private fun setFragmentDetails() {
         binding.apply {
             tvTopic.text = getString(R.string.our_role)
-            ivTopic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_person_with_cloud))
+            ivTopic.setImageDrawable(
+                ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_person_with_cloud
+                )
+            )
             tvMainTodo.text = getString(R.string.set_role_first)
             tvSubTodo.text = getString(R.string.set_role_first_detail)
         }

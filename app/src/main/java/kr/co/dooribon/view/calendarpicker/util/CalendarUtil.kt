@@ -15,13 +15,9 @@ fun Calendar.toPrettyMonthString(
 }
 
 fun Calendar.toPrettyDateString(locale: Locale = Locale.getDefault()): String {
-    var month = get(MONTH).toString()
-    if (month.length == 1)
-        month = "0$month"
+    val month = (get(MONTH) + 1).toString()
     val year = get(YEAR).toString()
-    var day = get(DAY_OF_MONTH).toString()
-    if (day.length == 1)
-        day = "0$day"
+    val day = get(DAY_OF_MONTH).toString()
     return "$year.$month.$day "
 }
 
