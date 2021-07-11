@@ -1,12 +1,15 @@
 package kr.co.dooribon.ui.existingtrip.board.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter
@@ -32,6 +35,29 @@ class CheckListFragment : Fragment() {
         setDummyList()
         setBoardAdapter()
         setBgVisibility()
+        onAddBtnClickListener()
+    }
+
+    /* 추가하기 버튼 클릭 이벤트 처리 함수 */
+    private fun onAddBtnClickListener(){
+        binding.btAdd.setOnClickListener {
+            // TODO view persentation할 때 여기 아래 들어가는 다이얼로그 바꿔줘야 함.
+            val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
+            val sheetView = LayoutInflater.from(requireContext()).inflate(
+                R.layout.bottomsheet_add_schedule,
+                requireActivity().findViewById(R.id.cl_bottom_sheet_root)
+            )
+            sheetView.findViewById<Button>(R.id.btn_delete).setOnClickListener {
+                val deleteDlg = Dialog(requireContext())
+                deleteDlg.setContentView(R.layout.dialog_delete_question)
+                deleteDlg.findViewById<Button>(R.id.btn_no).setOnClickListener {
+                    deleteDlg.dismiss()
+                }
+                deleteDlg.show()
+            }
+            bsDialog.setContentView(sheetView)
+            bsDialog.show()
+        }
     }
 
     /***

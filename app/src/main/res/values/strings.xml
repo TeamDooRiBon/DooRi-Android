@@ -82,4 +82,7 @@
     <string name="our_checklist">우리의 체크리스트</string>
     <string name="chk_first">여행 전에 미리 체크하세요!</string>
     <string name="chk_first_detail">이번 여행에서 꼭 확인해야\n하는 것들을 미리 공유해요</string>
+    <string name="example_take_picture">Ex. 인생사진 찍어오기!</string>
+    <string name="cancel">취소</string>
+    <string name="ok">확인</string>
 </resources>
