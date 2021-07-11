@@ -16,7 +16,11 @@
 
         <activity android:name=".ui.triptendency.TripTendencyActivity"></activity>
         <activity android:name=".ui.home.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ui.newtrip.add.DatePickActivity"></activity>
 
@@ -27,11 +31,7 @@
         <activity
             android:name=".ui.newtrip.add.AddTravelActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.existingtrip.schedule.ScheduleAddActivity"></activity>
         <activity android:name=".ui.existingtrip.schedule.ScheduleEditActivity">
