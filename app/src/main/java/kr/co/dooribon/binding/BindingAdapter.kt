@@ -1,5 +1,8 @@
 package kr.co.dooribon.binding
 
-object BindingAdapter {
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import kr.co.dooribon.utils.extension.resizeHomeProgressTripImageView
 
+object BindingAdapter {
 }
