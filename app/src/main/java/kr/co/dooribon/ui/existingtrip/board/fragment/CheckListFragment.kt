@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.LinearLayout
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -50,32 +49,28 @@ class CheckListFragment : Fragment() {
                 R.layout.bottomsheet_add_board_list,
                 requireActivity().findViewById(R.id.cl_add_board_bottom_sheet_root)
             )
-//            sheetView.findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener {
-//                val deleteDlg = Dialog(requireContext())
-//                deleteDlg.setContentView(R.layout.dialog_delete_question)
-//                deleteDlg.findViewById<Button>(R.id.btn_no).setOnClickListener {
-//                    deleteDlg.dismiss()
-//                }
-//                deleteDlg.show()
-//            }
             sheetView.apply {
                 findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener { // TODO 삭제하는 기능 추가해야함.
                     bsDialog.dismiss()
                 }
                 findViewById<Button>(R.id.btn_add_board_edit).setOnClickListener {
                     val editDlg = Dialog(requireContext())
-                    editDlg.setContentView(R.layout.dialog_edit_travel)
-                    editDlg.findViewById<Button>(R.id.bt_edit_travel_cancel).setOnClickListener {
-                        editDlg.dismiss()
+                    editDlg.apply {
+                        setContentView(R.layout.dialog_edit_travel)
+                        findViewById<TextView>(R.id.tv_category).text = "체크리스트"
+                        findViewById<TextView>(R.id.tv_category_detail).text = "준비는 철저하게! 필요한 것을 미리 체크하세요"
+                        findViewById<EditText>(R.id.et_add_content).hint = "Ex. 미리 렌트카 예약"
+                        findViewById<ImageView>(R.id.iv_category).setBackgroundResource(R.drawable.ic_icon_board_check_active)
+                        findViewById<Button>(R.id.bt_edit_travel_cancel).setOnClickListener {
+                            dismiss()
+                        }
+                        findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                            dismiss()
+                        }
+                        show()
                     }
-                    editDlg.findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
-                        editDlg.dismiss()
-                    }
-                    editDlg.show()
                 }
             }
-
-
             bsDialog.setContentView(sheetView)
             bsDialog.show()
         }
