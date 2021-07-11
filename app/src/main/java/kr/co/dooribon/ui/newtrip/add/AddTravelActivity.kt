@@ -30,6 +30,7 @@ class AddTravelActivity : AppCompatActivity() {
                 tvEndDate.text = result.endDate
             }
         }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_travel)
