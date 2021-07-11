@@ -26,10 +26,10 @@ class TripTendencyViewModel : ViewModel() {
     }
 
     fun nextPage() {
-        if (_questionPosition.value!! < MAX_QUESTION_COUNT) {
-            if (_lastQuestionSelectedPosition.value!![_questionPosition.value!!] != -1) {
+        if (_questionPosition.value!! < MAX_QUESTION_COUNT - 1) {
+            if(_lastQuestionSelectedPosition.value!![_questionPosition.value!!] != -1){
                 _questionPosition.value = _questionPosition.value?.plus(1)
-            } else {
+            }else{
                 toastEventLiveData.value = "질문을 클릭해주세요"
             }
         }
@@ -37,9 +37,9 @@ class TripTendencyViewModel : ViewModel() {
 
     fun previousPage() {
         if (_questionPosition.value!! > 0) {
-            if (_lastQuestionSelectedPosition.value!![_questionPosition.value!!] != -1) {
+            if(_lastQuestionSelectedPosition.value!![_questionPosition.value!!] != -1){
                 _questionPosition.value = _questionPosition.value?.minus(1)
-            } else {
+            }else{
                 toastEventLiveData.value = "질문을 클릭해주세요"
             }
         }
@@ -135,6 +135,8 @@ class TripTendencyViewModel : ViewModel() {
         )
 
     fun getQuestionPosition() = _questionPosition.value
+
+    fun getLastQuestionSelectedPosition() = _lastQuestionSelectedPosition.value
 
     companion object {
         private const val MAX_QUESTION_COUNT = 10

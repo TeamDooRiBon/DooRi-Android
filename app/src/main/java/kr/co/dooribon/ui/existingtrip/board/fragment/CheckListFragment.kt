@@ -39,7 +39,7 @@ class CheckListFragment : Fragment() {
     }
 
     /* 추가하기 버튼 클릭 이벤트 처리 함수 */
-    private fun onAddBtnClickListener() {
+    private fun onAddBtnClickListener(){
         binding.btAdd.setOnClickListener {
             // TODO view persentation할 때 여기 아래 들어가는 다이얼로그 바꿔줘야 함.
             val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)

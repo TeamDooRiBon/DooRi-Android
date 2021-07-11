@@ -86,7 +86,7 @@
             android:text="다음 문항"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
-            android:onDebounceClick="@{() -> vm.nextPage()}"
+            android:onDebounceClick="@{() -> activity.navigateNextPage()}"
             app:layout_constraintTop_toTopOf="@id/btn_previous"
             app:layout_constraintStart_toEndOf="@id/btn_previous"
             app:layout_constraintEnd_toEndOf="@id/vp_trip_tendency_test"

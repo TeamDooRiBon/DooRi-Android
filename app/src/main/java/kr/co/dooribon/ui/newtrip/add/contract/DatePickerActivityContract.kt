@@ -14,7 +14,7 @@ class DatePickerActivityContract : ActivityResultContract<Intent, PickDatePair>(
     // 이동하고 난 다음에 result를 받아내서 어떻게 처리할지에 대한 로직입니다.
     // 주로 parcelize로 넘어온 데이터를 받아옵니다.
     override fun parseResult(resultCode: Int, intent: Intent?): PickDatePair? {
-        return when (resultCode) {
+        return when(resultCode){
             Activity.RESULT_OK -> intent?.getParcelableExtra("datePair")
             else -> null
         }

@@ -49,7 +49,7 @@ class RetrofitModule {
             .build()
 
     // api 만들어주는 확장 함수
-    fun <T : Any> createApi(clazz: KClass<T>): T = provideRetrofit().create(clazz.java)
+    fun<T : Any> createApi(clazz : KClass<T>) : T = provideRetrofit().create(clazz.java)
 
     companion object {
         // example baseCode , 서버 나오면 바꿔야 됨

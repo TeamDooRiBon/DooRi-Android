@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.triptendency.adapter
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,9 @@ import kr.co.dooribon.databinding.ViewTestTripTendencyQuestionBinding
 import kr.co.dooribon.domain.entity.TripTendency
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
 
+/**
+ * Select되는 로직은 문제 없이 제대로 포지션을 저장해놓고 있는데 , inflate될 때 문제가 생기는게 있다. 어떻게 하면 할 수 있을까..
+ */
 class TripTendencyQuestionAdapter(
     private val onItemClicked: (idx: Int) -> Unit,
     private val viewModel: TripTendencyViewModel
@@ -31,21 +35,10 @@ class TripTendencyQuestionAdapter(
 
         fun bind(item: TripTendency.TripTendencyQuestion) {
             binding.item = item
-            if (lastSelectedPosition == adapterPosition) {
-                binding.card.setCardBackgroundColor(Color.parseColor("#6B8FF9"))
-                binding.tvTestTripTendencyProblemNumber.apply {
-                    setBackgroundResource(R.drawable.circle_white)
-                    setTextColor(Color.parseColor("#6B8FF9"))
-                }
-                binding.tvTestTripTendencyProblemSubject.setTextColor(Color.parseColor("#FFFFFF"))
-            } else {
-                binding.card.setCardBackgroundColor(Color.parseColor("#FFFFFF"))
-                binding.tvTestTripTendencyProblemNumber.apply {
-                    setBackgroundResource(R.drawable.circle_sub_orange1)
-                    setTextColor(Color.parseColor("#FFFFFF"))
-                }
-                binding.tvTestTripTendencyProblemSubject.setTextColor(Color.parseColor("#000000"))
-            }
+            if (lastSelectedPosition == adapterPosition)
+                selectQuestion(binding)
+            else
+                unSelectQuestion(binding)
         }
     }
 
@@ -68,5 +61,23 @@ class TripTendencyQuestionAdapter(
         problemList.clear()
         problemList.addAll(list)
         notifyDataSetChanged()
+    }
+
+    private fun selectQuestion(binding: ViewTestTripTendencyQuestionBinding) {
+        binding.card.setCardBackgroundColor(Color.parseColor("#6B8FF9"))
+        binding.tvTestTripTendencyProblemNumber.apply {
+            setBackgroundResource(R.drawable.circle_white)
+            setTextColor(Color.parseColor("#6B8FF9"))
+        }
+        binding.tvTestTripTendencyProblemSubject.setTextColor(Color.parseColor("#FFFFFF"))
+    }
+
+    private fun unSelectQuestion(binding: ViewTestTripTendencyQuestionBinding) {
+        binding.card.setCardBackgroundColor(Color.parseColor("#FFFFFF"))
+        binding.tvTestTripTendencyProblemNumber.apply {
+            setBackgroundResource(R.drawable.circle_sub_orange1)
+            setTextColor(Color.parseColor("#FFFFFF"))
+        }
+        binding.tvTestTripTendencyProblemSubject.setTextColor(Color.parseColor("#000000"))
     }
 }

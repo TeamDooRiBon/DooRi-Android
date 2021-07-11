@@ -49,8 +49,7 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
     private fun modifyImgBg(holder: ImgViewHolder, isRemove: Boolean) {
         if (isRemove) {
             holder.itemView.findViewById<ImageView>(R.id.iv_reco_image).setBackgroundResource(0)
-            holder.itemView.findViewById<ImageView>(R.id.iv_selected_img).visibility =
-                View.INVISIBLE
+            holder.itemView.findViewById<ImageView>(R.id.iv_selected_img).visibility = View.INVISIBLE
         } else {
             holder.itemView.findViewById<ImageView>(R.id.iv_reco_image)
                 .setBackgroundResource(R.drawable.bg_selected_img_stroke)
