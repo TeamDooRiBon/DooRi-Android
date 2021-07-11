@@ -41,6 +41,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_test_trip_tendency"
             app:layout_constraintTop_toTopOf="@id/tv_test_trip_tendency"
+            app:layout_constraintBottom_toBottomOf="@id/tv_test_trip_tendency"
             tools:text="1" />
 
         <View
@@ -72,6 +73,8 @@
             android:id="@+id/rv_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:orientation="vertical"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"

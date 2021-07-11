@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.triptendency.adapter
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,15 +13,14 @@ import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
 class TripTendencyQuestionAdapter(
     private val onItemClicked: (idx: Int) -> Unit,
     private val viewModel: TripTendencyViewModel
-) :
-    RecyclerView.Adapter<TripTendencyQuestionAdapter.TripTendencyQuestionViewHolder>() {
+) : RecyclerView.Adapter<TripTendencyQuestionAdapter.TripTendencyQuestionViewHolder>() {
 
     private val problemList = mutableListOf<TripTendency.TripTendencyQuestion>()
 
     private val lastSelectedPosition
-        get() = viewModel.lastQuestionSelectedPosition.value!![viewModel.questionPosition.value!!]
+        get() = viewModel.lastQuestionSelectedPosition.value!![viewModel.getQuestionPosition()!!]
 
-    inner class TripTendencyQuestionViewHolder(private val binding: ViewTestTripTendencyQuestionBinding) :
+    inner class TripTendencyQuestionViewHolder(val binding: ViewTestTripTendencyQuestionBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {

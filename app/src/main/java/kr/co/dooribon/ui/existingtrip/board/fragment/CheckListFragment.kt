@@ -24,7 +24,8 @@ class CheckListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board_bottom, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_board_bottom, container, false)
         return binding.root
     }
 
@@ -65,7 +66,12 @@ class CheckListFragment : Fragment() {
     private fun setFragmentDetails() {
         binding.apply {
             tvTopic.text = getString(R.string.our_checklist)
-            ivTopic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_airplane))
+            ivTopic.setImageDrawable(
+                ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_airplane
+                )
+            )
             tvMainTodo.text = getString(R.string.chk_first)
             tvSubTodo.text = getString(R.string.chk_first_detail)
         }

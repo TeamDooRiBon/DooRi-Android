@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/sv_middle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -44,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
+                    android:includeFontPadding="false"
                     android:fontFamily="@font/spoqa_han_sans_neo_bold"
                     android:text="@string/start_new_travel"
                     android:textColor="@color/black"
@@ -57,6 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
+                    android:includeFontPadding="false"
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:text="@string/write_travel_name"
                     android:textColor="@color/black"
@@ -72,6 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
+                    android:includeFontPadding="false"
                     android:background="@drawable/bg_edit_text_gray"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:hint="@string/over_the_water"
@@ -87,6 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:includeFontPadding="false"
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:text="@string/travel_place"
                     android:textColor="@color/black"
@@ -101,6 +105,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:includeFontPadding="false"
                     android:background="@drawable/bg_edit_text_gray"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:hint="@string/jeju_seogwipo"
@@ -116,6 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:includeFontPadding="false"
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:text="@string/register_travel_date"
                     android:textColor="@color/black"
@@ -130,6 +136,7 @@
                     style="@style/RoundButton.DooRiBonMainBlue"
                     android:layout_width="wrap_content"
                     android:layout_height="28dp"
+                    android:includeFontPadding="false"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:text="@string/add_date"
                     android:textColor="@color/white"
@@ -143,6 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:includeFontPadding="false"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:text="@string/start_date"
                     android:textColor="#A0A4A8"
@@ -156,6 +164,7 @@
                     android:layout_height="36dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
+                    android:gravity="center"
                     android:background="@drawable/bg_text_gray"
                     app:layout_constraintEnd_toStartOf="@id/tv_end_date"
                     app:layout_constraintStart_toStartOf="@id/tv_fix_start_date"
@@ -166,6 +175,7 @@
                     android:id="@+id/tv_fix_end_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:text="@string/end_date"
                     android:textColor="#A0A4A8"
@@ -182,6 +192,7 @@
                     android:background="@drawable/bg_text_gray"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
+                    android:gravity="center"
                     app:layout_constraintBottom_toBottomOf="@id/tv_start_date"
                     app:layout_constraintEnd_toEndOf="@id/et_travel_place"
                     app:layout_constraintStart_toEndOf="@id/tv_start_date"
@@ -194,6 +205,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="4dp"
+                    android:includeFontPadding="false"
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:text="@string/click_pic"
                     android:textColor="@color/black"
@@ -206,6 +218,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:includeFontPadding="false"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:text="@string/we_prepared"
                     android:textColor="#A0A4A8"
@@ -233,7 +246,7 @@
                     app:spanCount="4" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -253,6 +266,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="28dp"
                 android:layout_marginTop="20dp"
+                android:includeFontPadding="false"
                 android:fontFamily="@font/spoqa_han_sans_neo_medium"
                 android:text="@string/build_new_travel"
                 android:textColor="@color/gray_gray_black_4"

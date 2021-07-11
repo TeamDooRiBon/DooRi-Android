@@ -11,7 +11,7 @@ import kr.co.dooribon.databinding.FragmentParticipateJoinBinding
 
 class ParticipateJoinFragment : Fragment() {
     private lateinit var binding: FragmentParticipateJoinBinding
-
+    var count = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -72,10 +72,10 @@ class ParticipateJoinFragment : Fragment() {
             }
 
         }
+        // TODO : Edittext 6개 모두 채워졌을 경우 버튼 변경
         fullEditEvent()
     }
 
-    // TODO : Edittext 6개 모두 채워졌을 경우 버튼 변경
     private fun fullEditEvent() {
         val code1 = binding.etCode1.text
         val code2 = binding.etCode2.text
@@ -83,6 +83,7 @@ class ParticipateJoinFragment : Fragment() {
         val code4 = binding.etCode4.text
         val code5 = binding.etCode5.text
         val code6 = binding.etCode6.text
+
         if (!code1.isNullOrBlank() && !code2.isNullOrBlank() && !code3.isNullOrBlank() && !code4.isNullOrBlank() && !code5.isNullOrBlank() && !code6.isNullOrBlank()) {
             binding.btnParticipatePut.apply {
                 setText("입력완료")

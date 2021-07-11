@@ -14,6 +14,7 @@
         android:background="@drawable/bg_white_pure9_top_round_layout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_timenumpicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
@@ -49,6 +50,32 @@
                 app:layout_constraintTop_toTopOf="@id/np_am_pm" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btncancel"
+            style="@style/RoundButton.DooRiBonGray7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_white_8"
+            android:textSize="15sp"
+            android:text="취소"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnok"
+            app:layout_constraintTop_toBottomOf="@id/cl_timenumpicker">
+
+        </Button>
+        <Button
+            android:id="@+id/btnok"
+            style="@style/RoundButton.DooRiBonGray7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_white_8"
+            android:textSize="15sp"
+            android:text="확인"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btncancel"
+            app:layout_constraintTop_toBottomOf="@id/cl_timenumpicker">
+
+        </Button>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

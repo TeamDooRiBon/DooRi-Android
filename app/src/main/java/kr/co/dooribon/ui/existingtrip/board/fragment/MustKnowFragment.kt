@@ -15,6 +15,7 @@ import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardListData
 class MustKnowFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
+
     //private lateinit var dummyList: List<BoardListData>
     private var dummyList = listOf<BoardListData>()
 
@@ -22,7 +23,8 @@ class MustKnowFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board_bottom, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_board_bottom, container, false)
         return binding.root
     }
 
@@ -41,7 +43,12 @@ class MustKnowFragment : Fragment() {
     private fun setFragmentDetails() {
         binding.apply {
             tvTopic.text = getString(R.string.please_know_this)
-            ivTopic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_circle_check))
+            ivTopic.setImageDrawable(
+                ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_circle_check
+                )
+            )
             tvMainTodo.text = getString(R.string.share_first)
             tvSubTodo.text = getString(R.string.share_first_detail)
         }
