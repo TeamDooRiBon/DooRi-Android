@@ -10,7 +10,6 @@ import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTripTendencyBinding
 import kr.co.dooribon.dialog.TripTendencyTestExitDialog
 import kr.co.dooribon.dialog.TripTendencyTestResultLoadingDialog
-import kr.co.dooribon.domain.entity.TripTendency
 import kr.co.dooribon.ui.triptendency.adapter.TripTendencyAdapter
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
 import kr.co.dooribon.utils.shortToast
@@ -43,7 +42,7 @@ class TripTendencyActivity : AppCompatActivity() {
     }
 
     private fun observeToastEvent() {
-        viewModel.toastEventLiveData.observe(this){
+        viewModel.toastEventLiveData.observe(this) {
             shortToast(it)
         }
     }

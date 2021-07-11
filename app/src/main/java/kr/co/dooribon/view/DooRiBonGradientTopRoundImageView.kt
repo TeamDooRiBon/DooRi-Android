@@ -10,7 +10,6 @@ import kr.co.dooribon.R
 import kr.co.dooribon.utils.OnChangeProp
 import kr.co.dooribon.utils.dpToPixelFloat
 import kr.co.dooribon.utils.drawTopRoundRectPath
-import kr.co.dooribon.utils.extension.resizeHomeProgressTripImageView
 
 /**
  * Created by SSong-develop 2021.06.30
