@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.newtrip.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
@@ -48,9 +49,11 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
     private fun modifyImgBg(holder: ImgViewHolder, isRemove: Boolean) {
         if (isRemove) {
             holder.itemView.findViewById<ImageView>(R.id.iv_reco_image).setBackgroundResource(0)
+            holder.itemView.findViewById<ImageView>(R.id.iv_selected_img).visibility = View.INVISIBLE
         } else {
             holder.itemView.findViewById<ImageView>(R.id.iv_reco_image)
                 .setBackgroundResource(R.drawable.bg_selected_img_stroke)
+            holder.itemView.findViewById<ImageView>(R.id.iv_selected_img).visibility = View.VISIBLE
         }
     }
 
