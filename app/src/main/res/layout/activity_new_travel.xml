@@ -271,18 +271,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sv_middle">
 
-            <Button
+            <android.widget.Button
                 android:id="@+id/bt_start_new_travel"
-                style="@style/RoundButton.DooRiBonGray7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="28dp"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/bg_new_travel_disabled_btn"
                 android:enabled="false"
                 android:fontFamily="@font/spoqa_han_sans_neo_medium"
-                android:includeFontPadding="false"
                 android:text="@string/build_new_travel"
                 android:textColor="@color/gray_gray_black_4"
+                app:background="@null"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

@@ -2,6 +2,7 @@ package kr.co.dooribon.ui.newtrip.add
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
@@ -41,6 +43,7 @@ class AddTravelActivity : AppCompatActivity() {
             }
             setCalendarData() // 캘린더에서 받은 값 액티비티에 반영
             tvCalendarNotEmpty = true // 여행 날짜 입력 플래그 true로 설정
+            enableNewTravelBtn() // 다 체크되었는지 한 번 확인
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +65,26 @@ class AddTravelActivity : AppCompatActivity() {
         resetData(-1) // 수정할 값이 없으므로 -1 대입
         imgAdapter(tempImgs)
         chkEditTextInput()
+        enableNewTravelBtn()
     }
+
+    /* 다음으로 넘어갈 수 있도록 버튼 활성화 */
+    private fun enableNewTravelBtn() {
+        if (isEverythingChecked()) {
+            binding.btStartNewTravel.apply {
+                isEnabled = true
+                background = ContextCompat.getDrawable(
+                    this@AddTravelActivity,
+                    R.drawable.bg_new_travel_enabled_btn
+                )
+                setTextColor(Color.WHITE)
+            }
+        }
+    }
+
+    /* 모든 것이 다 체크되었는지 확인하는 함수 */
+    private fun isEverythingChecked() =
+        etTravelPlaceNotEmpty && etTravelNameNotEmpty && tvCalendarNotEmpty && ivChecked
 
     /* 캘린더에서 데이터 주면 뷰에 받아서 뷰에 적용함 */
     private fun setCalendarData() {
@@ -137,17 +159,21 @@ class AddTravelActivity : AppCompatActivity() {
         binding.apply {
             etTravelName.addTextChangedListener {
                 etTravelNameNotEmpty = etTravelName.text.isNotEmpty()
+                enableNewTravelBtn() // 다 체크되었는지 한 번 확인
             }
             etTravelPlace.addTextChangedListener {
                 etTravelPlaceNotEmpty = etTravelName.text.isNotEmpty()
+                enableNewTravelBtn() // 다 체크되었는지 한 번 확인
             }
         }
     }
 
+    /* 대표 사진 클릭 이벤트 리스너 */
     private fun onImageItemClickListener(adapter: RecoImgAdapter) {
         adapter.setItemClickListener(object : RecoImgAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 ivChecked = true
+                enableNewTravelBtn() // 다 체크되었는지 한 번 확인
                 adapter.notifyItemChanged(adapter.prevClickedImgPos)
                 adapter.isRemoveBgBinding = true
                 adapter.modifyImgBg(view, false)
