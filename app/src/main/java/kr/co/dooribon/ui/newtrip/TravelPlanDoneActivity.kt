@@ -12,6 +12,7 @@ import kr.co.dooribon.databinding.ActivityTravelPlanDoneBinding
 import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
+import kotlin.concurrent.timerTask
 
 class TravelPlanDoneActivity : AppCompatActivity() {
 
@@ -31,9 +32,17 @@ class TravelPlanDoneActivity : AppCompatActivity() {
 
         binding.btnCopyCodes.setOnClickListener {
             val dlg = DoneCopyDialog(this)
-
             dlg.start()
+            Timer().schedule(timerTask { moveToExistingTripActivity(dlg) }, 3500)
         }
+    }
+
+    private fun moveToExistingTripActivity(dlg : DoneCopyDialog){
+        val intent = Intent(this, ExistingTripActivity::class.java)
+        dlg.dismiss() // 다이얼로그 종료
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
+        finish() // 현재 액티비티 종료
+        startActivity(intent)
     }
 
     private fun changeIndicator() {

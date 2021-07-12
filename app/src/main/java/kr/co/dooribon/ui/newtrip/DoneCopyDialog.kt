@@ -55,4 +55,8 @@ class DoneCopyDialog(context: Context) {
         dlg.setCancelable(false) // 다이얼로그 바깥 부분을 눌렀을 때 다이얼로그가 닫히지 않도록 설정
         dlg.show()
     }
+
+    fun dismiss(){
+        dlg.dismiss()
+    }
 }
