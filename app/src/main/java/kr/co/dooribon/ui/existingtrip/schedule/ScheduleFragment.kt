@@ -45,6 +45,7 @@ class ScheduleFragment : Fragment() {
 
         binding.btAddSchedule.setOnClickListener {
             val intent = Intent(requireContext(), ScheduleAddActivity::class.java)
+            //val intent = Intent(requireContext(), ScheduleEditActivity::class.java)
             startActivity(intent)
         }
 
@@ -234,13 +235,19 @@ class ScheduleFragment : Fragment() {
                     R.layout.bottomsheet_add_schedule,
                     requireActivity().findViewById(R.id.cl_bottom_sheet_root)
                 )
-                sheetView.findViewById<Button>(R.id.btn_delete).setOnClickListener {
-                    val deleteDlg = Dialog(requireContext())
-                    deleteDlg.setContentView(R.layout.dialog_delete_question)
-                    deleteDlg.findViewById<Button>(R.id.btn_no).setOnClickListener {
-                        deleteDlg.dismiss()
+                sheetView.apply {
+                    findViewById<Button>(R.id.btn_delete).setOnClickListener {
+                        val deleteDlg = Dialog(requireContext())
+                        deleteDlg.setContentView(R.layout.dialog_delete_question)
+                        deleteDlg.findViewById<Button>(R.id.btn_no).setOnClickListener {
+                            deleteDlg.dismiss()
+                        }
+                        deleteDlg.show()
                     }
-                    deleteDlg.show()
+                    findViewById<Button>(R.id.btn_edit).setOnClickListener {
+                        val intent = Intent(requireContext(), ScheduleEditActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
                 bsDialog.setContentView(sheetView)
                 bsDialog.show()

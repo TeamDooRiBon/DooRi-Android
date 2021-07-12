@@ -59,7 +59,7 @@
                 app:layout_constraintStart_toEndOf="@id/tv_test_trip_tendency_problem_number"
                 app:layout_constraintTop_toTopOf="@id/tv_test_trip_tendency_problem_number"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:text="시간 단위로 세세하게 장소와 동선까지 정하고 싶어"/>
+                tools:text="시간 단위로 세세하게 장소와 동선까지 정하고 싶어" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

@@ -54,7 +54,7 @@
                     android:text="TEST 다시하기"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <androidx.cardview.widget.CardView
@@ -84,7 +84,7 @@
                             android:alpha="0.3"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
+                            app:layout_constraintBottom_toBottomOf="parent" />
 
                         <TextView
                             android:id="@+id/tv_card_my_trip_type_name"
@@ -99,7 +99,7 @@
                             android:text="철두철미 계획가"
                             tools:text="철두철미 계획가"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <LinearLayout
                             android:id="@+id/li_chips"
@@ -108,7 +108,7 @@
                             android:orientation="horizontal"
                             android:layout_marginTop="8dp"
                             app:layout_constraintStart_toStartOf="@id/tv_card_my_trip_type_name"
-                            app:layout_constraintTop_toBottomOf="@id/tv_card_my_trip_type_name"/>
+                            app:layout_constraintTop_toBottomOf="@id/tv_card_my_trip_type_name" />
 
                         <TextView
                             android:id="@+id/tv_card_my_trip_type_user_name"
@@ -121,7 +121,7 @@
                             android:layout_marginBottom="16dp"
                             tools:text="유지인"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"/>
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_card_my_trip_detail"
@@ -135,7 +135,7 @@
                             android:layout_marginBottom="8dp"
                             app:cornerRadius="20dp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
+                            app:layout_constraintBottom_toBottomOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -226,7 +226,7 @@
                     android:overScrollMode="never"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_member_trip_type_title"/>
+                    app:layout_constraintTop_toBottomOf="@id/tv_member_trip_type_title" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_member_trip_type_nothing"

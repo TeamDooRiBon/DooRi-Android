@@ -1,8 +1,6 @@
 package kr.co.dooribon.di
 
-import android.util.Log
 import okhttp3.ConnectionPool
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
 import retrofit2.Retrofit
@@ -16,25 +14,6 @@ import kotlin.reflect.KClass
 class RetrofitModule {
     private fun provideOkHttpClient() =
         OkHttpClient.Builder()
-            .addInterceptor(Interceptor { chain ->
-                val request = chain.request()
-                try {
-                    var response = chain.proceed(request)
-                    if (response.code == 408) { // timeout인 경우
-                        kotlin.runCatching {
-                            response.body?.close()
-                            chain.proceed(request)
-                        }.onSuccess {
-                            response = it
-                        }.onFailure {
-                            Log.d("error", "timeOut Error")
-                        }
-                    }
-                    response
-                } catch (e: Throwable) {
-                    throw e
-                }
-            })
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
             .protocols(listOf(Protocol.HTTP_1_1))
