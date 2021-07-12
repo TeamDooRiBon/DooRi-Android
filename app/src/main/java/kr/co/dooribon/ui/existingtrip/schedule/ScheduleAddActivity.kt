@@ -17,11 +17,31 @@ class ScheduleAddActivity : AppCompatActivity() {
         binding = ActivityScheduleAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        fullChangeBtn()
         timePickerClickListener()
         timePickerClickListener2()
         notAddClickListener()
         scheduleAddBtnClickListener()
         addBackBtnClickListener()
+    }
+
+    private fun fullChangeBtn(){
+        val code1 = binding.etScheduleAddWhat.text
+        val code2 = binding.etScheduleAddLocation.text
+        val code3 = binding.etScheduleAddMemo.text
+        binding.etScheduleAddMemo.setOnClickListener {
+            if(code1.isNotEmpty() && code2.isNotEmpty() && code3.isNotEmpty()){
+                binding.btnScheduleAdd.apply{
+                    setTextColor(getColor(R.color.gray_white_8))
+                    setBackgroundColor(getColor(R.color.doo_ri_bon_orange))
+                }
+            } else if(code1.isNotEmpty() && code2.isNotEmpty() && binding.etScheduleAddLocation.isEnabled == false){
+                binding.btnScheduleAdd.apply{
+                    setTextColor(getColor(R.color.gray_white_8))
+                    setBackgroundColor(getColor(R.color.doo_ri_bon_orange))
+                }
+            } // TODO : notadd active 버튼 눌렀을 때도 버튼 활성화하기
+        }
     }
 
     private fun timePickerClickListener() {
