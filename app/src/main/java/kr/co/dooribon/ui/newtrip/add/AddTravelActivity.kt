@@ -3,6 +3,7 @@ package kr.co.dooribon.ui.newtrip.add
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
@@ -30,6 +31,7 @@ class AddTravelActivity : AppCompatActivity() {
                 tvStartDate.text = result?.startDate ?: ""
                 tvEndDate.text = result?.endDate ?: ""
             }
+            setAddCalendarBtn()
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +52,24 @@ class AddTravelActivity : AppCompatActivity() {
 
         resetData(-1) // 수정할 값이 없으므로 -1 대입
         imgAdapter(tempImgs)
+        setAddCalendarBtn()
     }
+
+    private fun setAddCalendarBtn() {
+        if (chkDateSelected()) {
+            Log.e("c체크", "체크")
+            binding.btAddDate
+            binding.btAddDate
+            binding.btAddDate.apply {
+                setBackgroundResource(R.drawable.bg_add_date_gray_btn)
+                text = "+ 날짜 수정하기"
+            }
+        }
+    }
+
+    /* 날짜 텍스트가 잘 들어와있는지 확인하는 부분 */
+    private fun chkDateSelected() =
+        binding.tvStartDate.text.isNotEmpty() && binding.tvEndDate.text.isNotEmpty()
 
     private fun imgAdapter(imgList: List<ImageData>) {
         val imgAdapter = RecoImgAdapter()
