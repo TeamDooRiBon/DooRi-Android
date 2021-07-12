@@ -84,8 +84,19 @@ class ParticipateJoinFragment : Fragment() {
         val code4 = binding.etCode4.text
         val code5 = binding.etCode5.text
         val code6 = binding.etCode6.text
-        // 반복문
-        if (!code1.isNullOrBlank() && !code2.isNullOrBlank() && !code3.isNullOrBlank() && !code4.isNullOrBlank() && !code5.isNullOrBlank() && !code6.isNullOrBlank()) {
+
+        binding.etCode5.setOnClickListener{
+            binding.btnParticipatePut.apply {
+                setText("입력완료")
+                setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.doo_ri_bon_orange
+                    )
+                )
+            }
+        }
+        /*if (!code1.isNullOrBlank() && !code2.isNullOrBlank() && !code3.isNullOrBlank() && !code4.isNullOrBlank() && !code5.isNullOrBlank() && !code6.isNullOrBlank()) {
             binding.btnParticipatePut.apply {
                 setText("입력완료")
                 setBackgroundColor(
@@ -99,6 +110,6 @@ class ParticipateJoinFragment : Fragment() {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.participate_fragment_container_view, participatecheckFragment)
                 .commitNow()
-        }
+        }*/
     }
 }
