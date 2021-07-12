@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import kr.co.dooribon.databinding.DialogDooribonTemplateBinding
 import kr.co.dooribon.utils.AutoClearBinding
-import kr.co.dooribon.utils.extension.setDooRiBonDialogSize
+import kr.co.dooribon.utils.setDooRiBonDialogSize
 
 /**
  * Created by SSong-develop 2021.07.12
