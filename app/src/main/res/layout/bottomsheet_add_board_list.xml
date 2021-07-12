@@ -63,7 +63,7 @@
 
 
         <TextView
-            android:id="@+id/tv_main_todo"
+            android:id="@+id/tv_add_board_main_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -92,7 +92,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_add_board_edit"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_todo" />
+            app:layout_constraintTop_toBottomOf="@id/tv_add_board_main_todo" />
 
         <Button
             android:id="@+id/btn_add_board_edit"

@@ -62,43 +62,6 @@ class GoalFragment : Fragment() {
         }
     }
 
-    /* 리사이클러뷰 아이템 클릭 리스너 */
-    private fun itemClickListener() {
-        binding.btAdd.setOnClickListener {
-            // TODO view persentation할 때 여기 아래 들어가는 다이얼로그 바꿔줘야 함.
-            val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
-            val sheetView = LayoutInflater.from(requireContext()).inflate(
-                R.layout.bottomsheet_add_board_list,
-                requireActivity().findViewById(R.id.cl_add_board_bottom_sheet_root)
-            )
-            sheetView.apply {
-                findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener { // TODO 삭제하는 기능 추가해야함.
-                    bsDialog.dismiss()
-                }
-                findViewById<Button>(R.id.btn_add_board_edit).setOnClickListener {
-                    val editDlg = Dialog(requireContext())
-                    editDlg.apply {
-                        setContentView(R.layout.dialog_edit_travel)
-                        findViewById<TextView>(R.id.tv_category).text = "여행 목표"
-                        findViewById<TextView>(R.id.tv_category_detail).text =
-                            "이번 여행의 목표를 함께 공유하세요!"
-                        findViewById<EditText>(R.id.et_add_content).hint = "Ex. 인생사진 찍어오기!"
-                        findViewById<ImageView>(R.id.iv_category).setBackgroundResource(R.drawable.ic_icon_board_goal_active)
-                        findViewById<Button>(R.id.bt_edit_travel_cancel).setOnClickListener {
-                            dismiss()
-                        }
-                        findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
-                            dismiss()
-                        }
-                        show()
-                    }
-                }
-            }
-            bsDialog.setContentView(sheetView)
-            bsDialog.show()
-        }
-    }
-
     /***
      * 한 프래그먼트를 재활용해서 사용하기 때문에
      * 각 탭 레이아웃에 맞는 텍스트와 이미지를 넣어줘야 한다.
@@ -132,6 +95,56 @@ class GoalFragment : Fragment() {
         val boardRV = binding.rvTodoList
         boardAdapter.setItemList(dummyList)
         boardRV.adapter = boardAdapter
+        onBoardItemClickListener(boardAdapter)
+    }
+
+    private fun onBoardItemClickListener(adapter: BoardAdapter) {
+        adapter.setItemClickListener(object : BoardAdapter.ItemClickListener {
+            override fun onClick(view: View, position: Int) {
+                itemClickListener(
+                    view.findViewById<TextView>(R.id.tv_board_main).text.toString(),
+                    view.findViewById<TextView>(R.id.tv_board_writer).text.toString()
+                )
+            }
+        })
+    }
+
+    /* 리사이클러뷰 아이템 클릭 리스너
+    * todoText로 다이얼로그에 뜰 내용을 받는다
+    *  */
+    private fun itemClickListener(todoText: String, writer: String) {
+        // TODO view persentation할 때 여기 아래 들어가는 다이얼로그 바꿔줘야 함.
+        val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
+        val sheetView = LayoutInflater.from(requireContext()).inflate(
+            R.layout.bottomsheet_add_board_list,
+            requireActivity().findViewById(R.id.cl_add_board_bottom_sheet_root)
+        )
+        sheetView.apply {
+            findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener { // TODO 삭제하는 기능 추가해야함.
+                bsDialog.dismiss()
+            }
+            findViewById<TextView>(R.id.tv_add_board_main_todo).text = todoText
+            findViewById<Button>(R.id.btn_add_board_edit).setOnClickListener {
+                val editDlg = Dialog(requireContext())
+                editDlg.apply {
+                    setContentView(R.layout.dialog_edit_travel)
+                    findViewById<TextView>(R.id.tv_category).text = "여행 목표"
+                    findViewById<TextView>(R.id.tv_category_detail).text =
+                        "이번 여행의 목표를 함께 공유하세요!"
+                    findViewById<EditText>(R.id.et_add_content).hint = "Ex. 인생사진 찍어오기!"
+                    findViewById<ImageView>(R.id.iv_category).setBackgroundResource(R.drawable.ic_icon_board_goal_active)
+                    findViewById<Button>(R.id.bt_edit_travel_cancel).setOnClickListener {
+                        dismiss()
+                    }
+                    findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                        dismiss()
+                    }
+                    show()
+                }
+            }
+        }
+        bsDialog.setContentView(sheetView)
+        bsDialog.show()
     }
 
     private fun setDummyList() {
