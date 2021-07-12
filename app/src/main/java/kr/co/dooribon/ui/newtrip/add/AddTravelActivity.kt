@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -86,6 +87,7 @@ class AddTravelActivity : AppCompatActivity() {
         imgRV.adapter = imgAdapter
         imgRV.addItemDecoration(RVItemDeco(10, 10, 10, 10))
         imgAdapter.setItemList(imgList)
+        onImageItemClickListener(imgAdapter)
     }
 
     private fun resetData(pos: Int) {
@@ -140,5 +142,17 @@ class AddTravelActivity : AppCompatActivity() {
                 etTravelPlaceNotEmpty = etTravelName.text.isNotEmpty()
             }
         }
+    }
+
+    private fun onImageItemClickListener(adapter: RecoImgAdapter) {
+        adapter.setItemClickListener(object : RecoImgAdapter.ItemClickListener {
+            override fun onClick(view: View, position: Int) {
+                ivChecked = true
+                adapter.notifyItemChanged(adapter.prevClickedImgPos)
+                adapter.isRemoveBgBinding = true
+                adapter.modifyImgBg(view, false)
+                adapter.prevClickedImgPos = position
+            }
+        })
     }
 }
