@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_icon_board_goal_active"
         app:layout_constraintBottom_toTopOf="@id/tv_tab_text"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/tv_tab_text"
@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_tab_img"
         tools:text="@string/travel_goal"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
