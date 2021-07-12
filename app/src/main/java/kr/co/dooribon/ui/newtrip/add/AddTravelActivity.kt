@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -51,6 +52,7 @@ class AddTravelActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_travel)
 
         backBtnClickListener()
+        window.setSoftInputMode(SOFT_INPUT_ADJUST_NOTHING)
 
         binding.btStartNewTravel.setOnClickListener {
             val intent = Intent(this, TravelPlanDoneActivity::class.java)
