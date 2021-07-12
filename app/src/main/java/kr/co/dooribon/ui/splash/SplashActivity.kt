@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.splash
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
@@ -23,9 +24,9 @@ class SplashActivity : AppCompatActivity() {
         lifecycleScope.launchWhenStarted {
             delay(2000)
             if (sharedPreferenceModule.isFirstLaunch) {
-                shortToast("온보딩이 시작되면 됩니다.")
+                Log.i("Work OnBoard","온보딩이 시작되면 됩니다.")
             } else {
-                shortToast("온보딩이 시작되지 않으면 됩니다.")
+                Log.i("Do not Work OnBoard","온보딩이 시작되지 않으면 됩니다.")
             }
             startActivity(getIntent<SignInActivity>())
             overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
