@@ -1,5 +1,6 @@
 package kr.co.dooribon.ui.newtrip.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +14,18 @@ import kr.co.dooribon.databinding.ItemRecommendedPhotosBinding
 class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
 
     private var imgs = mutableListOf<ImageData>()
-    private var prevClickedImgPos = -1 // 이전에 클릭된 이미지 위치
-    private var isRemoveBgBinding = false // 뒤에 배경을 지울 때 이 변수를 true로 바꿔 배경을 지운다
+    var prevClickedImgPos = -1 // 이전에 클릭된 이미지 위치
+    var isRemoveBgBinding = false // 뒤에 배경을 지울 때 이 변수를 true로 바꿔 배경을 지운다
+    private lateinit var itemClickListener: ItemClickListener
+
+    // 클릭 interface
+    interface ItemClickListener {
+        fun onClick(view: View, position: Int)
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImgViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -25,19 +36,15 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
 
     override fun onBindViewHolder(holder: ImgViewHolder, position: Int) {
         holder.bind(imgs[position])
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
 
         // 이전에 클릭한 뷰를 지우는 부분
         // position!=prevClickedImgPos는 같은 곳을 두 번 클릭했을 때 bg가 지워지지 않게 해준다.
         if (isRemoveBgBinding && position != prevClickedImgPos) {
-            modifyImgBg(holder, true) // 뒤에 배경 제거
+            modifyImgBg(holder.itemView, true) // 뒤에 배경 제거
             isRemoveBgBinding = false
-        }
-
-        holder.itemView.setOnClickListener {
-            notifyItemChanged(prevClickedImgPos)
-            isRemoveBgBinding = true
-            modifyImgBg(holder, false) // 뒤에 배경 추가
-            prevClickedImgPos = position // 마지막으로 클릭 된 아이템 업데이트
         }
     }
 
@@ -46,15 +53,16 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
      * isRemove가 true면 뒤 배경을 빼고,
      * false면 뒤에 배경을 넣는다.
      * */
-    private fun modifyImgBg(holder: ImgViewHolder, isRemove: Boolean) {
+    fun modifyImgBg(view: View, isRemove: Boolean) {
         if (isRemove) {
-            holder.itemView.findViewById<ImageView>(R.id.iv_reco_image).setBackgroundResource(0)
-            holder.itemView.findViewById<ImageView>(R.id.iv_selected_img).visibility =
-                View.INVISIBLE
+            Log.e("igRemove", isRemove.toString())
+            view.findViewById<ImageView>(R.id.iv_reco_image).setBackgroundResource(0)
+            view.findViewById<ImageView>(R.id.iv_selected_img).visibility = View.INVISIBLE
         } else {
-            holder.itemView.findViewById<ImageView>(R.id.iv_reco_image)
+            Log.e("igRemove", isRemove.toString())
+            view.findViewById<ImageView>(R.id.iv_reco_image)
                 .setBackgroundResource(R.drawable.bg_selected_img_stroke)
-            holder.itemView.findViewById<ImageView>(R.id.iv_selected_img).visibility = View.VISIBLE
+            view.findViewById<ImageView>(R.id.iv_selected_img).visibility = View.VISIBLE
         }
     }
 
