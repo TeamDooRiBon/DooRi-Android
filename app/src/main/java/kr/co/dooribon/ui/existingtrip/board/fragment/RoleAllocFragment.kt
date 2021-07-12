@@ -116,7 +116,6 @@ class RoleAllocFragment : Fragment() {
     * writer : 작성자
     *  */
     private fun itemClickListener(todoText: String, writer: String) {
-        // TODO view persentation할 때 여기 아래 들어가는 다이얼로그 바꿔줘야 함.
         val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
         val sheetView = LayoutInflater.from(requireContext()).inflate(
             R.layout.bottomsheet_add_board_list,
@@ -127,6 +126,8 @@ class RoleAllocFragment : Fragment() {
                 bsDialog.dismiss()
             }
             findViewById<TextView>(R.id.tv_add_board_main_todo).text = todoText
+            findViewById<TextView>(R.id.tv_add_board_writer).text = writer
+            findViewById<TextView>(R.id.tv_add_board_category).text = "역할 분담"
             findViewById<Button>(R.id.btn_add_board_edit).setOnClickListener {
                 val editDlg = Dialog(requireContext())
                 editDlg.apply {
