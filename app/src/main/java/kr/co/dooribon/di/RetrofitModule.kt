@@ -8,6 +8,7 @@ import okhttp3.Protocol
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import kotlin.reflect.KClass
 
 /**
  * Retrofit 객체 생성해주는 Module
@@ -47,11 +48,11 @@ class RetrofitModule {
             .client(provideOkHttpClient())
             .build()
 
+    // api 만들어주는 확장 함수
+    fun<T : Any> createApi(clazz : KClass<T>) : T = provideRetrofit().create(clazz.java)
+
     companion object {
         // example baseCode , 서버 나오면 바꿔야 됨
         private const val BASE_URL = "https://github.com"
-
-        // Retrofit 객체가 필요할 경우 가져오게하는 함수수
-        fun getRetrofitInstance() = RetrofitModule().provideRetrofit()
     }
 }

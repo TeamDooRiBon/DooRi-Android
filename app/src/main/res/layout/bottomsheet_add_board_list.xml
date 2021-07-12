@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_add_board_bottom_sheet_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_pure9_top_round_layout"
+        android:elevation="10dp">
+
+        <ImageView
+            android:id="@+id/iv_profile_pic"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="26dp"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_add_board_writer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:includeFontPadding="false"
+            android:text="김민영님이 작성"
+            android:textColor="#868686"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_profile_pic"
+            app:layout_constraintStart_toEndOf="@id/iv_profile_pic"
+            app:layout_constraintTop_toTopOf="@id/iv_profile_pic" />
+
+        <LinearLayout
+            android:id="@+id/ll_div_line"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/gray_gray_6"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/iv_profile_pic"
+            app:layout_constraintStart_toEndOf="@id/tv_add_board_writer"
+            app:layout_constraintTop_toTopOf="@id/iv_profile_pic" />
+
+        <TextView
+            android:id="@+id/tv_add_board_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:text="여행목표"
+            android:textColor="@color/gray_gray_6"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_add_board_writer"
+            app:layout_constraintStart_toEndOf="@id/ll_div_line"
+            app:layout_constraintTop_toTopOf="@id/tv_add_board_writer" />
+
+
+        <TextView
+            android:id="@+id/tv_add_board_main_todo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:includeFontPadding="false"
+            android:text="인생 사진 찍어오기!"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/iv_profile_pic"
+            app:layout_constraintTop_toBottomOf="@id/iv_profile_pic" />
+
+
+        <Button
+            android:id="@+id/btn_add_board_delete"
+            style="@style/RoundButton.DooRiBonGray7"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:includeFontPadding="false"
+            android:text="@string/delete"
+            android:textColor="@color/gray_gray_black_4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_add_board_edit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_add_board_main_todo" />
+
+        <Button
+            android:id="@+id/btn_add_board_edit"
+            style="@style/RoundButton.DooRiBonOrange"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:includeFontPadding="false"
+            android:text="@string/edit"
+            android:textColor="@color/gray_white_pure_9"
+            app:layout_constraintBottom_toBottomOf="@id/btn_add_board_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_add_board_delete"
+            app:layout_constraintTop_toTopOf="@id/btn_add_board_delete" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

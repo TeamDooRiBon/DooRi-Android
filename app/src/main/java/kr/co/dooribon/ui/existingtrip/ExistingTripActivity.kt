@@ -14,12 +14,14 @@ class ExistingTripActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_existing_trip)
+        binding.activity = this
+        binding.lifecycleOwner = this
 
         configureBackButton()
         configureBottomNavigation()
     }
 
-    private fun configureBackButton() {
+    fun configureBackButton() {
         binding.ivExistingTripBack.setOnClickListener {
             finish()
         }
