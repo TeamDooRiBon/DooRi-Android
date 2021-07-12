@@ -72,8 +72,36 @@ class ScheduleEditActivity : AppCompatActivity() {
                 } else {
                     binding.tvTimepickerAmpm3.text = "오후"
                 }
-                binding.tvTimepickerHour3.text = sheetView.npHour.value.toString()
-                binding.tvTimepickerMinute3.text = (sheetView.npMinute.value * 10).toString()
+
+                if (sheetView.npHour.value == 0){
+                    binding.tvTimepickerHour3.text = "00"
+                } else if(sheetView.npHour.value == 1){
+                    binding.tvTimepickerHour3.text = "01"
+                } else if(sheetView.npHour.value == 2){
+                    binding.tvTimepickerHour3.text = "02"
+                } else if(sheetView.npHour.value == 3){
+                    binding.tvTimepickerHour3.text = "03"
+                } else if(sheetView.npHour.value == 4){
+                    binding.tvTimepickerHour3.text = "04"
+                } else if(sheetView.npHour.value == 5){
+                    binding.tvTimepickerHour3.text = "05"
+                } else if(sheetView.npHour.value == 6){
+                    binding.tvTimepickerHour3.text = "06"
+                } else if(sheetView.npHour.value == 7){
+                    binding.tvTimepickerHour3.text = "07"
+                } else if(sheetView.npHour.value == 8){
+                    binding.tvTimepickerHour3.text = "08"
+                } else if(sheetView.npHour.value == 9){
+                    binding.tvTimepickerHour3.text = "09"
+                } else {
+                    binding.tvTimepickerHour3.text = sheetView.npHour.value.toString()
+                }
+
+                if (sheetView.npMinute.value == 0){
+                    binding.tvTimepickerMinute3.text = "00"
+                } else {
+                    binding.tvTimepickerMinute3.text = (sheetView.npMinute.value * 10).toString()
+                }
                 bsDialog.dismiss()
             }
             sheetView.btncancel.setOnClickListener {
@@ -131,8 +159,36 @@ class ScheduleEditActivity : AppCompatActivity() {
                 } else {
                     binding.tvTimepickerAmpm4.text = "오후"
                 }
-                binding.tvTimepickerHour4.text = sheetView.npHour.value.toString()
-                binding.tvTimepickerMinute4.text = (sheetView.npMinute.value * 10).toString()
+
+                if (sheetView.npHour.value == 0){
+                    binding.tvTimepickerHour4.text = "00"
+                } else if(sheetView.npHour.value == 1){
+                    binding.tvTimepickerHour4.text = "01"
+                } else if(sheetView.npHour.value == 2){
+                    binding.tvTimepickerHour4.text = "02"
+                } else if(sheetView.npHour.value == 3){
+                    binding.tvTimepickerHour4.text = "03"
+                } else if(sheetView.npHour.value == 4){
+                    binding.tvTimepickerHour4.text = "04"
+                } else if(sheetView.npHour.value == 5){
+                    binding.tvTimepickerHour4.text = "05"
+                } else if(sheetView.npHour.value == 6){
+                    binding.tvTimepickerHour4.text = "06"
+                } else if(sheetView.npHour.value == 7){
+                    binding.tvTimepickerHour4.text = "07"
+                } else if(sheetView.npHour.value == 8){
+                    binding.tvTimepickerHour4.text = "08"
+                } else if(sheetView.npHour.value == 9){
+                    binding.tvTimepickerHour4.text = "09"
+                } else {
+                    binding.tvTimepickerHour4.text = sheetView.npHour.value.toString()
+                }
+
+                if (sheetView.npMinute.value == 0){
+                    binding.tvTimepickerMinute4.text = "00"
+                } else {
+                    binding.tvTimepickerMinute4.text = (sheetView.npMinute.value * 10).toString()
+                }
                 bsDialog.dismiss()
             }
             sheetView.btncancel.setOnClickListener {
