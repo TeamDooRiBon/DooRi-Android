@@ -31,17 +31,8 @@ class TravelPlanDoneActivity : AppCompatActivity() {
 
         binding.btnCopyCodes.setOnClickListener {
             val dlg = DoneCopyDialog(this)
-            dlg.start()
-            fixedRateTimer("Change Indicator", false, 0L, 60 * 1000) {
 
-            }
-            Handler(Looper.getMainLooper()).postDelayed({
-                //changeIndicator()
-                val intent = Intent(this, ExistingTripActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
-                finish() // 현재 액티비티 종료
-                startActivity(intent)
-            }, 3000)
+            dlg.start()
         }
     }
 

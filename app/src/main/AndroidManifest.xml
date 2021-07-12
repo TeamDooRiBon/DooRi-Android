@@ -20,16 +20,18 @@
 
         </activity>
         <activity android:name=".ui.newtrip.add.DatePickActivity" />
-        <activity android:name=".ui.newtrip.TravelPlanDoneActivity" />
-        <activity android:name=".ui.newtrip.join.ParticipateActivity" />
-        <activity
-            android:name=".ui.newtrip.add.AddTravelActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" >
+        <activity android:name=".ui.newtrip.TravelPlanDoneActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.newtrip.join.ParticipateActivity" />
+        <activity
+            android:name=".ui.newtrip.add.AddTravelActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+
         </activity>
         <activity android:name=".ui.existingtrip.schedule.ScheduleAddActivity" />
         <activity android:name=".ui.existingtrip.schedule.ScheduleEditActivity" />
