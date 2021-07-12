@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.existingtrip.board.fragment.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +9,9 @@ import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ItemBoardBinding
 
 class BoardAdapter : RecyclerView.Adapter<BoardAdapter.ListViewHolder>() {
+
     private var lists = mutableListOf<BoardListData>()
+    private lateinit var itemClickListener: ItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -18,7 +21,12 @@ class BoardAdapter : RecyclerView.Adapter<BoardAdapter.ListViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        holder.bind(lists[position])
+        holder.apply {
+            bind(lists[position])
+            itemView.setOnClickListener {
+                itemClickListener.onClick(it, position)
+            }
+        }
     }
 
     override fun getItemCount(): Int = lists.size
@@ -34,5 +42,13 @@ class BoardAdapter : RecyclerView.Adapter<BoardAdapter.ListViewHolder>() {
         fun bind(item: BoardListData) {
             binding.data = item
         }
+    }
+
+    interface ItemClickListener {
+        fun onClick(view: View, position: Int)
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 }
