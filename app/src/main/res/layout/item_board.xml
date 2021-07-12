@@ -19,7 +19,7 @@
         android:elevation="2dp">
 
         <TextView
-            android:id="@+id/tv_main"
+            android:id="@+id/tv_board_main"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="14dp"
@@ -28,13 +28,13 @@
             android:text="@{data.boardStr}"
             android:textColor="@color/gray_black_2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tv_writer"
+            app:layout_constraintEnd_toStartOf="@id/tv_board_writer"
             app:layout_constraintHorizontal_weight="90"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_writer"
+            android:id="@+id/tv_board_writer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -43,12 +43,12 @@
             android:text="@{data.writer}"
             android:textColor="#8b8b8b"
             android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_main"
+            app:layout_constraintBottom_toBottomOf="@id/tv_board_main"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintHorizontal_weight="10"
-            app:layout_constraintStart_toEndOf="@id/tv_main"
-            app:layout_constraintTop_toTopOf="@id/tv_main" />
+            app:layout_constraintStart_toEndOf="@id/tv_board_main"
+            app:layout_constraintTop_toTopOf="@id/tv_board_main" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

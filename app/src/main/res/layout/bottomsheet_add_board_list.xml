@@ -7,7 +7,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_bottom_sheet_root"
+        android:id="@+id/cl_add_board_bottom_sheet_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_white_pure9_top_round_layout"
@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_writer"
+            android:id="@+id/tv_add_board_writer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -45,11 +45,11 @@
             android:background="@color/gray_gray_6"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@id/iv_profile_pic"
-            app:layout_constraintStart_toEndOf="@id/tv_writer"
+            app:layout_constraintStart_toEndOf="@id/tv_add_board_writer"
             app:layout_constraintTop_toTopOf="@id/iv_profile_pic" />
 
         <TextView
-            android:id="@+id/tv_category"
+            android:id="@+id/tv_add_board_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -57,13 +57,13 @@
             android:text="여행목표"
             android:textColor="@color/gray_gray_6"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_writer"
+            app:layout_constraintBottom_toBottomOf="@id/tv_add_board_writer"
             app:layout_constraintStart_toEndOf="@id/ll_div_line"
-            app:layout_constraintTop_toTopOf="@id/tv_writer" />
+            app:layout_constraintTop_toTopOf="@id/tv_add_board_writer" />
 
 
         <TextView
-            android:id="@+id/tv_main_todo"
+            android:id="@+id/tv_add_board_main_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -77,7 +77,7 @@
 
 
         <Button
-            android:id="@+id/btn_delete"
+            android:id="@+id/btn_add_board_delete"
             style="@style/RoundButton.DooRiBonGray7"
             android:layout_width="0dp"
             android:layout_height="56dp"
@@ -90,12 +90,12 @@
             android:text="@string/delete"
             android:textColor="@color/gray_gray_black_4"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_edit"
+            app:layout_constraintEnd_toStartOf="@id/btn_add_board_edit"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_todo" />
+            app:layout_constraintTop_toBottomOf="@id/tv_add_board_main_todo" />
 
         <Button
-            android:id="@+id/btn_edit"
+            android:id="@+id/btn_add_board_edit"
             style="@style/RoundButton.DooRiBonOrange"
             android:layout_width="0dp"
             android:layout_height="56dp"
@@ -105,10 +105,10 @@
             android:includeFontPadding="false"
             android:text="@string/edit"
             android:textColor="@color/gray_white_pure_9"
-            app:layout_constraintBottom_toBottomOf="@id/btn_delete"
+            app:layout_constraintBottom_toBottomOf="@id/btn_add_board_delete"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_delete"
-            app:layout_constraintTop_toTopOf="@id/btn_delete" />
+            app:layout_constraintStart_toEndOf="@id/btn_add_board_delete"
+            app:layout_constraintTop_toTopOf="@id/btn_add_board_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
