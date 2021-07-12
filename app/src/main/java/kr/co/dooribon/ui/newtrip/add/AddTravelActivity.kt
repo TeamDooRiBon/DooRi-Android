@@ -31,7 +31,7 @@ class AddTravelActivity : AppCompatActivity() {
                 tvStartDate.text = result?.startDate ?: ""
                 tvEndDate.text = result?.endDate ?: ""
             }
-            setAddCalendarBtn()
+            setCalendarData()
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,18 +52,18 @@ class AddTravelActivity : AppCompatActivity() {
 
         resetData(-1) // 수정할 값이 없으므로 -1 대입
         imgAdapter(tempImgs)
-        setAddCalendarBtn()
     }
 
-    private fun setAddCalendarBtn() {
+    /* 캘린더에서 데이터 주면 뷰에 받아서 뷰에 적용함 */
+    private fun setCalendarData() {
         if (chkDateSelected()) {
             Log.e("c체크", "체크")
-            binding.btAddDate
-            binding.btAddDate
             binding.btAddDate.apply {
                 setBackgroundResource(R.drawable.bg_add_date_gray_btn)
                 text = "+ 날짜 수정하기"
             }
+            binding.tvStartDate.setBackgroundResource(R.drawable.bg_text_gray_stroke)
+            binding.tvEndDate.setBackgroundResource(R.drawable.bg_text_gray_stroke)
         }
     }
 
