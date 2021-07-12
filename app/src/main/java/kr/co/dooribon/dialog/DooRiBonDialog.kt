@@ -14,7 +14,6 @@ import kr.co.dooribon.utils.extension.setDooRiBonDialogSize
 /**
  * Created by SSong-develop 2021.07.12
  *
- * positive negative naming만 좀 다시 하면 될거 같습니다.
  */
 class DooRiBonDialog(
     private val dooribonDialogTitle: String = DEFAULT_DIALOG_TITLE,
@@ -25,15 +24,16 @@ class DooRiBonDialog(
     val onOrangeButtonClicked: () -> Unit
 ) : DialogFragment() {
 
-    private var binding : DialogDooribonTemplateBinding by AutoClearBinding<DialogDooribonTemplateBinding>()
+    private var binding: DialogDooribonTemplateBinding by AutoClearBinding<DialogDooribonTemplateBinding>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = DialogDooribonTemplateBinding.inflate(inflater,container,false).also { DialogDooribonTemplateBinding ->
-        binding = DialogDooribonTemplateBinding
-    }.root
+    ): View = DialogDooribonTemplateBinding.inflate(inflater, container, false)
+        .also { DialogDooribonTemplateBinding ->
+            binding = DialogDooribonTemplateBinding
+        }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.dialog = this
@@ -49,7 +49,7 @@ class DooRiBonDialog(
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
-    fun positiveButtonClicked(){
+    fun positiveButtonClicked() {
         onOrangeButtonClicked.invoke()
         dismiss()
     }
