@@ -110,7 +110,8 @@ class GoalFragment : Fragment() {
     }
 
     /* 리사이클러뷰 아이템 클릭 리스너
-    * todoText로 다이얼로그에 뜰 내용을 받는다
+    * todoText : 다이얼로그에 뜰 내용
+    * writer : 작성자
     *  */
     private fun itemClickListener(todoText: String, writer: String) {
         // TODO view persentation할 때 여기 아래 들어가는 다이얼로그 바꿔줘야 함.
