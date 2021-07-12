@@ -26,7 +26,7 @@
         <activity android:name=".ui.newtrip.join.ParticipateActivity" />
         <activity
             android:name=".ui.newtrip.add.AddTravelActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name=".ui.existingtrip.schedule.ScheduleAddActivity" />
         <activity android:name=".ui.existingtrip.schedule.ScheduleEditActivity" />
     </application>

@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.newtrip.join
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +13,14 @@ import kr.co.dooribon.databinding.FragmentParticipateJoinBinding
 class ParticipateJoinFragment : Fragment() {
     private lateinit var binding: FragmentParticipateJoinBinding
     var count = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentParticipateJoinBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     // TODO : edittext 포커스 이동
@@ -72,11 +75,9 @@ class ParticipateJoinFragment : Fragment() {
             }
 
         }
-        // TODO : Edittext 6개 모두 채워졌을 경우 버튼 변경
-        fullEditEvent()
+        fullEditText()
     }
-
-    private fun fullEditEvent() {
+    private fun fullEditText(){
         val code1 = binding.etCode1.text
         val code2 = binding.etCode2.text
         val code3 = binding.etCode3.text
@@ -84,20 +85,26 @@ class ParticipateJoinFragment : Fragment() {
         val code5 = binding.etCode5.text
         val code6 = binding.etCode6.text
 
-        if (!code1.isNullOrBlank() && !code2.isNullOrBlank() && !code3.isNullOrBlank() && !code4.isNullOrBlank() && !code5.isNullOrBlank() && !code6.isNullOrBlank()) {
-            binding.btnParticipatePut.apply {
-                setText("입력완료")
-                setBackgroundColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.doo_ri_bon_orange
+        binding.etCode6.setOnClickListener{
+            if(code1.isNotEmpty() && code2.isNotEmpty() && code3.isNotEmpty() && code4.isNotEmpty() && code5.isNotEmpty() && code6.isNotEmpty()){
+                binding.btnParticipatePut.apply {
+                    text = "입력하기"
+                    setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_white_8))
+                    setBackgroundColor(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.doo_ri_bon_orange
+                        )
                     )
-                )
+                }
+                binding.btnParticipatePut.setOnClickListener {
+                    val participatecheckFragment = ParticipateCheckFragment()
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.participate_fragment_container_view, participatecheckFragment)
+                        .commitNow()
+                }
             }
-            val participatecheckFragment = ParticipateCheckFragment()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.participate_fragment_container_view, participatecheckFragment)
-                .commitNow()
         }
+
     }
 }
