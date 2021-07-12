@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="dialog"
+            type="kr.co.dooribon.dialog.DooRiBonDialog" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_exit_dialog_root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp">
+
+            <TextView
+                android:id="@+id/tv_exit_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:includeFontPadding="false"
+                android:text="정말 나가시겠습니까?"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_exit_sub_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:includeFontPadding="false"
+                android:text="지금까지의 응답 정보는 저장되지 않습니다."
+                android:textColor="@color/gray_gray_5_main"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/tv_exit_description"
+                app:layout_constraintTop_toBottomOf="@id/tv_exit_description" />
+
+            <TextView
+                android:id="@+id/tv_exit_sub_description2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:includeFontPadding="false"
+                android:text="테스트 중단을 원하신다면 오른쪽 버튼을 눌러주세요"
+                android:textColor="@color/gray_gray_5_main"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/tv_exit_description"
+                app:layout_constraintTop_toBottomOf="@id/tv_exit_sub_description" />
+
+            <Button
+                android:id="@+id/btn_no_exit"
+                style="@style/RoundButton.DooRiBonGray7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:includeFontPadding="false"
+                android:onClick="@{() -> dialog.dismiss()}"
+                android:text="계속할게요"
+                android:textSize="15sp"
+                android:textColor="@color/gray_gray_black_4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_exit"
+                app:layout_constraintStart_toStartOf="@id/tv_exit_description"
+                app:layout_constraintTop_toBottomOf="@id/tv_exit_sub_description2" />
+
+            <Button
+                android:id="@+id/btn_exit"
+                style="@style/RoundButton.DooRiBonOrange"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:includeFontPadding="false"
+                android:onClick="@{() -> dialog.positiveButtonClicked()}"
+                android:text="나갈게요"
+                app:layout_constraintBottom_toBottomOf="@id/btn_no_exit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_no_exit"
+                app:layout_constraintTop_toTopOf="@id/btn_no_exit" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

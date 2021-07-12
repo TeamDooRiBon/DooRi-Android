@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityDatePickBinding
+import kr.co.dooribon.dialog.DooRiBonDialog
 import kr.co.dooribon.domain.entity.PickDatePair
 import kr.co.dooribon.utils.DateUtil
 import kr.co.dooribon.utils.shortToast
@@ -28,24 +29,49 @@ class DatePickActivity : AppCompatActivity() {
 
     private fun configureEnterButton() {
         binding.btEnterButton.setOnClickListener {
-            binding.fragCalendar.getSelectedDate().let {
-                if (it.first != null && it.second != null) {
-                    // setResult로 데이터를 반환하고 종료합니다.
-                    setResult(
-                        RESULT_OK,
-                        Intent().apply {
-                            putExtra(
-                                "datePair",
-                                PickDatePair(
-                                    DateUtil.convertStringToDateDot(it.first!!),
-                                    DateUtil.convertStringToDateDot(it.second!!)
+            if(intent.getParcelableExtra<PickDatePair>("beforeSelect") != null){
+                DooRiBonDialog(
+                    dooribonDialogTitle = "여행 날짜를 변경하시겠습니까?",
+                    dooribonDialogSubTitle = "날짜 변경 시 이때까지의 여행 일정은 모두 삭제됩니다.",
+                    dooribonDialogSubTitle2 = "그래도 날짜를 변경하시겠습니까?",
+                    dooribonDialogOrangeButtonText = "안할게요",
+                    dooribonDialogGrayButtonText = "변경할게요",
+                    onOrangeButtonClicked = {
+                        setResult(
+                            RESULT_OK,
+                            Intent().apply {
+                                putExtra(
+                                    "datePair",
+                                    PickDatePair(
+                                        DateUtil.convertStringToDateDot(binding.fragCalendar.getSelectedDate().first!!),
+                                        DateUtil.convertStringToDateDot(binding.fragCalendar.getSelectedDate().second!!)
+                                    )
                                 )
-                            )
-                        }
-                    )
-                    finish()
-                } else {
-                    shortToast("선택된 날짜가 없습니다.")
+                            }
+                        )
+                        finish()
+                    }
+                ).show(supportFragmentManager, DOO_RI_BON_DIALOG_TAG)
+            }else{
+                binding.fragCalendar.getSelectedDate().let {
+                    if (it.first != null && it.second != null) {
+                        // setResult로 데이터를 반환하고 종료합니다.
+                        setResult(
+                            RESULT_OK,
+                            Intent().apply {
+                                putExtra(
+                                    "datePair",
+                                    PickDatePair(
+                                        DateUtil.convertStringToDateDot(it.first!!),
+                                        DateUtil.convertStringToDateDot(it.second!!)
+                                    )
+                                )
+                            }
+                        )
+                        finish()
+                    } else {
+                        shortToast("선택된 날짜가 없습니다.")
+                    }
                 }
             }
         }
@@ -87,4 +113,7 @@ class DatePickActivity : AppCompatActivity() {
         }
     }
 
+    companion object {
+        private const val DOO_RI_BON_DIALOG_TAG = "DooRiBonDialog"
+    }
 }
