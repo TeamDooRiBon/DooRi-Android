@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityNewTravelBinding
@@ -23,6 +24,12 @@ class AddTravelActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewTravelBinding
     val tempImgs = mutableListOf<ImageData>()
 
+    //아래 변수들이 모두 true가 돼야 새로운 여행 시작하기 버튼 활성화 된다.
+    private var etTravelNameNotEmpty = false // 여행 이름
+    private var etTravelPlaceNotEmpty = false // 여행 위치
+    private var tvCalendarNotEmpty = false // 여행 날짜
+    private var ivChecked = false // 추천 이미지 체크
+
     // ActivityContract
     private val datePickLauncher =
         registerForActivityResult(DatePickerActivityContract()) { result: PickDatePair? ->
@@ -31,7 +38,8 @@ class AddTravelActivity : AppCompatActivity() {
                 tvStartDate.text = result?.startDate ?: ""
                 tvEndDate.text = result?.endDate ?: ""
             }
-            setCalendarData()
+            setCalendarData() // 캘린더에서 받은 값 액티비티에 반영
+            tvCalendarNotEmpty = true // 여행 날짜 입력 플래그 true로 설정
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +60,7 @@ class AddTravelActivity : AppCompatActivity() {
 
         resetData(-1) // 수정할 값이 없으므로 -1 대입
         imgAdapter(tempImgs)
+        chkEditTextInput()
     }
 
     /* 캘린더에서 데이터 주면 뷰에 받아서 뷰에 적용함 */
@@ -119,5 +128,17 @@ class AddTravelActivity : AppCompatActivity() {
         }
         bsDialog.setContentView(sheetView)
         bsDialog.show()
+    }
+
+    /* 여행 이름과 위치를 적었는지 확인하는 함수 */
+    private fun chkEditTextInput() {
+        binding.apply {
+            etTravelName.addTextChangedListener {
+                etTravelNameNotEmpty = etTravelName.text.isNotEmpty()
+            }
+            etTravelPlace.addTextChangedListener {
+                etTravelPlaceNotEmpty = etTravelName.text.isNotEmpty()
+            }
+        }
     }
 }

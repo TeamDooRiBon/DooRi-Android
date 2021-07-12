@@ -278,6 +278,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="28dp"
                 android:layout_marginTop="20dp"
+                android:enabled="false"
                 android:fontFamily="@font/spoqa_han_sans_neo_medium"
                 android:includeFontPadding="false"
                 android:text="@string/build_new_travel"
