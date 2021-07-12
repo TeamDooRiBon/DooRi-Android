@@ -1,0 +1,206 @@
+package kr.co.dooribon.api.remote
+
+import com.google.gson.annotations.SerializedName
+import retrofit2.http.*
+
+data class HomeTravelRes(
+    val homeTravelRes: BaseResponse<HomeTravel>
+)
+
+data class HomeTravel(
+    @SerializedName("when")
+    val travelType: String,
+    @SerializedName("group")
+    val travelGroup: List<Travel>
+)
+
+data class Travel(
+    @SerializedName("_id")
+    val id: String,
+    @SerializedName("startDate")
+    val startDate: String,
+    @SerializedName("endDate")
+    val endDate: String,
+    @SerializedName("travelName")
+    val travelTitle: String,
+    @SerializedName("image")
+    val travelThumbnailUrl: String,
+    @SerializedName("destination")
+    val travelDestination : String,
+    @SerializedName("members")
+    val travelMembers : List<String>
+)
+
+// 유저 여행 생성 Data class
+data class CreateTravelReq(
+    @SerializedName("travelName")
+    val travelTitle : String,
+    @SerializedName("destination")
+    val travelDestination : String,
+    @SerializedName("startDate")
+    val startDate : String,
+    @SerializedName("endDate")
+    val endDate : String,
+    @SerializedName("imageIndex")
+    val selectedImageIndex : Int
+)
+
+data class CreateTravelRes(
+    val editTravelRes : BaseResponse<InviteCode>
+)
+
+data class InviteCode(
+    @SerializedName("inviteCode")
+    val inviteCode : String
+)
+
+// 여행 참여
+data class ParticipateTravelRes(
+    val participateTravelRes: BaseResponse<ParticipateTravel>
+)
+
+data class ParticipateTravel(
+    @SerializedName("groupId")
+    val travelGroupId : String,
+    @SerializedName("travelName")
+    val travelTitle : String,
+    @SerializedName("host")
+    val travelHost : String,
+    @SerializedName("destination")
+    val travelDestination : String,
+    @SerializedName("startDate")
+    val startDate : String,
+    @SerializedName("endDate")
+    val endDate : String,
+    @SerializedName("image")
+    val travelThumbnailImageUrl : String
+)
+
+data class TravelInfoRes(
+    val travelInfoRes : BaseResponse<TravelInfo>
+)
+
+data class TravelInfo(
+    @SerializedName("travelName")
+    val travelTitle : String,
+    @SerializedName("startDate")
+    val startDate : String,
+    @SerializedName("endDate")
+    val endDate : String,
+    @SerializedName("destination")
+    val travelDestination : String,
+    @SerializedName("members")
+    val travelMembers : List<TravelMemberInfo>
+)
+
+data class TravelMemberInfo(
+    @SerializedName("name")
+    val memberName : String,
+    @SerializedName("profileImage")
+    val memberProfileImageUrl : String
+)
+
+// 여행 참여 , 여행에 멤버 추가
+data class JoinTravelMembersRes(
+    val travelMembersRes : BaseResponse<EditTravelMemberInfo>
+)
+
+data class EditTravelMemberInfo(
+    @SerializedName("_id")
+    val travelGroupId : String,
+    @SerializedName("members")
+    val travelMembers : List<EditTravelMember>,
+    @SerializedName("schedules")
+    val travelScheduleId : String,
+    @SerializedName("boards")
+    val travelBoardId : String,
+    @SerializedName("inviteCode")
+    val travelInviteCode : String,
+    @SerializedName("travelName")
+    val travelTitle : String,
+    @SerializedName("destination")
+    val travelDestination : String,
+    @SerializedName("startDate")
+    val travelStartDate : String,
+    @SerializedName("endDate")
+    val travelEndDate : String,
+    @SerializedName("image")
+    val travelImageUrl : String
+)
+
+data class EditTravelMember(
+    @SerializedName("_id")
+    val memberId : String,
+    @SerializedName("name")
+    val memberName : String,
+    @SerializedName("profileImage")
+    val memberProfileImageUrl : String
+)
+
+// 여행 편집
+data class EditTravelReq(
+    @SerializedName("travelName")
+    val travelTitle : String,
+    @SerializedName("destination")
+    val travelDestination : String,
+    @SerializedName("startDate")
+    val travelStartDate : String,
+    @SerializedName("endDate")
+    val travelEndDate : String,
+    @SerializedName("imageIndex")
+    val travelThumbnailImageIndex : Int
+)
+
+data class EditTravelRes(
+    val editTravelRes : BaseResponse<EditTravel>
+)
+
+data class EditTravel(
+    @SerializedName("travelName")
+    val travelTitle : String,
+    @SerializedName("destination")
+    val travelDestination : String,
+    @SerializedName("startDate")
+    val travelStartDate : String,
+    @SerializedName("endDate")
+    val travelEndDate : String,
+    @SerializedName("image")
+    val travelThumbnailImageUrl : String
+)
+
+interface TravelAPI {
+    // 유저 기간 별 여행 조회 / 메인 뷰 (홈뷰)
+    @GET("travel")
+    suspend fun fetchUserTravel() : HomeTravelRes
+
+    // 유저 여행 생성 / 여행 생성 뷰
+    @POST("travel")
+    suspend fun createUserTravel(
+        @Body createTravelReq : CreateTravelReq
+    ) : CreateTravelRes
+
+    // 여행 참여 , 여행 정보 조회 / 참여하는 여행 정보가 맞나요? 뷰 , 각종 여행 정보 조회 시 사용
+    @GET("travel/group/{inviteCode}")
+    suspend fun participateExistingTravel(
+        @Path("inviteCode") inviteCode: String
+    ) : ParticipateTravelRes
+
+    // 여행 정보 조회 / 여행 정보 조회 시 사용
+    @GET("travel/{groupId}")
+    suspend fun fetchTravelInfo(
+        @Path("groupId") groupId : String
+    ) : TravelInfoRes
+
+    // 여행 참여 , 여행에 멤버 추가 / 참여코드 입력 후 홈으로 이동 시
+    @POST("travel/{groupId}")
+    suspend fun joinMemberExistingTravel(
+        @Path("groupId") groupId : String,
+    ) : JoinTravelMembersRes
+
+    // 여행 편집
+    @PATCH("travel/{groupId}")
+    suspend fun editTravel(
+        @Body editTravelReq : EditTravelReq,
+        @Path("groupId") groupId : String
+    ) : EditTravelRes
+}
