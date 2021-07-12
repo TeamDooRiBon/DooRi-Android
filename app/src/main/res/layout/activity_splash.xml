@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_point_blue"
+    tools:context=".ui.splash.SplashActivity">
+
+    <ImageView
+        android:id="@+id/iv_splash_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_dooribon_logo_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <ImageView
+        android:id="@+id/iv_splash_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/text_dooribon_white"
+        app:layout_constraintEnd_toEndOf="@id/iv_splash_logo"
+        app:layout_constraintStart_toStartOf="@id/iv_splash_logo"
+        app:layout_constraintTop_toBottomOf="@id/iv_splash_logo" />
+
+    <TextView
+        android:id="@+id/tv_app_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:text="작은 움직임이 만드는 우리다운 여행"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/iv_splash_logo"
+        app:layout_constraintStart_toStartOf="@id/iv_splash_logo"
+        app:layout_constraintTop_toBottomOf="@id/iv_splash_app_name" />
+</androidx.constraintlayout.widget.ConstraintLayout>
