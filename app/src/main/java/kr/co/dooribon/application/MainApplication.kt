@@ -1,9 +1,9 @@
 package kr.co.dooribon.application
 
 import android.app.Application
-import kr.co.dooribon.di.SharedPreferenceModule
 import kr.co.dooribon.di.RepositoryModule
 import kr.co.dooribon.di.RetrofitModule
+import kr.co.dooribon.di.SharedPreferenceModule
 import kr.co.dooribon.di.ViewModelModule
 import kr.co.dooribon.utils.PixelRatio
 

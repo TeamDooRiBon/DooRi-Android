@@ -29,4 +29,4 @@ class SharedPreferenceModule(private val application: Application) {
         private const val SP_NAME = "SHARED_PREFERENCE"
         private const val IS_FIRST_LAUNCH = "isFirstLaunch"
     }
-}
+} 

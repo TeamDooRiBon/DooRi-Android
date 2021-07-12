@@ -1,7 +1,6 @@
 package kr.co.dooribon.ui.triptendency.adapter
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

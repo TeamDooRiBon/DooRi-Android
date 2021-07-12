@@ -3,7 +3,6 @@ package kr.co.dooribon.utils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
-import kr.co.dooribon.view.calendarpicker.entity.CalendarEntity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

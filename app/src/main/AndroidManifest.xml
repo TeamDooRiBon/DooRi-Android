@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DooRiBonAndroid">
+        <activity android:name=".ui.signin.SignInActivity"></activity>
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +20,7 @@
         </activity>
         <activity android:name=".ui.existingtrip.ExistingTripActivity" />
         <activity android:name=".ui.triptendency.TripTendencyActivity" />
-        <activity android:name=".ui.home.HomeActivity"/>
+        <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.newtrip.add.DatePickActivity" />
         <activity android:name=".ui.newtrip.TravelPlanDoneActivity" />
         <activity android:name=".ui.newtrip.join.ParticipateActivity" />
