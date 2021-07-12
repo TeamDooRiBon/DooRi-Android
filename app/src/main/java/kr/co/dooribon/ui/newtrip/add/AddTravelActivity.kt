@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityNewTravelBinding
+import kr.co.dooribon.dialog.DooRiBonDialog
 import kr.co.dooribon.domain.entity.PickDatePair
 import kr.co.dooribon.ui.newtrip.TravelPlanDoneActivity
 import kr.co.dooribon.ui.newtrip.adapter.ImageData
@@ -45,6 +46,14 @@ class AddTravelActivity : AppCompatActivity() {
 
         binding.btAddDate.setOnClickListener {
             val intent = Intent(this, DatePickActivity::class.java)
+            if (!binding.tvStartDate.text.isNullOrEmpty() && !binding.tvEndDate.text.isNullOrEmpty()) {
+                intent.putExtra(
+                    "beforeSelect", PickDatePair(
+                        binding.tvStartDate.text.toString(),
+                        binding.tvEndDate.text.toString()
+                    )
+                )
+            }
             datePickLauncher.launch(intent)
         }
 
@@ -73,7 +82,14 @@ class AddTravelActivity : AppCompatActivity() {
 
     private fun backBtnClickListener() {
         binding.ivBack.setOnClickListener {
-            finish()
+            DooRiBonDialog(
+                dooribonDialogSubTitle = "지금까지의 수정 정보는 저장되지 않습니다.",
+                dooribonDialogSubTitle2 = "수정을 취소하려면 오른쪽 버튼을 눌러주세요.",
+                onOrangeButtonClicked = {
+                    finish()
+                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+                },
+            ).show(supportFragmentManager, DOO_RI_BON_DIALOG_TAG)
         }
     }
 
@@ -82,23 +98,17 @@ class AddTravelActivity : AppCompatActivity() {
     }
 
     private fun setQuestionDialog() {
-        val bsDialog = Dialog(this)
-        val sheetView = LayoutInflater.from(this).inflate(
-            R.layout.dialog_trip_tendency_test_exit,
-            this.findViewById(R.id.cl_exit_dialog_root)
-        )
-        sheetView.findViewById<TextView>(R.id.tv_exit_sub_description).text =
-            "지금까지의 수정 정보는 저장되지 않습니다."
-        sheetView.findViewById<TextView>(R.id.tv_exit_sub_description2).text =
-            "수정을 취소하려면 오른쪽 버튼을 눌러주세요.ㅤㅤ"
-        sheetView.findViewById<Button>(R.id.btn_no_exit).setOnClickListener {
-            bsDialog.dismiss()
-        }
-        sheetView.findViewById<Button>(R.id.btn_exit).setOnClickListener {
-            bsDialog.dismiss()
-            finish()
-        }
-        bsDialog.setContentView(sheetView)
-        bsDialog.show()
+        DooRiBonDialog(
+            dooribonDialogSubTitle = "지금까지의 수정 정보는 저장되지 않습니다.",
+            dooribonDialogSubTitle2 = "수정을 취소하려면 오른쪽 버튼을 눌러주세요.",
+            onOrangeButtonClicked = {
+                finish()
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+            },
+        ).show(supportFragmentManager, DOO_RI_BON_DIALOG_TAG)
+    }
+
+    companion object {
+        private const val DOO_RI_BON_DIALOG_TAG = "DooRiBon"
     }
 }
