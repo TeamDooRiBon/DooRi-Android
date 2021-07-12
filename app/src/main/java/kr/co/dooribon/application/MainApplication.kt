@@ -1,10 +1,7 @@
 package kr.co.dooribon.application
 
 import android.app.Application
-import kr.co.dooribon.di.RepositoryModule
-import kr.co.dooribon.di.RetrofitModule
-import kr.co.dooribon.di.SharedPreferenceModule
-import kr.co.dooribon.di.ViewModelModule
+import kr.co.dooribon.di.*
 import kr.co.dooribon.utils.PixelRatio
 
 class MainApplication : Application() {
@@ -18,15 +15,17 @@ class MainApplication : Application() {
         pixelRatio = PixelRatio(this)
         retrofitModule = RetrofitModule()
         viewModelModule = ViewModelModule(this)
-        repositoryModule = RepositoryModule()
         sharedPreferenceModule = SharedPreferenceModule(this)
+        apiModule = ApiModule()
+        repositoryModule = RepositoryModule()
     }
 
     companion object {
         lateinit var pixelRatio: PixelRatio
         lateinit var retrofitModule: RetrofitModule
         lateinit var viewModelModule: ViewModelModule
-        lateinit var repositoryModule: RepositoryModule
         lateinit var sharedPreferenceModule: SharedPreferenceModule
+        lateinit var apiModule : ApiModule
+        lateinit var repositoryModule : RepositoryModule
     }
 }

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.co.dooribon">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".application.MainApplication"
         android:allowBackup="false"
@@ -9,6 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.DooRiBonAndroid">
         <activity android:name=".ui.signin.SignInActivity"/>
         <activity android:name=".ui.splash.SplashActivity">

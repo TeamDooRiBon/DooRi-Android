@@ -1,9 +1,12 @@
 package kr.co.dooribon.di
 
-/**
- * Api Module를 넣어놓는 곳
- * 설명이 쪼꼼 필요할 거 같아보임!
- */
+import kr.co.dooribon.api.remote.TravelAPI
+import kr.co.dooribon.application.MainApplication.Companion.retrofitModule
+
 class ApiModule {
+
+    val travelApi by lazy {
+        retrofitModule.createApi(TravelAPI::class)
+    }
 
 }
