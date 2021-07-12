@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_dooribon_logo_color"
+            app:layout_constraintVertical_bias="0.5"
             app:layout_constraintBottom_toTopOf="@id/iv_sign_in_app_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +44,7 @@
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:text="작은 움직임이 만드는 우리다운 여행"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@id/cl_kakao_login"
+            app:layout_constraintBottom_toTopOf="@id/iv_sign_in_app_sub_description"
             app:layout_constraintEnd_toEndOf="@id/iv_sign_in_logo"
             app:layout_constraintStart_toStartOf="@id/iv_sign_in_logo"
             app:layout_constraintTop_toBottomOf="@id/iv_sign_in_app_name" />

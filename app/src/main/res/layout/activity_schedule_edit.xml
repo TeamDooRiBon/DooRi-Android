@@ -151,7 +151,7 @@
                             android:layout_marginStart="36dp"
                             android:layout_marginTop="4dp"
                             app:layout_constraintStart_toStartOf="@id/iv_schedule_time_start"
-                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_start1" >
+                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_start1">
 
                             <TextView
                                 android:id="@+id/tv_timepicker_ampm3"
@@ -163,7 +163,8 @@
                                 android:textColor="@color/gray_black_1"
                                 android:textSize="16sp"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"/>
+                                app:layout_constraintStart_toStartOf="parent" />
+
                             <TextView
                                 android:id="@+id/tv_timepicker_hour3"
                                 android:layout_width="wrap_content"
@@ -175,7 +176,8 @@
                                 android:textColor="@color/gray_black_1"
                                 android:textSize="16sp"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_ampm3"/>
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_ampm3" />
+
                             <TextView
                                 android:id="@+id/tv_timepicker_colon3"
                                 android:layout_width="wrap_content"
@@ -186,7 +188,8 @@
                                 android:textColor="@color/gray_black_1"
                                 android:textSize="16sp"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_hour3"/>
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_hour3" />
+
                             <TextView
                                 android:id="@+id/tv_timepicker_minute3"
                                 android:layout_width="wrap_content"
@@ -197,7 +200,7 @@
                                 android:textColor="@color/gray_black_1"
                                 android:textSize="16sp"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_colon3"/>
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_colon3" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
@@ -221,7 +224,7 @@
                             android:layout_marginEnd="40dp"
                             android:layout_marginTop="4dp"
                             app:layout_constraintEnd_toEndOf="@id/iv_schedule_time_end"
-                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_end1" >
+                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_end1">
 
                             <TextView
                                 android:id="@+id/tv_timepicker_ampm4"
@@ -233,7 +236,8 @@
                                 android:textColor="@color/gray_black_1"
                                 android:textSize="16sp"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"/>
+                                app:layout_constraintStart_toStartOf="parent" />
+
                             <TextView
                                 android:id="@+id/tv_timepicker_hour4"
                                 android:layout_width="wrap_content"
@@ -245,7 +249,8 @@
                                 android:textColor="@color/gray_black_1"
                                 android:textSize="16sp"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_ampm4"/>
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_ampm4" />
+
                             <TextView
                                 android:id="@+id/tv_timepicker_colon4"
                                 android:layout_width="wrap_content"
@@ -256,7 +261,8 @@
                                 android:textColor="@color/gray_black_1"
                                 android:textSize="16sp"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_hour4"/>
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_hour4" />
+
                             <TextView
                                 android:id="@+id/tv_timepicker_minute4"
                                 android:layout_width="wrap_content"
@@ -267,7 +273,7 @@
                                 android:textColor="@color/gray_black_1"
                                 android:textSize="16sp"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_colon4"/>
+                                app:layout_constraintStart_toEndOf="@id/tv_timepicker_colon4" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

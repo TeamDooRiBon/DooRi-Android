@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -50,6 +49,7 @@
                 app:layout_constraintTop_toTopOf="@id/np_am_pm" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <Button
             android:id="@+id/btncancel"
             style="@style/RoundButton.DooRiBonGray7"
@@ -63,6 +63,7 @@
             app:layout_constraintTop_toBottomOf="@id/cl_timenumpicker">
 
         </Button>
+
         <Button
             android:id="@+id/btnok"
             style="@style/RoundButton.DooRiBonGray7"

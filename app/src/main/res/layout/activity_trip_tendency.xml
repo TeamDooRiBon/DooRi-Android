@@ -29,7 +29,7 @@
             android:padding="12dp"
             android:onClick="@{() -> activity.exitTripTendencyTest()}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_trip_tendency_test"
@@ -38,7 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_exit"
-            app:layout_constraintBottom_toTopOf="@id/tab_trip_tendency"/>
+            app:layout_constraintBottom_toTopOf="@id/tab_trip_tendency" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_trip_tendency"
@@ -53,7 +53,7 @@
             app:layout_constraintBottom_toTopOf="@id/btn_previous"
             app:layout_constraintStart_toStartOf="@id/vp_trip_tendency_test"
             app:layout_constraintEnd_toEndOf="@id/vp_trip_tendency_test"
-            app:layout_constraintTop_toBottomOf="@id/vp_trip_tendency_test"/>
+            app:layout_constraintTop_toBottomOf="@id/vp_trip_tendency_test" />
 
 
         <Button
@@ -73,7 +73,7 @@
             app:layout_constraintTop_toBottomOf="@id/tab_trip_tendency"
             app:layout_constraintStart_toStartOf="@id/vp_trip_tendency_test"
             app:layout_constraintEnd_toStartOf="@id/btn_next"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <Button
             android:id="@+id/btn_next"
@@ -90,6 +90,6 @@
             app:layout_constraintTop_toTopOf="@id/btn_previous"
             app:layout_constraintStart_toEndOf="@id/btn_previous"
             app:layout_constraintEnd_toEndOf="@id/vp_trip_tendency_test"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
