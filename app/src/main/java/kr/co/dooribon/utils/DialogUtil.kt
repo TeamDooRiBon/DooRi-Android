@@ -26,8 +26,8 @@ fun DialogFragment.adjustDialogSize(widthRatio: Float, heightRatio: Float) {
 }
 
 // DooRiBonDialog 사이즈에 맞게 바꿔주는 함수
-fun DialogFragment.setDooRiBonDialogSize(){
-    val dialogParams : WindowManager.LayoutParams = this.dialog!!.window!!.attributes
+fun DialogFragment.setDooRiBonDialogSize() {
+    val dialogParams: WindowManager.LayoutParams = this.dialog!!.window!!.attributes
 
     dialogParams.width = context!!.dpToPixel(310)
     dialogParams.height = context!!.dpToPixel(168)

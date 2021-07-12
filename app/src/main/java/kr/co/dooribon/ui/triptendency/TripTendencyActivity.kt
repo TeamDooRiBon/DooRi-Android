@@ -91,12 +91,14 @@ class TripTendencyActivity : AppCompatActivity() {
     }
 
     fun navigateNextPage() {
-        if (!viewModel.getLastQuestionSelectedPosition()!!.contains(-1) && viewModel.getQuestionPosition() == MAX_QUESTION_INDEX_COUNT) {
+        if (!viewModel.getLastQuestionSelectedPosition()!!
+                .contains(-1) && viewModel.getQuestionPosition() == MAX_QUESTION_INDEX_COUNT
+        ) {
             TripTendencyTestResultLoadingDialog().show(
                 supportFragmentManager,
                 RESULT_LOADING_NAVIGATE_TAG
             )
-        }else{
+        } else {
             viewModel.nextPage()
         }
     }

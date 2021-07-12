@@ -25,7 +25,7 @@ class MainApplication : Application() {
         lateinit var retrofitModule: RetrofitModule
         lateinit var viewModelModule: ViewModelModule
         lateinit var sharedPreferenceModule: SharedPreferenceModule
-        lateinit var apiModule : ApiModule
-        lateinit var repositoryModule : RepositoryModule
+        lateinit var apiModule: ApiModule
+        lateinit var repositoryModule: RepositoryModule
     }
 }

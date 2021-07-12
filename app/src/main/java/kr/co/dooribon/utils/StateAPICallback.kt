@@ -11,7 +11,7 @@ import java.net.HttpURLConnection
 /**
  * 서버통신의 상태에 따라 구분해서 처리해줄 수 있는 코드
  */
-class StateAPICallback<T>(private val callback : (APIState<T>) -> Unit) : Callback<T> {
+class StateAPICallback<T>(private val callback: (APIState<T>) -> Unit) : Callback<T> {
     override fun onResponse(call: Call<T>, response: Response<T>) {
         when {
             response.isSuccessful && response.code() == HttpURLConnection.HTTP_NO_CONTENT -> {
@@ -36,9 +36,9 @@ class StateAPICallback<T>(private val callback : (APIState<T>) -> Unit) : Callba
  */
 @ExperimentalCoroutinesApi
 fun <T> Call<T>.asCallbackFlow() = callbackFlow<T> {
-    enqueue(object : Callback<T>{
+    enqueue(object : Callback<T> {
         override fun onResponse(call: Call<T>, response: Response<T>) {
-            if(response.isSuccessful) {
+            if (response.isSuccessful) {
                 response.body()?.let { offer(it) } ?: close()
             } else {
                 close()
@@ -52,8 +52,8 @@ fun <T> Call<T>.asCallbackFlow() = callbackFlow<T> {
     awaitClose()
 }
 
-sealed class APIState<out T>{
-    class Success<out T>(val body : T) : APIState<T>()
+sealed class APIState<out T> {
+    class Success<out T>(val body: T) : APIState<T>()
     class NoContents<out T> : APIState<T>()
     class Fail<out T> : APIState<T>()
 }

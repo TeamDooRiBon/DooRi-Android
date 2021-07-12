@@ -37,9 +37,9 @@ class HomeViewModel(
         runCatching {
             homeRepository.fetchHomeDataTest()
         }.onSuccess {
-            Log.d("hello",it.toString())
+            Log.d("hello", it.toString())
         }.onFailure {
-            Log.d("hello","$it")
+            Log.d("hello", "$it")
         }
     }
 }
