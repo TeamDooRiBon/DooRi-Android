@@ -2,7 +2,6 @@ package kr.co.dooribon.utils
 
 import android.content.Context
 import android.content.Intent
-import android.view.LayoutInflater
 import android.widget.Toast
 import kotlin.math.roundToInt
 

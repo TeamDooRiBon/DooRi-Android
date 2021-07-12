@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="activity"
+            type="kr.co.dooribon.ui.existingtrip.ExistingTripActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +35,7 @@
                     android:layout_height="wrap_content"
                     android:padding="12dp"
                     android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                    android:onClick="@{() -> activity.configureBackButton()}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

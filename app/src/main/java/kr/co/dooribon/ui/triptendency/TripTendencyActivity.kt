@@ -10,7 +10,6 @@ import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTripTendencyBinding
 import kr.co.dooribon.dialog.TripTendencyTestExitDialog
 import kr.co.dooribon.dialog.TripTendencyTestResultLoadingDialog
-import kr.co.dooribon.domain.entity.TripTendency
 import kr.co.dooribon.ui.triptendency.adapter.TripTendencyAdapter
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
 import kr.co.dooribon.utils.shortToast
@@ -43,7 +42,7 @@ class TripTendencyActivity : AppCompatActivity() {
     }
 
     private fun observeToastEvent() {
-        viewModel.toastEventLiveData.observe(this){
+        viewModel.toastEventLiveData.observe(this) {
             shortToast(it)
         }
     }
@@ -55,13 +54,6 @@ class TripTendencyActivity : AppCompatActivity() {
     private fun observeQuestionPosition() {
         viewModel.questionPosition.observe(this) {
             if (it == tripTendencyAdapter.itemCount) {
-                // 질문지에 대한 선택들이 전부 선택이 되었는지 검사하는 로직이 필요하다.
-                for (i in 0 until tripTendencyAdapter.itemCount) {
-                    if (viewModel.lastQuestionSelectedPosition.value!![i] == -1) {
-                        shortToast("질문을 전부 선택하셨는지 확인해주세요")
-                        break
-                    }
-                }
                 TripTendencyTestResultLoadingDialog().show(
                     supportFragmentManager,
                     RESULT_LOADING_NAVIGATE_TAG
@@ -98,8 +90,20 @@ class TripTendencyActivity : AppCompatActivity() {
         TripTendencyTestExitDialog().show(supportFragmentManager, EXIT_NAVIGATE_TAG)
     }
 
+    fun navigateNextPage() {
+        if (!viewModel.getLastQuestionSelectedPosition()!!.contains(-1) && viewModel.getQuestionPosition() == MAX_QUESTION_INDEX_COUNT) {
+            TripTendencyTestResultLoadingDialog().show(
+                supportFragmentManager,
+                RESULT_LOADING_NAVIGATE_TAG
+            )
+        }else{
+            viewModel.nextPage()
+        }
+    }
+
     companion object {
         private const val EXIT_NAVIGATE_TAG = "EXIT"
         private const val RESULT_LOADING_NAVIGATE_TAG = "LOADING"
+        private const val MAX_QUESTION_INDEX_COUNT = 9
     }
 }
