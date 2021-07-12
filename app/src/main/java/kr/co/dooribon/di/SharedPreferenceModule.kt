@@ -29,7 +29,9 @@ class SharedPreferenceModule(private val application: Application) {
             sharedPreference.edit().putBoolean(IS_FIRST_LAUNCH, false).apply()
         }
 
-    val jwtToken = sharedPreference.getString(JWT_TOKEN_KEY, "").toString()
+    val jwtToken by lazy {
+        sharedPreference.getString(JWT_TOKEN_KEY, "").toString()
+    }
 
     private fun setJwtToken() {
         sharedPreference.edit().putString(JWT_TOKEN_KEY, JWT_TOKEN).apply()
