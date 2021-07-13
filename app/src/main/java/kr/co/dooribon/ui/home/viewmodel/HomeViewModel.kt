@@ -1,45 +1,89 @@
 package kr.co.dooribon.ui.home.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kr.co.dooribon.api.remote.asDomainPreviousTravel
+import kr.co.dooribon.api.remote.asDomainTravel
+import kr.co.dooribon.api.remote.asDomainUpComingTravel
 import kr.co.dooribon.api.repository.HomeRepository
-import kr.co.dooribon.domain.entity.PreviousTrip
-import kr.co.dooribon.domain.entity.UpComingTrip
+import kr.co.dooribon.domain.entity.PreviousTravel
+import kr.co.dooribon.domain.entity.Travel
+import kr.co.dooribon.domain.entity.UpComingTravel
+import kr.co.dooribon.utils.MockData
+import kr.co.dooribon.utils.debugE
 
-/**
- * Repository 넣어줘야 하니까 factory도 필요함
- */
 class HomeViewModel(
     private val homeRepository: HomeRepository
-) : ViewModel() {
+) : ViewModel(), LifecycleObserver {
 
-    init {
-        fetchTest()
+    private val _homeProceedingTravel = MutableLiveData<Travel>()
+    val homeProceedingTravel: LiveData<Travel>
+        get() = _homeProceedingTravel
+
+    private val _homeUpComingTravel = MutableLiveData<List<UpComingTravel>>()
+    val homeUpComingTravel: LiveData<List<UpComingTravel>>
+        get() = _homeUpComingTravel
+
+    private val _homePreviousTravel = MutableLiveData<List<PreviousTravel>>()
+    val homePreviousTravel: LiveData<List<PreviousTravel>>
+        get() = _homePreviousTravel
+
+    private val _homeProceedingTravelImage = MutableLiveData<String>()
+    val homeProceedingTravelImage: LiveData<String>
+        get() = _homeProceedingTravelImage
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    fun initializeHome() {
+        debugE("Initializing calling")
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                homeRepository.fetchHomeTravel()
+            }.onSuccess { HomeTravelRes ->
+                HomeTravelRes.data.forEach { HomeTravelDTO ->
+                    when (HomeTravelDTO.travelType) {
+                        "nowTravels" -> {
+                            if (HomeTravelDTO.travelGroup.isNotEmpty()) _homeProceedingTravel.postValue(
+                                HomeTravelDTO.travelGroup[0].asDomainTravel()
+                            )
+                            // 현재 비어있는 경우여서 전부 MockData로 대체해놨습니다.
+                            else _homeProceedingTravel.postValue(MockData.provideHomeData())
+                        }
+                        "comeTravels" -> {
+                            if (HomeTravelDTO.travelGroup.isNotEmpty()) _homeUpComingTravel.postValue(
+                                HomeTravelDTO.travelGroup.asDomainUpComingTravel()
+                            )
+                            else _homeUpComingTravel.postValue(MockData.provideUpComingData())
+                        }
+                        "endTravels" -> {
+                            if (HomeTravelDTO.travelGroup.isNotEmpty()) _homePreviousTravel.postValue(
+                                HomeTravelDTO.travelGroup.asDomainPreviousTravel()
+                            )
+                            else _homePreviousTravel.postValue(MockData.providePreviousData())
+                        }
+                    }
+                }
+            }.onFailure {
+                debugE(it.toString())
+            }
+        }
     }
 
-    val upComingTripDummyList = listOf<UpComingTrip>(
-        UpComingTrip("1", 4, "살려줘", "2020.06.02", "06.21", "인천 남동구", 4),
-        UpComingTrip("1", 5, "살려줘", "2020.06.02", "06.25", "인천 남동구", 5),
-        UpComingTrip("1", 6, "살려줘", "2020.06.02", "06.28", "인천 남동구", 6),
-        UpComingTrip("1", 7, "살려줘", "2020.06.02", "06.30", "인천 남동구", 7),
-        UpComingTrip("1", 78, "살려줘", "2020.06.02", "06.31", "인천 남동구", 8)
-    )
-
-    val previousTripDummyList = listOf(
-        PreviousTrip("1", "2020.05", "또 살려주면 안돼?", "서울 홍대", 4),
-        PreviousTrip("1", "2020.06", "또 살려주면 안돼?!", "서울 홍대", 7),
-        PreviousTrip("1", "2020.07", "또 살려주면 안돼?!!", "서울 홍대", 9)
-    )
-
-    fun fetchTest() = viewModelScope.launch {
-        runCatching {
-            homeRepository.fetchHomeDataTest()
-        }.onSuccess {
-            Log.d("hello", it.toString())
-        }.onFailure {
-            Log.d("hello", "$it")
-        }
+    fun initializeHomeImage() {
+        /*viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                _homeProceedingTravel.value?.let { homeRepository.fetchHomeProceedingTravelImage(it.id) }
+            }.onSuccess {
+                if (it != null) {
+                    _homeProceedingTravelImage.postValue(it.homeTravelImageRes.data.homeImageUrl)
+                } else {
+                    _homeProceedingTravelImage.postValue("https://homepages.cae.wisc.edu/~ece533/images/mountain.png")
+                }
+            }.onFailure {
+                debugE(it.toString())
+            }
+        }*/
+        _homeProceedingTravelImage.value =
+            "https://homepages.cae.wisc.edu/~ece533/images/mountain.png"
     }
 }

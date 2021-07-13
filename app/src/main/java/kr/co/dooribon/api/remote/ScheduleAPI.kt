@@ -28,12 +28,26 @@ data class CreateTravelScheduleReq(
 )
 
 data class CreateTravelScheduleRes(
-    val createScheduleRes: BaseResponse<BaseTravelScheduleDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: BaseTravelScheduleDTO
 )
 
 // 여행 일정 뷰
 data class TravelScheduleRes(
-    val travelScheduleRes: BaseResponse<TravelScheduleDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: TravelScheduleDTO
 )
 
 data class TravelScheduleDTO(
@@ -79,12 +93,26 @@ data class EditTravelScheduleReq(
 )
 
 data class EditTravelScheduleRes(
-    val editTravelRes: BaseResponse<BaseTravelScheduleDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: BaseTravelScheduleDTO
 )
 
 // 여행 일정 삭제
 data class DeleteTravelScheduleRes(
-    val deleteTravelScheduleRes: BaseResponse<BaseTravelScheduleDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: BaseTravelScheduleDTO
 )
 
 // 특정 날짜 일정 전체 조회

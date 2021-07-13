@@ -2,17 +2,15 @@ package kr.co.dooribon.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import kr.co.dooribon.databinding.ViewUpComingTripBinding
-import kr.co.dooribon.domain.entity.UpComingTrip
+import kr.co.dooribon.domain.entity.UpComingTravel
 
 class UpComingTripAdapter(
-    private val onItemClicked: (idx: Int, item: UpComingTrip) -> Unit
+    private val onItemClicked: (idx: Int, item: UpComingTravel) -> Unit
 ) : RecyclerView.Adapter<UpComingTripAdapter.UpComingTripViewHolder>() {
 
-    private val itemList = mutableListOf<UpComingTrip>()
+    private val itemList = mutableListOf<UpComingTravel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpComingTripViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -34,21 +32,14 @@ class UpComingTripAdapter(
             }
         }
 
-        fun bind(viewItem: UpComingTrip) {
+        fun bind(viewItem: UpComingTravel) {
             binding.item = viewItem
         }
     }
 
-    fun submitItem(list: List<UpComingTrip>) {
+    fun submitItem(list: List<UpComingTravel>) {
         itemList.clear()
         itemList.addAll(list)
         notifyDataSetChanged()
-    }
-}
-
-@BindingAdapter("up_coming_trip_item")
-fun ViewPager2.setUpComingTripItem(items: List<UpComingTrip>) {
-    (adapter as? UpComingTripAdapter)?.run {
-        submitItem(items)
     }
 }

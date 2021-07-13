@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="kr.co.dooribon.domain.entity.PreviousTrip" />
+            type="kr.co.dooribon.domain.entity.PreviousTravel" />
 
         <variable
             name="on_click"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
             android:includeFontPadding="false"
-            android:text="@{item.previousTripDate}"
+            android:text="@{item.previousTravelDate}"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@id/iv_previous_trip"
@@ -52,7 +52,7 @@
             android:layout_marginStart="24dp"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
             android:includeFontPadding="false"
-            android:text="@{item.previousTripTitle}"
+            android:text="@{item.previousTravelTitle}"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/tv_previous_trip_place"
             app:layout_constraintStart_toEndOf="@id/iv_previous_trip"
@@ -69,7 +69,7 @@
             android:background="@drawable/bg_black_gray4_round_textview"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:includeFontPadding="false"
-            android:text="@{item.previousTripPlace}"
+            android:text="@{item.previousTravelPlace}"
             android:textColor="@color/doo_ri_bon_gray_black4"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@id/tv_previous_trip_people"
@@ -86,7 +86,7 @@
             android:background="@drawable/bg_black_gray4_round_textview"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:includeFontPadding="false"
-            android:text="@{Integer.toString(item.previousTripPeople)}"
+            android:text="@{Integer.toString(item.previousTravelPeople)}"
             android:textColor="@color/doo_ri_bon_gray_black4"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

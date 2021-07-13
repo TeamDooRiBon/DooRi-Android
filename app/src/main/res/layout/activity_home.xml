@@ -114,8 +114,8 @@
                         android:layout_height="280dp"
                         android:layout_marginTop="16dp"
                         android:onClick="@{() -> homeActivity.navigateExistingTrip()}"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/dummy_round_view"
+                        android:scaleType="centerCrop"
+                        home_proceeding_travel_image="@{bindViewModel.homeProceedingTravelImage}"
                         app:gradient_alpha="0.7"
                         app:gradient_corner_radius="32dp"
                         app:gradient_end_color="@color/black"
@@ -148,7 +148,7 @@
                         android:includeFontPadding="false"
                         android:fontFamily="@font/spoqa_han_sans_neo_medium"
                         android:layout_marginTop="4dp"
-                        android:text="2020.05.21"
+                        android:text="@{bindViewModel.homeProceedingTravel.travelStartDate}"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_title"
                         app:layout_constraintEnd_toStartOf="@id/tv_home_being_emoji"
                         app:layout_constraintStart_toStartOf="@id/tv_home_place" />
@@ -174,7 +174,7 @@
                         android:includeFontPadding="false"
                         android:fontFamily="@font/spoqa_han_sans_neo_medium"
                         android:layout_marginStart="4dp"
-                        android:text="2020.05.27"
+                        android:text="@{bindViewModel.homeProceedingTravel.travelEndDate}"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_title"
                         app:layout_constraintStart_toEndOf="@id/tv_home_being_emoji" />
 
@@ -186,7 +186,7 @@
                         android:includeFontPadding="false"
                         android:fontFamily="@font/spoqa_han_sans_neo_bold"
                         android:layout_marginBottom="8dp"
-                        android:text="두리번과의 우정 여행"
+                        android:text="@{bindViewModel.homeProceedingTravel.travelTitle}"
                         android:textSize="23sp"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_place"
                         app:layout_constraintStart_toStartOf="@id/tv_home_place"
@@ -203,7 +203,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="24dp"
                         android:background="@drawable/bg_black_round_textview"
-                        android:text="강원도 속초"
+                        android:text="@{bindViewModel.homeProceedingTravel.travelDestination}"
                         android:textColor="@color/doo_ri_bon_pure_white"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -218,7 +218,7 @@
                         android:fontFamily="@font/spoqa_han_sans_neo_regular"
                         android:layout_marginStart="8dp"
                         android:background="@drawable/bg_black_round_textview"
-                        android:text="OO님과 함께"
+                        android:text="@{bindViewModel.homeProceedingTravel.travelMembers[0] + `와 함께`}"
                         android:textColor="@color/doo_ri_bon_pure_white"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="@id/tv_home_place"
@@ -252,7 +252,7 @@
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/vp_home_upcoming_travel_contents"
-                        up_coming_trip_item="@{bindViewModel.upComingTripDummyList}"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -331,7 +331,6 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_home_previous_travel_content"
-                        previous_trip_item="@{bindViewModel.previousTripDummyList}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"

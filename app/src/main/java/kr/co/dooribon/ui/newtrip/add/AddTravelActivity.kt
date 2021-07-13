@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityNewTravelBinding
 import kr.co.dooribon.dialog.DooRiBonDialog
 import kr.co.dooribon.domain.entity.PickDatePair
@@ -19,6 +20,7 @@ import kr.co.dooribon.ui.newtrip.adapter.ImageData
 import kr.co.dooribon.ui.newtrip.adapter.RecoImgAdapter
 import kr.co.dooribon.ui.newtrip.add.contract.DatePickerActivityContract
 import kr.co.dooribon.utils.RVItemDeco
+import kr.co.dooribon.utils.StateAPICallback
 
 class AddTravelActivity : AppCompatActivity() {
 
@@ -52,6 +54,8 @@ class AddTravelActivity : AppCompatActivity() {
         window.setSoftInputMode(SOFT_INPUT_ADJUST_NOTHING)
 
         binding.btStartNewTravel.setOnClickListener {
+            // TODO : 이 부분에서 데이터를 모아서 통신하는 코드를 만들면 될 거 같습니다.
+            // TravelTitle , TravelDestination , StartDate , EndDate , ImageIndex 이케 보내면 될 거 같습니다.
             val intent = Intent(this, TravelPlanDoneActivity::class.java)
             startActivity(intent)
         }
@@ -70,6 +74,12 @@ class AddTravelActivity : AppCompatActivity() {
         }
 
         resetData(-1) // 수정할 값이 없으므로 -1 대입
+        // TODO : 이 함수의 인자로 서버통신한 이미지 16개를 보내면 될거 같음
+        // TODO : ImageData에서 String으로 변경하고 Glide로 이미지를 가져오도록 해야할 듯 싶습니다.
+        apiModule.travelImageApi.fetchDefaultTravelImage().enqueue(StateAPICallback { apiState ->
+            when (apiState) {
+            }
+        })
         imgAdapter(tempImgs)
         chkEditTextInput()
         enableNewTravelBtn()
