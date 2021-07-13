@@ -15,7 +15,7 @@ class ApiModule {
         retrofitModule.createApi(ScheduleAPI::class)
     }
 
-    val travelImageAPI by lazy {
+    val travelImageApi by lazy {
         retrofitModule.createApi(TravelImageAPI::class)
     }
 
