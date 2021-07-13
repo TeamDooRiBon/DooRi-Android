@@ -9,6 +9,10 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    def keyStoreProperties = new Properties()
+    keyStoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
     defaultConfig {
         applicationId "kr.co.dooribon"
         minSdkVersion 26
@@ -17,6 +21,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String","JWT_TOKEN",keyStoreProperties["JWT_TOKEN"])
+        buildConfigField("String","BASE_URL",keyStoreProperties["BASE_URL"])
     }
 
     buildTypes {

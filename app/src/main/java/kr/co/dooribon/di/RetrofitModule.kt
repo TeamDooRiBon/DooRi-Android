@@ -1,5 +1,7 @@
 package kr.co.dooribon.di
 
+import android.net.wifi.WifiConfiguration
+import kr.co.dooribon.BuildConfig
 import kr.co.dooribon.application.MainApplication.Companion.sharedPreferenceModule
 import okhttp3.ConnectionPool
 import okhttp3.Interceptor
@@ -20,7 +22,7 @@ class RetrofitModule {
     private val authTokenInterceptor = Interceptor { chain ->
         val originalRequest = chain.request()
         val requestBuilder = originalRequest.newBuilder().header(
-            HEADER_TOKEN, sharedPreferenceModule.jwtToken
+            HEADER_TOKEN, BuildConfig.JWT_TOKEN
         )
         val request = requestBuilder.build()
         return@Interceptor chain.proceed(request)
@@ -37,7 +39,7 @@ class RetrofitModule {
 
     private fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(provideOkHttpClient())
             .build()
@@ -46,7 +48,6 @@ class RetrofitModule {
     fun <T : Any> createApi(clazz: KClass<T>): T = provideRetrofit().create(clazz.java)
 
     companion object {
-        private const val BASE_URL = "http://13.209.82.176:5000/"
         private const val MEDIA_TYPE = "application/json"
         private const val HEADER_TOKEN = "x-auth-token"
     }
