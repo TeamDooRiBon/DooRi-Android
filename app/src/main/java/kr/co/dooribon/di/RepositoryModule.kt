@@ -6,6 +6,6 @@ import kr.co.dooribon.application.MainApplication.Companion.apiModule
 class RepositoryModule {
 
     val homeRepository by lazy {
-        HomeRepository(apiModule.travelApi, apiModule.travelImageAPI)
+        HomeRepository(apiModule.travelApi, apiModule.travelImageApi)
     }
 }

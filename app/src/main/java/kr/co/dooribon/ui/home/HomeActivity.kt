@@ -40,6 +40,7 @@ class HomeActivity : AppCompatActivity() {
         binding.bindViewModel = viewModel
         binding.homeActivity = this
         binding.navigateNewTrip = { navigateNewTripDialog() }
+        lifecycle.addObserver(viewModel)
 
         observeHomeProceedingTravel()
         observeHomeUpComingTravel()

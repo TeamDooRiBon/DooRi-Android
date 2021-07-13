@@ -1,12 +1,9 @@
 package kr.co.dooribon.ui.home.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kr.co.dooribon.api.remote.asDomainListTravel
 import kr.co.dooribon.api.remote.asDomainPreviousTravel
 import kr.co.dooribon.api.remote.asDomainTravel
 import kr.co.dooribon.api.remote.asDomainUpComingTravel
@@ -19,7 +16,7 @@ import kr.co.dooribon.utils.debugE
 
 class HomeViewModel(
     private val homeRepository: HomeRepository
-) : ViewModel() {
+) : ViewModel() , LifecycleObserver {
 
     private val _homeProceedingTravel = MutableLiveData<Travel>()
     val homeProceedingTravel: LiveData<Travel>
@@ -37,11 +34,9 @@ class HomeViewModel(
     val homeProceedingTravelImage: LiveData<String>
         get() = _homeProceedingTravelImage
 
-    init {
-        initializeHome()
-    }
-
-    private fun initializeHome() {
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    fun initializeHome() {
+        debugE("Initializing calling")
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 homeRepository.fetchHomeTravel()
