@@ -50,6 +50,7 @@ class HomeViewModel(
                     when (HomeTravelDTO.travelType) {
                         "nowTravels" -> {
                             if (HomeTravelDTO.travelGroup.isNotEmpty()) _homeProceedingTravel.postValue(HomeTravelDTO.travelGroup[0].asDomainTravel())
+                            // 현재 비어있는 경우여서 전부 MockData로 대체해놨습니다.
                             else _homeProceedingTravel.postValue(MockData.provideHomeData())
                         }
                         "comeTravels" -> {
@@ -66,5 +67,22 @@ class HomeViewModel(
                 debugE(it.toString())
             }
         }
+    }
+
+    fun initializeHomeImage() {
+        /*viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                _homeProceedingTravel.value?.let { homeRepository.fetchHomeProceedingTravelImage(it.id) }
+            }.onSuccess {
+                if (it != null) {
+                    _homeProceedingTravelImage.postValue(it.homeTravelImageRes.data.homeImageUrl)
+                } else {
+                    _homeProceedingTravelImage.postValue("https://homepages.cae.wisc.edu/~ece533/images/mountain.png")
+                }
+            }.onFailure {
+                debugE(it.toString())
+            }
+        }*/
+        _homeProceedingTravelImage.value = "https://homepages.cae.wisc.edu/~ece533/images/mountain.png"
     }
 }

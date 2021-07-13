@@ -52,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun observeHomeProceedingTravel() {
         viewModel.homeProceedingTravel.observe(this){
-            
+            viewModel.initializeHomeImage()
         }
     }
 
