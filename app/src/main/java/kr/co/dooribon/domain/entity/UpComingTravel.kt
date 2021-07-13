@@ -1,7 +1,7 @@
 package kr.co.dooribon.domain.entity
 
 data class UpComingTravel(
-    val upComingTravelId : String,
+    val upComingTravelId: String,
     val upComingTravelImageUrl: String,
     val upComingTravelDday: Int,
     val upComingTravelTitle: String,

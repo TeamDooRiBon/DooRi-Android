@@ -35,6 +35,6 @@ interface TravelImageAPI {
     // 홈 화면에서 이미지 큰거 가져오는 api
     @GET("image/{groupId}")
     suspend fun fetchHomeTravelImage(
-        @Path("groupId") groupId : String
+        @Path("groupId") groupId: String
     ): HomeTravelImageRes
 }

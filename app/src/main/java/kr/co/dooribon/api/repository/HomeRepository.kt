@@ -5,9 +5,10 @@ import kr.co.dooribon.api.remote.TravelImageAPI
 
 class HomeRepository(
     private val travelAPI: TravelAPI,
-    private val travelImageAPI : TravelImageAPI
+    private val travelImageAPI: TravelImageAPI
 ) {
     suspend fun fetchHomeTravel() = travelAPI.fetchUserTravel()
 
-    suspend fun fetchHomeProceedingTravelImage(groupId : String) = travelImageAPI.fetchHomeTravelImage(groupId)
+    suspend fun fetchHomeProceedingTravelImage(groupId: String) =
+        travelImageAPI.fetchHomeTravelImage(groupId)
 }

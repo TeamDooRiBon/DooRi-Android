@@ -56,7 +56,7 @@ fun List<TravelDTO>.asDomainUpComingTravel(): List<UpComingTravel> {
     }
 }
 
-fun List<TravelDTO>.asDomainPreviousTravel() : List<PreviousTravel> {
+fun List<TravelDTO>.asDomainPreviousTravel(): List<PreviousTravel> {
     return map {
         it.asDomainPreviousTravel()
     }

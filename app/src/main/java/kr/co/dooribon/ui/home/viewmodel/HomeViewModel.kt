@@ -1,6 +1,5 @@
 package kr.co.dooribon.ui.home.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,7 +15,7 @@ import kr.co.dooribon.utils.debugE
 
 class HomeViewModel(
     private val homeRepository: HomeRepository
-) : ViewModel() , LifecycleObserver {
+) : ViewModel(), LifecycleObserver {
 
     private val _homeProceedingTravel = MutableLiveData<Travel>()
     val homeProceedingTravel: LiveData<Travel>
@@ -44,16 +43,22 @@ class HomeViewModel(
                 HomeTravelRes.data.forEach { HomeTravelDTO ->
                     when (HomeTravelDTO.travelType) {
                         "nowTravels" -> {
-                            if (HomeTravelDTO.travelGroup.isNotEmpty()) _homeProceedingTravel.postValue(HomeTravelDTO.travelGroup[0].asDomainTravel())
+                            if (HomeTravelDTO.travelGroup.isNotEmpty()) _homeProceedingTravel.postValue(
+                                HomeTravelDTO.travelGroup[0].asDomainTravel()
+                            )
                             // 현재 비어있는 경우여서 전부 MockData로 대체해놨습니다.
                             else _homeProceedingTravel.postValue(MockData.provideHomeData())
                         }
                         "comeTravels" -> {
-                            if (HomeTravelDTO.travelGroup.isNotEmpty()) _homeUpComingTravel.postValue(HomeTravelDTO.travelGroup.asDomainUpComingTravel())
+                            if (HomeTravelDTO.travelGroup.isNotEmpty()) _homeUpComingTravel.postValue(
+                                HomeTravelDTO.travelGroup.asDomainUpComingTravel()
+                            )
                             else _homeUpComingTravel.postValue(MockData.provideUpComingData())
                         }
                         "endTravels" -> {
-                            if (HomeTravelDTO.travelGroup.isNotEmpty()) _homePreviousTravel.postValue(HomeTravelDTO.travelGroup.asDomainPreviousTravel())
+                            if (HomeTravelDTO.travelGroup.isNotEmpty()) _homePreviousTravel.postValue(
+                                HomeTravelDTO.travelGroup.asDomainPreviousTravel()
+                            )
                             else _homePreviousTravel.postValue(MockData.providePreviousData())
                         }
                     }
@@ -78,6 +83,7 @@ class HomeViewModel(
                 debugE(it.toString())
             }
         }*/
-        _homeProceedingTravelImage.value = "https://homepages.cae.wisc.edu/~ece533/images/mountain.png"
+        _homeProceedingTravelImage.value =
+            "https://homepages.cae.wisc.edu/~ece533/images/mountain.png"
     }
 }

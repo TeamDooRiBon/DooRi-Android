@@ -16,7 +16,12 @@ object MockData {
 
     fun provideHomeData() =
         Travel(
-            "1", "Nothing", "Nothing", "Nothing", "https://homepages.cae.wisc.edu/~ece533/images/mountain.png", "Nothing",
+            "1",
+            "Nothing",
+            "Nothing",
+            "Nothing",
+            "https://homepages.cae.wisc.edu/~ece533/images/mountain.png",
+            "Nothing",
             listOf()
         )
 

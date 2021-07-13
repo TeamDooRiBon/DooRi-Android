@@ -52,19 +52,19 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun observeHomeProceedingTravel() {
-        viewModel.homeProceedingTravel.observe(this){
+        viewModel.homeProceedingTravel.observe(this) {
             viewModel.initializeHomeImage()
         }
     }
 
     private fun observeHomeUpComingTravel() {
-        viewModel.homeUpComingTravel.observe(this){
+        viewModel.homeUpComingTravel.observe(this) {
             upComingTripAdapter.submitItem(it)
         }
     }
 
     private fun observeHomePreviousTravel() {
-        viewModel.homePreviousTravel.observe(this){
+        viewModel.homePreviousTravel.observe(this) {
             previousTripAdapter.submitItem(it)
         }
     }
