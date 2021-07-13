@@ -1,8 +1,6 @@
 package kr.co.dooribon.di
 
-import kr.co.dooribon.api.remote.ScheduleAPI
-import kr.co.dooribon.api.remote.TravelAPI
-import kr.co.dooribon.api.remote.TravelImageAPI
+import kr.co.dooribon.api.remote.*
 import kr.co.dooribon.application.MainApplication.Companion.retrofitModule
 
 class ApiModule {
@@ -19,4 +17,11 @@ class ApiModule {
         retrofitModule.createApi(TravelImageAPI::class)
     }
 
+    val boardApi by lazy {
+        retrofitModule.createApi(BoardAPI::class)
+    }
+
+    val tendencyApi by lazy {
+        retrofitModule.createApi(TendencyAPI::class)
+    }
 }
