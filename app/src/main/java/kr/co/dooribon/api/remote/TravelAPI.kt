@@ -109,7 +109,7 @@ data class EditTravelMemberInfoDTO(
     @SerializedName("_id")
     val travelGroupId: String,
     @SerializedName("members")
-    val travelMembers: List<EditTravelMemberDTO>,
+    val travelMembers: List<MemberDTO>,
     @SerializedName("schedules")
     val travelScheduleId: String,
     @SerializedName("boards")
@@ -126,15 +126,6 @@ data class EditTravelMemberInfoDTO(
     val travelEndDate: String,
     @SerializedName("image")
     val travelImageUrl: String
-)
-
-data class EditTravelMemberDTO(
-    @SerializedName("_id")
-    val memberId: String,
-    @SerializedName("name")
-    val memberName: String,
-    @SerializedName("profileImage")
-    val memberProfileImageUrl: String
 )
 
 // 여행 편집
