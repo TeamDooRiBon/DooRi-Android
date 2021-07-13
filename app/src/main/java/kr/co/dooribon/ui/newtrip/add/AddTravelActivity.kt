@@ -1,15 +1,11 @@
 package kr.co.dooribon.ui.newtrip.add
 
-import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
@@ -141,7 +137,7 @@ class AddTravelActivity : AppCompatActivity() {
                 dooribonDialogSubTitle2 = "수정을 취소하려면 오른쪽 버튼을 눌러주세요.",
                 onOrangeButtonClicked = {
                     finish()
-                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                 },
             ).show(supportFragmentManager, DOO_RI_BON_DIALOG_TAG)
         }
@@ -157,7 +153,7 @@ class AddTravelActivity : AppCompatActivity() {
             dooribonDialogSubTitle2 = "수정을 취소하려면 오른쪽 버튼을 눌러주세요.",
             onOrangeButtonClicked = {
                 finish()
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             },
         ).show(supportFragmentManager, DOO_RI_BON_DIALOG_TAG)
     }

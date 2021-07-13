@@ -2,8 +2,6 @@ package kr.co.dooribon.ui.newtrip
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -11,7 +9,6 @@ import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTravelPlanDoneBinding
 import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import java.util.*
-import kotlin.concurrent.fixedRateTimer
 import kotlin.concurrent.timerTask
 
 class TravelPlanDoneActivity : AppCompatActivity() {
@@ -37,7 +34,7 @@ class TravelPlanDoneActivity : AppCompatActivity() {
         }
     }
 
-    private fun moveToExistingTripActivity(dlg : DoneCopyDialog){
+    private fun moveToExistingTripActivity(dlg: DoneCopyDialog) {
         val intent = Intent(this, ExistingTripActivity::class.java)
         dlg.dismiss() // 다이얼로그 종료
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거

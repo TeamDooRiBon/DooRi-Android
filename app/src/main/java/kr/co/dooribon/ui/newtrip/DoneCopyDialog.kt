@@ -56,7 +56,7 @@ class DoneCopyDialog(context: Context) {
         dlg.show()
     }
 
-    fun dismiss(){
+    fun dismiss() {
         dlg.dismiss()
     }
 }

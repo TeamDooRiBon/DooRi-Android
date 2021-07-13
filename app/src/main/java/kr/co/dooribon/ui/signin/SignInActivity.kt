@@ -10,15 +10,15 @@ import kr.co.dooribon.utils.getIntent
 
 class SignInActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivitySignInBinding
+    private lateinit var binding: ActivitySignInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_sign_in)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in)
 
         binding.btnKakao.setOnClickListener {
             startActivity(getIntent<HomeActivity>())
-            overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
     }

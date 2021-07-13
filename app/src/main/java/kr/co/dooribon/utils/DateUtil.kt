@@ -15,6 +15,7 @@ object DateUtil {
         }
     }
 
+    // TODO : convertDateToStringDot이라고 해야지 멍청이 훈기야
     fun convertStringToDateDot(date: Date): String {
         return simpleDateFormatDot.format(date)
     }

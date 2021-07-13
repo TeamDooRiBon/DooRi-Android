@@ -2,6 +2,7 @@ package kr.co.dooribon.di
 
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider
+import kr.co.dooribon.application.MainApplication.Companion.repositoryModule
 import kr.co.dooribon.ui.factory.HomeViewModelFactory
 import kr.co.dooribon.ui.factory.TendencyViewModelFactory
 import kr.co.dooribon.ui.factory.TripTendencyViewModelFactory
@@ -12,7 +13,7 @@ import kr.co.dooribon.ui.factory.TripTendencyViewModelFactory
 class ViewModelModule(private val application: Application) {
 
     fun provideHomeViewModelFactory(): ViewModelProvider.Factory =
-        HomeViewModelFactory()
+        HomeViewModelFactory(repositoryModule.homeRepository)
 
     fun provideTripTendencyViewModelFactory(): ViewModelProvider.Factory =
         TripTendencyViewModelFactory()

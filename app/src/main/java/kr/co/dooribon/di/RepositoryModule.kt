@@ -1,11 +1,11 @@
 package kr.co.dooribon.di
 
 import kr.co.dooribon.api.repository.HomeRepository
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 
-/**
- * api 통신시 Repository를 주입할 때 사용
- */
 class RepositoryModule {
 
-    fun provideHomeRepository() = HomeRepository()
+    val homeRepository by lazy {
+        HomeRepository(apiModule.travelApi)
+    }
 }
