@@ -22,12 +22,26 @@ data class CreateTravelBoardReq(
 )
 
 data class CreateTravelBoardRes(
-    val editTravelBoardRes: BaseResponse<BoardContentDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: BoardContentDTO
 )
 
 // 여행 보드 조회
 data class InquireTravelBoardRes(
-    val inquireTravelBoardRes: BaseResponse<BoardContentDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: BoardContentDTO
 )
 
 // 여행 보드 수정
@@ -37,12 +51,26 @@ data class EditTravelBoardReq(
 )
 
 data class EditTravelBoardRes(
-    val editTravelBoardRes: BaseResponse<BoardContentDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: BoardContentDTO
 )
 
 // 여행 보드 삭제
 data class DeleteTravelBoardRes(
-    val deleteTravelBoardRes: BaseResponse<BoardContentDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: BoardContentDTO
 )
 
 interface BoardAPI {
