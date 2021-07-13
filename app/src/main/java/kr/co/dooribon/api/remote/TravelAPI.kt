@@ -1,6 +1,7 @@
 package kr.co.dooribon.api.remote
 
 import com.google.gson.annotations.SerializedName
+import kr.co.dooribon.domain.entity.DomainTravel
 import retrofit2.http.*
 
 data class HomeTravelRes(
