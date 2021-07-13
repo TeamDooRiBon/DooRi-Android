@@ -8,72 +8,73 @@ import retrofit2.http.*
 
 data class BoardContentDTO(
     @SerializedName("_id")
-    val boardId : String,
+    val boardId: String,
     @SerializedName("name")
-    val editUserName : String,
+    val editUserName: String,
     @SerializedName("content")
-    val boardContent : String
+    val boardContent: String
 )
 
 // 여행 보드 추가
 data class CreateTravelBoardReq(
     @SerializedName("content")
-    val travelBoardContent : String
+    val travelBoardContent: String
 )
 
 data class CreateTravelBoardRes(
-    val editTravelBoardRes : BaseResponse<BoardContentDTO>
+    val editTravelBoardRes: BaseResponse<BoardContentDTO>
 )
 
 // 여행 보드 조회
 data class InquireTravelBoardRes(
-    val inquireTravelBoardRes : BaseResponse<BoardContentDTO>
+    val inquireTravelBoardRes: BaseResponse<BoardContentDTO>
 )
 
 // 여행 보드 수정
 data class EditTravelBoardReq(
     @SerializedName("content")
-    val boardContent : String
+    val boardContent: String
 )
 
 data class EditTravelBoardRes(
-    val editTravelBoardRes : BaseResponse<BoardContentDTO>
+    val editTravelBoardRes: BaseResponse<BoardContentDTO>
 )
 
 // 여행 보드 삭제
 data class DeleteTravelBoardRes(
-    val deleteTravelBoardRes : BaseResponse<BoardContentDTO>
+    val deleteTravelBoardRes: BaseResponse<BoardContentDTO>
 )
-interface BoardAPI{
+
+interface BoardAPI {
     // 여행 보드 추가 뷰
     @POST("board/{groupId}/{tag}")
     fun createTravelBoard(
-        @Path("groupId") groupId : String,
-        @Path("tag") tag : String,
+        @Path("groupId") groupId: String,
+        @Path("tag") tag: String,
         @Body createTravelBoardReq: CreateTravelBoardReq
-    ) : CreateTravelBoardRes
+    ): CreateTravelBoardRes
 
     // 태그별 여행 보드 조회 뷰
     @GET("board/{groupId}/{tag}")
     fun inquireTravelBoard(
-        @Path("groupId") groupId : String,
-        @Path("tag") tag : String
-    ) : InquireTravelBoardRes
+        @Path("groupId") groupId: String,
+        @Path("tag") tag: String
+    ): InquireTravelBoardRes
 
     // 여행 보드 수정 뷰 , 태그별 여행 보드 조회 뷰
     @PATCH("board/{groupId}/{tag}/{boardId}")
     fun editTravelBoard(
-        @Body editTravelBoardReq : EditTravelBoardReq,
-        @Path("groupId") groupId : String,
-        @Path("tag") tag : String,
-        @Path("boardId") boardId : String
-    ) : EditTravelBoardRes
+        @Body editTravelBoardReq: EditTravelBoardReq,
+        @Path("groupId") groupId: String,
+        @Path("tag") tag: String,
+        @Path("boardId") boardId: String
+    ): EditTravelBoardRes
 
     // 태그별 여행 보드 조회 뷰에서 삭제 할 때
     @DELETE("board/{groupId}/{tag}/{boardId}")
     fun deleteTravelBoard(
-        @Path("groupId") groupId : String,
-        @Path("tag") tag : String,
-        @Path("boardId") boardId : String
-    ) : DeleteTravelBoardRes
+        @Path("groupId") groupId: String,
+        @Path("tag") tag: String,
+        @Path("boardId") boardId: String
+    ): DeleteTravelBoardRes
 }

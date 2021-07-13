@@ -1,8 +1,6 @@
 package kr.co.dooribon.di
 
-import android.net.wifi.WifiConfiguration
 import kr.co.dooribon.BuildConfig
-import kr.co.dooribon.application.MainApplication.Companion.sharedPreferenceModule
 import okhttp3.ConnectionPool
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

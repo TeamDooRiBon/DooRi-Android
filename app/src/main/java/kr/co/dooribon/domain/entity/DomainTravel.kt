@@ -1,7 +1,5 @@
 package kr.co.dooribon.domain.entity
 
-import com.google.gson.annotations.SerializedName
-
 data class Travel(
     val id: String,
     val travelStartDate: String,

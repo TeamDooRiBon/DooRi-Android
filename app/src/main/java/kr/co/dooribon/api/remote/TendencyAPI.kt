@@ -13,74 +13,74 @@ import retrofit2.http.Path
 // 성향 테스트 질문 조회
 data class ChildQuestionDTO(
     @SerializedName("title")
-    val questions : List<String>,
+    val questions: List<String>,
     @SerializedName("weight")
-    val questionsWeight : List<List<Int>>
+    val questionsWeight: List<List<Int>>
 )
 
 data class ParentQuestionDTO(
     @SerializedName("title")
-    val parentQuestionTitle : String,
+    val parentQuestionTitle: String,
     @SerializedName("content")
-    val childQuestions : ChildQuestionDTO
+    val childQuestions: ChildQuestionDTO
 )
 
 data class QuestionListDTO(
     @SerializedName("question")
-    val questionList : List<ParentQuestionDTO>
+    val questionList: List<ParentQuestionDTO>
 )
 
 data class TravelTendencyQuestionRes(
     @SerializedName("status")
-    val status : Int,
+    val status: Int,
     @SerializedName("success")
-    val success : Boolean,
+    val success: Boolean,
     @SerializedName("message")
-    val message : String,
+    val message: String,
     @SerializedName("data")
-    val data : QuestionListDTO
+    val data: QuestionListDTO
 )
 
 // 성향 테스트 카운팅 조회
 data class ChildQuestionCountDTO(
     @SerializedName("answer")
-    val question : List<String>,
+    val question: List<String>,
     @SerializedName("count")
-    val questionAnswerCount : List<Int>
+    val questionAnswerCount: List<Int>
 )
 
 data class ParentQuestionCountDTO(
     @SerializedName("title")
-    val parentQuestionTitle : String,
+    val parentQuestionTitle: String,
     @SerializedName("content")
-    val childQuestions : ChildQuestionCountDTO
+    val childQuestions: ChildQuestionCountDTO
 )
 
 data class TravelTendencyQuestionCountRes(
     @SerializedName("status")
-    val status : Int,
+    val status: Int,
     @SerializedName("success")
-    val success : Boolean,
+    val success: Boolean,
     @SerializedName("message")
-    val message : String,
+    val message: String,
     @SerializedName("data")
-    val data : ParentQuestionCountDTO
+    val data: ParentQuestionCountDTO
 )
 
 // 그룹 성향 테스트 결과 전체 조회
 data class GroupTravelTendencyDTO(
     @SerializedName("tag")
-    val tendencyTag : List<String>,
+    val tendencyTag: List<String>,
     @SerializedName("_id")
-    val tendencyId : String,
+    val tendencyId: String,
     @SerializedName("member")
-    val tendencyUserMember : MemberDTO,
+    val tendencyUserMember: MemberDTO,
     @SerializedName("title")
-    val tendencyTitle : String,
+    val tendencyTitle: String,
     @SerializedName("aOSResultImage")
-    val tendencyResultImageUrl : String,
+    val tendencyResultImageUrl: String,
     @SerializedName("thumbnail")
-    val tendencyThumbnailImageUrl : String
+    val tendencyThumbnailImageUrl: String
 )
 
 data class MemberDTO(
@@ -93,49 +93,49 @@ data class MemberDTO(
 )
 
 data class GroupTravelTendencyRes(
-    val groupTravelTendencyRes : BaseResponse<GroupTravelTendencyDTO>
+    val groupTravelTendencyRes: BaseResponse<GroupTravelTendencyDTO>
 )
 
 // 성향테스트 결과 저장
 data class StoreTravelTendencyReq(
-    val tendencyScore : List<Int>,
-    val tendencyChoice : List<Int>
+    val tendencyScore: List<Int>,
+    val tendencyChoice: List<Int>
 )
 
 data class StoreTravelTendencyDTO(
     @SerializedName("member")
-    val memberName : String,
+    val memberName: String,
     @SerializedName("title")
-    val tendencyTitle : String,
+    val tendencyTitle: String,
     @SerializedName("tag")
-    val tendencyTag : List<String>,
+    val tendencyTag: List<String>,
     @SerializedName("aOSResultImage")
-    val tendencyResultImageUrl : String,
+    val tendencyResultImageUrl: String,
     @SerializedName("thumbnail")
-    val tendencyThumbnailImageUrl : String
+    val tendencyThumbnailImageUrl: String
 )
 
 data class StoreTravelTendencyRes(
-    val storeTravelTendencyRes : BaseResponse<StoreTravelTendencyDTO>
+    val storeTravelTendencyRes: BaseResponse<StoreTravelTendencyDTO>
 )
 
 interface TendencyAPI {
     @GET("tendency/question")
-    fun fetchTravelTendencyQuestion() : TravelTendencyQuestionRes
+    fun fetchTravelTendencyQuestion(): TravelTendencyQuestionRes
 
     @GET("tendency/question/{groupId}")
     fun fetchTravelTendencyQuestionCount(
-        @Path("groupId") groupId : String
-    ) : TravelTendencyQuestionCountRes
+        @Path("groupId") groupId: String
+    ): TravelTendencyQuestionCountRes
 
     @GET("tendency/{groupId}")
     fun fetchGroupTravelTendency(
-        @Path("groupId") groupId : String
-    ) : GroupTravelTendencyRes
+        @Path("groupId") groupId: String
+    ): GroupTravelTendencyRes
 
     @POST("tendency/{groupId}")
     fun storeTravelTendency(
-        @Body storeTravelTendencyReq : StoreTravelTendencyReq,
-        @Path("groupId") groupId : String
-    ) : StoreTravelTendencyRes
+        @Body storeTravelTendencyReq: StoreTravelTendencyReq,
+        @Path("groupId") groupId: String
+    ): StoreTravelTendencyRes
 }
