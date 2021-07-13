@@ -29,7 +29,7 @@ class DatePickActivity : AppCompatActivity() {
 
     private fun configureEnterButton() {
         binding.btEnterButton.setOnClickListener {
-            if(intent.getParcelableExtra<PickDatePair>("beforeSelect") != null){
+            if (intent.getParcelableExtra<PickDatePair>("beforeSelect") != null) {
                 DooRiBonDialog(
                     dooribonDialogTitle = "여행 날짜를 변경하시겠습니까?",
                     dooribonDialogSubTitle = "날짜 변경 시 이때까지의 여행 일정은 모두 삭제됩니다.",
@@ -52,7 +52,7 @@ class DatePickActivity : AppCompatActivity() {
                         finish()
                     }
                 ).show(supportFragmentManager, DOO_RI_BON_DIALOG_TAG)
-            }else{
+            } else {
                 binding.fragCalendar.getSelectedDate().let {
                     if (it.first != null && it.second != null) {
                         // setResult로 데이터를 반환하고 종료합니다.

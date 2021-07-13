@@ -10,20 +10,20 @@ import android.content.SharedPreferences
 class SharedPreferenceModule(private val application: Application) {
 
     val sharedPreference: SharedPreferences by lazy {
-        application.getSharedPreferences(SP_NAME,MODE_PRIVATE)
+        application.getSharedPreferences(SP_NAME, MODE_PRIVATE)
     }
 
-    var isFirstLaunch : Boolean
-    get() {
-        val result = sharedPreference.getBoolean(IS_FIRST_LAUNCH,true)
-        if(result){
-            sharedPreference.edit().putBoolean(IS_FIRST_LAUNCH,false).apply()
+    var isFirstLaunch: Boolean
+        get() {
+            val result = sharedPreference.getBoolean(IS_FIRST_LAUNCH, true)
+            if (result) {
+                sharedPreference.edit().putBoolean(IS_FIRST_LAUNCH, false).apply()
+            }
+            return result
         }
-        return result
-    }
-    set(_){
-        sharedPreference.edit().putBoolean(IS_FIRST_LAUNCH,false).apply()
-    }
+        set(_) {
+            sharedPreference.edit().putBoolean(IS_FIRST_LAUNCH, false).apply()
+        }
 
     companion object {
         private const val SP_NAME = "SHARED_PREFERENCE"

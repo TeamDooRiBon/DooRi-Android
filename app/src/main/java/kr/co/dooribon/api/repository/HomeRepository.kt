@@ -1,5 +1,9 @@
 package kr.co.dooribon.api.repository
 
-class HomeRepository {
+import kr.co.dooribon.api.remote.TravelAPI
 
+class HomeRepository(
+    private val travelAPI: TravelAPI
+) {
+    suspend fun fetchHomeDataTest() = travelAPI.fetchUserTravel()
 }

@@ -26,18 +26,18 @@ class ScheduleAddActivity : AppCompatActivity() {
         addBackBtnClickListener()
     }
 
-    private fun fullChangeBtn(){
+    private fun fullChangeBtn() {
         val code1 = binding.etScheduleAddWhat.text
         val code2 = binding.etScheduleAddLocation.text
         val code3 = binding.etScheduleAddMemo.text
         binding.etScheduleAddMemo.setOnClickListener {
-            if(code1.isNotEmpty() && code2.isNotEmpty() && code3.isNotEmpty()){
-                binding.btnScheduleAdd.apply{
+            if (code1.isNotEmpty() && code2.isNotEmpty() && code3.isNotEmpty()) {
+                binding.btnScheduleAdd.apply {
                     setTextColor(getColor(R.color.gray_white_8))
                     setBackgroundColor(getColor(R.color.doo_ri_bon_orange))
                 }
-            } else if(code1.isNotEmpty() && code2.isNotEmpty() && binding.etScheduleAddLocation.isEnabled == false){
-                binding.btnScheduleAdd.apply{
+            } else if (code1.isNotEmpty() && code2.isNotEmpty() && binding.etScheduleAddLocation.isEnabled == false) {
+                binding.btnScheduleAdd.apply {
                     setTextColor(getColor(R.color.gray_white_8))
                     setBackgroundColor(getColor(R.color.doo_ri_bon_orange))
                 }
@@ -90,64 +90,64 @@ class ScheduleAddActivity : AppCompatActivity() {
 
             sheetView.btnok.setOnClickListener {
                 if (sheetView.npAmPm.value == 0) {
-                    binding.tvTimepickerAmpm1.apply{
+                    binding.tvTimepickerAmpm1.apply {
                         text = "오전"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
                 } else {
-                    binding.tvTimepickerAmpm1.apply{
+                    binding.tvTimepickerAmpm1.apply {
                         text = "오후"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
                 }
 
-                if (sheetView.npHour.value == 0){
-                    binding.tvTimepickerHour1.apply{
+                if (sheetView.npHour.value == 0) {
+                    binding.tvTimepickerHour1.apply {
                         text = "00"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 1){
-                    binding.tvTimepickerHour1.apply{
+                } else if (sheetView.npHour.value == 1) {
+                    binding.tvTimepickerHour1.apply {
                         text = "01"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 2){
-                    binding.tvTimepickerHour1.apply{
+                } else if (sheetView.npHour.value == 2) {
+                    binding.tvTimepickerHour1.apply {
                         text = "02"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 3){
-                    binding.tvTimepickerHour1.apply{
+                } else if (sheetView.npHour.value == 3) {
+                    binding.tvTimepickerHour1.apply {
                         text = "03"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 4){
-                    binding.tvTimepickerHour1.apply{
+                } else if (sheetView.npHour.value == 4) {
+                    binding.tvTimepickerHour1.apply {
                         text = "04"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 5){
-                    binding.tvTimepickerHour1.apply{
+                } else if (sheetView.npHour.value == 5) {
+                    binding.tvTimepickerHour1.apply {
                         text = "05"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 6){
-                    binding.tvTimepickerHour1.apply{
+                } else if (sheetView.npHour.value == 6) {
+                    binding.tvTimepickerHour1.apply {
                         text = "06"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 7){
-                    binding.tvTimepickerHour1.apply{
+                } else if (sheetView.npHour.value == 7) {
+                    binding.tvTimepickerHour1.apply {
                         text = "07"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 8){
-                    binding.tvTimepickerHour1.apply{
+                } else if (sheetView.npHour.value == 8) {
+                    binding.tvTimepickerHour1.apply {
                         text = "08"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 9){
-                    binding.tvTimepickerHour1.apply{
+                } else if (sheetView.npHour.value == 9) {
+                    binding.tvTimepickerHour1.apply {
                         text = "09"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
@@ -158,13 +158,13 @@ class ScheduleAddActivity : AppCompatActivity() {
                     }
                 }
 
-                if (sheetView.npMinute.value == 0){
-                    binding.tvTimepickerMinute1.apply{
+                if (sheetView.npMinute.value == 0) {
+                    binding.tvTimepickerMinute1.apply {
                         text = "00"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
                 } else {
-                    binding.tvTimepickerMinute1.apply{
+                    binding.tvTimepickerMinute1.apply {
                         text = (sheetView.npMinute.value * 10).toString()
                         setTextColor(getColor(R.color.gray_black_1))
                     }
@@ -223,64 +223,64 @@ class ScheduleAddActivity : AppCompatActivity() {
 
             sheetView.btnok.setOnClickListener {
                 if (sheetView.npAmPm.value == 0) {
-                    binding.tvTimepickerAmpm2.apply{
+                    binding.tvTimepickerAmpm2.apply {
                         text = "오전"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
                 } else {
-                    binding.tvTimepickerAmpm2.apply{
+                    binding.tvTimepickerAmpm2.apply {
                         text = "오후"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
                 }
 
-                if (sheetView.npHour.value == 0){
-                    binding.tvTimepickerHour2.apply{
+                if (sheetView.npHour.value == 0) {
+                    binding.tvTimepickerHour2.apply {
                         text = "00"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 1){
-                    binding.tvTimepickerHour2.apply{
+                } else if (sheetView.npHour.value == 1) {
+                    binding.tvTimepickerHour2.apply {
                         text = "01"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 2){
-                    binding.tvTimepickerHour2.apply{
+                } else if (sheetView.npHour.value == 2) {
+                    binding.tvTimepickerHour2.apply {
                         text = "02"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 3){
-                    binding.tvTimepickerHour2.apply{
+                } else if (sheetView.npHour.value == 3) {
+                    binding.tvTimepickerHour2.apply {
                         text = "03"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 4){
-                    binding.tvTimepickerHour2.apply{
+                } else if (sheetView.npHour.value == 4) {
+                    binding.tvTimepickerHour2.apply {
                         text = "04"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 5){
-                    binding.tvTimepickerHour2.apply{
+                } else if (sheetView.npHour.value == 5) {
+                    binding.tvTimepickerHour2.apply {
                         text = "05"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 6){
-                    binding.tvTimepickerHour2.apply{
+                } else if (sheetView.npHour.value == 6) {
+                    binding.tvTimepickerHour2.apply {
                         text = "06"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 7){
-                    binding.tvTimepickerHour2.apply{
+                } else if (sheetView.npHour.value == 7) {
+                    binding.tvTimepickerHour2.apply {
                         text = "07"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 8){
-                    binding.tvTimepickerHour2.apply{
+                } else if (sheetView.npHour.value == 8) {
+                    binding.tvTimepickerHour2.apply {
                         text = "08"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
-                } else if(sheetView.npHour.value == 9){
-                    binding.tvTimepickerHour2.apply{
+                } else if (sheetView.npHour.value == 9) {
+                    binding.tvTimepickerHour2.apply {
                         text = "09"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
@@ -291,13 +291,13 @@ class ScheduleAddActivity : AppCompatActivity() {
                     }
                 }
 
-                if (sheetView.npMinute.value == 0){
-                    binding.tvTimepickerMinute2.apply{
+                if (sheetView.npMinute.value == 0) {
+                    binding.tvTimepickerMinute2.apply {
                         text = "00"
                         setTextColor(getColor(R.color.gray_black_1))
                     }
                 } else {
-                    binding.tvTimepickerMinute2.apply{
+                    binding.tvTimepickerMinute2.apply {
                         text = (sheetView.npMinute.value * 10).toString()
                         setTextColor(getColor(R.color.gray_black_1))
                     }
