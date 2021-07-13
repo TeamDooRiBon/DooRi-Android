@@ -4,7 +4,14 @@ import com.google.gson.annotations.SerializedName
 import retrofit2.http.*
 
 data class HomeTravelRes(
-    val homeTravelRes: BaseResponse<HomeTravelDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: List<HomeTravelDTO>
 )
 
 data class HomeTravelDTO(

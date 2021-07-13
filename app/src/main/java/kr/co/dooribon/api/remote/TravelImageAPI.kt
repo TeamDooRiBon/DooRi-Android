@@ -2,6 +2,7 @@ package kr.co.dooribon.api.remote
 
 import com.google.gson.annotations.SerializedName
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 // 여행 등록할 때 보여질 16개 이미지
 data class DefaultTravelImageDTO(
@@ -25,5 +26,7 @@ interface TravelImageAPI {
 
     // 홈 화면에서 이미지 큰거 가져오는 api
     @GET("image/{groupId}")
-    fun fetchHomeTravelImage(): HomeTravelImageRes
+    suspend fun fetchHomeTravelImage(
+        @Path("groupId") groupId : String
+    ): HomeTravelImageRes
 }

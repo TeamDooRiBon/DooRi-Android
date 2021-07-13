@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="kr.co.dooribon.domain.entity.UpComingTrip" />
+            type="kr.co.dooribon.domain.entity.UpComingTravel" />
 
         <variable
             name="on_click"
@@ -55,7 +55,7 @@
                     android:fontFamily="@font/spoqa_han_sans_neo_bold"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="@{Integer.toString(item.upComingTripDday)}"
+                    android:text="@{Integer.toString(item.upComingTravelDday)}"
                     android:textColor="@color/doo_ri_bon_blue"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -71,7 +71,7 @@
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:includeFontPadding="false"
-                    android:text="@{item.upComingTripTitle}"
+                    android:text="@{item.upComingTravelTitle}"
                     android:textSize="16sp"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toEndOf="@id/iv_upcoming_trip"
@@ -86,7 +86,7 @@
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:includeFontPadding="false"
-                    android:text="@{item.upComingTripStartDate}"
+                    android:text="@{item.upComingTravelStartDate}"
                     app:layout_constraintStart_toStartOf="@id/tv_upcoming_trip_title"
                     app:layout_constraintTop_toBottomOf="@id/tv_upcoming_trip_title"
                     tools:text="2020.05.21" />
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:includeFontPadding="false"
-                    android:text="@{item.upComingTripEndDate}"
+                    android:text="@{item.upComingTravelEndDate}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_upcoming_trip_start_date"
                     app:layout_constraintStart_toEndOf="@id/tv_upcoming_trip_being_emoji"
                     app:layout_constraintTop_toTopOf="@id/tv_upcoming_trip_start_date"
@@ -125,7 +125,7 @@
                     android:background="@drawable/bg_black_gray4_round_textview"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:includeFontPadding="false"
-                    android:text="@{item.upComingTripLocation}"
+                    android:text="@{item.upComingTravelLocation}"
                     android:textColor="@color/doo_ri_bon_gray_black4"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@id/tv_upcoming_trip_start_date"
@@ -141,7 +141,7 @@
                     android:background="@drawable/bg_black_gray4_round_textview"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:includeFontPadding="false"
-                    android:text="@{Integer.toString(item.upComingTripPersonCount)}"
+                    android:text="@{Integer.toString(item.upComingTravelPersonCount)}"
                     android:textColor="@color/doo_ri_bon_gray_black4"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@id/tv_upcoming_trip_place"

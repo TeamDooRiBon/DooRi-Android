@@ -12,8 +12,8 @@ import kr.co.dooribon.R
 import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.ActivityHomeBinding
 import kr.co.dooribon.dialog.NewTripDialog
-import kr.co.dooribon.domain.entity.PreviousTrip
-import kr.co.dooribon.domain.entity.UpComingTrip
+import kr.co.dooribon.domain.entity.PreviousTravel
+import kr.co.dooribon.domain.entity.UpComingTravel
 import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import kr.co.dooribon.ui.home.adapter.PreviousTripAdapter
 import kr.co.dooribon.ui.home.adapter.UpComingTripAdapter
@@ -41,10 +41,31 @@ class HomeActivity : AppCompatActivity() {
         binding.homeActivity = this
         binding.navigateNewTrip = { navigateNewTripDialog() }
 
+        observeHomeProceedingTravel()
+        observeHomeUpComingTravel()
+        observeHomePreviousTravel()
         configureImageViewSize()
         configurePreviousTrip()
         configureUpComingTrip()
         configureViewPagerIndicator()
+    }
+
+    private fun observeHomeProceedingTravel() {
+        viewModel.homeProceedingTravel.observe(this){
+            
+        }
+    }
+
+    private fun observeHomeUpComingTravel() {
+        viewModel.homeUpComingTravel.observe(this){
+            upComingTripAdapter.submitItem(it)
+        }
+    }
+
+    private fun observeHomePreviousTravel() {
+        viewModel.homePreviousTravel.observe(this){
+            previousTripAdapter.submitItem(it)
+        }
     }
 
     private fun configureImageViewSize() {
@@ -86,11 +107,11 @@ class HomeActivity : AppCompatActivity() {
         NewTripDialog().show(supportFragmentManager, NEW_TRIP_DIALOG_TAG)
     }
 
-    private fun onPreviousTripItemClick(index: Int, item: PreviousTrip) {
+    private fun onPreviousTripItemClick(index: Int, item: PreviousTravel) {
         navigateExistingTrip()
     }
 
-    private fun onUpComingTripItemClick(index: Int, item: UpComingTrip) {
+    private fun onUpComingTripItemClick(index: Int, item: UpComingTravel) {
         startActivity(getIntent<ExistingTripActivity>())
     }
 
