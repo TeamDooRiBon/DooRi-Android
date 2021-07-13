@@ -16,7 +16,7 @@ class ViewModelModule(private val application: Application) {
         HomeViewModelFactory(repositoryModule.homeRepository)
 
     fun provideTripTendencyViewModelFactory(): ViewModelProvider.Factory =
-        TripTendencyViewModelFactory()
+        TripTendencyViewModelFactory(repositoryModule.tripTendencyRepository)
 
     fun provideTendencyViewModelFactory(): ViewModelProvider.Factory =
         TendencyViewModelFactory()

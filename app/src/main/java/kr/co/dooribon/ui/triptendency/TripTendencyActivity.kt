@@ -7,7 +7,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.dooribon.R
+import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.ActivityTripTendencyBinding
+import kr.co.dooribon.di.ViewModelModule
 import kr.co.dooribon.dialog.TripTendencyTestExitDialog
 import kr.co.dooribon.dialog.TripTendencyTestResultLoadingDialog
 import kr.co.dooribon.ui.triptendency.adapter.TripTendencyAdapter
@@ -23,7 +25,9 @@ class TripTendencyActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTripTendencyBinding
 
-    private val viewModel by viewModels<TripTendencyViewModel>()
+    private val viewModel by viewModels<TripTendencyViewModel>{
+        viewModelModule.provideTripTendencyViewModelFactory()
+    }
 
     private lateinit var tripTendencyAdapter: TripTendencyAdapter
 

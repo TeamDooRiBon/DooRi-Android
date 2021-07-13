@@ -135,7 +135,7 @@ data class StoreTravelTendencyRes(
 
 interface TendencyAPI {
     @GET("tendency/question")
-    fun fetchTravelTendencyQuestion(): TravelTendencyQuestionRes
+    suspend fun fetchTravelTendencyQuestion(): TravelTendencyQuestionRes
 
     @GET("tendency/question/{groupId}")
     fun fetchTravelTendencyQuestionCount(

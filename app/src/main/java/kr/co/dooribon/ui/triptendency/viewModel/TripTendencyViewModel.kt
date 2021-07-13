@@ -3,10 +3,16 @@ package kr.co.dooribon.ui.triptendency.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import kr.co.dooribon.api.repository.TripTendencyRepository
 import kr.co.dooribon.domain.entity.TripTendency
 import kr.co.dooribon.utils.SingleLiveEvent
+import kr.co.dooribon.utils.debugE
 
-class TripTendencyViewModel : ViewModel() {
+class TripTendencyViewModel(
+    private val tripTendencyRepository: TripTendencyRepository
+) : ViewModel() {
 
     private val _questionPosition = MutableLiveData<Int>()
     val questionPosition: LiveData<Int>
@@ -23,6 +29,15 @@ class TripTendencyViewModel : ViewModel() {
 
     init {
         _questionPosition.value = 0
+        viewModelScope.launch {
+            runCatching {
+                tripTendencyRepository.fetchTravelTendencyQuestions()
+            }.onSuccess {
+                debugE(it.toString())
+            }.onFailure {
+                debugE(it.toString())
+            }
+        }
     }
 
     fun nextPage() {
