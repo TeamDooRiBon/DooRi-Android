@@ -1,21 +1,20 @@
 package kr.co.dooribon.api.remote
 
 import com.google.gson.annotations.SerializedName
-import kr.co.dooribon.domain.entity.DomainTravel
 import retrofit2.http.*
 
 data class HomeTravelRes(
-    val homeTravelRes: BaseResponse<HomeTravel>
+    val homeTravelRes: BaseResponse<HomeTravelDTO>
 )
 
-data class HomeTravel(
+data class HomeTravelDTO(
     @SerializedName("when")
     val travelType: String,
     @SerializedName("group")
-    val travelGroup: List<Travel>
+    val travelGroup: List<TravelDTO>
 )
 
-data class Travel(
+data class TravelDTO(
     @SerializedName("_id")
     val id: String,
     @SerializedName("startDate")
@@ -47,20 +46,20 @@ data class CreateTravelReq(
 )
 
 data class CreateTravelRes(
-    val editTravelRes: BaseResponse<InviteCode>
+    val editTravelRes: BaseResponse<InviteCodeDTO>
 )
 
-data class InviteCode(
+data class InviteCodeDTO(
     @SerializedName("inviteCode")
     val inviteCode: String
 )
 
 // 여행 참여
 data class ParticipateTravelRes(
-    val participateTravelRes: BaseResponse<ParticipateTravel>
+    val participateTravelRes: BaseResponse<ParticipateTravelDTO>
 )
 
-data class ParticipateTravel(
+data class ParticipateTravelDTO(
     @SerializedName("groupId")
     val travelGroupId: String,
     @SerializedName("travelName")
@@ -78,10 +77,10 @@ data class ParticipateTravel(
 )
 
 data class TravelInfoRes(
-    val travelInfoRes: BaseResponse<TravelInfo>
+    val travelInfoRes: BaseResponse<TravelInfoDTO>
 )
 
-data class TravelInfo(
+data class TravelInfoDTO(
     @SerializedName("travelName")
     val travelTitle: String,
     @SerializedName("startDate")
@@ -91,10 +90,10 @@ data class TravelInfo(
     @SerializedName("destination")
     val travelDestination: String,
     @SerializedName("members")
-    val travelMembers: List<TravelMemberInfo>
+    val travelMembers: List<TravelMemberInfoDTO>
 )
 
-data class TravelMemberInfo(
+data class TravelMemberInfoDTO(
     @SerializedName("name")
     val memberName: String,
     @SerializedName("profileImage")
@@ -103,14 +102,14 @@ data class TravelMemberInfo(
 
 // 여행 참여 , 여행에 멤버 추가
 data class JoinTravelMembersRes(
-    val travelMembersRes: BaseResponse<EditTravelMemberInfo>
+    val travelMembersRes: BaseResponse<EditTravelMemberInfoDTO>
 )
 
-data class EditTravelMemberInfo(
+data class EditTravelMemberInfoDTO(
     @SerializedName("_id")
     val travelGroupId: String,
     @SerializedName("members")
-    val travelMembers: List<EditTravelMember>,
+    val travelMembers: List<EditTravelMemberDTO>,
     @SerializedName("schedules")
     val travelScheduleId: String,
     @SerializedName("boards")
@@ -129,7 +128,7 @@ data class EditTravelMemberInfo(
     val travelImageUrl: String
 )
 
-data class EditTravelMember(
+data class EditTravelMemberDTO(
     @SerializedName("_id")
     val memberId: String,
     @SerializedName("name")
@@ -153,10 +152,10 @@ data class EditTravelReq(
 )
 
 data class EditTravelRes(
-    val editTravelRes: BaseResponse<EditTravel>
+    val editTravelRes: BaseResponse<EditTravelDTO>
 )
 
-data class EditTravel(
+data class EditTravelDTO(
     @SerializedName("travelName")
     val travelTitle: String,
     @SerializedName("destination")

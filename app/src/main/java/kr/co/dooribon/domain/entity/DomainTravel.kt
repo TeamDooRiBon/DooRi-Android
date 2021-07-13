@@ -2,7 +2,7 @@ package kr.co.dooribon.domain.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class DomainTravel(
+data class Travel(
     val id: String,
     val travelStartDate: String,
     val travelEndDate: String,
