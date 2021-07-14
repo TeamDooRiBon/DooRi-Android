@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.21203703703703702" />
         <entry key="app/src/main/res/drawable/bg_selected_img_stroke.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/bg_text_gray.xml" value="0.1296875" />
         <entry key="app/src/main/res/drawable/ic_airplane.xml" value="0.1195" />
@@ -15,6 +16,7 @@
         <entry key="app/src/main/res/layout/activity_participate.xml" value="0.11354166666666667" />
         <entry key="app/src/main/res/layout/activity_travel_plan_done.xml" value="0.125" />
         <entry key="app/src/main/res/layout/dialog_done_copy.xml" value="0.625" />
+        <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.20923913043478262" />
         <entry key="app/src/main/res/layout/item_recommended_photos.xml" value="0.21965579710144928" />
       </map>
     </option>

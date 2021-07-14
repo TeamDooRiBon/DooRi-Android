@@ -13,7 +13,7 @@ import kr.co.dooribon.databinding.ItemRecommendedPhotosBinding
 
 class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
 
-    private var imgs = mutableListOf<ImageData>()
+    private var imgUrls = mutableListOf<String>()
     var prevClickedImgPos = -1 // 이전에 클릭된 이미지 위치
     var isRemoveBgBinding = false // 뒤에 배경을 지울 때 이 변수를 true로 바꿔 배경을 지운다
     private lateinit var itemClickListener: ItemClickListener
@@ -35,7 +35,7 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ImgViewHolder, position: Int) {
-        holder.bind(imgs[position])
+        holder.bind(imgUrls[position])
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
         }
@@ -55,31 +55,30 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
      * */
     fun modifyImgBg(view: View, isRemove: Boolean) {
         if (isRemove) {
-            Log.e("igRemove", isRemove.toString())
             view.findViewById<ImageView>(R.id.iv_reco_image).setBackgroundResource(0)
             view.findViewById<ImageView>(R.id.iv_selected_img).visibility = View.INVISIBLE
         } else {
-            Log.e("igRemove", isRemove.toString())
             view.findViewById<ImageView>(R.id.iv_reco_image)
                 .setBackgroundResource(R.drawable.bg_selected_img_stroke)
             view.findViewById<ImageView>(R.id.iv_selected_img).visibility = View.VISIBLE
         }
     }
 
-    override fun getItemCount(): Int = imgs.size
+    override fun getItemCount(): Int = imgUrls.size
 
-    fun setItemList(newList: List<ImageData>) {
-        imgs.clear()
-        imgs.addAll(newList)
+    fun setItemList(newList: List<String>) {
+        imgUrls.clear()
+        imgUrls.addAll(newList)
         notifyDataSetChanged()
     }
 
     inner class ImgViewHolder(private val binding: ItemRecommendedPhotosBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(img: ImageData) {
+        fun bind(imgData: String) {
             Glide
                 .with(binding.ivRecoImage.context)
-                .load(img.img)
+                .load(imgData)
+                .centerCrop()
                 .into(binding.ivRecoImage)
         }
     }
