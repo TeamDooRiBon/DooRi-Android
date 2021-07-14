@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="kr.co.dooribon.domain.entity.MemberTripType" />
+            type="kr.co.dooribon.api.remote.GroupTravelTendencyDTO" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -22,12 +22,12 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                set_image_url="@{item.tendencyResultImageUrl}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.3"
                 android:padding="16dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/img_member_trip_type"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,8 +40,8 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/spoqa_han_sans_neo_medium"
                 android:includeFontPadding="false"
+                android:text="@{item.tendencyTitle}"
                 android:textColor="@color/black"
-                android:text="철두철미 계획가"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -49,13 +49,23 @@
 
             <LinearLayout
                 android:id="@+id/li_other_member_trip_type_chips"
-                chip_adapter_item="@{item.typeKeyword}"
+                chip_adapter_item="@{item.tendencyTag}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="@id/tv_card_other_member_trip_type_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_card_other_member_trip_type_name" />
+
+            <kr.co.dooribon.view.DooRiBonRoundShadowImageView
+                android:id="@+id/ri_other_member_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:image_view_alpha="1"
+                app:image_view_shadow_color="@color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_card_other_member_trip_type_user_name"
+                app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             <TextView
                 android:id="@+id/tv_card_other_member_trip_type_user_name"
@@ -64,10 +74,10 @@
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/spoqa_han_sans_neo_regular"
                 android:includeFontPadding="false"
-                android:text="유지인"
+                android:text="@{item.tendencyUserMember.memberName}"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ri_other_member_profile"
                 tools:text="유지인" />
 
             <com.google.android.material.button.MaterialButton

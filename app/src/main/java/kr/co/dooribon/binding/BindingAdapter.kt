@@ -26,4 +26,12 @@ object BindingAdapter {
     }
 
 
+    @JvmStatic
+    @BindingAdapter("set_image_url")
+    fun setImageWithUrl(imageView : ImageView , imageUrl : String){
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .into(imageView)
+    }
+
 }

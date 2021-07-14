@@ -48,25 +48,25 @@ class MemberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
-
-        observeMemberTendencyGroupId()
-        binding.liChips.addChip("#안녕")
-        binding.liChips.addChip("#반가워")
-        binding.liChips.addChip("#무슨일 있어?")
-
         memberTripTypeAdapter = MemberTripTypeAdapter()
 
+        observeMemberTendencyGroupId()
+        observeOtherTravelTendencyResult()
+        configureRecyclerView()
+
+    }
+
+    private fun configureRecyclerView(){
         binding.rvMemberTripOther.apply {
             adapter = memberTripTypeAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-        memberTripTypeAdapter.submitList(
-            listOf(
-                MemberTripType("응애", listOf("#안녕", "#반가워", "#화이팅"), "송훈기", "1"),
-                MemberTripType("응애", listOf("#안녕", "#반가워", "#화이팅"), "송훈기", "1"),
-                MemberTripType("응애", listOf("#안녕", "#반가워", "#화이팅"), "송훈기", "1")
-            )
-        )
+    }
+
+    private fun observeOtherTravelTendencyResult() {
+        viewModel.otherTravelTendencyResult.observe(viewLifecycleOwner){
+            memberTripTypeAdapter.submitList(it)
+        }
     }
 
     private fun observeMemberTendencyGroupId() {
