@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.BoardContentDTO
 import kr.co.dooribon.databinding.ItemBoardBinding
 
 class BoardAdapter : RecyclerView.Adapter<BoardAdapter.ListViewHolder>() {
 
-    private var lists = mutableListOf<BoardListData>()
+    private var lists = mutableListOf<BoardContentDTO>()
     private lateinit var itemClickListener: ItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -31,7 +32,7 @@ class BoardAdapter : RecyclerView.Adapter<BoardAdapter.ListViewHolder>() {
 
     override fun getItemCount(): Int = lists.size
 
-    fun setItemList(newList: List<BoardListData>) {
+    fun setItemList(newList: List<BoardContentDTO>) {
         lists.clear()
         lists.addAll(newList)
         notifyDataSetChanged()
@@ -39,8 +40,11 @@ class BoardAdapter : RecyclerView.Adapter<BoardAdapter.ListViewHolder>() {
 
     class ListViewHolder(private val binding: ItemBoardBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: BoardListData) {
-            binding.data = item
+        fun bind(item: BoardContentDTO) {
+            binding.apply {
+                tvBoardMain.text = item.boardContent
+                tvBoardWriter.text = item.editUserName
+            }
         }
     }
 
