@@ -15,11 +15,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.TravelScheduleRes
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentScheduleBinding
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.DateScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.PlanData
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TimeScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TravelDate
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.LocalDate
 
 class ScheduleFragment : Fragment() {
@@ -51,6 +56,8 @@ class ScheduleFragment : Fragment() {
 
         return binding.root
     }
+
+
 
     private fun setTimeScheduleAdapter(planList: List<PlanData>) {
         val timeAdapter = TimeScheduleAdapter()
