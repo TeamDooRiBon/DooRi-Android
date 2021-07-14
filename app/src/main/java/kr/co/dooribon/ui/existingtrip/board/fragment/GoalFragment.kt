@@ -49,10 +49,10 @@ class GoalFragment : Fragment() {
         setBoardAdapter()
         setBgVisibility()
         onAddBtnClickListener()
-        getGoalBoardData()
+        getGoalBoardData(arguments?.getString("groupId").toString())
     }
 
-    private fun getGoalBoardData() {
+    private fun getGoalBoardData(groupId : String) {
         //Log.e("data", apiModule.boardApi.inquireTravelBoard(groupId, "goal").data.toString())
     }
 

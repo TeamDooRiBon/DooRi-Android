@@ -16,10 +16,13 @@ fun TabLayout.initializeBoardTabNavigation(fragmentManager: FragmentManager, gro
             val groupIdBundle = Bundle()
             groupIdBundle.putString("groupId", groupId) // Put anything what you want
             val goalFrag = GoalFragment()
-            goalFrag.setArguments(groupIdBundle)
-
-            Log.e("goalFragmentArguments", goalFrag.arguments.toString())
-            Log.e("goalFragmentArgumentsGroupId", groupId.toString())
+            val checkListFrag = CheckListFragment()
+            val mustKnowFrag = MustKnowFragment()
+            val roleAllocFrag = RoleAllocFragment()
+            goalFrag.arguments = groupIdBundle
+            checkListFrag.arguments = groupIdBundle
+            mustKnowFrag.arguments = groupIdBundle
+            roleAllocFrag.arguments = groupIdBundle
             when (tab.position) {
                 0 -> {
                     fragmentManager.beginTransaction().replace(
@@ -30,19 +33,19 @@ fun TabLayout.initializeBoardTabNavigation(fragmentManager: FragmentManager, gro
                 1 -> {
                     fragmentManager.beginTransaction().replace(
                         R.id.fcv_board,
-                        MustKnowFragment()
+                        mustKnowFrag
                     ).commit()
                 }
                 2 -> {
                     fragmentManager.beginTransaction().replace(
                         R.id.fcv_board,
-                        RoleAllocFragment()
+                        roleAllocFrag
                     ).commit()
                 }
                 3 -> {
                     fragmentManager.beginTransaction().replace(
                         R.id.fcv_board,
-                        CheckListFragment()
+                        checkListFrag
                     ).commit()
                 }
             }
