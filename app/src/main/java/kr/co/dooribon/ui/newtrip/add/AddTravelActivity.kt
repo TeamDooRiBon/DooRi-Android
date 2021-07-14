@@ -30,15 +30,15 @@ import retrofit2.Response
 class AddTravelActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewTravelBinding
-    val tempImgs = mutableListOf<ImageData>()
 
     //아래 변수들이 모두 true가 돼야 새로운 여행 시작하기 버튼 활성화 된다.
     private var etTravelNameNotEmpty = false // 여행 이름
     private var etTravelPlaceNotEmpty = false // 여행 위치
     private var tvCalendarNotEmpty = false // 여행 날짜
     private var ivChecked = false // 추천 이미지 체크
-    private var selectedImgIndex = -1
-    private var teamCode = -1
+
+    private var selectedImgIndex = -1 // 열여섯개 중 클릭한 이미지 인덱스 처리
+    private var teamCode = -1 // 서버로부터 수신한 팀 코드
 
     // ActivityContract
     private val datePickLauncher =
@@ -58,22 +58,21 @@ class AddTravelActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_travel)
         window.setSoftInputMode(SOFT_INPUT_ADJUST_NOTHING)
 
-        backBtnClickListener()
-        onStartNewTravelBtnClick()
-        onAddDateBtnClick()
-        resetData(-1) // 수정할 값이 없으므로 -1 대입
+        backBtnClickListener() // 뒤로가기 버튼 클릭 이벤트
+        onStartNewTravelBtnClick() // 새로운 여행 시작 버튼 클릭 이벤
+        onAddDateBtnClick() // 날짜 추가 버튼 클릭 이벤트
+        //resetData(-1) // 수정할 값이 없으므로 -1 대입
         setRecoImg() // 서버로부터 이미지 불러와서 값 입력
-        chkEditTextInput()
-        enableNewTravelBtn()
+        chkEditTextInput() // 여행 이름과 위치 클릭했는지 확인하는 함수
+        enableNewTravelBtn() // 다 입력했을 시 버튼 활성화
     }
 
     private fun onStartNewTravelBtnClick() {
         binding.btStartNewTravel.setOnClickListener {
-            // TODO : 이 부분에서 데이터를 모아서 통신하는 코드를 만들면 될 거 같습니다.
-            // TravelTitle , TravelDestination , StartDate , EndDate , ImageIndex 이케 보내면 될 거 같습니다.
             sendTravelData()
             val intent = Intent(this, TravelPlanDoneActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
@@ -182,17 +181,6 @@ class AddTravelActivity : AppCompatActivity() {
         imgRV.addItemDecoration(RVItemDeco(10, 10, 10, 10))
         imgAdapter.setItemList(imgUrls)
         onImageItemClickListener(imgAdapter)
-    }
-
-    private fun resetData(pos: Int) {
-        tempImgs.clear()
-        for (i in 0 until 16) {
-            if (pos == i) {
-                tempImgs.add(ImageData(R.drawable.ic_launcher_background, true))
-            } else {
-                tempImgs.add(ImageData(R.drawable.ic_launcher_background))
-            }
-        }
     }
 
     private fun backBtnClickListener() {
