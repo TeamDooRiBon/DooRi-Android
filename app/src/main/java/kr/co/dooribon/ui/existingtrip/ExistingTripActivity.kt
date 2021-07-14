@@ -22,10 +22,15 @@ class ExistingTripActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_existing_trip)
         binding.activity = this
         binding.lifecycleOwner = this
-        groupCode = intent.getStringExtra("groupId").toString()
 
         configureBackButton()
         configureBottomNavigation()
+        setGroupId()
+    }
+
+    private fun setGroupId() {
+        groupCode = intent.getStringExtra("groupId").toString()
+        viewModel.setGroupId(groupCode)
     }
 
     fun configureBackButton() {
