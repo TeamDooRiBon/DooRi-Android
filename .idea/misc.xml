@@ -7,6 +7,32 @@
         <entry key="app/src/main/res/drawable/bg_selected_img_stroke.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/bg_text_gray.xml" value="0.1296875" />
         <entry key="app/src/main/res/drawable/ic_airplane.xml" value="0.1195" />
+        <entry key="app/src/main/res/drawable/ic_airplane_black_gray4.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_airplane_pure_white.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_arrow_down.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_arrow_forward_gray5.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_arrow_up.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_btn_notadd.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_btn_notadd_active.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_circle_check.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_clipboard.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_doo_ri_bon_logo.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_doo_ri_bon_slogun.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_doo_ri_bon_slogun2.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_dooribon_logo_color.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_existing_trip_plus_btn.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_flag.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_folder.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_icon_board_aim_active.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_icon_board_check_active.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_icon_close.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_icon_picture_select.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_illust_dummy.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_illust_dummy_1.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_illust_dummy_3.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_illust_dummy_4.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shape_blue_circle.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shape_selected_blue_circle.xml" value="0.1255" />
         <entry key="app/src/main/res/drawable/shape_unselected_blue_circle.xml" value="0.1195" />

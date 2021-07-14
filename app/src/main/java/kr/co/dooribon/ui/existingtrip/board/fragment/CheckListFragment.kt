@@ -20,7 +20,6 @@ import kr.co.dooribon.api.remote.InquireTravelBoardRes
 import kr.co.dooribon.application.MainApplication
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter
-import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardListData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,7 +27,6 @@ import retrofit2.Response
 class CheckListFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
-    private lateinit var dummyList: List<BoardListData>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +40,6 @@ class CheckListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setFragmentDetails()
-        setDummyList()
         onAddBtnClickListener()
         getCheckListData(arguments?.getString("groupId").toString())
     }
@@ -78,7 +75,7 @@ class CheckListFragment : Fragment() {
             ivTopic.setImageDrawable(
                 ContextCompat.getDrawable(
                     requireContext(),
-                    R.drawable.ic_airplane
+                    R.drawable.ic_illust_dummy_4
                 )
             )
             tvMainTodo.text = getString(R.string.chk_first)
@@ -174,19 +171,5 @@ class CheckListFragment : Fragment() {
         }
         bsDialog.setContentView(sheetView)
         bsDialog.show()
-    }
-
-    private fun setDummyList() {
-        dummyList = listOf(
-            BoardListData("먹을 것 챙기기", "김민영"),
-            BoardListData("여권 챙기기", "김민영"),
-            BoardListData("필름 카메라", "김민영"),
-            BoardListData("여행사 전화하기", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영")
-        )
     }
 }
