@@ -57,7 +57,6 @@ class GoalFragment : Fragment() {
                 response: Response<InquireTravelBoardRes>
             ) {
                 if(response.isSuccessful){
-                    Log.e("chk22", response.body()?.data.toString())
                     setBoardAdapter(response.body()?.data ?: emptyList())
                 }
             }
