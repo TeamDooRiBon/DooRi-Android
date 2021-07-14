@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import kotlinx.coroutines.selects.select
 import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.CreateTravelReq
+import kr.co.dooribon.api.remote.CreateTravelRes
 import kr.co.dooribon.api.remote.DefaultTravelImageDTO
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityNewTravelBinding
@@ -36,6 +38,7 @@ class AddTravelActivity : AppCompatActivity() {
     private var etTravelPlaceNotEmpty = false // 여행 위치
     private var tvCalendarNotEmpty = false // 여행 날짜
     private var ivChecked = false // 추천 이미지 체크
+    private var selectedImgIndex = -1
 
     // ActivityContract
     private val datePickLauncher =
@@ -76,11 +79,28 @@ class AddTravelActivity : AppCompatActivity() {
 
     /* 서버에 데이터 보내는 함 */
     private fun sendTravelData() {
-        apiModule.travelApi.createUserTravel(CreateTravelReq(binding.etTravelName.toString(),
-            binding.etTravelPlace.toString(),
-            binding.tvStartDate.toString(),
-            binding.tvEndDate.toString().replace(".","-"), // .을 -로 변경해서 전
-            1))
+        apiModule.travelApi.createUserTravel(CreateTravelReq(
+            binding.etTravelName.text.toString(),
+            binding.etTravelPlace.text.toString(),
+            binding.tvStartDate.text.toString().replace(".", "-"),
+            binding.tvEndDate.text.toString().replace(".","-"), // .을 -로 변경해서 전
+            selectedImgIndex)).enqueue(object:Callback<CreateTravelRes>{
+            override fun onResponse(
+                call: Call<CreateTravelRes>,
+                response: Response<CreateTravelRes>
+            ) {
+                Log.e("travleName", binding.etTravelName.text.toString())
+                Log.e("travelPlace", binding.etTravelPlace.text.toString())
+                Log.e("startDate", binding.tvStartDate.text.toString())
+                Log.e("endDate", binding.tvEndDate.text.toString())
+                Log.e("selectedImgIndx", selectedImgIndex.toString())
+                Log.e("sendTravelDataResponse", response.message())
+            }
+
+            override fun onFailure(call: Call<CreateTravelRes>, t: Throwable) {
+                t.stackTrace
+            }
+        })
         //Log.e("temp", temp.toString())
     }
 
@@ -223,6 +243,7 @@ class AddTravelActivity : AppCompatActivity() {
     private fun onImageItemClickListener(adapter: RecoImgAdapter) {
         adapter.setItemClickListener(object : RecoImgAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
+                selectedImgIndex = position
                 ivChecked = true
                 enableNewTravelBtn() // 다 체크되었는지 한 번 확인
                 adapter.notifyItemChanged(adapter.prevClickedImgPos)
