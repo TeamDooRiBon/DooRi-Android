@@ -9,10 +9,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.tabs.TabLayout
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentBoardBinding
 import kr.co.dooribon.ui.existingtrip.board.extension.initializeBoardTabNavigation
+import kr.co.dooribon.ui.existingtrip.viewmodel.ExistingTripViewModel
 import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.initializeTab
 
@@ -20,6 +22,7 @@ class BoardFragment : Fragment() {
 
     private var binding by AutoClearBinding<FragmentBoardBinding>()
 
+    private val viewModel by activityViewModels<ExistingTripViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

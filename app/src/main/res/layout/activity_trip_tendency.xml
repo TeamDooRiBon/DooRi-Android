@@ -68,6 +68,7 @@
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="16dp"
             android:layout_marginStart="16dp"
+            travel_tendency_previous_btn_visibilty="@{vm.questionPosition}"
             android:onDebounceClick="@{() -> vm.previousPage()}"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintTop_toBottomOf="@id/tab_trip_tendency"

@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.CreateTravelScheduleReq
 import kr.co.dooribon.api.remote.CreateTravelScheduleRes
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentParticipateJoinBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class ParticipateJoinFragment : Fragment() {
     private lateinit var binding: FragmentParticipateJoinBinding
@@ -83,13 +85,16 @@ class ParticipateJoinFragment : Fragment() {
         }
         fullEditText()
         // groupId 받아서 마무리
-        apiModule.scheduleApi.createTravelSchedule("Test",)
+        apiModule.scheduleApi.createTravelSchedule(
+            "Test",
+            CreateTravelScheduleReq("1", Date(1020L), Date(1020L), "대한민국", "살려주세여")
+        )
             .enqueue(object : Callback<CreateTravelScheduleRes> {
                 override fun onResponse(
                     call: Call<CreateTravelScheduleRes>,
                     response: Response<CreateTravelScheduleRes>
                 ) {
-                    if (response.isSuccessful){
+                    if (response.isSuccessful) {
                         Log.d(TAG, "일정 추가 완료")
                     }
                 }
