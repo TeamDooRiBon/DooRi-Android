@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
-import kotlinx.coroutines.selects.select
 import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.CreateTravelReq
 import kr.co.dooribon.api.remote.CreateTravelRes
@@ -39,6 +38,7 @@ class AddTravelActivity : AppCompatActivity() {
     private var tvCalendarNotEmpty = false // 여행 날짜
     private var ivChecked = false // 추천 이미지 체크
     private var selectedImgIndex = -1
+    private var teamCode = -1
 
     // ActivityContract
     private val datePickLauncher =
@@ -79,29 +79,30 @@ class AddTravelActivity : AppCompatActivity() {
 
     /* 서버에 데이터 보내는 함 */
     private fun sendTravelData() {
-        apiModule.travelApi.createUserTravel(CreateTravelReq(
-            binding.etTravelName.text.toString(),
-            binding.etTravelPlace.text.toString(),
-            binding.tvStartDate.text.toString().replace(".", "-"),
-            binding.tvEndDate.text.toString().replace(".","-"), // .을 -로 변경해서 전
-            selectedImgIndex)).enqueue(object:Callback<CreateTravelRes>{
+        apiModule.travelApi.createUserTravel(
+            CreateTravelReq(
+                binding.etTravelName.text.toString(),
+                binding.etTravelPlace.text.toString(),
+                binding.tvStartDate.text.toString().replace(".", "-"),
+                binding.tvEndDate.text.toString().replace(".", "-"), // .을 -로 변경해서 전
+                selectedImgIndex
+            )
+        ).enqueue(object : Callback<CreateTravelRes> {
             override fun onResponse(
                 call: Call<CreateTravelRes>,
                 response: Response<CreateTravelRes>
             ) {
-                Log.e("travleName", binding.etTravelName.text.toString())
-                Log.e("travelPlace", binding.etTravelPlace.text.toString())
-                Log.e("startDate", binding.tvStartDate.text.toString())
-                Log.e("endDate", binding.tvEndDate.text.toString())
-                Log.e("selectedImgIndx", selectedImgIndex.toString())
-                Log.e("sendTravelDataResponse", response.message())
+                if (response.isSuccessful) {
+                    response.body()?.let { it ->
+                        teamCode = it.data.inviteCode.toInt()
+                    }
+                }
             }
 
             override fun onFailure(call: Call<CreateTravelRes>, t: Throwable) {
                 t.stackTrace
             }
         })
-        //Log.e("temp", temp.toString())
     }
 
     private fun onAddDateBtnClick() {
@@ -120,22 +121,23 @@ class AddTravelActivity : AppCompatActivity() {
     }
 
     private fun setRecoImg() {
-        apiModule.travelImageApi.fetchDefaultTravelImage().enqueue(object : Callback<DefaultTravelImageDTO>{
-            override fun onResponse(
-                call: Call<DefaultTravelImageDTO>,
-                response: Response<DefaultTravelImageDTO>
-            ) {
-                if(response.isSuccessful){
-                    response.body()?.let{ it ->
-                        imgAdapter(it.data)
+        apiModule.travelImageApi.fetchDefaultTravelImage()
+            .enqueue(object : Callback<DefaultTravelImageDTO> {
+                override fun onResponse(
+                    call: Call<DefaultTravelImageDTO>,
+                    response: Response<DefaultTravelImageDTO>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let { it ->
+                            imgAdapter(it.data)
+                        }
                     }
                 }
-            }
 
-            override fun onFailure(call: Call<DefaultTravelImageDTO>, t: Throwable) {
-                Log.e("getImgUrlOnFailure", t.message.toString())
-            }
-        })
+                override fun onFailure(call: Call<DefaultTravelImageDTO>, t: Throwable) {
+                    Log.e("getImgUrlOnFailure", t.message.toString())
+                }
+            })
     }
 
     /* 다음으로 넘어갈 수 있도록 버튼 활성화 */
