@@ -53,7 +53,23 @@ class GoalFragment : Fragment() {
     }
 
     private fun getGoalBoardData(groupId : String) {
-        //Log.e("data", apiModule.boardApi.inquireTravelBoard(groupId, "goal").data.toString())
+        apiModule.boardApi.inquireTravelBoard(groupId, "goal").enqueue(object:Callback<InquireTravelBoardRes>{
+            override fun onResponse(
+                call: Call<InquireTravelBoardRes>,
+                response: Response<InquireTravelBoardRes>
+            ) {
+                if(response.isSuccessful){
+                    Log.e("chk22", response.body()?.data.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<InquireTravelBoardRes>, t: Throwable) {
+                Log.e("getGoalBoardData onFailure", t.message.toString())
+            }
+
+        })
+
+
     }
 
     /* 추가하기 버튼 클릭 이벤트 처리 함수 */

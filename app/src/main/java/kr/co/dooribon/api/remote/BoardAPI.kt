@@ -1,6 +1,7 @@
 package kr.co.dooribon.api.remote
 
 import com.google.gson.annotations.SerializedName
+import retrofit2.Call
 import retrofit2.http.*
 
 // boardTag 는 board에 가보면 tab이 4개가 있는데 그중 몇번째인지를 물어보는 거같다.
@@ -41,7 +42,7 @@ data class InquireTravelBoardRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: BoardContentDTO
+    val data: List<BoardContentDTO>
 )
 
 // 여행 보드 수정
@@ -87,7 +88,7 @@ interface BoardAPI {
     fun inquireTravelBoard(
         @Path("groupId") groupId: String,
         @Path("tag") tag: String
-    ): InquireTravelBoardRes
+    ): Call<InquireTravelBoardRes>
 
     // 여행 보드 수정 뷰 , 태그별 여행 보드 조회 뷰
     @PATCH("board/{groupId}/{tag}/{boardId}")
