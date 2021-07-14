@@ -3,26 +3,53 @@ package kr.co.dooribon.ui.triptendency.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kr.co.dooribon.domain.entity.TripTendency
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import kr.co.dooribon.api.remote.asDomainParentQuestionList
+import kr.co.dooribon.api.repository.TripTendencyRepository
+import kr.co.dooribon.domain.entity.ParentTravelTendency
 import kr.co.dooribon.utils.SingleLiveEvent
+import kr.co.dooribon.utils.debugE
 
-class TripTendencyViewModel : ViewModel() {
+class TripTendencyViewModel(
+    private val tripTendencyRepository: TripTendencyRepository
+) : ViewModel() {
 
-    private val _questionPosition = MutableLiveData<Int>()
+    // 현재 몇번째 질문이 보여지고 있는 지 알려주는 변수
+    private val _questionPosition = MutableLiveData(0)
     val questionPosition: LiveData<Int>
         get() = _questionPosition
 
     // 질문들에서 유저가 선택한 포지션이 몇번인지를 담아두는 변수
-    // 최대 질문수가 10개이므로 10개만
     private val _lastQuestionSelectedPosition =
         MutableLiveData(MutableList(MAX_QUESTION_COUNT) { _ -> -1 })
     val lastQuestionSelectedPosition: LiveData<MutableList<Int>>
         get() = _lastQuestionSelectedPosition
 
+    // 성향 테스트 질문들
+    private val _travelTendencyQuestions = MutableLiveData<List<ParentTravelTendency>>()
+    val travelTendencyQuestions: LiveData<List<ParentTravelTendency>>
+        get() = _travelTendencyQuestions
+
+    // 각 질문마다 선택한 답의 가중치의 합을 보관해 놓는 리스트
+    private val _questionResultList = MutableList(10){_ -> -1}
+    val questionResultList : List<Int>
+        get() = _questionResultList
+
     val toastEventLiveData = SingleLiveEvent<String>()
 
     init {
         _questionPosition.value = 0
+        viewModelScope.launch {
+            runCatching {
+                tripTendencyRepository.fetchTravelTendencyQuestions()
+            }.onSuccess {
+                _travelTendencyQuestions.value = it.data.asDomainParentQuestionList()
+                debugE(it.toString())
+            }.onFailure {
+                debugE(it.toString())
+            }
+        }
     }
 
     fun nextPage() {
@@ -48,91 +75,6 @@ class TripTendencyViewModel : ViewModel() {
     fun selectQuestion(selectedPosition: Int) {
         _lastQuestionSelectedPosition.value!![_questionPosition.value!!] = selectedPosition
     }
-
-    // dummy 함수
-    fun getDummy(): List<TripTendency> =
-        listOf(
-            TripTendency(
-                1, "송훈기 이대로 괜찮은가", listOf(
-                    TripTendency.TripTendencyQuestion(1, "안괜찮아"),
-                    TripTendency.TripTendencyQuestion(2, "괜찮아"),
-                    TripTendency.TripTendencyQuestion(3, "공감 못함"),
-                    TripTendency.TripTendencyQuestion(4, "처치대상 0호")
-                )
-            ),
-            TripTendency(
-                2, "조예진 이대로 괜찮은가", listOf(
-                    TripTendency.TripTendencyQuestion(1, "호기심 대마왕"),
-                    TripTendency.TripTendencyQuestion(2, "아니 근데"),
-                    TripTendency.TripTendencyQuestion(3, "킹받게 함"),
-                    TripTendency.TripTendencyQuestion(4, "처치대상 1호...")
-                )
-            ),
-            TripTendency(
-                3, "이원중 이대로 괜찮은가", listOf(
-                    TripTendency.TripTendencyQuestion(1, "개잘함"),
-                    TripTendency.TripTendencyQuestion(2, "방금 선그어서 멋져보임"),
-                    TripTendency.TripTendencyQuestion(3, "가끔 킹받게 함"),
-                    TripTendency.TripTendencyQuestion(4, "처치대상 2호")
-                )
-            ),
-            TripTendency(
-                4, "김태현 이대로 괜찮은가", listOf(
-                    TripTendency.TripTendencyQuestion(1, "개잘함"),
-                    TripTendency.TripTendencyQuestion(2, "아요대장"),
-                    TripTendency.TripTendencyQuestion(3, "노는거 좋아함"),
-                    TripTendency.TripTendencyQuestion(4, "처치대상 3호")
-                )
-            ),
-            TripTendency(
-                5, "한상진 이대로 괜찮은가", listOf(
-                    TripTendency.TripTendencyQuestion(1, "개잘함"),
-                    TripTendency.TripTendencyQuestion(2, "캘린더 장인"),
-                    TripTendency.TripTendencyQuestion(3, "합숙중임"),
-                    TripTendency.TripTendencyQuestion(4, "처치대상 4호")
-                )
-            ),
-            TripTendency(
-                6, "이민재 이대로 괜찮은가", listOf(
-                    TripTendency.TripTendencyQuestion(1, "개잘함"),
-                    TripTendency.TripTendencyQuestion(2, "야구장인"),
-                    TripTendency.TripTendencyQuestion(3, "홈화면 중인걸로 암"),
-                    TripTendency.TripTendencyQuestion(4, "처치대상 5호")
-                )
-            ),
-            TripTendency(
-                7, "박유진 이대로 괜찮은가", listOf(
-                    TripTendency.TripTendencyQuestion(1, "개잘함"),
-                    TripTendency.TripTendencyQuestion(2, "피엠임"),
-                    TripTendency.TripTendencyQuestion(3, "기획대장"),
-                    TripTendency.TripTendencyQuestion(4, "처치대상 6호")
-                )
-            ),
-            TripTendency(
-                8, "김민영 이대로 괜찮은가", listOf(
-                    TripTendency.TripTendencyQuestion(1, "개잘함"),
-                    TripTendency.TripTendencyQuestion(2, "디자인 잘함"),
-                    TripTendency.TripTendencyQuestion(3, "내가 마니또 였음"),
-                    TripTendency.TripTendencyQuestion(4, "처치대상 7호")
-                )
-            ),
-            TripTendency(
-                9, "유지인 이대로 괜찮은가", listOf(
-                    TripTendency.TripTendencyQuestion(1, "개잘함"),
-                    TripTendency.TripTendencyQuestion(2, "디자인 잘함"),
-                    TripTendency.TripTendencyQuestion(3, "낯가린다고 했는데 잘 안가리는거 같음"),
-                    TripTendency.TripTendencyQuestion(4, "처치대상 8호")
-                )
-            ),
-            TripTendency(
-                10, "김인우 이대로 괜찮은가", listOf(
-                    TripTendency.TripTendencyQuestion(1, "개잘함"),
-                    TripTendency.TripTendencyQuestion(2, "디자인 잘함"),
-                    TripTendency.TripTendencyQuestion(3, "말 속에 뼈가 있을거같음"),
-                    TripTendency.TripTendencyQuestion(4, "처치대상 9호")
-                )
-            )
-        )
 
     fun getQuestionPosition() = _questionPosition.value
 

@@ -1,5 +1,6 @@
 package kr.co.dooribon.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -81,8 +82,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun configureUpComingTrip() {
-        upComingTripAdapter = UpComingTripAdapter(onItemClicked = { idx, upComingTripItem ->
-            onUpComingTripItemClick(idx, upComingTripItem)
+        upComingTripAdapter = UpComingTripAdapter(onItemClicked = { idx ->
+            onUpComingTripItemClick(idx)
         })
 
         binding.vpHomeUpcomingTravelContents.apply {
@@ -93,8 +94,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun configurePreviousTrip() {
-        previousTripAdapter = PreviousTripAdapter(onItemClicked = { idx, previousTripItem ->
-            onPreviousTripItemClick(idx, previousTripItem)
+        previousTripAdapter = PreviousTripAdapter(onItemClicked = { idx ->
+            onPreviousTripItemClick(idx)
         })
 
         binding.rvHomePreviousTravelContent.apply {
@@ -108,18 +109,32 @@ class HomeActivity : AppCompatActivity() {
         NewTripDialog().show(supportFragmentManager, NEW_TRIP_DIALOG_TAG)
     }
 
-    private fun onPreviousTripItemClick(index: Int, item: PreviousTravel) {
-        navigateExistingTrip()
+    private fun onPreviousTripItemClick(index: Int) {
+        val previousIntent = Intent(this, ExistingTripActivity::class.java)
+        previousIntent.putExtra(
+            "groupId",
+            viewModel.homePreviousTravel.value?.get(index)!!.previousTravelId
+        )
+        startActivity(previousIntent)
     }
 
-    private fun onUpComingTripItemClick(index: Int, item: UpComingTravel) {
-        startActivity(getIntent<ExistingTripActivity>())
+    private fun onUpComingTripItemClick(index: Int) {
+        val upComingIntent = Intent(this, ExistingTripActivity::class.java)
+        upComingIntent.putExtra(
+            "groupId",
+            viewModel.homeUpComingTravel.value?.get(index)!!.upComingTravelId
+        )
+        startActivity(upComingIntent)
     }
 
+    // Proceeding
     fun navigateExistingTrip() {
-        startActivity(getIntent<ExistingTripActivity>())
+        val existingTravelIntent = Intent(this, ExistingTripActivity::class.java)
+        existingTravelIntent.putExtra("groupId", viewModel.homeProceedingTravel.value?.id)
+        startActivity(existingTravelIntent)
     }
 
+    // 성향테스트로 가는 Navigate 함수
     fun navigateTripTendencyTest() {
         startActivity(getIntent<TripTendencyActivity>())
     }

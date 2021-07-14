@@ -1,31 +1,32 @@
 package kr.co.dooribon.api.remote
 
-import kr.co.dooribon.domain.entity.PreviousTravel
-import kr.co.dooribon.domain.entity.Travel
-import kr.co.dooribon.domain.entity.UpComingTravel
+import kr.co.dooribon.domain.entity.*
 import kr.co.dooribon.utils.DateUtil
+import java.time.DateTimeException
 
 /**
  * Domain Layout 객체로 변경해주는 확장 함수 모음
  */
+// Proceeding Travel
 fun TravelDTO.asDomainTravel(): Travel {
     return Travel(
         id = this.id,
-        travelStartDate = startDate,
-        travelEndDate = endDate,
-        travelTitle = travelTitle,
-        travelThumbnailUrl = travelThumbnailUrl,
-        travelDestination = travelDestination,
-        travelMembers = travelMembers
+        travelStartDate = DateUtil.convertStringToStringWithOutTime(this.startDate),
+        travelEndDate = DateUtil.convertStringToStringWithOutTime(this.endDate),
+        travelTitle = this.travelTitle,
+        travelThumbnailUrl = this.travelThumbnailUrl,
+        travelDestination = this.travelDestination,
+        travelMembers = this.travelMembers
     )
 }
 
+// Upcoming Travel
 fun TravelDTO.asDomainUpComingTravel(): UpComingTravel {
     return UpComingTravel(
         upComingTravelId = this.id,
         upComingTravelImageUrl = this.travelThumbnailUrl,
-        upComingTravelStartDate = this.startDate,
-        upComingTravelEndDate = this.endDate,
+        upComingTravelStartDate = DateUtil.convertStringToStringWithOutTime(this.startDate),
+        upComingTravelEndDate = DateUtil.convertStringToStringWithOutTime(this.endDate),
         upComingTravelLocation = this.travelDestination,
         upComingTravelPersonCount = this.travelMembers.size,
         upComingTravelTitle = this.travelTitle,
@@ -33,31 +34,57 @@ fun TravelDTO.asDomainUpComingTravel(): UpComingTravel {
     )
 }
 
+// Previous Travel
 fun TravelDTO.asDomainPreviousTravel(): PreviousTravel {
     return PreviousTravel(
         previousTravelId = this.id,
         previousTravelPeople = this.travelMembers.size,
-        previousTravelDate = this.startDate,
+        previousTravelDate = DateUtil.convertStringToStringWithOutTime(this.startDate),
         previousTravelPlace = this.travelDestination,
         previousTravelTitle = this.travelTitle,
         previousTripImageUrl = this.travelThumbnailUrl
     )
 }
 
-fun List<TravelDTO>.asDomainListTravel(): List<Travel> {
-    return map {
-        it.asDomainTravel()
-    }
-}
-
+// UpComing Travel List
 fun List<TravelDTO>.asDomainUpComingTravel(): List<UpComingTravel> {
     return map {
         it.asDomainUpComingTravel()
     }
 }
 
+// Previous Travel List
 fun List<TravelDTO>.asDomainPreviousTravel(): List<PreviousTravel> {
     return map {
         it.asDomainPreviousTravel()
+    }
+}
+
+// TravelTendency
+// ParentQuestionDTO
+// ChildQuestionDTO
+fun ParentQuestionDTO.asDomainParentQuestion() : ParentTravelTendency{
+    return ParentTravelTendency(
+        parentQuestionTitle = this.parentQuestionTitle,
+        childQuestions = this.childQuestions.asDomainChildQuestionList()
+    )
+}
+
+fun ChildQuestionDTO.asDomainChildQuestion() : ParentTravelTendency.ChildTravelTendencyQuestion{
+    return ParentTravelTendency.ChildTravelTendencyQuestion(
+        childQuestionTitle = this.questionsTitle,
+        childQuestionWeight = this.questionsWeight
+    )
+}
+
+fun List<ChildQuestionDTO>.asDomainChildQuestionList() : List<ParentTravelTendency.ChildTravelTendencyQuestion>{
+    return map {
+        it.asDomainChildQuestion()
+    }
+}
+
+fun List<ParentQuestionDTO>.asDomainParentQuestionList() : List<ParentTravelTendency> {
+    return map {
+        it.asDomainParentQuestion()
     }
 }

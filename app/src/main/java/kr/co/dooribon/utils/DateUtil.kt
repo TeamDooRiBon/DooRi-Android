@@ -4,22 +4,43 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object DateUtil {
-    private val simpleDateFormatDot = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
-    private val simpleDateFormatBar = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
+    private val simpleDateFormatDotWithOutTime by lazy {
+        SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+    }
+
+    private val simpleDateFormatBarWithOutTime by lazy {
+        SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
+    }
+
+    private val simpleDateFormatDotWithTime by lazy {
+        SimpleDateFormat("yyyy-MM-dd`T`HH:mm:ss",Locale.KOREA)
+    }
+
+    private val simpleDateFormatBarWithTime by lazy {
+        SimpleDateFormat("yyyy-MM-dd`T`HH:mm:ss",Locale.KOREA)
+    }
 
     fun convertStringToDateBar(stringDate: String?): String? {
         return if (stringDate != "_ _") {
-            simpleDateFormatBar.format(stringDate)
+            simpleDateFormatBarWithOutTime.format(stringDate)
         } else {
             null
         }
     }
 
-    fun convertStringToDate(stringDate: String): Date = simpleDateFormatBar.parse(stringDate)
+    fun convertStringToStringWithOutTime(stringDate : String) : String {
+        return convertDateToStringBar(simpleDateFormatBarWithOutTime.parse(stringDate))
+    }
 
-    // TODO : convertDateToStringDot이라고 해야지 멍청이 훈기야
-    fun convertStringToDateDot(date: Date): String {
-        return simpleDateFormatDot.format(date)
+    fun convertStringToDate(stringDate: String): Date = simpleDateFormatBarWithOutTime.parse(stringDate)
+
+    fun convertDateToStringDot(date: Date): String {
+        return simpleDateFormatDotWithOutTime.format(date)
+    }
+
+    // Date를 bar형태의 String으로 변경
+    fun convertDateToStringBar(date : Date) : String {
+        return simpleDateFormatBarWithOutTime.format(date)
     }
 
     fun countDday(date: Date): Long {
@@ -28,11 +49,12 @@ object DateUtil {
             val todayCalendar = Calendar.getInstance()
             val dDayCalendar = Calendar.getInstance()
             dDayCalendar.time = date
+            val oneDayTime = 24 * 60 * 60 * 1000
 
             val todayTime = todayCalendar.timeInMillis
             val dDayTime = dDayCalendar.timeInMillis
 
-            return dDayTime - todayTime
+            return ((dDayTime - todayTime) / oneDayTime) + 1
         } catch (e: Exception) {
             debugE(e.toString())
             return -1

@@ -24,7 +24,14 @@ data class HomeTravelImageDTO(
 )
 
 data class HomeTravelImageRes(
-    val homeTravelImageRes: BaseResponse<HomeTravelImageDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: HomeTravelImageDTO
 )
 
 interface TravelImageAPI {
