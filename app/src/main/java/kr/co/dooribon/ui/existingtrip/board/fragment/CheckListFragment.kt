@@ -93,7 +93,7 @@ class CheckListFragment : Fragment() {
     private fun setBoardAdapter() {
         val boardAdapter = BoardAdapter()
         val boardRV = binding.rvTodoList
-        boardAdapter.setItemList(dummyList)
+        //boardAdapter.setItemList(dummyList)
         boardRV.adapter = boardAdapter
         onBoardItemClickListener(boardAdapter)
     }

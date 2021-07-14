@@ -13,16 +13,14 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.BoardContentDTO
 import kr.co.dooribon.api.remote.InquireTravelBoardRes
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
-import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardListData
-import kr.co.dooribon.ui.existingtrip.viewmodel.ExistingTripViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,7 +44,7 @@ class GoalFragment : Fragment() {
         Log.e("chk", arguments?.getString("groupId").toString())
         setFragmentDetails()
         setDummyList()
-        setBoardAdapter()
+        //setBoardAdapter()
         setBgVisibility()
         onAddBtnClickListener()
         getGoalBoardData(arguments?.getString("groupId").toString())
@@ -60,16 +58,13 @@ class GoalFragment : Fragment() {
             ) {
                 if(response.isSuccessful){
                     Log.e("chk22", response.body()?.data.toString())
+                    setBoardAdapter(response.body()?.data ?: emptyList())
                 }
             }
-
             override fun onFailure(call: Call<InquireTravelBoardRes>, t: Throwable) {
                 Log.e("getGoalBoardData onFailure", t.message.toString())
             }
-
         })
-
-
     }
 
     /* 추가하기 버튼 클릭 이벤트 처리 함수 */
@@ -121,10 +116,11 @@ class GoalFragment : Fragment() {
         }
     }
 
-    private fun setBoardAdapter() {
+    private fun setBoardAdapter(data : List<BoardContentDTO>) {
         val boardAdapter = BoardAdapter()
         val boardRV = binding.rvTodoList
-        boardAdapter.setItemList(dummyList)
+        //boardAdapter.setItemList(dummyList)
+        boardAdapter.setItemList(data)
         boardRV.adapter = boardAdapter
         onBoardItemClickListener(boardAdapter)
     }
