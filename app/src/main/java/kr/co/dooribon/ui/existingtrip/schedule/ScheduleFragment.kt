@@ -2,6 +2,7 @@ package kr.co.dooribon.ui.existingtrip.schedule
 
 import android.app.Dialog
 import android.content.Intent
+import android.icu.util.LocaleData
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.ParticipateTravelRes
+import kr.co.dooribon.api.remote.TravelInfoDTO
+import kr.co.dooribon.api.remote.TravelInfoRes
 import kr.co.dooribon.api.remote.TravelScheduleRes
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentScheduleBinding
@@ -28,6 +32,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDate
+import java.time.temporal.ChronoUnit
+import java.util.stream.Collectors
+import java.util.stream.LongStream
 
 class ScheduleFragment : Fragment() {
 
@@ -51,17 +58,46 @@ class ScheduleFragment : Fragment() {
         setDummyTimeList()
         setDataAdapter()
         setTimeScheduleAdapter(timeList1)
-
-        binding.btAddSchedule.setOnClickListener {
-            val intent = Intent(requireContext(), ScheduleAddActivity::class.java)
-            //val intent = Intent(requireContext(), ScheduleEditActivity::class.java)
-            startActivity(intent)
-        }
+        onAddScheduleBtnClick()
+        getDateScheduleList()
 
         return binding.root
     }
 
+    private fun getDateScheduleList() {
+        Log.e("groupId", viewModel.getGroupId())
+        apiModule.travelApi.fetchTravelInfo(viewModel.getGroupId()).enqueue(object : Callback<TravelInfoRes>{
+            override fun onResponse(call: Call<TravelInfoRes>, response: Response<TravelInfoRes>) {
+                if(response.isSuccessful){
+                    Log.e("check", response.body()?.data?.startDate.toString())
+                    val serverStartDateStrs = response.body()?.data?.startDate.toString().split("-")
+                    val serverEndDateStrs = response.body()?.data?.startDate.toString().split("-")
+                    val startYear = serverStartDateStrs[0]
+                    val startMonth = serverStartDateStrs[1]
+                    val startDate = serverStartDateStrs[2]
+                    val endYear = serverEndDateStrs[0]
+                    val endMonth = serverEndDateStrs[1]
+                    val endDate = serverEndDateStrs[2]
+                    // TODO : 두 날짜 사이(startDate, endDate)의 날들을 구해 리스트에 추가하여 리사이클러 뷰에 넘겨줘야 함.
+                }else{
+                    Log.e("response", "fail")
+                }
+            }
 
+            override fun onFailure(call: Call<TravelInfoRes>, t: Throwable) {
+                Log.e("getDateScheduleListOnFailure", t.message.toString())
+            }
+        })
+    }
+
+
+
+    private fun onAddScheduleBtnClick() {
+        binding.btAddSchedule.setOnClickListener {
+            val intent = Intent(requireContext(), ScheduleAddActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     private fun setTimeScheduleAdapter(planList: List<PlanData>) {
         val timeAdapter = TimeScheduleAdapter()
