@@ -2,6 +2,7 @@ package kr.co.dooribon.ui.existingtrip.board.fragment
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +15,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.BoardContentDTO
+import kr.co.dooribon.api.remote.InquireTravelBoardRes
+import kr.co.dooribon.application.MainApplication
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardListData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RoleAllocFragment : Fragment() {
 
@@ -38,9 +45,28 @@ class RoleAllocFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setFragmentDetails()
         //setDummyList()
-        setBoardAdapter()
-        setBgVisibility()
+        //setBoardAdapter()
+        //setBgVisibility()
         onAddBtnClickListener()
+        getCheckListData(arguments?.getString("groupId").toString())
+    }
+
+    /* 서버로부터 데이터 받아오고, 리사이클러뷰 어댑터 호출 */
+    private fun getCheckListData(groupId : String) {
+        MainApplication.apiModule.boardApi.inquireTravelBoard(groupId, "role").enqueue(object:
+            Callback<InquireTravelBoardRes> {
+            override fun onResponse(
+                call: Call<InquireTravelBoardRes>,
+                response: Response<InquireTravelBoardRes>
+            ) {
+                if(response.isSuccessful){
+                    setBoardAdapter(response.body()?.data ?: emptyList())
+                }
+            }
+            override fun onFailure(call: Call<InquireTravelBoardRes>, t: Throwable) {
+                Log.e("getGoalBoardData onFailure", t.message.toString())
+            }
+        })
     }
 
     /* 추가하기 버튼 클릭 이벤트 처리 함수 */
@@ -92,10 +118,10 @@ class RoleAllocFragment : Fragment() {
         }
     }
 
-    private fun setBoardAdapter() {
+    private fun setBoardAdapter(data : List<BoardContentDTO>) {
         val boardAdapter = BoardAdapter()
         val boardRV = binding.rvTodoList
-        //boardAdapter.setItemList(dummyList)
+        boardAdapter.setItemList(data)
         boardRV.adapter = boardAdapter
         onBoardItemClickListener(boardAdapter)
     }
