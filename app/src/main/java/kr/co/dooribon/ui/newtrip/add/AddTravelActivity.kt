@@ -10,7 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.CreateTravelReq
+import kr.co.dooribon.api.remote.CreateTravelRes
+import kr.co.dooribon.api.remote.DefaultTravelImageDTO
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityNewTravelBinding
 import kr.co.dooribon.dialog.DooRiBonDialog
@@ -20,18 +26,22 @@ import kr.co.dooribon.ui.newtrip.adapter.ImageData
 import kr.co.dooribon.ui.newtrip.adapter.RecoImgAdapter
 import kr.co.dooribon.ui.newtrip.add.contract.DatePickerActivityContract
 import kr.co.dooribon.utils.RVItemDeco
-import kr.co.dooribon.utils.StateAPICallback
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AddTravelActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewTravelBinding
-    val tempImgs = mutableListOf<ImageData>()
 
     //아래 변수들이 모두 true가 돼야 새로운 여행 시작하기 버튼 활성화 된다.
     private var etTravelNameNotEmpty = false // 여행 이름
     private var etTravelPlaceNotEmpty = false // 여행 위치
     private var tvCalendarNotEmpty = false // 여행 날짜
     private var ivChecked = false // 추천 이미지 체크
+
+    private var selectedImgIndex = -1 // 열여섯개 중 클릭한 이미지 인덱스 처리
+    private var teamCode = "" // 서버로부터 수신한 팀 코드
 
     // ActivityContract
     private val datePickLauncher =
@@ -49,17 +59,66 @@ class AddTravelActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_travel)
-
-        backBtnClickListener()
         window.setSoftInputMode(SOFT_INPUT_ADJUST_NOTHING)
 
-        binding.btStartNewTravel.setOnClickListener {
-            // TODO : 이 부분에서 데이터를 모아서 통신하는 코드를 만들면 될 거 같습니다.
-            // TravelTitle , TravelDestination , StartDate , EndDate , ImageIndex 이케 보내면 될 거 같습니다.
-            val intent = Intent(this, TravelPlanDoneActivity::class.java)
-            startActivity(intent)
-        }
+        backBtnClickListener() // 뒤로가기 버튼 클릭 이벤트
+        onStartNewTravelBtnClick() // 새로운 여행 시작 버튼 클릭 이벤
+        onAddDateBtnClick() // 날짜 추가 버튼 클릭 이벤트
+        setRecoImg() // 서버로부터 이미지 불러와서 값 입력
+        chkEditTextInput() // 여행 이름과 위치 클릭했는지 확인하는 함수
+        enableNewTravelBtn() // 다 입력했을 시 버튼 활성화
+    }
 
+    private fun onStartNewTravelBtnClick() {
+        binding.btStartNewTravel.setOnClickListener {
+            lifecycleScope.launch {
+                delay(2000)
+                sendTravelData()
+            }
+            val intent = Intent(this, TravelPlanDoneActivity::class.java)
+            Log.e("addActivityTeamCode", teamCode)
+            Log.e("temp", "temp")
+            intent.putExtra("teamCode", teamCode)
+            startActivity(intent)
+            //finish() // finish를 하면 액티비티도 종료되서 로그도 찍히지 않음.
+        }
+    }
+
+    /* 서버에 데이터 보내는 함수 */
+    private fun sendTravelData() {
+        apiModule.travelApi.createUserTravel(
+            CreateTravelReq(
+                binding.etTravelName.text.toString(),
+                binding.etTravelPlace.text.toString(),
+                binding.tvStartDate.text.toString().replace(".", "-"),
+                binding.tvEndDate.text.toString().replace(".", "-"), // .을 -로 변경해서 전
+                selectedImgIndex
+            )
+        ).enqueue(object : Callback<CreateTravelRes> {
+            override fun onResponse(
+                call: Call<CreateTravelRes>,
+                response: Response<CreateTravelRes>
+            ) {
+                Log.e("response", response.toString())
+                if (response.isSuccessful) {
+                    response.body()?.let { it ->
+                        Log.e("success", "success")
+                        Log.e("teamCode", it.data.inviteCode)
+                        teamCode = it.data.inviteCode
+                    }
+                } else {
+                    Log.e("fail", "fail")
+                }
+            }
+
+            override fun onFailure(call: Call<CreateTravelRes>, t: Throwable) {
+                Log.e("onFailure", t.message.toString())
+                t.stackTrace
+            }
+        })
+    }
+
+    private fun onAddDateBtnClick() {
         binding.btAddDate.setOnClickListener {
             val intent = Intent(this, DatePickActivity::class.java)
             if (!binding.tvStartDate.text.isNullOrEmpty() && !binding.tvEndDate.text.isNullOrEmpty()) {
@@ -72,17 +131,26 @@ class AddTravelActivity : AppCompatActivity() {
             }
             datePickLauncher.launch(intent)
         }
+    }
 
-        resetData(-1) // 수정할 값이 없으므로 -1 대입
-        // TODO : 이 함수의 인자로 서버통신한 이미지 16개를 보내면 될거 같음
-        // TODO : ImageData에서 String으로 변경하고 Glide로 이미지를 가져오도록 해야할 듯 싶습니다.
-        apiModule.travelImageApi.fetchDefaultTravelImage().enqueue(StateAPICallback { apiState ->
-            when (apiState) {
-            }
-        })
-        imgAdapter(tempImgs)
-        chkEditTextInput()
-        enableNewTravelBtn()
+    private fun setRecoImg() {
+        apiModule.travelImageApi.fetchDefaultTravelImage()
+            .enqueue(object : Callback<DefaultTravelImageDTO> {
+                override fun onResponse(
+                    call: Call<DefaultTravelImageDTO>,
+                    response: Response<DefaultTravelImageDTO>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let { it ->
+                            imgAdapter(it.data)
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<DefaultTravelImageDTO>, t: Throwable) {
+                    Log.e("getImgUrlOnFailure", t.message.toString())
+                }
+            })
     }
 
     /* 다음으로 넘어갈 수 있도록 버튼 활성화 */
@@ -106,7 +174,6 @@ class AddTravelActivity : AppCompatActivity() {
     /* 캘린더에서 데이터 주면 뷰에 받아서 뷰에 적용함 */
     private fun setCalendarData() {
         if (chkDateSelected()) {
-            Log.e("c체크", "체크")
             binding.btAddDate.apply {
                 setBackgroundResource(R.drawable.bg_add_date_gray_btn)
                 text = "+ 날짜 수정하기"
@@ -120,24 +187,13 @@ class AddTravelActivity : AppCompatActivity() {
     private fun chkDateSelected() =
         binding.tvStartDate.text.isNotEmpty() && binding.tvEndDate.text.isNotEmpty()
 
-    private fun imgAdapter(imgList: List<ImageData>) {
+    private fun imgAdapter(imgUrls: List<String>) {
         val imgAdapter = RecoImgAdapter()
         val imgRV = binding.rvPreparedPhotos
         imgRV.adapter = imgAdapter
         imgRV.addItemDecoration(RVItemDeco(10, 10, 10, 10))
-        imgAdapter.setItemList(imgList)
+        imgAdapter.setItemList(imgUrls)
         onImageItemClickListener(imgAdapter)
-    }
-
-    private fun resetData(pos: Int) {
-        tempImgs.clear()
-        for (i in 0 until 16) {
-            if (pos == i) {
-                tempImgs.add(ImageData(R.drawable.ic_launcher_background, true))
-            } else {
-                tempImgs.add(ImageData(R.drawable.ic_launcher_background))
-            }
-        }
     }
 
     private fun backBtnClickListener() {
@@ -190,6 +246,7 @@ class AddTravelActivity : AppCompatActivity() {
     private fun onImageItemClickListener(adapter: RecoImgAdapter) {
         adapter.setItemClickListener(object : RecoImgAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
+                selectedImgIndex = position
                 ivChecked = true
                 enableNewTravelBtn() // 다 체크되었는지 한 번 확인
                 adapter.notifyItemChanged(adapter.prevClickedImgPos)
