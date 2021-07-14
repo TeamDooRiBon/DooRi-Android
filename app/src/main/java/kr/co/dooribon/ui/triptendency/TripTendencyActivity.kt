@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.triptendency
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -95,7 +96,7 @@ class TripTendencyActivity : AppCompatActivity() {
 
     fun navigateNextPage() {
         if (!viewModel.getLastQuestionSelectedPosition()!!
-                .contains(-1) && viewModel.getQuestionPosition() == MAX_QUESTION_INDEX_COUNT
+                .contains(-1) && viewModel.questionPosition.value == MAX_QUESTION_INDEX_COUNT
         ) {
             TripTendencyTestResultLoadingDialog().show(
                 supportFragmentManager,

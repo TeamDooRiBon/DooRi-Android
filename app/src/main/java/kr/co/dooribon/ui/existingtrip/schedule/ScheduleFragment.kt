@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.TravelScheduleRes
@@ -22,6 +23,7 @@ import kr.co.dooribon.ui.existingtrip.schedule.adapters.DateScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.PlanData
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TimeScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TravelDate
+import kr.co.dooribon.ui.existingtrip.viewmodel.ExistingTripViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +37,8 @@ class ScheduleFragment : Fragment() {
     private lateinit var timeList2: List<PlanData>
     private lateinit var timeList3: List<PlanData>
     private var onceDone = false // 날짜 리사이클러뷰 아이템 클릭하면 true로 변경.
+
+    private val viewModel by activityViewModels<ExistingTripViewModel>()
     // 날짜 리사이클러 뷰에서 두 번째 클릭부터는 리사이클러 뷰 첫번째 날짜를 다시
     // 바꿔줄 필요가 없어 true로 변경해서 다시 접근하지 않도록 해준다.
 

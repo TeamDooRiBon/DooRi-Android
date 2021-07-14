@@ -22,7 +22,7 @@ class TripTendencyQuestionAdapter(
     private val childQuestionNumberList = listOf(1,2,3,4)
 
     private val lastSelectedPosition
-        get() = viewModel.lastQuestionSelectedPosition.value!![viewModel.getQuestionPosition()!!]
+        get() = viewModel.lastQuestionSelectedPosition.value!![viewModel.questionPosition.value!!]
 
     inner class TripTendencyQuestionViewHolder(val binding: ViewTestTripTendencyQuestionBinding) :
         RecyclerView.ViewHolder(binding.root) {

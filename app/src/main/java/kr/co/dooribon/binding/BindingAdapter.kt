@@ -1,5 +1,7 @@
 package kr.co.dooribon.binding
 
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -19,5 +21,14 @@ object BindingAdapter {
                 (imageView.context.resources.displayMetrics.heightPixels * 0.4).roundToInt()
             )
             .into(imageView)
+    }
+
+    @JvmStatic
+    @BindingAdapter("travel_tendency_previous_btn_visibilty")
+    fun setTravelTendencyPreviousBtnVisibility(button : Button , questionPosition : Int){
+        if(questionPosition == 0)
+            button.visibility = View.INVISIBLE
+        else
+            button.visibility = View.VISIBLE
     }
 }

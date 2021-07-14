@@ -15,7 +15,11 @@
         android:theme="@style/Theme.DooRiBonAndroid">
         <activity android:name=".ui.signin.SignInActivity"/>
         <activity android:name=".ui.splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ui.existingtrip.ExistingTripActivity" />
         <activity android:name=".ui.triptendency.TripTendencyActivity" />

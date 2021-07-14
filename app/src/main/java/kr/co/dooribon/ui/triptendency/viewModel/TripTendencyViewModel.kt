@@ -32,8 +32,8 @@ class TripTendencyViewModel(
         get() = _travelTendencyQuestions
 
     // 각 질문마다 선택한 답의 가중치의 합을 보관해 놓는 리스트
-    private val _questionResultList = MutableList(10){_ -> -1}
-    val questionResultList : List<Int>
+    private val _questionResultList = MutableList(10) { _ -> -1 }
+    val questionResultList: List<Int>
         get() = _questionResultList
 
     val toastEventLiveData = SingleLiveEvent<String>()
@@ -74,9 +74,21 @@ class TripTendencyViewModel(
 
     fun selectQuestion(selectedPosition: Int) {
         _lastQuestionSelectedPosition.value!![_questionPosition.value!!] = selectedPosition
+        if (_questionResultList[_questionPosition.value!!] == 0) { // 첫 선택이라면
+            var questionResult : Int = 0
+            _travelTendencyQuestions.value?.get(_questionPosition.value!!)!!.childQuestions[selectedPosition].childQuestionWeight.forEach {
+                questionResult += it
+            }
+            _questionResultList[_questionPosition.value!!] = questionResult
+        } else {
+            _questionResultList[_questionPosition.value!!] = 0
+            var questionResult : Int = 0
+            _travelTendencyQuestions.value?.get(_questionPosition.value!!)!!.childQuestions[selectedPosition].childQuestionWeight.forEach {
+                questionResult += it
+            }
+            _questionResultList[_questionPosition.value!!] = questionResult
+        }
     }
-
-    fun getQuestionPosition() = _questionPosition.value
 
     fun getLastQuestionSelectedPosition() = _lastQuestionSelectedPosition.value
 
