@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.DefaultTravelImageDTO
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityNewTravelBinding
 import kr.co.dooribon.dialog.DooRiBonDialog
@@ -20,7 +21,10 @@ import kr.co.dooribon.ui.newtrip.adapter.ImageData
 import kr.co.dooribon.ui.newtrip.adapter.RecoImgAdapter
 import kr.co.dooribon.ui.newtrip.add.contract.DatePickerActivityContract
 import kr.co.dooribon.utils.RVItemDeco
-import kr.co.dooribon.utils.StateAPICallback
+import kr.co.dooribon.utils.debugE
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AddTravelActivity : AppCompatActivity() {
 
@@ -76,11 +80,23 @@ class AddTravelActivity : AppCompatActivity() {
         resetData(-1) // 수정할 값이 없으므로 -1 대입
         // TODO : 이 함수의 인자로 서버통신한 이미지 16개를 보내면 될거 같음
         // TODO : ImageData에서 String으로 변경하고 Glide로 이미지를 가져오도록 해야할 듯 싶습니다.
-        apiModule.travelImageApi.fetchDefaultTravelImage().enqueue(StateAPICallback { apiState ->
-            when (apiState) {
+        apiModule.travelImageApi.fetchDefaultTravelImage().enqueue(object : Callback<DefaultTravelImageDTO>{
+            override fun onResponse(
+                call: Call<DefaultTravelImageDTO>,
+                response: Response<DefaultTravelImageDTO>
+            ) {
+                if(response.isSuccessful){
+                    response.body()?.let{ it ->
+                        imgAdapter(it.data)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<DefaultTravelImageDTO>, t: Throwable) {
+                Log.e("getImgUrlOnFailure", t.message.toString())
             }
         })
-        imgAdapter(tempImgs)
+        //imgAdapter(tempImgs)
         chkEditTextInput()
         enableNewTravelBtn()
     }
@@ -120,12 +136,13 @@ class AddTravelActivity : AppCompatActivity() {
     private fun chkDateSelected() =
         binding.tvStartDate.text.isNotEmpty() && binding.tvEndDate.text.isNotEmpty()
 
-    private fun imgAdapter(imgList: List<ImageData>) {
+    private fun imgAdapter(imgUrls: List<String>) {
+        Log.e("imgUrls", imgUrls.toString())
         val imgAdapter = RecoImgAdapter()
         val imgRV = binding.rvPreparedPhotos
         imgRV.adapter = imgAdapter
         imgRV.addItemDecoration(RVItemDeco(10, 10, 10, 10))
-        imgAdapter.setItemList(imgList)
+        imgAdapter.setItemList(imgUrls)
         onImageItemClickListener(imgAdapter)
     }
 
