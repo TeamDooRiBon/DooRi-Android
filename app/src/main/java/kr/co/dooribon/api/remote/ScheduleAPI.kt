@@ -1,6 +1,7 @@
 package kr.co.dooribon.api.remote
 
 import com.google.gson.annotations.SerializedName
+import retrofit2.Call
 import retrofit2.http.*
 import java.util.*
 
@@ -137,29 +138,29 @@ interface ScheduleAPI {
     fun createTravelSchedule(
         @Path("groupId") groupId: String,
         @Body createScheduleReq: CreateTravelScheduleReq
-    ): CreateTravelScheduleRes
+    ): Call<CreateTravelScheduleRes>
 
     @GET("schedule/{groupId}/{scheduleId}")
     fun fetchTravelSchedule(
         @Path("groupId") groupId: String,
         @Path("scheduleId") scheduleId: String
-    ): TravelScheduleRes
+    ): Call<TravelScheduleRes>
 
     @PATCH("schedule/{groupId}/{scheduleId}")
     fun editTravelSchedule(
         @Path("groupId") groupId: String,
         @Path("scheduleId") scheduleId: String
-    ): EditTravelScheduleRes
+    ): Call<EditTravelScheduleRes>
 
     @DELETE("schedule/{groupId}/{scheduleId}")
     fun deleteTravelSchedule(
         @Path("groupId") groupId: String,
         @Path("scheduleId") scheduleId: String
-    ): DeleteTravelScheduleRes
+    ): Call<DeleteTravelScheduleRes>
 
     @GET("schedule/daily/{groupId}/{date}")
     fun fetchCertainTravelSchedule(
         @Path("groupId") groupId: String,
         @Path("date") date: String
-    ): CertainTravelScheduleRes
+    ): Call<CertainTravelScheduleRes>
 }
