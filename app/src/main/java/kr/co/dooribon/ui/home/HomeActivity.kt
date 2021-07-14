@@ -115,6 +115,7 @@ class HomeActivity : AppCompatActivity() {
             "groupId",
             viewModel.homePreviousTravel.value?.get(index)!!.previousTravelId
         )
+        startActivity(previousIntent)
     }
 
     private fun onUpComingTripItemClick(index: Int) {
