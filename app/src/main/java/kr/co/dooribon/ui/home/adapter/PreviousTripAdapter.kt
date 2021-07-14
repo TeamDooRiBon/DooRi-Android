@@ -7,7 +7,7 @@ import kr.co.dooribon.databinding.ViewPreviousTripBinding
 import kr.co.dooribon.domain.entity.PreviousTravel
 
 class PreviousTripAdapter(
-    private val onItemClicked: (idx: Int, item: PreviousTravel) -> Unit
+    private val onItemClicked: (idx: Int) -> Unit
 ) : RecyclerView.Adapter<PreviousTripAdapter.PreviousTripViewHolder>() {
 
     private val itemList = mutableListOf<PreviousTravel>()
@@ -34,7 +34,7 @@ class PreviousTripAdapter(
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.onClick = {
-                onItemClicked(adapterPosition, itemList[adapterPosition])
+                onItemClicked(adapterPosition)
             }
         }
 

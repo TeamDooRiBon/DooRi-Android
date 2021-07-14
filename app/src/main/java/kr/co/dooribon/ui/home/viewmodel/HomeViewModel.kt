@@ -70,20 +70,18 @@ class HomeViewModel(
     }
 
     fun initializeHomeImage() {
-        /*viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 _homeProceedingTravel.value?.let { homeRepository.fetchHomeProceedingTravelImage(it.id) }
             }.onSuccess {
                 if (it != null) {
-                    _homeProceedingTravelImage.postValue(it.homeTravelImageRes.data.homeImageUrl)
+                    _homeProceedingTravelImage.postValue(it.data.homeImageUrl)
                 } else {
                     _homeProceedingTravelImage.postValue("https://homepages.cae.wisc.edu/~ece533/images/mountain.png")
                 }
             }.onFailure {
                 debugE(it.toString())
             }
-        }*/
-        _homeProceedingTravelImage.value =
-            "https://homepages.cae.wisc.edu/~ece533/images/mountain.png"
+        }
     }
 }

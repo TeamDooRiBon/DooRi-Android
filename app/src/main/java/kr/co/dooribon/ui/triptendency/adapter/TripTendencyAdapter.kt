@@ -5,14 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.databinding.ViewTestTripTendencyBinding
-import kr.co.dooribon.domain.entity.TripTendency
+import kr.co.dooribon.domain.entity.ParentTravelTendency
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
 
 class TripTendencyAdapter(
     private val viewModel: TripTendencyViewModel
 ) : RecyclerView.Adapter<TripTendencyAdapter.TripTendencyViewHolder>() {
 
-    private val questionList = mutableListOf<TripTendency>()
+    private val questionList = mutableListOf<ParentTravelTendency>()
+
+    private val parentQuestionNumber = listOf(1,2,3,4,5,6,7,8,9,10)
 
     private val adapterList = MutableList(10) { _ ->
         TripTendencyQuestionAdapter(onItemClicked = { idx ->
@@ -22,9 +24,10 @@ class TripTendencyAdapter(
 
     private val isSubmitItemCheckList = BooleanArray(10) { _ -> false }
 
-    class TripTendencyViewHolder(val binding: ViewTestTripTendencyBinding) :
+    inner class TripTendencyViewHolder(val binding: ViewTestTripTendencyBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TripTendency) {
+        fun bind(item: ParentTravelTendency) {
+            binding.questionListNumber = parentQuestionNumber[adapterPosition]
             binding.item = item
         }
     }
@@ -43,7 +46,7 @@ class TripTendencyAdapter(
             adapter = adapterList[position]
         }
         if (!isSubmitItemCheckList[position]) {
-            adapterList[position].submitItem(questionList[position].questionList)
+            adapterList[position].submitItem(questionList[position].childQuestions)
             isSubmitItemCheckList[position] = true
         } else {
             adapterList[position].notifyItemRangeChanged(0, adapterList[position].itemCount)
@@ -52,7 +55,7 @@ class TripTendencyAdapter(
 
     override fun getItemCount(): Int = questionList.size
 
-    fun submitItem(list: List<TripTendency>) {
+    fun submitItem(list: List<ParentTravelTendency>) {
         questionList.clear()
         questionList.addAll(list)
         notifyDataSetChanged()

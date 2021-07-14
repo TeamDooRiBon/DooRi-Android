@@ -38,11 +38,17 @@ class TripTendencyActivity : AppCompatActivity() {
         binding.activity = this
         tripTendencyAdapter = TripTendencyAdapter(viewModel)
 
-        configureQuestionPager()
-        configureTab()
         observeQuestionPosition()
         observeToastEvent()
-        setDummy()
+        observeTravelTendencyQuestions()
+        configureQuestionPager()
+        configureTab()
+    }
+
+    private fun observeTravelTendencyQuestions() {
+        viewModel.travelTendencyQuestions.observe(this){
+            tripTendencyAdapter.submitItem(it)
+        }
     }
 
     private fun observeToastEvent() {
@@ -82,12 +88,6 @@ class TripTendencyActivity : AppCompatActivity() {
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
             isUserInputEnabled = false
         }
-    }
-
-    private fun setDummy() {
-        tripTendencyAdapter.submitItem(
-            viewModel.getDummy()
-        )
     }
 
     fun exitTripTendencyTest() {

@@ -30,7 +30,7 @@ class DooRiBonGradientTopRoundImageView @JvmOverloads constructor(
     private val gradientRectF = RectF()
     private val gradientPaint = Paint()
 
-    var startColor by OnChangeProp(Color.parseColor("#FFFFFF")) {
+    var startColor by OnChangeProp(Color.parseColor("#B3B1B1")) {
         update()
     }
 

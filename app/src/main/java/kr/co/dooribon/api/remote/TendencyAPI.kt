@@ -11,25 +11,6 @@ import retrofit2.http.Path
  * questions에서 질문을 만약 1번을 선택하면 questionsWeight의 1번배열의 값을 전부 더해준다. 이게 결과값이 된다.
  */
 // 성향 테스트 질문 조회
-data class ChildQuestionDTO(
-    @SerializedName("title")
-    val questions: List<String>,
-    @SerializedName("weight")
-    val questionsWeight: List<List<Int>>
-)
-
-data class ParentQuestionDTO(
-    @SerializedName("title")
-    val parentQuestionTitle: String,
-    @SerializedName("content")
-    val childQuestions: ChildQuestionDTO
-)
-
-data class QuestionListDTO(
-    @SerializedName("question")
-    val questionList: List<ParentQuestionDTO>
-)
-
 data class TravelTendencyQuestionRes(
     @SerializedName("status")
     val status: Int,
@@ -38,7 +19,21 @@ data class TravelTendencyQuestionRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: QuestionListDTO
+    val data: List<ParentQuestionDTO>
+)
+
+data class ParentQuestionDTO(
+    @SerializedName("title")
+    val parentQuestionTitle: String,
+    @SerializedName("content")
+    val childQuestions: List<ChildQuestionDTO>
+)
+
+data class ChildQuestionDTO(
+    @SerializedName("answer")
+    val questionsTitle: String,
+    @SerializedName("weight")
+    val questionsWeight: List<Int>
 )
 
 // 성향 테스트 카운팅 조회

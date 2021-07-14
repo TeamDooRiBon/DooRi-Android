@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ViewTestTripTendencyQuestionBinding
-import kr.co.dooribon.domain.entity.TripTendency
+import kr.co.dooribon.domain.entity.ParentTravelTendency
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
 
 /**
@@ -17,7 +17,9 @@ class TripTendencyQuestionAdapter(
     private val viewModel: TripTendencyViewModel
 ) : RecyclerView.Adapter<TripTendencyQuestionAdapter.TripTendencyQuestionViewHolder>() {
 
-    private val problemList = mutableListOf<TripTendency.TripTendencyQuestion>()
+    private val childQuestionList = mutableListOf<ParentTravelTendency.ChildTravelTendencyQuestion>()
+
+    private val childQuestionNumberList = listOf(1,2,3,4)
 
     private val lastSelectedPosition
         get() = viewModel.lastQuestionSelectedPosition.value!![viewModel.getQuestionPosition()!!]
@@ -27,13 +29,14 @@ class TripTendencyQuestionAdapter(
 
         init {
             binding.onClick = {
-                notifyItemRangeChanged(0, problemList.size)
+                notifyItemRangeChanged(0, childQuestionList.size)
                 onItemClicked(adapterPosition)
             }
         }
 
-        fun bind(item: TripTendency.TripTendencyQuestion) {
+        fun bind(item: ParentTravelTendency.ChildTravelTendencyQuestion) {
             binding.item = item
+            binding.childQuestionNumber = childQuestionNumberList[adapterPosition]
             if (lastSelectedPosition == adapterPosition)
                 selectQuestion(binding)
             else
@@ -51,14 +54,14 @@ class TripTendencyQuestionAdapter(
     }
 
     override fun onBindViewHolder(holder: TripTendencyQuestionViewHolder, position: Int) {
-        holder.bind(problemList[position])
+        holder.bind(childQuestionList[position])
     }
 
-    override fun getItemCount(): Int = problemList.size
+    override fun getItemCount(): Int = childQuestionList.size
 
-    fun submitItem(list: List<TripTendency.TripTendencyQuestion>) {
-        problemList.clear()
-        problemList.addAll(list)
+    fun submitItem(list: List<ParentTravelTendency.ChildTravelTendencyQuestion>) {
+        childQuestionList.clear()
+        childQuestionList.addAll(list)
         notifyDataSetChanged()
     }
 

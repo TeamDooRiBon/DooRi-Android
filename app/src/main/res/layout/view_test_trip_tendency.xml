@@ -7,7 +7,11 @@
 
         <variable
             name="item"
-            type="kr.co.dooribon.domain.entity.TripTendency" />
+            type="kr.co.dooribon.domain.entity.ParentTravelTendency" />
+
+        <variable
+            name="questionListNumber"
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +38,7 @@
             android:id="@+id/tv_test_trip_tendency_question_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{Integer.toString(item.questionNumber)}"
+            android:text="@{Integer.toString(questionListNumber)}"
             android:textColor="@color/doo_ri_bon_blue"
             android:textSize="23sp"
             android:textStyle="bold"
@@ -61,7 +65,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/spoqa_han_sans_neo_bold"
             android:includeFontPadding="false"
-            android:text="@{item.questionTitle}"
+            android:text="@{item.parentQuestionTitle}"
             android:textSize="20sp"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/tv_test_trip_tendency"

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityDatePickBinding
 import kr.co.dooribon.dialog.DooRiBonDialog
 import kr.co.dooribon.domain.entity.PickDatePair
@@ -43,8 +44,8 @@ class DatePickActivity : AppCompatActivity() {
                                 putExtra(
                                     "datePair",
                                     PickDatePair(
-                                        DateUtil.convertStringToDateDot(binding.fragCalendar.getSelectedDate().first!!),
-                                        DateUtil.convertStringToDateDot(binding.fragCalendar.getSelectedDate().second!!)
+                                        DateUtil.convertDateToStringDot(binding.fragCalendar.getSelectedDate().first!!),
+                                        DateUtil.convertDateToStringDot(binding.fragCalendar.getSelectedDate().second!!)
                                     )
                                 )
                             }
@@ -62,8 +63,8 @@ class DatePickActivity : AppCompatActivity() {
                                 putExtra(
                                     "datePair",
                                     PickDatePair(
-                                        DateUtil.convertStringToDateDot(it.first!!),
-                                        DateUtil.convertStringToDateDot(it.second!!)
+                                        DateUtil.convertDateToStringDot(it.first!!),
+                                        DateUtil.convertDateToStringDot(it.second!!)
                                     )
                                 )
                             }

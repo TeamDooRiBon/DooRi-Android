@@ -53,7 +53,14 @@ data class CreateTravelReq(
 )
 
 data class CreateTravelRes(
-    val editTravelRes: BaseResponse<InviteCodeDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: InviteCodeDTO
 )
 
 data class InviteCodeDTO(
