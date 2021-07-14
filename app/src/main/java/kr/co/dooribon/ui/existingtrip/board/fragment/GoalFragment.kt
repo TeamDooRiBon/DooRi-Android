@@ -44,33 +44,33 @@ class GoalFragment : Fragment() {
         Log.e("chk", arguments?.getString("groupId").toString())
         setFragmentDetails()
         setDummyList()
-        //setBoardAdapter()
-        //setBgVisibility()
         onAddBtnClickListener()
         getGoalBoardData(arguments?.getString("groupId").toString())
     }
 
-    private fun getGoalBoardData(groupId : String) {
-        apiModule.boardApi.inquireTravelBoard(groupId, "goal").enqueue(object:Callback<InquireTravelBoardRes>{
-            override fun onResponse(
-                call: Call<InquireTravelBoardRes>,
-                response: Response<InquireTravelBoardRes>
-            ) {
-                if(response.isSuccessful){
-                    setBoardAdapter(response.body()?.data ?: emptyList())
-                    response.body()?.data.let {
-                        makeImageGone()
+    private fun getGoalBoardData(groupId: String) {
+        apiModule.boardApi.inquireTravelBoard(groupId, "goal")
+            .enqueue(object : Callback<InquireTravelBoardRes> {
+                override fun onResponse(
+                    call: Call<InquireTravelBoardRes>,
+                    response: Response<InquireTravelBoardRes>
+                ) {
+                    if (response.isSuccessful) {
+                        setBoardAdapter(response.body()?.data ?: emptyList())
+                        if(response.body()?.data?.isNotEmpty() == true){
+                            makeImageGone()
+                        }
                     }
                 }
-            }
-            override fun onFailure(call: Call<InquireTravelBoardRes>, t: Throwable) {
-                Log.e("getGoalBoardData onFailure", t.message.toString())
-            }
-        })
+
+                override fun onFailure(call: Call<InquireTravelBoardRes>, t: Throwable) {
+                    Log.e("getGoalBoardData onFailure", t.message.toString())
+                }
+            })
     }
 
     /* 서버에서 수신한 것에 값이 들어있을 때, 디폴트로 들어가있는 값을 지운다. */
-    private fun makeImageGone(){
+    private fun makeImageGone() {
         binding.apply {
             ivTopic.visibility = View.GONE
             tvMainTodo.visibility = View.GONE
@@ -117,20 +117,9 @@ class GoalFragment : Fragment() {
         }
     }
 
-    private fun setBgVisibility() {
-        if (dummyList.isNotEmpty()) {
-            binding.apply {
-                ivTopic.visibility = View.GONE
-                tvMainTodo.visibility = View.GONE
-                tvSubTodo.visibility = View.GONE
-            }
-        }
-    }
-
-    private fun setBoardAdapter(data : List<BoardContentDTO>) {
+    private fun setBoardAdapter(data: List<BoardContentDTO>) {
         val boardAdapter = BoardAdapter()
         val boardRV = binding.rvTodoList
-        //boardAdapter.setItemList(dummyList)
         boardAdapter.setItemList(data)
         boardRV.adapter = boardAdapter
         onBoardItemClickListener(boardAdapter)

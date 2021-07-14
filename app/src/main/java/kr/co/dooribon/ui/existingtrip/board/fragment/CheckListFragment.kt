@@ -43,7 +43,6 @@ class CheckListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setFragmentDetails()
         setDummyList()
-        //setBgVisibility()
         onAddBtnClickListener()
         getCheckListData(arguments?.getString("groupId").toString())
     }
@@ -87,17 +86,7 @@ class CheckListFragment : Fragment() {
         }
     }
 
-    private fun setBgVisibility() {
-        if (dummyList.isNotEmpty()) {
-            binding.apply {
-                ivTopic.visibility = View.GONE
-                tvMainTodo.visibility = View.GONE
-                tvSubTodo.visibility = View.GONE
-            }
-        }
-    }
-
-    private fun setBoardAdapter(data : List<BoardContentDTO>) {
+    private fun setBoardAdapter(data: List<BoardContentDTO>) {
         val boardAdapter = BoardAdapter()
         val boardRV = binding.rvTodoList
         boardAdapter.setItemList(data)
@@ -117,20 +106,21 @@ class CheckListFragment : Fragment() {
     }
 
     /* 서버로부터 데이터 받아오고, 리사이클러뷰 어댑터 호출 */
-    private fun getCheckListData(groupId : String) {
-        MainApplication.apiModule.boardApi.inquireTravelBoard(groupId, "check").enqueue(object:
+    private fun getCheckListData(groupId: String) {
+        MainApplication.apiModule.boardApi.inquireTravelBoard(groupId, "check").enqueue(object :
             Callback<InquireTravelBoardRes> {
             override fun onResponse(
                 call: Call<InquireTravelBoardRes>,
                 response: Response<InquireTravelBoardRes>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     setBoardAdapter(response.body()?.data ?: emptyList())
                     response.body()?.data.let {
                         makeImageGone()
                     }
                 }
             }
+
             override fun onFailure(call: Call<InquireTravelBoardRes>, t: Throwable) {
                 Log.e("getGoalBoardData onFailure", t.message.toString())
             }
@@ -138,7 +128,7 @@ class CheckListFragment : Fragment() {
     }
 
     /* 서버에서 수신한 것에 값이 들어있을 때, 디폴트로 들어가있는 값을 지운다. */
-    private fun makeImageGone(){
+    private fun makeImageGone() {
         binding.apply {
             ivTopic.visibility = View.GONE
             tvMainTodo.visibility = View.GONE

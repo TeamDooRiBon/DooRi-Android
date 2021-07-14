@@ -20,7 +20,6 @@ import kr.co.dooribon.api.remote.InquireTravelBoardRes
 import kr.co.dooribon.application.MainApplication
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter
-import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardListData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,9 +27,6 @@ import retrofit2.Response
 class MustKnowFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
-
-    //private lateinit var dummyList: List<BoardListData>
-    private var dummyList = listOf<BoardListData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +40,6 @@ class MustKnowFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setFragmentDetails()
-        //setBgVisibility()
         onAddBtnClickListener()
         getCheckListData(arguments?.getString("groupId").toString())
     }
@@ -96,16 +91,6 @@ class MustKnowFragment : Fragment() {
             )
             tvMainTodo.text = getString(R.string.share_first)
             tvSubTodo.text = getString(R.string.share_first_detail)
-        }
-    }
-
-    private fun setBgVisibility() {
-        if (dummyList.isNotEmpty()) {
-            binding.apply {
-                ivTopic.visibility = View.GONE
-                tvMainTodo.visibility = View.GONE
-                tvSubTodo.visibility = View.GONE
-            }
         }
     }
 
@@ -186,19 +171,5 @@ class MustKnowFragment : Fragment() {
         }
         bsDialog.setContentView(sheetView)
         bsDialog.show()
-    }
-
-    private fun setDummyList() {
-        dummyList = listOf(
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("제주도 한라산 등산하기! 아침에 일찍 일어나서 꼭 갈거야 한라산...", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영")
-        )
     }
 }
