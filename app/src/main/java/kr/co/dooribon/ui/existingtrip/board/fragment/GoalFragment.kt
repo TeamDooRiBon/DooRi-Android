@@ -57,7 +57,7 @@ class GoalFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         setBoardAdapter(response.body()?.data ?: emptyList())
-                        if(response.body()?.data?.isNotEmpty() == true){
+                        if (response.body()?.data?.isNotEmpty() == true) {
                             makeImageGone()
                         }
                     }

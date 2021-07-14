@@ -68,7 +68,7 @@ class MustKnowFragment : Fragment() {
     }
 
     /* 서버에서 수신한 것에 값이 들어있을 때, 디폴트로 들어가있는 값을 지운다. */
-    private fun makeImageGone(){
+    private fun makeImageGone() {
         binding.apply {
             ivTopic.visibility = View.GONE
             tvMainTodo.visibility = View.GONE
@@ -94,27 +94,28 @@ class MustKnowFragment : Fragment() {
         }
     }
 
-    private fun getCheckListData(groupId : String) {
-        MainApplication.apiModule.boardApi.inquireTravelBoard(groupId, "know").enqueue(object:
+    private fun getCheckListData(groupId: String) {
+        MainApplication.apiModule.boardApi.inquireTravelBoard(groupId, "know").enqueue(object :
             Callback<InquireTravelBoardRes> {
             override fun onResponse(
                 call: Call<InquireTravelBoardRes>,
                 response: Response<InquireTravelBoardRes>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     setBoardAdapter(response.body()?.data ?: emptyList())
-                    response.body()?.data.let {
+                    if (response.body()?.data?.isNotEmpty() == true) {
                         makeImageGone()
                     }
                 }
             }
+
             override fun onFailure(call: Call<InquireTravelBoardRes>, t: Throwable) {
                 Log.e("getGoalBoardData onFailure", t.message.toString())
             }
         })
     }
 
-    private fun setBoardAdapter(data : List<BoardContentDTO>) {
+    private fun setBoardAdapter(data: List<BoardContentDTO>) {
         val boardAdapter = BoardAdapter()
         val boardRV = binding.rvTodoList
         boardAdapter.setItemList(data)

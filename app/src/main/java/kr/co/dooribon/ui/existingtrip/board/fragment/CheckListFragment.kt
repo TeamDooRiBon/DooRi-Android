@@ -115,7 +115,7 @@ class CheckListFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     setBoardAdapter(response.body()?.data ?: emptyList())
-                    response.body()?.data.let {
+                    if (response.body()?.data?.isNotEmpty() == true) {
                         makeImageGone()
                     }
                 }
