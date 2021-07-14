@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.CreateTravelReq
 import kr.co.dooribon.api.remote.DefaultTravelImageDTO
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityNewTravelBinding
@@ -67,9 +68,20 @@ class AddTravelActivity : AppCompatActivity() {
         binding.btStartNewTravel.setOnClickListener {
             // TODO : 이 부분에서 데이터를 모아서 통신하는 코드를 만들면 될 거 같습니다.
             // TravelTitle , TravelDestination , StartDate , EndDate , ImageIndex 이케 보내면 될 거 같습니다.
+            sendTravelData()
             val intent = Intent(this, TravelPlanDoneActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    /* 서버에 데이터 보내는 함 */
+    private fun sendTravelData() {
+        apiModule.travelApi.createUserTravel(CreateTravelReq(binding.etTravelName.toString(),
+            binding.etTravelPlace.toString(),
+            binding.tvStartDate.toString(),
+            binding.tvEndDate.toString().replace(".","-"), // .을 -로 변경해서 전
+            1))
+        //Log.e("temp", temp.toString())
     }
 
     private fun onAddDateBtnClick() {

@@ -1,6 +1,7 @@
 package kr.co.dooribon.api.remote
 
 import com.google.gson.annotations.SerializedName
+import retrofit2.Call
 import retrofit2.http.*
 
 data class HomeTravelRes(
@@ -201,9 +202,9 @@ interface TravelAPI {
 
     // 유저 여행 생성 / 여행 생성 뷰
     @POST("travel")
-    suspend fun createUserTravel(
+    fun createUserTravel(
         @Body createTravelReq: CreateTravelReq
-    ): CreateTravelRes
+    ): Call<CreateTravelRes>
 
     // 여행 참여 , 여행 정보 조회 / 참여하는 여행 정보가 맞나요? 뷰 , 각종 여행 정보 조회 시 사용
     @GET("travel/group/{inviteCode}")
