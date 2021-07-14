@@ -5,8 +5,11 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kr.co.dooribon.R
 import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.ActivityTripTendencyBinding
@@ -64,7 +67,7 @@ class TripTendencyActivity : AppCompatActivity() {
 
     private fun observeQuestionPosition() {
         viewModel.questionPosition.observe(this) {
-            if (it != 0 && it == tripTendencyAdapter.itemCount) {
+            if (it != 0 && it == tripTendencyAdapter.itemCount + 1) {
                 TripTendencyTestResultLoadingDialog().show(
                     supportFragmentManager,
                     RESULT_LOADING_NAVIGATE_TAG
@@ -99,10 +102,13 @@ class TripTendencyActivity : AppCompatActivity() {
         if (!viewModel.getLastQuestionSelectedPosition()!!
                 .contains(-1) && viewModel.questionPosition.value == MAX_QUESTION_INDEX_COUNT
         ) {
-            TripTendencyTestResultLoadingDialog().show(
-                supportFragmentManager,
-                RESULT_LOADING_NAVIGATE_TAG
-            )
+            synchronized(this){
+                TripTendencyTestResultLoadingDialog().show(
+                    supportFragmentManager,
+                    RESULT_LOADING_NAVIGATE_TAG
+                )
+            }
+
         } else {
             viewModel.nextPage()
         }

@@ -36,6 +36,7 @@ class TripTendencyViewModel(
     val questionResultList: List<Int>
         get() = _questionResultList
 
+    // 질문을 선택해달라고 하는 LiveData
     val toastEventLiveData = SingleLiveEvent<String>()
 
     init {
@@ -53,7 +54,7 @@ class TripTendencyViewModel(
     }
 
     fun nextPage() {
-        if (_questionPosition.value!! < MAX_QUESTION_COUNT - 1) {
+        if (_questionPosition.value!! < MAX_QUESTION_COUNT) {
             if (_lastQuestionSelectedPosition.value!![_questionPosition.value!!] != -1) {
                 _questionPosition.value = _questionPosition.value?.plus(1)
             } else {

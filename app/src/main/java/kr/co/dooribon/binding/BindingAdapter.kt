@@ -25,21 +25,5 @@ object BindingAdapter {
             .into(imageView)
     }
 
-    @JvmStatic
-    @BindingAdapter("travel_tendency_previous_btn_visibilty")
-    fun setTravelTendencyPreviousBtnVisibility(button: Button, questionPosition: Int) {
-        if (questionPosition == 0)
-            button.visibility = View.INVISIBLE
-        else
-            button.visibility = View.VISIBLE
-    }
 
-    @JvmStatic
-    @BindingAdapter("travel_tendency_next_btn_size")
-    fun setTravelTendencyNextBtnSize(button: Button, questionPosition: Int) {
-        if (questionPosition == 0)
-            button.resizeMatchWidth()
-        else
-            button.resizeWrapWidth()
-    }
 }

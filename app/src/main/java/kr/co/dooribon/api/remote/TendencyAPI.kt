@@ -63,6 +63,24 @@ data class TravelTendencyQuestionCountRes(
 )
 
 // 그룹 성향 테스트 결과 전체 조회
+data class GroupTravelTendencyRes(
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: GroupTravelTendencyResultDTO
+)
+
+data class GroupTravelTendencyResultDTO(
+    @SerializedName("myResult")
+    val myTravelTendencyResult : GroupTravelTendencyDTO,
+    @SerializedName("othersResult")
+    val otherTravelTendencyResult : List<GroupTravelTendencyDTO>
+)
+
 data class GroupTravelTendencyDTO(
     @SerializedName("tag")
     val tendencyTag: List<String>,
@@ -85,17 +103,6 @@ data class MemberDTO(
     val memberName: String,
     @SerializedName("profileImage")
     val memberProfileImageUrl: String
-)
-
-data class GroupTravelTendencyRes(
-    @SerializedName("status")
-    val status: Int,
-    @SerializedName("success")
-    val success: Boolean,
-    @SerializedName("message")
-    val message: String,
-    @SerializedName("data")
-    val data: GroupTravelTendencyDTO
 )
 
 // 성향테스트 결과 저장
@@ -129,21 +136,25 @@ data class StoreTravelTendencyRes(
 )
 
 interface TendencyAPI {
+    // 성향 테스트 질문 조회 , 이건 함
     @GET("tendency/question")
     suspend fun fetchTravelTendencyQuestion(): TravelTendencyQuestionRes
 
+    // 성향 테스트 카운팅 조회
     @GET("tendency/question/{groupId}")
-    fun fetchTravelTendencyQuestionCount(
+    suspend fun fetchTravelTendencyQuestionCount(
         @Path("groupId") groupId: String
     ): TravelTendencyQuestionCountRes
 
+    // 그룹 성향테스트 결과 전체 조회
     @GET("tendency/{groupId}")
-    fun fetchGroupTravelTendency(
+    suspend fun fetchGroupTravelTendency(
         @Path("groupId") groupId: String
     ): GroupTravelTendencyRes
 
+    // 성향테스트 결과 저장
     @POST("tendency/{groupId}")
-    fun storeTravelTendency(
+    suspend fun storeTravelTendency(
         @Body storeTravelTendencyReq: StoreTravelTendencyReq,
         @Path("groupId") groupId: String
     ): StoreTravelTendencyRes

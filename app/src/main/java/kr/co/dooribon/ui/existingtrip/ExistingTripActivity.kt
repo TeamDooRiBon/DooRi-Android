@@ -20,6 +20,7 @@ class ExistingTripActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_existing_trip)
         binding.activity = this
         binding.lifecycleOwner = this
+        intent?.getStringExtra("groupId")?.let { viewModel.setGroupId(it) }
 
         configureBackButton()
         configureBottomNavigation()
@@ -32,6 +33,10 @@ class ExistingTripActivity : AppCompatActivity() {
     }
 
     private fun configureBottomNavigation() {
-        binding.bottomNavExistingTrip.initExistingTripBottomNavigation(supportFragmentManager)
+        val tendencyBundle = Bundle()
+        tendencyBundle.apply {
+            putString("tendency_groupId",viewModel.getGroupId())
+        }
+        binding.bottomNavExistingTrip.initExistingTripBottomNavigation(supportFragmentManager,tendencyBundle)
     }
 }

@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kr.co.dooribon.databinding.DialogTripTendencyTestResultLoadingBinding
 import kr.co.dooribon.utils.AutoClearBinding
 
@@ -25,5 +28,10 @@ class TripTendencyTestResultLoadingDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        lifecycleScope.launch {
+            delay(2000)
+            dismiss()
+        }
     }
 }

@@ -167,7 +167,6 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fcv_existing_trip"
-            android:name="kr.co.dooribon.ui.existingtrip.tendency.TendencyFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/bottom_nav_existing_trip"

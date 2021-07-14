@@ -1,5 +1,6 @@
 package kr.co.dooribon.utils
 
+import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
@@ -14,13 +15,15 @@ fun TabLayout.initializeTab(list: List<String>) {
     }
 }
 
-fun BottomNavigationView.initExistingTripBottomNavigation(fragmentManager: FragmentManager) {
-    this.setOnNavigationItemSelectedListener {
+fun BottomNavigationView.initExistingTripBottomNavigation(fragmentManager: FragmentManager , bundle : Bundle) {
+    val tendencyFragment = TendencyFragment()
+    tendencyFragment.arguments = bundle
+    this.setOnItemSelectedListener {
         when (it.itemId) {
             R.id.nav_people -> {
                 fragmentManager.beginTransaction().replace(
                     R.id.fcv_existing_trip,
-                    TendencyFragment()
+                    tendencyFragment
                 ).commit()
             }
             R.id.nav_calendar -> {
@@ -39,4 +42,6 @@ fun BottomNavigationView.initExistingTripBottomNavigation(fragmentManager: Fragm
         }
         true
     }
+    // 일단 초기화면에서 bundle로 데이터를 옮겨줘야하는데 이 때문에 name을 사용하지 못함
+    fragmentManager.beginTransaction().replace(R.id.fcv_existing_trip,tendencyFragment).commit()
 }
