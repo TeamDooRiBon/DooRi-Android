@@ -83,21 +83,21 @@ class ParticipateJoinFragment : Fragment() {
         }
         fullEditText()
         // groupId 받아서 마무리
-        apiModule.scheduleApi.createTravelSchedule("Test",)
-            .enqueue(object : Callback<CreateTravelScheduleRes> {
-                override fun onResponse(
-                    call: Call<CreateTravelScheduleRes>,
-                    response: Response<CreateTravelScheduleRes>
-                ) {
-                    if (response.isSuccessful){
-                        Log.d(TAG, "일정 추가 완료")
-                    }
-                }
-
-                override fun onFailure(call: Call<CreateTravelScheduleRes>, t: Throwable) {
-
-                }
-            })
+//        apiModule.scheduleApi.createTravelSchedule("Test",)
+//            .enqueue(object : Callback<CreateTravelScheduleRes> {
+//                override fun onResponse(
+//                    call: Call<CreateTravelScheduleRes>,
+//                    response: Response<CreateTravelScheduleRes>
+//                ) {
+//                    if (response.isSuccessful){
+//                        Log.d(TAG, "일정 추가 완료")
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<CreateTravelScheduleRes>, t: Throwable) {
+//
+//                }
+//            })
     }
 
     private fun fullEditText() {

@@ -2,6 +2,7 @@ package kr.co.dooribon.ui.existingtrip.board.fragment
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
+import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardListData
 
@@ -34,11 +37,18 @@ class GoalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //Log.e("temp", ExistingTripActivity.)
+
         setFragmentDetails()
         setDummyList()
         setBoardAdapter()
         setBgVisibility()
         onAddBtnClickListener()
+        getGoalBoardData()
+    }
+
+    private fun getGoalBoardData() {
+        //apiModule.boardApi.inquireTravelBoard()
     }
 
     /* 추가하기 버튼 클릭 이벤트 처리 함수 */
