@@ -49,6 +49,7 @@ class MemberFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
 
+        observeMemberTendencyGroupId()
         binding.liChips.addChip("#안녕")
         binding.liChips.addChip("#반가워")
         binding.liChips.addChip("#무슨일 있어?")
@@ -66,5 +67,11 @@ class MemberFragment : Fragment() {
                 MemberTripType("응애", listOf("#안녕", "#반가워", "#화이팅"), "송훈기", "1")
             )
         )
+    }
+
+    private fun observeMemberTendencyGroupId() {
+        viewModel.memberTendencyGroupId.observe(viewLifecycleOwner){
+            viewModel.fetchGroupTravelTendency()
+        }
     }
 }

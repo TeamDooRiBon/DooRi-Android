@@ -56,6 +56,7 @@
                     android:background="@drawable/bg_black_gray6_round_textview"
                     android:text="TEST 다시하기"
                     android:textSize="12sp"
+                    my_travel_tendency_visible_text_view="@{vm.isMyTravelTendencyResult()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -229,7 +230,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
-                    my_travel_tendency_visible_recyclerview="@{!vm.isOtherTravelTendencyResult()}"
+                    my_travel_tendency_visible_recyclerview="@{vm.isOtherTravelTendencyResult()}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_member_trip_type_title" />
@@ -239,7 +240,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    my_travel_tendency_visible_constraint="@{vm.isOtherTravelTendencyResult()}"
+                    my_travel_tendency_visible_constraint="@{!vm.isOtherTravelTendencyResult()}"
                     android:visibility="gone"
                     tools:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"

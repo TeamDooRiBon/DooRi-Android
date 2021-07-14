@@ -2,6 +2,7 @@ package kr.co.dooribon.binding
 
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
@@ -37,11 +38,16 @@ fun CardView.setMyTravelTendencyTest(isTravelTendencyResult : Boolean){
 }
 
 @BindingAdapter("my_travel_tendency_visible_recyclerview")
-fun RecyclerView.setOtherTravelTendecy(isTravelTendencyResult: Boolean){
+fun RecyclerView.setOtherTravelTendency(isTravelTendencyResult: Boolean){
     isVisible = isTravelTendencyResult
 }
 
 @BindingAdapter("my_travel_tendency_visible_constraint")
 fun ConstraintLayout.setOtherTravelTendency(isTravelTendencyResult : Boolean){
+    isVisible = isTravelTendencyResult
+}
+
+@BindingAdapter("my_travel_tendency_visible_text_view")
+fun TextView.setMyTravelTendencyTest(isTravelTendencyResult: Boolean){
     isVisible = isTravelTendencyResult
 }

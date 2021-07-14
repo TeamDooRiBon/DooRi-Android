@@ -41,12 +41,13 @@ class MemberViewModel(
                     _isMyTravelTendencyResult.value = true
                     // 나의 성향 정보가 있는 경우
                 }
-                if(it.data.otherTravelTendencyResult.isEmpty()){
+                if(it.data.otherTravelTendencyResult == null){
                     _isOtherTravelTendencyResult.value = false
                 } else {
                     // 다른 그룹의 성향 정보가 있는 경우
                     _isOtherTravelTendencyResult.value = true
                 }
+                debugE(_isOtherTravelTendencyResult.value)
                 debugE(it)
             }.onFailure {
                 debugE(it)

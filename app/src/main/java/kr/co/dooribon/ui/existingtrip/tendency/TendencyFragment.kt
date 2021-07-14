@@ -44,8 +44,6 @@ class TendencyFragment : Fragment() {
 
     private fun observeTendencyGroupId() {
         viewModel.memberTendencyGroupId.observe(viewLifecycleOwner){
-            // 여기서 api Call들을 해주면 될거같음
-            viewModel.fetchGroupTravelTendency()
         }
     }
 
