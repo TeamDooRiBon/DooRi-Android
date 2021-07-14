@@ -50,7 +50,9 @@ class TendencyFragment : Fragment() {
     }
 
     private fun configureTabNavigation() {
+        val bundle = Bundle()
+        bundle.putString("tendency_groupId",viewModel.memberTendencyGroupId.value)
         binding.tabTendency.initializeTab(listOf("우리들", "살펴보기"))
-        binding.tabTendency.initializeTendencyNavigation(childFragmentManager)
+        binding.tabTendency.initializeTendencyNavigation(childFragmentManager,bundle)
     }
 }

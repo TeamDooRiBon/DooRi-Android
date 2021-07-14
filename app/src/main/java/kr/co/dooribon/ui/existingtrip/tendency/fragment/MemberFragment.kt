@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.FragmentMemberBinding
 import kr.co.dooribon.domain.entity.MemberTripType
 import kr.co.dooribon.ui.existingtrip.tendency.adapter.MemberTripTypeAdapter
+import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.MemberViewModel
 import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.addChip
 
@@ -25,15 +28,27 @@ class MemberFragment : Fragment() {
 
     private lateinit var memberTripTypeAdapter: MemberTripTypeAdapter
 
+    private val viewModel by viewModels<MemberViewModel> {
+        viewModelModule.provideMemberViewModelFactory()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View =
         FragmentMemberBinding.inflate(inflater, container, false).also { FragmentMemberBinding ->
             binding = FragmentMemberBinding
+            arguments?.getString("tendency_groupId")?.let { GroupId ->
+                viewModel.initializeMemberTendencyGroupId(
+                    GroupId
+                )
+            }
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.vm = viewModel
+
         binding.liChips.addChip("#안녕")
         binding.liChips.addChip("#반가워")
         binding.liChips.addChip("#무슨일 있어?")

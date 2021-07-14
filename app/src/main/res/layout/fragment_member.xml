@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="kr.co.dooribon.ui.existingtrip.tendency.viewmodel.MemberViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -65,6 +68,7 @@
                     android:layout_marginEnd="2dp"
                     android:layout_marginBottom="4dp"
                     android:layout_marginTop="8dp"
+                    my_travel_tendency_visible_card_view="@{vm.isMyTravelTendencyResult()}"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -147,6 +151,7 @@
                     android:layout_marginTop="4dp"
                     android:visibility="gone"
                     tools:visibility="gone"
+                    my_travel_tendency_visible_card_view="@{!vm.isMyTravelTendencyResult()}"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_member_trip_type_test_title"
@@ -224,6 +229,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
+                    my_travel_tendency_visible_recyclerview="@{!vm.isOtherTravelTendencyResult()}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_member_trip_type_title" />
@@ -233,6 +239,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    my_travel_tendency_visible_constraint="@{vm.isOtherTravelTendencyResult()}"
                     android:visibility="gone"
                     tools:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"

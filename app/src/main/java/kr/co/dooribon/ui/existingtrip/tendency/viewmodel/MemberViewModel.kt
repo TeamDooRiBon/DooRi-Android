@@ -9,7 +9,7 @@ import kr.co.dooribon.api.repository.TripTendencyRepository
 import kr.co.dooribon.utils.SingleLiveEvent
 import kr.co.dooribon.utils.debugE
 
-class TendencyViewModel(
+class MemberViewModel(
     private val tripTendencyRepository: TripTendencyRepository
 ) : ViewModel() {
 
@@ -18,7 +18,7 @@ class TendencyViewModel(
         get() = _memberTendencyGroupId
 
     private val _isMyTravelTendencyResult = SingleLiveEvent<Boolean>()
-    val isMyTraavelTendencyResult: SingleLiveEvent<Boolean>
+    val isMyTravelTendencyResult: SingleLiveEvent<Boolean>
         get() = _isMyTravelTendencyResult
 
     private val _isOtherTravelTendencyResult = SingleLiveEvent<Boolean>()
@@ -30,7 +30,6 @@ class TendencyViewModel(
         debugE(_memberTendencyGroupId.value.toString())
     }
 
-    // 그룹 성향 테스트 전체 조회
     fun fetchGroupTravelTendency() {
         viewModelScope.launch {
             runCatching {
