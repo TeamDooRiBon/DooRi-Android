@@ -17,11 +17,13 @@ import kotlin.reflect.KClass
  */
 class RetrofitModule {
 
+    // 401 에러가 났을때의 exception 처리도 해줘야 함
+    // JWT TOKEN이 만료가 되면 , accessToken으로 refresh를 해줘서 다시 JWT Token을 발급 받아야 한다고 합니다.
     private val authTokenInterceptor = Interceptor { chain ->
         val originalRequest = chain.request()
         val requestBuilder = originalRequest.newBuilder().header(
             HEADER_TOKEN, BuildConfig.JWT_TOKEN
-        )
+        ).addHeader("Content-Type", MEDIA_TYPE).addHeader("Accept", MEDIA_TYPE)
         val request = requestBuilder.build()
         return@Interceptor chain.proceed(request)
     }

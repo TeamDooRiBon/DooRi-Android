@@ -93,7 +93,14 @@ data class MemberDTO(
 )
 
 data class GroupTravelTendencyRes(
-    val groupTravelTendencyRes: BaseResponse<GroupTravelTendencyDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: GroupTravelTendencyDTO
 )
 
 // 성향테스트 결과 저장
@@ -116,7 +123,14 @@ data class StoreTravelTendencyDTO(
 )
 
 data class StoreTravelTendencyRes(
-    val storeTravelTendencyRes: BaseResponse<StoreTravelTendencyDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: StoreTravelTendencyDTO
 )
 
 interface TendencyAPI {

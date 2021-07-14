@@ -4,7 +4,14 @@ import com.google.gson.annotations.SerializedName
 import retrofit2.http.*
 
 data class HomeTravelRes(
-    val homeTravelRes: BaseResponse<HomeTravelDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: List<HomeTravelDTO>
 )
 
 data class HomeTravelDTO(
@@ -56,7 +63,14 @@ data class InviteCodeDTO(
 
 // 여행 참여
 data class ParticipateTravelRes(
-    val participateTravelRes: BaseResponse<ParticipateTravelDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: ParticipateTravelDTO
 )
 
 data class ParticipateTravelDTO(
@@ -77,7 +91,14 @@ data class ParticipateTravelDTO(
 )
 
 data class TravelInfoRes(
-    val travelInfoRes: BaseResponse<TravelInfoDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: TravelInfoDTO
 )
 
 data class TravelInfoDTO(
@@ -102,7 +123,14 @@ data class TravelMemberInfoDTO(
 
 // 여행 참여 , 여행에 멤버 추가
 data class JoinTravelMembersRes(
-    val travelMembersRes: BaseResponse<EditTravelMemberInfoDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: EditTravelMemberInfoDTO
 )
 
 data class EditTravelMemberInfoDTO(
@@ -143,7 +171,14 @@ data class EditTravelReq(
 )
 
 data class EditTravelRes(
-    val editTravelRes: BaseResponse<EditTravelDTO>
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: EditTravelDTO
 )
 
 data class EditTravelDTO(
