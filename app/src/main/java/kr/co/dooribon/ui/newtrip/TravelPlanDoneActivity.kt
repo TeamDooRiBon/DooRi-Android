@@ -2,12 +2,16 @@ package kr.co.dooribon.ui.newtrip
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTravelPlanDoneBinding
 import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
+import kr.co.dooribon.utils.getIntent
 import java.util.*
 import kotlin.concurrent.timerTask
 
@@ -18,6 +22,7 @@ class TravelPlanDoneActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_travel_plan_done)
 
+        setTeamCodeEditText()
         backBtnClickListener()
 
         binding.btnLater.setOnClickListener {
@@ -32,6 +37,12 @@ class TravelPlanDoneActivity : AppCompatActivity() {
             dlg.start()
             Timer().schedule(timerTask { moveToExistingTripActivity(dlg) }, 3500)
         }
+    }
+
+    private fun setTeamCodeEditText() {
+        val teamCode = intent.getStringExtra("teamCode")
+        Log.e("teamCode", teamCode.toString())
+        //(binding.etCode1 as TextView).text = teamCode.subSequence(0,1)
     }
 
     private fun moveToExistingTripActivity(dlg: DoneCopyDialog) {

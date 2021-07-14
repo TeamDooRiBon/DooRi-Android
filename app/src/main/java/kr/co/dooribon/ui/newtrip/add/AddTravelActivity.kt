@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.CreateTravelReq
 import kr.co.dooribon.api.remote.CreateTravelRes
@@ -38,7 +41,7 @@ class AddTravelActivity : AppCompatActivity() {
     private var ivChecked = false // 추천 이미지 체크
 
     private var selectedImgIndex = -1 // 열여섯개 중 클릭한 이미지 인덱스 처리
-    private var teamCode = -1 // 서버로부터 수신한 팀 코드
+    private var teamCode = "" // 서버로부터 수신한 팀 코드
 
     // ActivityContract
     private val datePickLauncher =
@@ -61,7 +64,6 @@ class AddTravelActivity : AppCompatActivity() {
         backBtnClickListener() // 뒤로가기 버튼 클릭 이벤트
         onStartNewTravelBtnClick() // 새로운 여행 시작 버튼 클릭 이벤
         onAddDateBtnClick() // 날짜 추가 버튼 클릭 이벤트
-        //resetData(-1) // 수정할 값이 없으므로 -1 대입
         setRecoImg() // 서버로부터 이미지 불러와서 값 입력
         chkEditTextInput() // 여행 이름과 위치 클릭했는지 확인하는 함수
         enableNewTravelBtn() // 다 입력했을 시 버튼 활성화
@@ -69,14 +71,20 @@ class AddTravelActivity : AppCompatActivity() {
 
     private fun onStartNewTravelBtnClick() {
         binding.btStartNewTravel.setOnClickListener {
-            sendTravelData()
+            lifecycleScope.launch {
+                delay(2000)
+                sendTravelData()
+            }
             val intent = Intent(this, TravelPlanDoneActivity::class.java)
+            Log.e("addActivityTeamCode", teamCode)
+            Log.e("temp", "temp")
+            intent.putExtra("teamCode", teamCode)
             startActivity(intent)
-            finish()
+            //finish() // finish를 하면 액티비티도 종료되서 로그도 찍히지 않음.
         }
     }
 
-    /* 서버에 데이터 보내는 함 */
+    /* 서버에 데이터 보내는 함수 */
     private fun sendTravelData() {
         apiModule.travelApi.createUserTravel(
             CreateTravelReq(
@@ -91,14 +99,20 @@ class AddTravelActivity : AppCompatActivity() {
                 call: Call<CreateTravelRes>,
                 response: Response<CreateTravelRes>
             ) {
+                Log.e("response", response.toString())
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
-                        teamCode = it.data.inviteCode.toInt()
+                        Log.e("success", "success")
+                        Log.e("teamCode", it.data.inviteCode)
+                        teamCode = it.data.inviteCode
                     }
+                } else {
+                    Log.e("fail", "fail")
                 }
             }
 
             override fun onFailure(call: Call<CreateTravelRes>, t: Throwable) {
+                Log.e("onFailure", t.message.toString())
                 t.stackTrace
             }
         })
@@ -174,7 +188,6 @@ class AddTravelActivity : AppCompatActivity() {
         binding.tvStartDate.text.isNotEmpty() && binding.tvEndDate.text.isNotEmpty()
 
     private fun imgAdapter(imgUrls: List<String>) {
-        Log.e("imgUrls", imgUrls.toString())
         val imgAdapter = RecoImgAdapter()
         val imgRV = binding.rvPreparedPhotos
         imgRV.adapter = imgAdapter

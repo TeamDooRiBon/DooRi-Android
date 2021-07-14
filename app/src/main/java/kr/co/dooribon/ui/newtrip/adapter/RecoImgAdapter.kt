@@ -55,11 +55,9 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
      * */
     fun modifyImgBg(view: View, isRemove: Boolean) {
         if (isRemove) {
-            Log.e("igRemove", isRemove.toString())
             view.findViewById<ImageView>(R.id.iv_reco_image).setBackgroundResource(0)
             view.findViewById<ImageView>(R.id.iv_selected_img).visibility = View.INVISIBLE
         } else {
-            Log.e("igRemove", isRemove.toString())
             view.findViewById<ImageView>(R.id.iv_reco_image)
                 .setBackgroundResource(R.drawable.bg_selected_img_stroke)
             view.findViewById<ImageView>(R.id.iv_selected_img).visibility = View.VISIBLE
@@ -77,7 +75,6 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
     inner class ImgViewHolder(private val binding: ItemRecommendedPhotosBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(imgData: String) {
-            Log.e("imgData", imgData)
             Glide
                 .with(binding.ivRecoImage.context)
                 .load(imgData)
