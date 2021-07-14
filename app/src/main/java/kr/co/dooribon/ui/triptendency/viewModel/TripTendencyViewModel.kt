@@ -16,7 +16,7 @@ class TripTendencyViewModel(
 ) : ViewModel() {
 
     // 현재 몇번째 질문이 보여지고 있는 지 알려주는 변수
-    private val _questionPosition = MutableLiveData<Int>()
+    private val _questionPosition = MutableLiveData(0)
     val questionPosition: LiveData<Int>
         get() = _questionPosition
 

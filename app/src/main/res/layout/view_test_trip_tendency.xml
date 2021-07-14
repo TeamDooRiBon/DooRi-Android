@@ -42,6 +42,7 @@
             android:textColor="@color/doo_ri_bon_blue"
             android:textSize="23sp"
             android:textStyle="bold"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_test_trip_tendency"
             app:layout_constraintTop_toTopOf="@id/tv_test_trip_tendency"
@@ -67,9 +68,12 @@
             android:includeFontPadding="false"
             android:text="@{item.parentQuestionTitle}"
             android:textSize="20sp"
+            android:maxLines="3"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@id/tv_test_trip_tendency"
-            app:layout_constraintStart_toStartOf="@id/tv_test_trip_tendency"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_question_divider"
             tools:text="계획을 세울 때 나는?" />
 

@@ -19,7 +19,6 @@ import kr.co.dooribon.utils.shortToast
 /**
  * Issue 사항
  * TODO : 데이터의 선택된 순서는 리스트에 정확하게 들어가는데 문제는 문제지를 뒤로 돌아갔을 떄 데이터가 겹쳐서 보여지는 문제가 발생한다.
- * TODO : 밀리는 거 같음 lastSelectedPosition의 로직을 다시한번 생각해봐야할거 같습니다.
  */
 class TripTendencyActivity : AppCompatActivity() {
 
@@ -63,7 +62,7 @@ class TripTendencyActivity : AppCompatActivity() {
 
     private fun observeQuestionPosition() {
         viewModel.questionPosition.observe(this) {
-            if (it == tripTendencyAdapter.itemCount) {
+            if (it != 0 && it == tripTendencyAdapter.itemCount) {
                 TripTendencyTestResultLoadingDialog().show(
                     supportFragmentManager,
                     RESULT_LOADING_NAVIGATE_TAG
