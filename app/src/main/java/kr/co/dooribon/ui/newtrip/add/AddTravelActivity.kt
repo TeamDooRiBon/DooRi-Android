@@ -21,7 +21,6 @@ import kr.co.dooribon.ui.newtrip.adapter.ImageData
 import kr.co.dooribon.ui.newtrip.adapter.RecoImgAdapter
 import kr.co.dooribon.ui.newtrip.add.contract.DatePickerActivityContract
 import kr.co.dooribon.utils.RVItemDeco
-import kr.co.dooribon.utils.debugE
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,17 +52,27 @@ class AddTravelActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_travel)
-
-        backBtnClickListener()
         window.setSoftInputMode(SOFT_INPUT_ADJUST_NOTHING)
 
+        backBtnClickListener()
+        onStartNewTravelBtnClick()
+        onAddDateBtnClick()
+        resetData(-1) // 수정할 값이 없으므로 -1 대입
+        setRecoImg() // 서버로부터 이미지 불러와서 값 입력
+        chkEditTextInput()
+        enableNewTravelBtn()
+    }
+
+    private fun onStartNewTravelBtnClick() {
         binding.btStartNewTravel.setOnClickListener {
             // TODO : 이 부분에서 데이터를 모아서 통신하는 코드를 만들면 될 거 같습니다.
             // TravelTitle , TravelDestination , StartDate , EndDate , ImageIndex 이케 보내면 될 거 같습니다.
             val intent = Intent(this, TravelPlanDoneActivity::class.java)
             startActivity(intent)
         }
+    }
 
+    private fun onAddDateBtnClick() {
         binding.btAddDate.setOnClickListener {
             val intent = Intent(this, DatePickActivity::class.java)
             if (!binding.tvStartDate.text.isNullOrEmpty() && !binding.tvEndDate.text.isNullOrEmpty()) {
@@ -76,10 +85,9 @@ class AddTravelActivity : AppCompatActivity() {
             }
             datePickLauncher.launch(intent)
         }
+    }
 
-        resetData(-1) // 수정할 값이 없으므로 -1 대입
-        // TODO : 이 함수의 인자로 서버통신한 이미지 16개를 보내면 될거 같음
-        // TODO : ImageData에서 String으로 변경하고 Glide로 이미지를 가져오도록 해야할 듯 싶습니다.
+    private fun setRecoImg() {
         apiModule.travelImageApi.fetchDefaultTravelImage().enqueue(object : Callback<DefaultTravelImageDTO>{
             override fun onResponse(
                 call: Call<DefaultTravelImageDTO>,
@@ -96,9 +104,6 @@ class AddTravelActivity : AppCompatActivity() {
                 Log.e("getImgUrlOnFailure", t.message.toString())
             }
         })
-        //imgAdapter(tempImgs)
-        chkEditTextInput()
-        enableNewTravelBtn()
     }
 
     /* 다음으로 넘어갈 수 있도록 버튼 활성화 */
@@ -122,7 +127,6 @@ class AddTravelActivity : AppCompatActivity() {
     /* 캘린더에서 데이터 주면 뷰에 받아서 뷰에 적용함 */
     private fun setCalendarData() {
         if (chkDateSelected()) {
-            Log.e("c체크", "체크")
             binding.btAddDate.apply {
                 setBackgroundResource(R.drawable.bg_add_date_gray_btn)
                 text = "+ 날짜 수정하기"
