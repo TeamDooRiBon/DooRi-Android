@@ -6,6 +6,8 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import kr.co.dooribon.R
+import kr.co.dooribon.utils.extension.resizeMatchWidth
+import kr.co.dooribon.utils.extension.resizeWrapWidth
 import kotlin.math.roundToInt
 
 object BindingAdapter {
@@ -25,10 +27,19 @@ object BindingAdapter {
 
     @JvmStatic
     @BindingAdapter("travel_tendency_previous_btn_visibilty")
-    fun setTravelTendencyPreviousBtnVisibility(button : Button , questionPosition : Int){
-        if(questionPosition == 0)
+    fun setTravelTendencyPreviousBtnVisibility(button: Button, questionPosition: Int) {
+        if (questionPosition == 0)
             button.visibility = View.INVISIBLE
         else
             button.visibility = View.VISIBLE
+    }
+
+    @JvmStatic
+    @BindingAdapter("travel_tendency_next_btn_size")
+    fun setTravelTendencyNextBtnSize(button: Button, questionPosition: Int) {
+        if (questionPosition == 0)
+            button.resizeMatchWidth()
+        else
+            button.resizeWrapWidth()
     }
 }

@@ -36,6 +36,7 @@ class TripTendencyActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_trip_tendency)
         binding.vm = viewModel
         binding.activity = this
+        binding.lifecycleOwner = this
         tripTendencyAdapter = TripTendencyAdapter(viewModel)
 
         observeQuestionPosition()
