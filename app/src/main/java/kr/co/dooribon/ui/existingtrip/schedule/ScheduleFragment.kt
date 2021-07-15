@@ -17,10 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
-import kr.co.dooribon.api.remote.ParticipateTravelRes
-import kr.co.dooribon.api.remote.TravelInfoDTO
-import kr.co.dooribon.api.remote.TravelInfoRes
-import kr.co.dooribon.api.remote.TravelScheduleRes
+import kr.co.dooribon.api.remote.*
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentScheduleBinding
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.DateScheduleAdapter
@@ -53,7 +50,7 @@ class ScheduleFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
 
         setDummyTimeList()
-        setDataAdapter()
+        //setDataAdapter()
         setTimeScheduleAdapter(timeList1)
         onAddScheduleBtnClick()
         getDateScheduleList()
@@ -87,7 +84,8 @@ class ScheduleFragment : Fragment() {
                             response.body()?.data?.startDate.toString().split("-")
                         val serverEndDateStrs =
                             response.body()?.data?.endDate.toString().split("-")
-                        getDatesBetweenTwoDays(serverStartDateStrs, serverEndDateStrs)
+                        val days = getDatesBetweenTwoDays(serverStartDateStrs, serverEndDateStrs)
+                        setDataAdapter(days)
                     } else {
                         Log.e("response", "fail")
                     }
@@ -99,6 +97,7 @@ class ScheduleFragment : Fragment() {
             })
     }
 
+    /* 서버에서 날짜 스트링을 넘겨주면 두 날짜 사이의 날짜들을 구하는 함수 */
     private fun getDatesBetweenTwoDays(serverStartDateStrs : List<String>, serverEndDateStrs : List<String>) : MutableList<LocalDate>{
         val startYear = serverStartDateStrs[0]
         val startMonth =
@@ -113,7 +112,6 @@ class ScheduleFragment : Fragment() {
         val startDateStr =
             startYear.plus("-").plus(startMonth).plus("-").plus(startDate)
         val endDateStr = endYear.plus("-").plus(endMonth).plus("-").plus(endDate)
-
         var parsedStartDate = LocalDate.parse(startDateStr)
         val parsedEndDate = LocalDate.parse(endDateStr)
         val totalDates = mutableListOf<LocalDate>()
@@ -121,12 +119,6 @@ class ScheduleFragment : Fragment() {
             totalDates.add(parsedStartDate)
             parsedStartDate = parsedStartDate.plusDays(1)
         }
-        Log.e("totalDatesSize", totalDates.size.toString())
-
-        for (date in totalDates) {
-            println(date)
-        }
-
         return totalDates
     }
 
@@ -172,7 +164,7 @@ class ScheduleFragment : Fragment() {
      * Horizontal Recyclerview adapter 연결하는 부분,
      * 서버에서 data 받기 전까지는 dummy data로 적용시켜봄.
      */
-    private fun setDataAdapter() {
+    private fun setDataAdapter(dates : MutableList<LocalDate>) {
         val dateAdapter = DateScheduleAdapter()
         val dateRV = binding.rvDays
         dateRV.adapter = dateAdapter
@@ -188,8 +180,10 @@ class ScheduleFragment : Fragment() {
             TravelDate("D9", 2021, 8, 6, timeList1),
             TravelDate("D10", 2022, 9, 7, timeList1)
         )
+        val itemList = setTravelDate(dates)
+        Log.e("itemList", itemList.size.toString())
         dateAdapter.setItemList( // dummy data
-            datesList
+            itemList
         )
 
         var itemClicked = false
@@ -209,6 +203,17 @@ class ScheduleFragment : Fragment() {
                 onceDone = true
             }
         })
+    }
+
+    private fun setTravelDate(dates : MutableList<LocalDate>) : List<TravelDate>{
+        var travelDateList = listOf<TravelDate>()
+
+        //끝에 Time list1 주는 것은 변경해야
+        for(i in dates.indices){
+            travelDateList = travelDateList.plus(TravelDate("D".plus((i+1).toString()), dates[i].year, dates[i].monthValue, dates[i].dayOfMonth, timeList1))
+        }
+        Log.e("setTravelDate td size", travelDateList.size.toString())
+        return travelDateList
     }
 
     /**
