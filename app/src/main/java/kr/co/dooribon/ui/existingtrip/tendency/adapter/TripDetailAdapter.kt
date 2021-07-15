@@ -10,6 +10,7 @@ import kr.co.dooribon.domain.entity.ExpandableAnswerQuestion
 import kr.co.dooribon.ui.existingtrip.tendency.viewholder.ChildViewHolder
 import kr.co.dooribon.ui.existingtrip.tendency.viewholder.ParentViewHolder
 
+// TODO : ListAdapter로 바꿔도 똑같을거 같긴 한데 일단 오케이
 class TripDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val questionList = mutableListOf<ExpandableAnswerQuestion>()
 

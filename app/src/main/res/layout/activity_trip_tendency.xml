@@ -46,7 +46,6 @@
             android:background="@color/doo_ri_bon_home_tool_bar_blue_color"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginBottom="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:tabBackground="@drawable/bg_home_viewpager_indicator"
@@ -54,7 +53,6 @@
             app:layout_constraintStart_toStartOf="@id/vp_trip_tendency_test"
             app:layout_constraintEnd_toEndOf="@id/vp_trip_tendency_test"
             app:layout_constraintTop_toBottomOf="@id/vp_trip_tendency_test" />
-
 
         <Button
             android:id="@+id/btn_previous"
@@ -70,8 +68,7 @@
             android:layout_marginStart="16dp"
             travel_tendency_previous_btn_visibilty="@{vm.questionPosition}"
             android:onDebounceClick="@{() -> vm.previousPage()}"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@id/tab_trip_tendency"
+            app:layout_constraintTop_toTopOf="@id/btn_next"
             app:layout_constraintStart_toStartOf="@id/vp_trip_tendency_test"
             app:layout_constraintEnd_toStartOf="@id/btn_next"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -85,10 +82,12 @@
             style="@style/RoundButton.DooRiBonOrange"
             android:textColor="@color/white_pure_9"
             android:text="다음 문항"
-            android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp"
+            travel_tendency_next_btn_size="@{vm.questionPosition}"
             android:onDebounceClick="@{() -> activity.navigateNextPage()}"
-            app:layout_constraintTop_toTopOf="@id/btn_previous"
+            app:layout_constraintTop_toBottomOf="@id/tab_trip_tendency"
             app:layout_constraintStart_toEndOf="@id/btn_previous"
             app:layout_constraintEnd_toEndOf="@id/vp_trip_tendency_test"
             app:layout_constraintBottom_toBottomOf="parent" />

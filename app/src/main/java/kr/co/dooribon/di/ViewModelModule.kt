@@ -3,9 +3,9 @@ package kr.co.dooribon.di
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider
 import kr.co.dooribon.application.MainApplication.Companion.repositoryModule
-import kr.co.dooribon.ui.factory.HomeViewModelFactory
-import kr.co.dooribon.ui.factory.TendencyViewModelFactory
-import kr.co.dooribon.ui.factory.TripTendencyViewModelFactory
+import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.DetailViewModel
+import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.MemberViewModel
+import kr.co.dooribon.ui.factory.*
 
 /**
  * ViewModelFactory를 주입시켜주는 Module
@@ -19,5 +19,11 @@ class ViewModelModule(private val application: Application) {
         TripTendencyViewModelFactory(repositoryModule.tripTendencyRepository)
 
     fun provideTendencyViewModelFactory(): ViewModelProvider.Factory =
-        TendencyViewModelFactory()
+        TendencyViewModelFactory(repositoryModule.tripTendencyRepository)
+
+    fun provideMemberViewModelFactory() : ViewModelProvider.Factory =
+        MemberViewModelFactory(repositoryModule.tripTendencyRepository)
+
+    fun provideDetailViewModelFactory() : ViewModelProvider.Factory =
+        DetailViewModelFactory(repositoryModule.tripTendencyRepository)
 }

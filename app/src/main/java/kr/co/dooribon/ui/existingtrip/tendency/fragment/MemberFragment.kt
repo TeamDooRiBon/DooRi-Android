@@ -1,14 +1,21 @@
 package kr.co.dooribon.ui.existingtrip.tendency.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import kr.co.dooribon.api.remote.StoreTravelTendencyDTO
+import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.FragmentMemberBinding
 import kr.co.dooribon.domain.entity.MemberTripType
 import kr.co.dooribon.ui.existingtrip.tendency.adapter.MemberTripTypeAdapter
+import kr.co.dooribon.ui.existingtrip.tendency.contract.TravelTendencyContract
+import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.MemberViewModel
+import kr.co.dooribon.ui.triptendency.TripTendencyActivity
 import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.addChip
 
@@ -25,31 +32,63 @@ class MemberFragment : Fragment() {
 
     private lateinit var memberTripTypeAdapter: MemberTripTypeAdapter
 
+    private val viewModel by viewModels<MemberViewModel> {
+        viewModelModule.provideMemberViewModelFactory()
+    }
+
+    private val travelTendencyLauncher =
+        registerForActivityResult(TravelTendencyContract()){ result : StoreTravelTendencyDTO? ->
+            result?.let { viewModel.initializeTravelTendencyResult(it) }
+        }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View =
         FragmentMemberBinding.inflate(inflater, container, false).also { FragmentMemberBinding ->
             binding = FragmentMemberBinding
+            arguments?.getString("tendency_groupId")?.let { GroupId ->
+                viewModel.initializeMemberTendencyGroupId(
+                    GroupId
+                )
+            }
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.liChips.addChip("#안녕")
-        binding.liChips.addChip("#반가워")
-        binding.liChips.addChip("#무슨일 있어?")
-
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.vm = viewModel
+        binding.memberFragment = this
         memberTripTypeAdapter = MemberTripTypeAdapter()
+        viewLifecycleOwner.lifecycle.addObserver(viewModel)
 
+        observeMemberTendencyGroupId()
+        observeOtherTravelTendencyResult()
+        configureRecyclerView()
+
+    }
+
+    private fun configureRecyclerView(){
         binding.rvMemberTripOther.apply {
             adapter = memberTripTypeAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-        memberTripTypeAdapter.submitList(
-            listOf(
-                MemberTripType("응애", listOf("#안녕", "#반가워", "#화이팅"), "송훈기", "1"),
-                MemberTripType("응애", listOf("#안녕", "#반가워", "#화이팅"), "송훈기", "1"),
-                MemberTripType("응애", listOf("#안녕", "#반가워", "#화이팅"), "송훈기", "1")
-            )
-        )
+    }
+
+    private fun observeOtherTravelTendencyResult() {
+        viewModel.otherTravelTendencyResult.observe(viewLifecycleOwner){
+            memberTripTypeAdapter.submitList(it)
+        }
+    }
+
+    private fun observeMemberTendencyGroupId() {
+        viewModel.memberTendencyGroupId.observe(viewLifecycleOwner){
+            viewModel.fetchGroupTravelTendency()
+        }
+    }
+
+    fun navigateTravelTendencyTest(){
+        val intent = Intent(requireContext(),TripTendencyActivity::class.java)
+        intent.putExtra("groupId",viewModel.memberTendencyGroupId.value)
+        travelTendencyLauncher.launch(intent)
     }
 }

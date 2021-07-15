@@ -62,6 +62,7 @@ class TripTendencyAdapter(
     }
 
     private fun onItemClicked(idx: Int) {
+        viewModel.selectQuestionForServer(idx)
         viewModel.selectQuestion(idx)
     }
 
