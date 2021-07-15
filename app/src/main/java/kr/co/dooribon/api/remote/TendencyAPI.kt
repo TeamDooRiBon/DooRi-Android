@@ -141,22 +141,26 @@ data class StoreTravelTendencyRes(
 
 interface TendencyAPI {
     // 성향 테스트 질문 조회 , 이건 함
+    // 해결
     @GET("tendency/question")
     suspend fun fetchTravelTendencyQuestion(): TravelTendencyQuestionRes
 
     // 성향 테스트 카운팅 조회
+    // 해결
     @GET("tendency/question/{groupId}")
     suspend fun fetchTravelTendencyQuestionCount(
         @Path("groupId") groupId: String
     ): TravelTendencyQuestionCountRes
 
     // 그룹 성향테스트 결과 전체 조회
+    // 해결
     @GET("tendency/{groupId}")
     suspend fun fetchGroupTravelTendency(
         @Path("groupId") groupId: String
     ): GroupTravelTendencyRes
 
     // 성향테스트 결과 저장
+    // TODO : 결과 뷰만 보여주면 끝임
     @POST("tendency/{groupId}")
     suspend fun storeTravelTendency(
         @Body storeTravelTendencyReq: StoreTravelTendencyReq,
