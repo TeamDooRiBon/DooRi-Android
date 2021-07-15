@@ -169,10 +169,16 @@ class ScheduleFragment : Fragment() {
         var itemClicked = false
         dateAdapter.setItemClickListener(object : DateScheduleAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
+                val curDate = datesList[position]
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
                 //setPlanData(position)
-                //getPlanData(viewModel.getGroupId())
+                getPlanData(
+                    viewModel.getGroupId(),
+                    (curDate.year).toString().plus("-")
+                        .plus(if (curDate.month < 10) "0".plus(curDate.month) else curDate.month).plus("-")
+                        .plus(if (curDate.date < 10) "0".plus(curDate.date) else curDate.date)
+                )
                 modifyClickedView(view, dateAdapter, position)
 
                 // 날짜 리사이클러 뷰 첫 번째 아이템(날짜) 뷰 변경시켜주는 부분
@@ -185,9 +191,26 @@ class ScheduleFragment : Fragment() {
         })
     }
 
-//    private fun getPlanData(groupId : String){
-//        apiModule.travelApi.
-//    }
+    private fun getPlanData(groupId: String, date: String) {
+        Log.e("date", date)
+        apiModule.scheduleApi.fetchCertainTravelSchedule(groupId, date)
+            .enqueue(object : Callback<CertainTravelScheduleRes> {
+                override fun onResponse(
+                    call: Call<CertainTravelScheduleRes>,
+                    response: Response<CertainTravelScheduleRes>
+                ) {
+                    if (response.isSuccessful) {
+                        Log.e("response", response.body()?.data?.travelSchedule.toString())
+                        val list = response.body()!!.data!!.travelSchedule
+
+                    }
+                }
+
+                override fun onFailure(call: Call<CertainTravelScheduleRes>, t: Throwable) {
+                    Log.e("getPlanData onFailure", t.message.toString())
+                }
+            })
+    }
 
     private fun setTravelDate(dates: MutableList<LocalDate>): List<TravelDate> {
         var travelDateList = listOf<TravelDate>()
