@@ -8,13 +8,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.co.dooribon.api.remote.StoreTravelTendencyDTO
 import kr.co.dooribon.api.remote.StoreTravelTendencyReq
-import kr.co.dooribon.api.remote.asDomainParentQuestionList
+import kr.co.dooribon.api.remote.extension.asDomainParentQuestionList
 import kr.co.dooribon.api.repository.TripTendencyRepository
 import kr.co.dooribon.domain.entity.ParentTravelTendency
 import kr.co.dooribon.utils.SingleLiveEvent
 import kr.co.dooribon.utils.debugE
 
-// TODO : 이거 로직 바꿔야돼 훈기야
 class TripTendencyViewModel(
     private val tripTendencyRepository: TripTendencyRepository
 ) : ViewModel() {
@@ -115,7 +114,6 @@ class TripTendencyViewModel(
         _selectedPositionForServer.value!![_questionPosition.value!!] = selectedPosition + 1
     }
 
-    // TODO : 로직을 어떻게 구성해야할지를 찾으면 될 거 같음
     fun calculateQuestionWeight() {
         _questionResultList.forEach {
             for (i in 0 until it.size) {
@@ -124,7 +122,6 @@ class TripTendencyViewModel(
         }
     }
 
-    // TODO : 로직을 어떻게 구성해야할지를 찾으면 될 거 같음
     fun storeMyTravelTendency() =
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
@@ -139,7 +136,6 @@ class TripTendencyViewModel(
                 }
             }.onSuccess {
                 _travelTendencyResult.postValue(it?.data)
-                debugE(it)
             }.onFailure {
                 debugE(it)
             }

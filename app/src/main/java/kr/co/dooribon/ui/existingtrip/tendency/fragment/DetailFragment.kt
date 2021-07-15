@@ -1,7 +1,6 @@
 package kr.co.dooribon.ui.existingtrip.tendency.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,59 +43,30 @@ class DetailFragment : Fragment() {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.lifecycleOwner = viewLifecycleOwner
         detailAdapter = TripDetailAdapter()
+        configureRecyclerView()
+        observeMemberTravelTendencyResult()
+        viewModel.fetchGroupUserTravelTendencyCount()
+    }
 
+    private fun observeMemberTravelTendencyResult() {
+        viewModel.membersTravelTendencyResult.observe(viewLifecycleOwner){
+            val expandableList = mutableListOf<ExpandableAnswerQuestion>()
+            synchronized(expandableList){
+                it.forEach { AnswerQuestion ->
+                    expandableList.add(ExpandableAnswerQuestion(ExpandableAnswerQuestion.PARENT,AnswerQuestion))
+                }
+            }
+            detailAdapter.submitList(expandableList)
+        }
+    }
+
+    private fun configureRecyclerView(){
         binding.rvDetail.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = detailAdapter
             addItemDecoration(DividerItemDecoration(requireContext(), 1))
         }
-
-        // Dummy Data
-        detailAdapter.submitList(
-            listOf(
-                ExpandableAnswerQuestion(
-                    ExpandableAnswerQuestion.PARENT, AnswerQuestion.Question(
-                        1, "훈기를살려줄까?",
-                        listOf(
-                            AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 3),
-                            AnswerQuestion.Question.ChildQuestion(2, "살리지말자!", 4),
-                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 2)
-                        )
-                    )
-                ),
-                ExpandableAnswerQuestion(
-                    ExpandableAnswerQuestion.PARENT, AnswerQuestion.Question(
-                        2, "예진이살려줄까?",
-                        listOf(
-                            AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 8),
-                            AnswerQuestion.Question.ChildQuestion(2, "살리지말자!", 9),
-                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 10)
-                        )
-                    )
-                ), ExpandableAnswerQuestion(
-                    ExpandableAnswerQuestion.PARENT, AnswerQuestion.Question(
-                        3, "원중이살려줄까?",
-                        listOf(
-                            AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 100),
-                            AnswerQuestion.Question.ChildQuestion(2, "살리지말자!", 101),
-                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 102)
-                        )
-                    )
-                ),
-                ExpandableAnswerQuestion(
-                    ExpandableAnswerQuestion.PARENT, AnswerQuestion.Question(
-                        4, "왜 다죽일까?",
-                        listOf(
-                            AnswerQuestion.Question.ChildQuestion(1, "살려줄까?", 3),
-                            AnswerQuestion.Question.ChildQuestion(2, "살리지말자!", 4),
-                            AnswerQuestion.Question.ChildQuestion(3, "중립이야", 2)
-                        )
-                    )
-                )
-            )
-        )
-
-        Log.d("helll", detailAdapter.itemCount.toString())
     }
 }

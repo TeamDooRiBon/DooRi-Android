@@ -39,20 +39,6 @@ data class ChildQuestionDTO(
 )
 
 // 성향 테스트 카운팅 조회
-data class ChildQuestionCountDTO(
-    @SerializedName("answer")
-    val question: List<String>,
-    @SerializedName("count")
-    val questionAnswerCount: List<Int>
-)
-
-data class ParentQuestionCountDTO(
-    @SerializedName("title")
-    val parentQuestionTitle: String,
-    @SerializedName("content")
-    val childQuestions: ChildQuestionCountDTO
-)
-
 data class TravelTendencyQuestionCountRes(
     @SerializedName("status")
     val status: Int,
@@ -61,7 +47,20 @@ data class TravelTendencyQuestionCountRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: ParentQuestionCountDTO
+    val data: List<ParentQuestionCountDTO>
+)
+data class ParentQuestionCountDTO(
+    @SerializedName("title")
+    val parentQuestionTitle: String,
+    @SerializedName("content")
+    val childQuestions: List<ChildQuestionCountDTO>
+)
+
+data class ChildQuestionCountDTO(
+    @SerializedName("answer")
+    val question: String,
+    @SerializedName("count")
+    val questionAnswerCount: Int
 )
 
 // 그룹 성향 테스트 결과 전체 조회

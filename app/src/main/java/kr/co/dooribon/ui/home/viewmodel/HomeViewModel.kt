@@ -6,6 +6,8 @@ import kotlinx.coroutines.launch
 import kr.co.dooribon.api.remote.asDomainPreviousTravel
 import kr.co.dooribon.api.remote.asDomainTravel
 import kr.co.dooribon.api.remote.asDomainUpComingTravel
+import kr.co.dooribon.api.remote.extension.asDomainPreviousTravel
+import kr.co.dooribon.api.remote.extension.asDomainUpComingTravel
 import kr.co.dooribon.api.repository.HomeRepository
 import kr.co.dooribon.domain.entity.PreviousTravel
 import kr.co.dooribon.domain.entity.Travel
