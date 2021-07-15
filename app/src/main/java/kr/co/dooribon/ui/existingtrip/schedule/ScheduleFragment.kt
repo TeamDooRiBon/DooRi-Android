@@ -2,7 +2,6 @@ package kr.co.dooribon.ui.existingtrip.schedule
 
 import android.app.Dialog
 import android.content.Intent
-import android.icu.util.LocaleData
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -50,23 +49,9 @@ class ScheduleFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
 
         setDummyTimeList()
-        //setDataAdapter()
         setTimeScheduleAdapter(timeList1)
         onAddScheduleBtnClick()
         getDateScheduleList()
-
-//        val s = "2014-05-29"
-//        val e = "2014-06-10"
-//        var start = LocalDate.parse(s)
-//        val end = LocalDate.parse(e)
-//        val totalDates: MutableList<LocalDate> = ArrayList()
-//        while (!start.isAfter(end)) {
-//            totalDates.add(start)
-//            start = start.plusDays(1)
-//        }
-//        for(date in totalDates){
-//            println(date)
-//        }
 
         return binding.root
     }
@@ -98,7 +83,10 @@ class ScheduleFragment : Fragment() {
     }
 
     /* 서버에서 날짜 스트링을 넘겨주면 두 날짜 사이의 날짜들을 구하는 함수 */
-    private fun getDatesBetweenTwoDays(serverStartDateStrs : List<String>, serverEndDateStrs : List<String>) : MutableList<LocalDate>{
+    private fun getDatesBetweenTwoDays(
+        serverStartDateStrs: List<String>,
+        serverEndDateStrs: List<String>
+    ): MutableList<LocalDate> {
         val startYear = serverStartDateStrs[0]
         val startMonth =
             if (serverStartDateStrs[1].toInt() < 10) "0".plus(serverStartDateStrs[1]) else serverStartDateStrs[1]
@@ -164,30 +152,16 @@ class ScheduleFragment : Fragment() {
      * Horizontal Recyclerview adapter 연결하는 부분,
      * 서버에서 data 받기 전까지는 dummy data로 적용시켜봄.
      */
-    private fun setDataAdapter(dates : MutableList<LocalDate>) {
+    private fun setDataAdapter(dates: MutableList<LocalDate>) {
         val dateAdapter = DateScheduleAdapter()
         val dateRV = binding.rvDays
         dateRV.adapter = dateAdapter
-        datesList = listOf( // dummy data
-            TravelDate("D1", 2021, 7, 29, timeList1),
-            TravelDate("D2", 2021, 7, 30, timeList2),
-            TravelDate("D3", 2021, 7, 31, timeList3),
-            TravelDate("D4", 2021, 8, 1, timeList2),
-            TravelDate("D5", 2021, 8, 2, timeList1),
-            TravelDate("D6", 2021, 8, 3, timeList2),
-            TravelDate("D7", 2021, 8, 4, timeList1),
-            TravelDate("D8", 2021, 8, 5, timeList1),
-            TravelDate("D9", 2021, 8, 6, timeList1),
-            TravelDate("D10", 2022, 9, 7, timeList1)
-        )
-        val itemList = setTravelDate(dates)
-        Log.e("itemList", itemList.size.toString())
-        dateAdapter.setItemList( // dummy data
-            itemList
-        )
+        datesList =
+            setTravelDate(dates) // 서버에서 가져온 데이터들 가공해서 리사이클러뷰에 들어갈 수 있게 해주고, 가공된 값을 itemList에 저장
+        dateAdapter.setItemList(datesList)
 
-        var itemClicked = false
         // Item Click Listener
+        var itemClicked = false
         dateAdapter.setItemClickListener(object : DateScheduleAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 setDate(datesList[position].year, datesList[position].month)
@@ -205,14 +179,20 @@ class ScheduleFragment : Fragment() {
         })
     }
 
-    private fun setTravelDate(dates : MutableList<LocalDate>) : List<TravelDate>{
+    private fun setTravelDate(dates: MutableList<LocalDate>): List<TravelDate> {
         var travelDateList = listOf<TravelDate>()
-
-        //끝에 Time list1 주는 것은 변경해야
-        for(i in dates.indices){
-            travelDateList = travelDateList.plus(TravelDate("D".plus((i+1).toString()), dates[i].year, dates[i].monthValue, dates[i].dayOfMonth, timeList1))
+        // TODO 끝에 Time list1 주는 것은 변경해야 함
+        for (i in dates.indices) {
+            travelDateList = travelDateList.plus(
+                TravelDate(
+                    "D".plus((i + 1).toString()),
+                    dates[i].year,
+                    dates[i].monthValue,
+                    dates[i].dayOfMonth,
+                    timeList1
+                )
+            )
         }
-        Log.e("setTravelDate td size", travelDateList.size.toString())
         return travelDateList
     }
 
