@@ -60,6 +60,7 @@
                     android:textColor="@color/gray_gray_5_main"
                     android:background="@drawable/bg_black_gray6_round_textview"
                     android:text="TEST 다시하기"
+                    android:onClick="@{() -> memberFragment.navigateTravelTendencyTest()}"
                     android:textSize="12sp"
                     my_travel_tendency_visible_text_view="@{vm.isMyTravelTendencyResult()}"
                     app:layout_constraintEnd_toEndOf="parent"
