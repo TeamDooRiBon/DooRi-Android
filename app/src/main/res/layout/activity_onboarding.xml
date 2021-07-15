@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:lottie_rawRes="@raw/onboarding2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_loading_title"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true">
+    </com.airbnb.lottie.LottieAnimationView>
+
+    <TextView
+        android:id="@+id/tv_loading_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spoqa_han_sans_neo_bold"
+        android:includeFontPadding="false"
+        android:text="@string/loading_title"
+        android:textColor="@color/main_point_blue"
+        android:textSize="20sp"
+        android:layout_marginTop="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_loading_description1"
+        app:layout_constraintTop_toBottomOf="@+id/lottie"/>
+
+    <TextView
+        android:id="@+id/tv_loading_description1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:includeFontPadding="false"
+        android:text="@string/loading_description1"
+        android:textColor="@color/gray_black_1"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_loading_description2"
+        app:layout_constraintTop_toBottomOf="@id/tv_loading_title"/>
+
+    <TextView
+        android:id="@+id/tv_loading_description2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:includeFontPadding="false"
+        android:text="@string/loading_description2"
+        android:textColor="@color/gray_black_1"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_loading_description1"/>
+
+    <ImageView
+        android:id="@+id/iv_activebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_onboarding_1_active"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/iv_inactivebtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_loading_description2"/>
+
+    <ImageView
+        android:id="@+id/iv_inactivebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_onboarding_2"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@id/iv_activebtn"
+        app:layout_constraintEnd_toStartOf="@id/iv_inactivebtn2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_loading_description2"/>
+
+    <ImageView
+        android:id="@+id/iv_inactivebtn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_onboarding_2"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@id/iv_inactivebtn"
+        app:layout_constraintEnd_toStartOf="@id/tv_skip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_loading_description2"/>
+
+    <TextView
+        android:id="@+id/tv_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:includeFontPadding="false"
+        android:layout_marginStart="12dp"
+        android:text="@string/loading_skip"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/iv_inactivebtn2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_loading_description2"/>
+
+    <Button
+        android:id="@+id/btn_loading_next"
+        style="@style/RoundButton.DooRiBonOrange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spoqa_han_sans_neo_bold"
+        android:includeFontPadding="false"
+        android:text="@string/loading_next"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_loading_description2"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

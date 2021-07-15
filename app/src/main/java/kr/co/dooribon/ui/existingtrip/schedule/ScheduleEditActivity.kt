@@ -233,7 +233,7 @@ class ScheduleEditActivity : AppCompatActivity() {
 
     private fun editBackBtnClickListener() {
         binding.ivScheduleEditBack.setOnClickListener {
-            finish()
+            setQuestionDialog()
         }
     }
 
