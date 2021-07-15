@@ -281,12 +281,14 @@ class ScheduleFragment : Fragment() {
     private fun changeScheduleDataType(list: List<BaseTravelScheduleDTO>?): List<PlanData> {
         var planDataList = listOf<PlanData>()
         for (i in 0 until (list?.size ?: 0)) {
+            val (hour, minute) = list!![i].travelScheduleFormatTime.split("-")[3].split(":")
+            val formattedTimeStr = (if (hour.toInt() < 10) "0".plus(hour) else hour).plus(":").plus(if (minute.toInt() < 10) "0".plus(minute) else minute)
+            Log.e("serverTime", formattedTimeStr)
             planDataList = when (i) {
                 0 -> { // 첫 데이터일 때
-                    //TODO formattiem 수정해야
                     planDataList.plus(
                         PlanData(
-                            list!![i].travelScheduleFormatTime,
+                            formattedTimeStr,
                             list[i].travelScheduleTitle,
                             list[i].travelScheduleMemo,
                             PlanData.FIRST_DATE_PLAN
@@ -296,7 +298,7 @@ class ScheduleFragment : Fragment() {
                 list!!.size - 1 -> { // 마지막 데이터일 때
                     planDataList.plus(
                         PlanData(
-                            list[i].travelScheduleFormatTime,
+                            formattedTimeStr,
                             list[i].travelScheduleTitle,
                             list[i].travelScheduleMemo,
                             PlanData.LAST_DATE_PLAN
@@ -306,7 +308,7 @@ class ScheduleFragment : Fragment() {
                 else -> { // 중간 데이터일 때
                     planDataList.plus(
                         PlanData(
-                            list[i].travelScheduleFormatTime,
+                            formattedTimeStr,
                             list[i].travelScheduleTitle,
                             list[i].travelScheduleMemo,
                             PlanData.MIDDLE_DATE_PLAN
