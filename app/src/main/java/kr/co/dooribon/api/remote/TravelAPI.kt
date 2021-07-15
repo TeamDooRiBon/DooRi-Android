@@ -221,9 +221,9 @@ interface TravelAPI {
 
     // 여행 정보 조회 / 여행 정보 조회 시 사용
     @GET("travel/{groupId}")
-    suspend fun fetchTravelInfo(
+    fun fetchTravelInfo(
         @Path("groupId") groupId: String
-    ): TravelInfoRes
+    ): Call<TravelInfoRes>
 
     // 여행 참여 , 여행에 멤버 추가 / 참여코드 입력 후 홈으로 이동 시
     @POST("travel/{groupId}")

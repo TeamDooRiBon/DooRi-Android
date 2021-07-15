@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.existingtrip
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -15,6 +16,7 @@ import kr.co.dooribon.utils.initExistingTripBottomNavigation
 class ExistingTripActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityExistingTripBinding
+    var groupCode = ""
 
     private val viewModel by viewModels<ExistingTripViewModel>()
 
@@ -35,6 +37,12 @@ class ExistingTripActivity : AppCompatActivity() {
         observePreviousTravelContents()
         configureBackButton()
         configureBottomNavigation()
+        setGroupId()
+    }
+
+    private fun setGroupId() {
+        groupCode = intent.getStringExtra("groupId").toString()
+        viewModel.setGroupId(groupCode)
     }
 
     private fun observePreviousTravelContents() {

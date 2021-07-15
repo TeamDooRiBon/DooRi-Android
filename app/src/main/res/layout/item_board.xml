@@ -4,10 +4,6 @@
 
     <data>
 
-        <variable
-            name="data"
-            type="kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardListData" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +21,6 @@
             android:layout_marginVertical="14dp"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
-            android:text="@{data.boardStr}"
             android:textColor="@color/gray_black_2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_board_writer"
@@ -40,7 +35,6 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            android:text="@{data.writer}"
             android:textColor="#8b8b8b"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_board_main"

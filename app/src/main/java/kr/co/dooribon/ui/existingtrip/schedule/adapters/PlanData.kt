@@ -4,7 +4,8 @@ data class PlanData(
     val time: String,
     val mainTodo: String,
     val subTodo: String,
-    val viewType: Int
+    val viewType: Int,
+    val planId: String //서버의 schedule ID
 ) {
     companion object {
         const val FIRST_DATE_PLAN = 0

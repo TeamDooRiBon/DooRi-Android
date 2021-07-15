@@ -21,8 +21,9 @@ import kr.co.dooribon.utils.initializeTab
 class BoardFragment : Fragment() {
 
     private var binding by AutoClearBinding<FragmentBoardBinding>()
-
     private val viewModel by activityViewModels<ExistingTripViewModel>()
+    private lateinit var groupId : String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +33,8 @@ class BoardFragment : Fragment() {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        groupId = viewModel.getGroupId()
+        Log.e("groupId", viewModel.getGroupId())
         configureTabNavigation()
         setTabDesign()
         setTabAttribute()
@@ -57,7 +60,6 @@ class BoardFragment : Fragment() {
     private fun onTabClickListener() {
         binding.tabBoard.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                Log.e("position", tab?.position.toString())
                 setTabItem(tab?.position ?: Log.e("BoardFragment", "position null error"), tab!!)
             }
 
@@ -214,7 +216,8 @@ class BoardFragment : Fragment() {
     }
 
     private fun configureTabNavigation() {
+        Log.e("configureTabNavigation", groupId)
         binding.tabBoard.initializeTab(listOf("여행 목표", "꼭 알아줘", "역할 분담", "체크리스트"))
-        binding.tabBoard.initializeBoardTabNavigation(childFragmentManager)
+        binding.tabBoard.initializeBoardTabNavigation(childFragmentManager, groupId)
     }
 }
