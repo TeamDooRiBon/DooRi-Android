@@ -132,4 +132,10 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <style name="RoundButton.DooRiBonYellow">
+        <item name="backgroundTint">@color/doo_ri_bon_yellow</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:textColor">@color/gray_black_1</item>
+    </style>
+
 </resources>

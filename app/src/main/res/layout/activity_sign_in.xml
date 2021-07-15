@@ -80,11 +80,16 @@
 
             <Button
                 android:id="@+id/btn_kakao"
+                style="@style/RoundButton.DooRiBonYellow"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="임시 카카오톡 로그인 버튼 1"
+                android:paddingEnd="72dp"
+                android:paddingStart="72dp"
+                android:drawableLeft="@drawable/ic_kakao_talk_fill"
+                android:text="카카오톡으로 로그인"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
