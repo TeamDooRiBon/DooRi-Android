@@ -113,7 +113,7 @@ data class DeleteTravelScheduleRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: BaseTravelScheduleDTO
+    val data: List<BaseTravelScheduleDTO>
 )
 
 // 특정 날짜 일정 전체 조회

@@ -1,7 +1,6 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R

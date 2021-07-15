@@ -37,6 +37,7 @@ class ScheduleFragment : Fragment() {
     private lateinit var binding: FragmentScheduleBinding
     private lateinit var datesList: List<TravelDate>
     private var onceDone = false // 날짜 리사이클러뷰 아이템 클릭하면 true로 변경.
+    private var curClickedDate = "" // 현재 사용자가 보고 있는 날짜, getPlanDate에 사용하기 위해 선언
 
     private val viewModel by activityViewModels<ExistingTripViewModel>()
 
@@ -136,6 +137,7 @@ class ScheduleFragment : Fragment() {
     private fun onAddScheduleBtnClick() {
         binding.btAddSchedule.setOnClickListener {
             val intent = Intent(requireContext(), ScheduleAddActivity::class.java)
+            intent.putExtra("groupId", viewModel.getGroupId())
             startActivity(intent)
         }
     }
@@ -172,12 +174,13 @@ class ScheduleFragment : Fragment() {
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
                 //setPlanData(position)
+                curClickedDate = (curDate.year).toString().plus("-")
+                    .plus(if (curDate.month < 10) "0".plus(curDate.month) else curDate.month)
+                    .plus("-")
+                    .plus(if (curDate.date < 10) "0".plus(curDate.date) else curDate.date)
                 getPlanData(
                     viewModel.getGroupId(),
-                    (curDate.year).toString().plus("-")
-                        .plus(if (curDate.month < 10) "0".plus(curDate.month) else curDate.month)
-                        .plus("-")
-                        .plus(if (curDate.date < 10) "0".plus(curDate.date) else curDate.date)
+                    curClickedDate
                 ) // 클릭한 날의 데이터를 가져
                 modifyClickedView(view, dateAdapter, position)
 
@@ -193,7 +196,6 @@ class ScheduleFragment : Fragment() {
 
     // 서버로부터 date 날짜의 일정을 가져 옴
     private fun getPlanData(groupId: String, date: String) {
-        Log.e("date", date)
         apiModule.scheduleApi.fetchCertainTravelSchedule(groupId, date)
             .enqueue(object : Callback<CertainTravelScheduleRes> {
                 override fun onResponse(
@@ -412,8 +414,8 @@ class ScheduleFragment : Fragment() {
                         val startServerTime = travelData.travelScheduleStartTime
                         val endServerTime = travelData.travelScheduleEndTime
                         Log.e("startAndEnd", "$startServerTime, $endServerTime")
-                        var (startHour, startMin) = startServerTime.split("-")[3].split(":")
-                        var (endHour, endMin) = endServerTime.split("-")[3].split(":")
+                        val (startHour, startMin) = startServerTime.split("-")[3].split(":")
+                        val (endHour, endMin) = endServerTime.split("-")[3].split(":")
                         val startTime = if (startHour.toInt() > 12) {
                             "오후 ".plus(
                                 (
@@ -463,8 +465,10 @@ class ScheduleFragment : Fragment() {
                             deleteDlg.dismiss()
                         }
                         deleteDlg.findViewById<Button>(R.id.btn_dialog_delete).setOnClickListener {
-                            // TODO 서버 삭제 처리
+                            // TODO 해당 리사이클러뷰 리로드
                             deleteSchedule(viewModel.getGroupId(), list[position].planId)
+                            deleteDlg.dismiss()
+                            bsDialog.dismiss()
                         }
                         deleteDlg.show()
                     }
@@ -488,6 +492,7 @@ class ScheduleFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         Log.e("deleteSchedule", response.body()!!.message)
+                        getPlanData(viewModel.getGroupId(), curClickedDate)
                     }
                 }
 
