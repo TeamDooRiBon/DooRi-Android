@@ -182,6 +182,8 @@
             android:id="@+id/bottom_nav_existing_trip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:itemIconTint="@drawable/group_selector_color"
+            app:itemTextColor="@drawable/group_selector_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
