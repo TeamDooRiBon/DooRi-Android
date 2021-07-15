@@ -91,4 +91,5 @@ class MemberFragment : Fragment() {
         intent.putExtra("groupId",viewModel.memberTendencyGroupId.value)
         travelTendencyLauncher.launch(intent)
     }
+
 }
