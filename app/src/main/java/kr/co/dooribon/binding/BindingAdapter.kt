@@ -1,11 +1,15 @@
 package kr.co.dooribon.binding
 
-import android.view.View
-import android.widget.Button
+import android.annotation.SuppressLint
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import kr.co.dooribon.R
+import kr.co.dooribon.domain.entity.PreviousTravel
+import kr.co.dooribon.domain.entity.Travel
+import kr.co.dooribon.domain.entity.UpComingTravel
+import kr.co.dooribon.utils.dpToPixel
 import kotlin.math.roundToInt
 
 object BindingAdapter {
@@ -24,11 +28,31 @@ object BindingAdapter {
     }
 
     @JvmStatic
-    @BindingAdapter("travel_tendency_previous_btn_visibilty")
-    fun setTravelTendencyPreviousBtnVisibility(button : Button , questionPosition : Int){
-        if(questionPosition == 0)
-            button.visibility = View.INVISIBLE
-        else
-            button.visibility = View.VISIBLE
+    @BindingAdapter("set_image_url")
+    fun setImageWithUrl(imageView: ImageView, imageUrl: String?) {
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .override(imageView.context.dpToPixel(200),imageView.context.dpToPixel(160))
+            .dontTransform()
+            .into(imageView)
     }
+
+    @JvmStatic
+    @BindingAdapter("set_profile_image_url")
+    fun setProfileImageUrl(imageView : ImageView , imageUrl : String?){
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .dontTransform()
+            .override(imageView.context.dpToPixel(20),imageView.context.dpToPixel(20))
+            .into(imageView)
+    }
+
+    @JvmStatic
+    @BindingAdapter("set_travel_tendency_result")
+    fun setTravelTendencyResult(imageView : ImageView , imageUrl : String?){
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .into(imageView)
+    }
+
 }

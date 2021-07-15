@@ -10,8 +10,8 @@
         android:id="@+id/cl_bottom_sheet_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="10dp"
-        android:background="@drawable/bg_white_pure9_top_round_layout">
+        android:background="@drawable/bg_white_pure9_top_round_layout"
+        android:elevation="10dp">
 
         <ImageView
             android:id="@+id/iv_profile_pic"
@@ -24,12 +24,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_writer"
+            android:id="@+id/tv_bottom_sheet_writer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:includeFontPadding="false"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:includeFontPadding="false"
             android:text="김민영님이 작성"
             android:textColor="#868686"
             android:textSize="10sp"
@@ -45,7 +45,7 @@
             android:background="@color/gray_gray_6"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@id/iv_profile_pic"
-            app:layout_constraintStart_toEndOf="@id/tv_writer"
+            app:layout_constraintStart_toEndOf="@id/tv_bottom_sheet_writer"
             app:layout_constraintTop_toTopOf="@id/iv_profile_pic" />
 
         <TextView
@@ -53,8 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:includeFontPadding="false"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:includeFontPadding="false"
             android:text="2021. 07. 14 오후 1:18 마지막 작성"
             android:textColor="@color/gray_gray_6"
             android:textSize="10sp"
@@ -67,8 +67,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:includeFontPadding="false"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:includeFontPadding="false"
             android:text="김포공항 앞에서 모이기"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -80,8 +80,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:includeFontPadding="false"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:includeFontPadding="false"
             android:text="@string/time"
             android:textColor="@color/gray_gray_5_main"
             android:textSize="12sp"
@@ -90,15 +90,18 @@
 
         <TextView
             android:id="@+id/tv_user_time"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:includeFontPadding="false"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:includeFontPadding="false"
             android:text="오전 10:00 - 오후 12:00"
             android:textColor="@color/main_point_blue"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/tv_time"
             app:layout_constraintTop_toTopOf="@id/tv_time" />
 
@@ -107,8 +110,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:includeFontPadding="false"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:includeFontPadding="false"
             android:text="@string/place"
             android:textColor="@color/gray_gray_5_main"
             android:textSize="12sp"
@@ -117,15 +120,18 @@
 
         <TextView
             android:id="@+id/tv_user_place"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:includeFontPadding="false"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:includeFontPadding="false"
             android:text="서울특별시 강서구"
             android:textColor="@color/main_point_blue"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_place"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/tv_place"
             app:layout_constraintTop_toTopOf="@id/tv_place" />
 
@@ -134,8 +140,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:includeFontPadding="false"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:includeFontPadding="false"
             android:text="@string/memo"
             android:textColor="@color/gray_gray_5_main"
             android:textSize="12sp"
@@ -144,32 +150,35 @@
 
         <TextView
             android:id="@+id/tv_user_memo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:includeFontPadding="false"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:includeFontPadding="false"
             android:text="2304 버스 정류장 찾아보기"
             android:textColor="@color/main_point_blue"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_memo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/tv_memo"
             app:layout_constraintTop_toTopOf="@id/tv_memo" />
 
         <Button
-            android:id="@+id/btn_delete"
+            android:id="@+id/btn_bottom_sheet_delete"
             style="@style/RoundButton.DooRiBonGray7"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="5dp"
-            android:includeFontPadding="false"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:includeFontPadding="false"
             android:text="@string/delete"
             android:textColor="@color/gray_gray_black_4"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_edit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_memo" />
@@ -182,12 +191,12 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:includeFontPadding="false"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:includeFontPadding="false"
             android:text="@string/edit"
             android:textColor="@color/gray_white_pure_9"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_delete"
+            app:layout_constraintStart_toEndOf="@id/btn_bottom_sheet_delete"
             app:layout_constraintTop_toBottomOf="@id/tv_memo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

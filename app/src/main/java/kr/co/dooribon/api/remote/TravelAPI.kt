@@ -204,34 +204,40 @@ data class EditTravelDTO(
 
 interface TravelAPI {
     // 유저 기간 별 여행 조회 / 메인 뷰 (홈뷰)
+    // 끝냈어요
     @GET("travel")
     suspend fun fetchUserTravel(): HomeTravelRes
 
     // 유저 여행 생성 / 여행 생성 뷰
+    // TODO : 안됨
     @POST("travel")
     fun createUserTravel(
         @Body createTravelReq: CreateTravelReq
     ): Call<CreateTravelRes>
 
     // 여행 참여 , 여행 정보 조회 / 참여하는 여행 정보가 맞나요? 뷰 , 각종 여행 정보 조회 시 사용
+    // TODO : 안됨
     @GET("travel/group/{inviteCode}")
     suspend fun participateExistingTravel(
         @Path("inviteCode") inviteCode: String
     ): ParticipateTravelRes
 
     // 여행 정보 조회 / 여행 정보 조회 시 사용
+    // 해결
     @GET("travel/{groupId}")
-    suspend fun fetchTravelInfo(
+    fun fetchTravelInfo(
         @Path("groupId") groupId: String
-    ): TravelInfoRes
+    ): Call<TravelInfoRes>
 
     // 여행 참여 , 여행에 멤버 추가 / 참여코드 입력 후 홈으로 이동 시
+    // TODO : 안됨
     @POST("travel/{groupId}")
     suspend fun joinMemberExistingTravel(
         @Path("groupId") groupId: String,
     ): JoinTravelMembersRes
 
     // 여행 편집
+    // TODO : 안됨
     @PATCH("travel/{groupId}")
     suspend fun editTravel(
         @Body editTravelReq: EditTravelReq,

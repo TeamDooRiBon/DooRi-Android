@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import kr.co.dooribon.api.remote.GroupTravelTendencyDTO
 import kr.co.dooribon.databinding.ViewOtherMemberTripTypeBinding
 import kr.co.dooribon.domain.entity.MemberTripType
 import kr.co.dooribon.utils.addChip
@@ -12,11 +13,11 @@ import kr.co.dooribon.utils.addChip
 class MemberTripTypeAdapter :
     RecyclerView.Adapter<MemberTripTypeAdapter.MemberTripTypeViewHolder>() {
 
-    private val memberTripTypeList = mutableListOf<MemberTripType>()
+    private val memberTripTypeList = mutableListOf<GroupTravelTendencyDTO>()
 
     class MemberTripTypeViewHolder(private val binding: ViewOtherMemberTripTypeBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: MemberTripType) {
+        fun bind(item: GroupTravelTendencyDTO) {
             binding.item = item
         }
     }
@@ -33,7 +34,7 @@ class MemberTripTypeAdapter :
 
     override fun getItemCount(): Int = memberTripTypeList.size
 
-    fun submitList(list: List<MemberTripType>) {
+    fun submitList(list: List<GroupTravelTendencyDTO>) {
         memberTripTypeList.clear()
         memberTripTypeList.addAll(list)
         notifyDataSetChanged()

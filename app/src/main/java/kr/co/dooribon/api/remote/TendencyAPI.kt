@@ -1,6 +1,8 @@
 package kr.co.dooribon.api.remote
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -37,20 +39,6 @@ data class ChildQuestionDTO(
 )
 
 // 성향 테스트 카운팅 조회
-data class ChildQuestionCountDTO(
-    @SerializedName("answer")
-    val question: List<String>,
-    @SerializedName("count")
-    val questionAnswerCount: List<Int>
-)
-
-data class ParentQuestionCountDTO(
-    @SerializedName("title")
-    val parentQuestionTitle: String,
-    @SerializedName("content")
-    val childQuestions: ChildQuestionCountDTO
-)
-
 data class TravelTendencyQuestionCountRes(
     @SerializedName("status")
     val status: Int,
@@ -59,10 +47,41 @@ data class TravelTendencyQuestionCountRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: ParentQuestionCountDTO
+    val data: List<ParentQuestionCountDTO>
+)
+data class ParentQuestionCountDTO(
+    @SerializedName("title")
+    val parentQuestionTitle: String,
+    @SerializedName("content")
+    val childQuestions: List<ChildQuestionCountDTO>
+)
+
+data class ChildQuestionCountDTO(
+    @SerializedName("answer")
+    val question: String,
+    @SerializedName("count")
+    val questionAnswerCount: Int
 )
 
 // 그룹 성향 테스트 결과 전체 조회
+data class GroupTravelTendencyRes(
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("data")
+    val data: GroupTravelTendencyResultDTO
+)
+
+data class GroupTravelTendencyResultDTO(
+    @SerializedName("myResult")
+    val myTravelTendencyResult : GroupTravelTendencyDTO,
+    @SerializedName("othersResult")
+    val otherTravelTendencyResult : List<GroupTravelTendencyDTO>
+)
+
 data class GroupTravelTendencyDTO(
     @SerializedName("tag")
     val tendencyTag: List<String>,
@@ -87,23 +106,15 @@ data class MemberDTO(
     val memberProfileImageUrl: String
 )
 
-data class GroupTravelTendencyRes(
-    @SerializedName("status")
-    val status: Int,
-    @SerializedName("success")
-    val success: Boolean,
-    @SerializedName("message")
-    val message: String,
-    @SerializedName("data")
-    val data: GroupTravelTendencyDTO
-)
-
 // 성향테스트 결과 저장
 data class StoreTravelTendencyReq(
+    @SerializedName("score")
     val tendencyScore: List<Int>,
+    @SerializedName("choice")
     val tendencyChoice: List<Int>
 )
 
+@Parcelize
 data class StoreTravelTendencyDTO(
     @SerializedName("member")
     val memberName: String,
@@ -115,7 +126,7 @@ data class StoreTravelTendencyDTO(
     val tendencyResultImageUrl: String,
     @SerializedName("thumbnail")
     val tendencyThumbnailImageUrl: String
-)
+) : Parcelable
 
 data class StoreTravelTendencyRes(
     @SerializedName("status")
@@ -129,21 +140,29 @@ data class StoreTravelTendencyRes(
 )
 
 interface TendencyAPI {
+    // 성향 테스트 질문 조회 , 이건 함
+    // 해결
     @GET("tendency/question")
     suspend fun fetchTravelTendencyQuestion(): TravelTendencyQuestionRes
 
+    // 성향 테스트 카운팅 조회
+    // 해결
     @GET("tendency/question/{groupId}")
-    fun fetchTravelTendencyQuestionCount(
+    suspend fun fetchTravelTendencyQuestionCount(
         @Path("groupId") groupId: String
     ): TravelTendencyQuestionCountRes
 
+    // 그룹 성향테스트 결과 전체 조회
+    // 해결
     @GET("tendency/{groupId}")
-    fun fetchGroupTravelTendency(
+    suspend fun fetchGroupTravelTendency(
         @Path("groupId") groupId: String
     ): GroupTravelTendencyRes
 
+    // 성향테스트 결과 저장
+    // TODO : 결과 뷰만 보여주면 끝임
     @POST("tendency/{groupId}")
-    fun storeTravelTendency(
+    suspend fun storeTravelTendency(
         @Body storeTravelTendencyReq: StoreTravelTendencyReq,
         @Path("groupId") groupId: String
     ): StoreTravelTendencyRes
