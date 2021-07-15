@@ -8,6 +8,10 @@
         <variable
             name="activity"
             type="kr.co.dooribon.ui.existingtrip.ExistingTripActivity" />
+
+        <variable
+            name="vm"
+            type="kr.co.dooribon.ui.existingtrip.viewmodel.ExistingTripViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

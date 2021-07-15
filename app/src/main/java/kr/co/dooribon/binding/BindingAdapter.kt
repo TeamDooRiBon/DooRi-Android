@@ -1,14 +1,13 @@
 package kr.co.dooribon.binding
 
-import android.view.View
-import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import kr.co.dooribon.R
-import kr.co.dooribon.utils.dpToPixel
-import kr.co.dooribon.utils.extension.resizeMatchWidth
-import kr.co.dooribon.utils.extension.resizeWrapWidth
+import kr.co.dooribon.domain.entity.PreviousTravel
+import kr.co.dooribon.domain.entity.Travel
+import kr.co.dooribon.domain.entity.UpComingTravel
 import kotlin.math.roundToInt
 
 object BindingAdapter {
@@ -29,21 +28,9 @@ object BindingAdapter {
 
     @JvmStatic
     @BindingAdapter("set_image_url")
-    fun setImageWithUrl(imageView : ImageView , imageUrl : String?){
+    fun setImageWithUrl(imageView: ImageView, imageUrl: String?) {
         Glide.with(imageView.context)
             .load(imageUrl)
-            .into(imageView)
-    }
-
-    @JvmStatic
-    @BindingAdapter("set_my_travel_tendency_image_url")
-    fun setMyTravelTendencyImageWithUrl(imageView : ImageView , imageUrl : String?){
-        Glide.with(imageView.context)
-            .load(imageUrl)
-            .override(
-                imageView.context.resources.displayMetrics.widthPixels / 2,
-                (imageView.context.resources.displayMetrics.heightPixels * 0.4).roundToInt()
-            )
             .into(imageView)
     }
 

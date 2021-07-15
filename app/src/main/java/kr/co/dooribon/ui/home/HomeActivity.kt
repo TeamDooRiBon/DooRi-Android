@@ -23,6 +23,9 @@ import kr.co.dooribon.ui.triptendency.TripTendencyActivity
 import kr.co.dooribon.utils.extension.resizeHomeProgressTripImageView
 import kr.co.dooribon.utils.getIntent
 
+/**
+ * TODO : OnResume에서 계속 서버통신을 할지 혹은 화면을 이동하고 다시 돌아왔을 때 서버통신을 한번 하는게 맞을 지는 고민을 해봐야 겠습니다.
+ */
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
 
@@ -109,21 +112,25 @@ class HomeActivity : AppCompatActivity() {
         NewTripDialog().show(supportFragmentManager, NEW_TRIP_DIALOG_TAG)
     }
 
+    // 추억 속의 여행 아이템 클릭
     private fun onPreviousTripItemClick(index: Int) {
         val previousIntent = Intent(this, ExistingTripActivity::class.java)
         previousIntent.putExtra(
             "groupId",
             viewModel.homePreviousTravel.value?.get(index)!!.previousTravelId
         )
+        previousIntent.putExtra("previousTravelContents",viewModel.homePreviousTravel.value?.get(index))
         startActivity(previousIntent)
     }
 
+    // 두근두근 다가오는 여행 아이템 클릭
     private fun onUpComingTripItemClick(index: Int) {
         val upComingIntent = Intent(this, ExistingTripActivity::class.java)
         upComingIntent.putExtra(
             "groupId",
             viewModel.homeUpComingTravel.value?.get(index)!!.upComingTravelId
         )
+        upComingIntent.putExtra("upComingTravelContents",viewModel.homeUpComingTravel.value?.get(index))
         startActivity(upComingIntent)
     }
 
@@ -131,6 +138,7 @@ class HomeActivity : AppCompatActivity() {
     fun navigateExistingTrip() {
         val existingTravelIntent = Intent(this, ExistingTripActivity::class.java)
         existingTravelIntent.putExtra("groupId", viewModel.homeProceedingTravel.value?.id)
+        existingTravelIntent.putExtra("proceedingTravelContents",viewModel.homeProceedingTravel.value)
         startActivity(existingTravelIntent)
     }
 
