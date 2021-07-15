@@ -123,10 +123,19 @@ class ScheduleFragment : Fragment() {
         }
     }
 
-    private fun setTimeScheduleAdapter(planList: List<PlanData>) {
+//    private fun setTimeScheduleAdapter(planList: List<PlanData>) {
+//        val timeAdapter = TimeScheduleAdapter()
+//        val timeRV = binding.rvScheduleMain
+//        timeAdapter.setItemList(planList)
+//        timeRV.adapter = timeAdapter
+//
+//        onBelowItemClickListener(timeAdapter) // 아이템 클릭 리스너
+//    }
+
+    private fun setTimeScheduleAdapter(list: List<PlanData>) {
         val timeAdapter = TimeScheduleAdapter()
         val timeRV = binding.rvScheduleMain
-        timeAdapter.setItemList(planList)
+        timeAdapter.setItemList(list)
         timeRV.adapter = timeAdapter
 
         onBelowItemClickListener(timeAdapter) // 아이템 클릭 리스너
@@ -176,9 +185,10 @@ class ScheduleFragment : Fragment() {
                 getPlanData(
                     viewModel.getGroupId(),
                     (curDate.year).toString().plus("-")
-                        .plus(if (curDate.month < 10) "0".plus(curDate.month) else curDate.month).plus("-")
+                        .plus(if (curDate.month < 10) "0".plus(curDate.month) else curDate.month)
+                        .plus("-")
                         .plus(if (curDate.date < 10) "0".plus(curDate.date) else curDate.date)
-                )
+                ) // 클릭한 날의 데이터를 가져
                 modifyClickedView(view, dateAdapter, position)
 
                 // 날짜 리사이클러 뷰 첫 번째 아이템(날짜) 뷰 변경시켜주는 부분
@@ -191,6 +201,7 @@ class ScheduleFragment : Fragment() {
         })
     }
 
+    // 서버로부터 date 날짜의 일정을 가져 옴
     private fun getPlanData(groupId: String, date: String) {
         Log.e("date", date)
         apiModule.scheduleApi.fetchCertainTravelSchedule(groupId, date)
@@ -201,8 +212,7 @@ class ScheduleFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         Log.e("response", response.body()?.data?.travelSchedule.toString())
-                        val list = response.body()!!.data!!.travelSchedule
-
+                        setPlanData(response.body()?.data?.travelSchedule)
                     }
                 }
 
@@ -248,22 +258,65 @@ class ScheduleFragment : Fragment() {
     /***
      * 하단 부분 시간 별로 여행 일정을 보여주는 뷰 구현 함수
      */
-//    private fun setPlanData(position: Int) {
-//        if (datesList[position].planData.isNullOrEmpty()) { // plan이 아직 없다면
-//            binding.apply {
-//                rvScheduleMain.visibility = View.GONE
-//                ivEmptyImg.visibility = View.VISIBLE
-//                tvNoSchedule.visibility = View.VISIBLE
-//            }
-//        } else { // plan이 있다면
-//            binding.apply {
-//                rvScheduleMain.visibility = View.VISIBLE
-//                ivEmptyImg.visibility = View.GONE
-//                tvNoSchedule.visibility = View.GONE
-//            }
-//            setTimeScheduleAdapter(datesList[position].planData) // recyclerview에 plan update
-//        }
-//    }
+    private fun setPlanData(list: List<BaseTravelScheduleDTO>?) {
+        if (list.isNullOrEmpty()) {
+            binding.apply {
+                rvScheduleMain.visibility = View.GONE
+                ivEmptyImg.visibility = View.VISIBLE
+                tvNoSchedule.visibility = View.VISIBLE
+            }
+            Log.e("setPlanData", "NoData")
+            Log.e("data : ", list?.size.toString())
+        } else {
+            binding.apply {
+                rvScheduleMain.visibility = View.VISIBLE
+                ivEmptyImg.visibility = View.GONE
+                tvNoSchedule.visibility = View.GONE
+            }
+            Log.e("setPlanData", "setPlanData")
+            setTimeScheduleAdapter(changeScheduleDataType(list)) // recyclerview에 plan update
+        }
+    }
+
+    private fun changeScheduleDataType(list: List<BaseTravelScheduleDTO>?): List<PlanData> {
+        var planDataList = listOf<PlanData>()
+        for (i in 0 until (list?.size ?: 0)) {
+            planDataList = when (i) {
+                0 -> { // 첫 데이터일 때
+                    //TODO formattiem 수정해야
+                    planDataList.plus(
+                        PlanData(
+                            list!![i].travelScheduleFormatTime,
+                            list[i].travelScheduleTitle,
+                            list[i].travelScheduleMemo,
+                            PlanData.FIRST_DATE_PLAN
+                        )
+                    )
+                }
+                list!!.size - 1 -> { // 마지막 데이터일 때
+                    planDataList.plus(
+                        PlanData(
+                            list[i].travelScheduleFormatTime,
+                            list[i].travelScheduleTitle,
+                            list[i].travelScheduleMemo,
+                            PlanData.LAST_DATE_PLAN
+                        )
+                    )
+                }
+                else -> { // 중간 데이터일 때
+                    planDataList.plus(
+                        PlanData(
+                            list[i].travelScheduleFormatTime,
+                            list[i].travelScheduleTitle,
+                            list[i].travelScheduleMemo,
+                            PlanData.MIDDLE_DATE_PLAN
+                        )
+                    )
+                }
+            }
+        }
+        return planDataList
+    }
 
     /**
      * 다른 달 날짜를 클릭하면 달을 표시하는 text를 바꿔줍니다.
