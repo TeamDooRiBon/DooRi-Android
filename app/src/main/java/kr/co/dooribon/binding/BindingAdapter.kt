@@ -47,4 +47,12 @@ object BindingAdapter {
             .into(imageView)
     }
 
+    @JvmStatic
+    @BindingAdapter("set_travel_tendency_result")
+    fun setTravelTendencyResult(imageView : ImageView , imageUrl : String?){
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .into(imageView)
+    }
+
 }

@@ -235,7 +235,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
-                    my_travel_tendency_visible_recyclerview="@{vm.isOtherTravelTendencyResult()}"
+                    my_travel_tendency_visible_recyclerview="@{!vm.isOtherTravelTendencyResult()}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_member_trip_type_title" />
@@ -245,7 +245,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    my_travel_tendency_visible_constraint="@{!vm.isOtherTravelTendencyResult()}"
+                    my_travel_tendency_visible_constraint="@{vm.isOtherTravelTendencyResult()}"
                     android:visibility="gone"
                     tools:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"

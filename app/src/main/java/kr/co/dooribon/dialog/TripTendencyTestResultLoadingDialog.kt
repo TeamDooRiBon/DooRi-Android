@@ -1,5 +1,6 @@
 package kr.co.dooribon.dialog
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kr.co.dooribon.databinding.DialogTripTendencyTestResultLoadingBinding
+import kr.co.dooribon.ui.traveltendencyresult.TravelTendencyResultActivity
 import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.debugE
 
@@ -31,13 +33,12 @@ class TripTendencyTestResultLoadingDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        // ResultImage가 뜨도록 함
-        Log.d("fuckingShit", arguments?.getString("resultImageUrl").toString())
+        val travelTendencyResultIntent = Intent(requireContext(),TravelTendencyResultActivity::class.java)
+        travelTendencyResultIntent.putExtra("travelTendencyResultImageUrl",arguments?.getString("resultImageUrl"))
         lifecycleScope.launch {
             delay(2000)
             dismiss()
-            // 지금 여기서는 끝나게 해놨는데
-            requireActivity().finish()
+            startActivity(travelTendencyResultIntent)
         }
     }
 }
