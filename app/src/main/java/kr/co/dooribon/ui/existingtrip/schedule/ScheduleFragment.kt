@@ -462,6 +462,10 @@ class ScheduleFragment : Fragment() {
                         deleteDlg.findViewById<Button>(R.id.btn_no).setOnClickListener {
                             deleteDlg.dismiss()
                         }
+                        deleteDlg.findViewById<Button>(R.id.btn_dialog_delete).setOnClickListener {
+                            // TODO 서버 삭제 처리
+                            deleteSchedule(viewModel.getGroupId(), list[position].planId)
+                        }
                         deleteDlg.show()
                     }
                     findViewById<Button>(R.id.btn_edit).setOnClickListener {
@@ -473,6 +477,24 @@ class ScheduleFragment : Fragment() {
                 bsDialog.show()
             }
         })
+    }
+
+    private fun deleteSchedule(groupId: String, scheduleId: String) {
+        apiModule.scheduleApi.deleteTravelSchedule(groupId, scheduleId)
+            .enqueue(object : Callback<DeleteTravelScheduleRes> {
+                override fun onResponse(
+                    call: Call<DeleteTravelScheduleRes>,
+                    response: Response<DeleteTravelScheduleRes>
+                ) {
+                    if (response.isSuccessful) {
+                        Log.e("deleteSchedule", response.body()!!.message)
+                    }
+                }
+
+                override fun onFailure(call: Call<DeleteTravelScheduleRes>, t: Throwable) {
+                    Log.e("deleteSchedule onFailure", t.message.toString())
+                }
+            })
     }
 
     // TODO 추후에 확장함수로 구현해도 될듯
