@@ -32,6 +32,7 @@ class TripTendencyTestResultLoadingDialog : DialogFragment() {
         lifecycleScope.launch {
             delay(2000)
             dismiss()
+            requireActivity().finish()
         }
     }
 }

@@ -8,6 +8,10 @@
         <variable
             name="vm"
             type="kr.co.dooribon.ui.existingtrip.tendency.viewmodel.MemberViewModel" />
+
+        <variable
+            name="memberFragment"
+            type="kr.co.dooribon.ui.existingtrip.tendency.fragment.MemberFragment" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -83,8 +87,8 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/img_member_trip_type"
-                            android:scaleType="centerInside"
+                            set_image_url="@{vm.myTravelTendencyResult.tendencyThumbnailImageUrl}"
+                            android:scaleType="fitXY"
                             android:padding="16dp"
                             android:alpha="0.3"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +105,7 @@
                             android:layout_marginStart="12dp"
                             android:layout_marginTop="12dp"
                             android:textSize="14sp"
-                            android:text="철두철미 계획가"
+                            android:text="@{vm.myTravelTendencyResult.tendencyTitle}"
                             tools:text="철두철미 계획가"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -112,6 +116,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:layout_marginTop="8dp"
+                            set_chip="@{vm.myTravelTendencyResult.tendencyTag}"
                             app:layout_constraintStart_toStartOf="@id/tv_card_my_trip_type_name"
                             app:layout_constraintTop_toBottomOf="@id/tv_card_my_trip_type_name" />
 
@@ -122,7 +127,7 @@
                             android:includeFontPadding="false"
                             android:fontFamily="@font/spoqa_han_sans_neo_regular"
                             android:textSize="10sp"
-                            android:text="유지인"
+                            android:text="@{vm.myTravelTendencyResult.tendencyUserMember.memberName}"
                             android:layout_marginBottom="16dp"
                             tools:text="유지인"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -196,6 +201,7 @@
                             android:backgroundTint="@color/white"
                             android:text="여행 유형 TEST 시작 >"
                             android:textColor="@color/doo_ri_bon_blue"
+                            android:onClick="@{() -> memberFragment.navigateTravelTendencyTest()}"
                             app:cornerRadius="20dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

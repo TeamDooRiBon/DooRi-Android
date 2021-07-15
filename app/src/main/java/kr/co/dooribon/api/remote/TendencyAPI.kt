@@ -1,6 +1,8 @@
 package kr.co.dooribon.api.remote
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -107,10 +109,13 @@ data class MemberDTO(
 
 // 성향테스트 결과 저장
 data class StoreTravelTendencyReq(
+    @SerializedName("score")
     val tendencyScore: List<Int>,
+    @SerializedName("choice")
     val tendencyChoice: List<Int>
 )
 
+@Parcelize
 data class StoreTravelTendencyDTO(
     @SerializedName("member")
     val memberName: String,
@@ -122,7 +127,7 @@ data class StoreTravelTendencyDTO(
     val tendencyResultImageUrl: String,
     @SerializedName("thumbnail")
     val tendencyThumbnailImageUrl: String
-)
+) : Parcelable
 
 data class StoreTravelTendencyRes(
     @SerializedName("status")

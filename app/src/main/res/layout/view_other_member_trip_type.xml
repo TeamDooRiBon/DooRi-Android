@@ -61,7 +61,7 @@
                 android:id="@+id/ri_other_member_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:image_view_alpha="1"
+                app:image_view_shadow_alpha="1"
                 app:image_view_shadow_color="@color/transparent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_card_other_member_trip_type_user_name"

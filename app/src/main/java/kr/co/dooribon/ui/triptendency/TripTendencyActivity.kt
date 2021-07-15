@@ -1,23 +1,19 @@
 package kr.co.dooribon.ui.triptendency
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kr.co.dooribon.R
 import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.ActivityTripTendencyBinding
-import kr.co.dooribon.di.ViewModelModule
 import kr.co.dooribon.dialog.TripTendencyTestExitDialog
 import kr.co.dooribon.dialog.TripTendencyTestResultLoadingDialog
 import kr.co.dooribon.ui.triptendency.adapter.TripTendencyAdapter
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
+import kr.co.dooribon.utils.debugE
 import kr.co.dooribon.utils.shortToast
 
 /**
@@ -28,7 +24,7 @@ class TripTendencyActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTripTendencyBinding
 
-    private val viewModel by viewModels<TripTendencyViewModel>{
+    private val viewModel by viewModels<TripTendencyViewModel> {
         viewModelModule.provideTripTendencyViewModelFactory()
     }
 
@@ -37,10 +33,15 @@ class TripTendencyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_trip_tendency)
+        binding.lifecycleOwner = this
         binding.vm = viewModel
         binding.activity = this
-        binding.lifecycleOwner = this
+
         tripTendencyAdapter = TripTendencyAdapter(viewModel)
+
+        intent.getStringExtra("groupId")?.let {
+            viewModel.initializeGroupId(it)
+        }
 
         observeQuestionPosition()
         observeToastEvent()
@@ -50,7 +51,7 @@ class TripTendencyActivity : AppCompatActivity() {
     }
 
     private fun observeTravelTendencyQuestions() {
-        viewModel.travelTendencyQuestions.observe(this){
+        viewModel.travelTendencyQuestions.observe(this) {
             tripTendencyAdapter.submitItem(it)
         }
     }
@@ -67,14 +68,7 @@ class TripTendencyActivity : AppCompatActivity() {
 
     private fun observeQuestionPosition() {
         viewModel.questionPosition.observe(this) {
-            if (it != 0 && it == tripTendencyAdapter.itemCount + 1) {
-                TripTendencyTestResultLoadingDialog().show(
-                    supportFragmentManager,
-                    RESULT_LOADING_NAVIGATE_TAG
-                )
-            } else {
-                binding.vpTripTendencyTest.currentItem = it
-            }
+            binding.vpTripTendencyTest.currentItem = it
         }
     }
 
@@ -98,15 +92,24 @@ class TripTendencyActivity : AppCompatActivity() {
         TripTendencyTestExitDialog().show(supportFragmentManager, EXIT_NAVIGATE_TAG)
     }
 
+    // 다음 문항으로 가는 버튼 클릭 이벤트이기 때문에 여기에 조건을 걸어주는 것이 옳다고 생각합니다.
     fun navigateNextPage() {
-        if (!viewModel.getLastQuestionSelectedPosition()!!
+        if (!viewModel.lastQuestionSelectedPosition.value!!
                 .contains(-1) && viewModel.questionPosition.value == MAX_QUESTION_INDEX_COUNT
         ) {
-            synchronized(this){
+            // 선택한 데이터들을 전부 계산하고
+            synchronized(viewModel.calculateQuestionWeight()){
+                viewModel.calculateQuestionWeight()
+            }
+            runCatching {
+                viewModel.storeMyTravelTendency()
+            }.onSuccess {
                 TripTendencyTestResultLoadingDialog().show(
                     supportFragmentManager,
                     RESULT_LOADING_NAVIGATE_TAG
                 )
+            }.onFailure {
+                debugE(it)
             }
 
         } else {

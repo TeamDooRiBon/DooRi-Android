@@ -29,7 +29,6 @@ object TravelTendencyBindingAdapter {
         else
             button.resizeWrapWidth()
     }
-
 }
 
 @BindingAdapter("my_travel_tendency_visible_card_view")

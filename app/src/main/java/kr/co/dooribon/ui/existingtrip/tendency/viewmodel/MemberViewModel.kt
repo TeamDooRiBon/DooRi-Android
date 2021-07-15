@@ -1,18 +1,16 @@
 package kr.co.dooribon.ui.existingtrip.tendency.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import kr.co.dooribon.api.remote.GroupTravelTendencyDTO
+import kr.co.dooribon.api.remote.StoreTravelTendencyDTO
 import kr.co.dooribon.api.repository.TripTendencyRepository
 import kr.co.dooribon.utils.SingleLiveEvent
 import kr.co.dooribon.utils.debugE
 
 class MemberViewModel(
     private val tripTendencyRepository: TripTendencyRepository
-) : ViewModel() {
+) : ViewModel(), LifecycleObserver {
 
     private val _memberTendencyGroupId = MutableLiveData<String>()
     val memberTendencyGroupId: LiveData<String>
@@ -34,11 +32,17 @@ class MemberViewModel(
     val otherTravelTendencyResult : LiveData<List<GroupTravelTendencyDTO>>
         get() = _otherTravelTendencyResult
 
+    // 성향 테스트 결과
+    private val _travelTendencyResult = MutableLiveData<StoreTravelTendencyDTO>()
+    val travelTendencyResult : LiveData<StoreTravelTendencyDTO>
+        get() = _travelTendencyResult
+
     fun initializeMemberTendencyGroupId(groupId: String) {
         _memberTendencyGroupId.value = groupId
         debugE(_memberTendencyGroupId.value.toString())
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun fetchGroupTravelTendency() {
         viewModelScope.launch {
             runCatching {
@@ -63,6 +67,10 @@ class MemberViewModel(
                 debugE(it)
             }
         }
+    }
+
+    fun initializeTravelTendencyResult(storeTravelTendencyDTO: StoreTravelTendencyDTO){
+        _travelTendencyResult.value = storeTravelTendencyDTO
     }
 
 }

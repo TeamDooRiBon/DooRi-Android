@@ -1,5 +1,6 @@
 package kr.co.dooribon.ui.existingtrip.tendency.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import kr.co.dooribon.api.remote.StoreTravelTendencyDTO
 import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.FragmentMemberBinding
 import kr.co.dooribon.domain.entity.MemberTripType
 import kr.co.dooribon.ui.existingtrip.tendency.adapter.MemberTripTypeAdapter
+import kr.co.dooribon.ui.existingtrip.tendency.contract.TravelTendencyContract
 import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.MemberViewModel
+import kr.co.dooribon.ui.triptendency.TripTendencyActivity
 import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.addChip
 
@@ -32,6 +36,11 @@ class MemberFragment : Fragment() {
         viewModelModule.provideMemberViewModelFactory()
     }
 
+    private val travelTendencyLauncher =
+        registerForActivityResult(TravelTendencyContract()){ result : StoreTravelTendencyDTO? ->
+            result?.let { viewModel.initializeTravelTendencyResult(it) }
+        }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +57,9 @@ class MemberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
+        binding.memberFragment = this
         memberTripTypeAdapter = MemberTripTypeAdapter()
+        viewLifecycleOwner.lifecycle.addObserver(viewModel)
 
         observeMemberTendencyGroupId()
         observeOtherTravelTendencyResult()
@@ -73,5 +84,11 @@ class MemberFragment : Fragment() {
         viewModel.memberTendencyGroupId.observe(viewLifecycleOwner){
             viewModel.fetchGroupTravelTendency()
         }
+    }
+
+    fun navigateTravelTendencyTest(){
+        val intent = Intent(requireContext(),TripTendencyActivity::class.java)
+        intent.putExtra("groupId",viewModel.memberTendencyGroupId.value)
+        travelTendencyLauncher.launch(intent)
     }
 }
