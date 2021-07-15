@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".ui.existingtrip.ExistingTripActivity" />
         <activity android:name=".ui.triptendency.TripTendencyActivity" />
-        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.home.HomeActivity"/>
         <activity android:name=".ui.newtrip.add.DatePickActivity" />
         <activity android:name=".ui.newtrip.TravelPlanDoneActivity" />
         <activity android:name=".ui.newtrip.join.ParticipateActivity" />
