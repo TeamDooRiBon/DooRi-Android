@@ -134,30 +134,35 @@ data class CertainTravelScheduleRes(
 )
 
 interface ScheduleAPI {
+    // 해결
     @POST("schedule/{groupId}")
     fun createTravelSchedule(
         @Path("groupId") groupId: String,
         @Body createScheduleReq: CreateTravelScheduleReq
     ): Call<CreateTravelScheduleRes>
 
+    // 해결
     @GET("schedule/{groupId}/{scheduleId}")
     fun fetchTravelSchedule(
         @Path("groupId") groupId: String,
         @Path("scheduleId") scheduleId: String
     ): Call<TravelScheduleRes>
 
+    // TODO : 미해결
     @PATCH("schedule/{groupId}/{scheduleId}")
     fun editTravelSchedule(
         @Path("groupId") groupId: String,
         @Path("scheduleId") scheduleId: String
     ): Call<EditTravelScheduleRes>
 
+    // TODO : 미해결
     @DELETE("schedule/{groupId}/{scheduleId}")
     fun deleteTravelSchedule(
         @Path("groupId") groupId: String,
         @Path("scheduleId") scheduleId: String
     ): Call<DeleteTravelScheduleRes>
 
+    // 해결
     @GET("schedule/daily/{groupId}/{date}")
     fun fetchCertainTravelSchedule(
         @Path("groupId") groupId: String,
