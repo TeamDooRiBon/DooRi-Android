@@ -43,7 +43,7 @@
         <entry key="app/src/main/res/layout/activity_travel_plan_done.xml" value="0.125" />
         <entry key="app/src/main/res/layout/dialog_done_copy.xml" value="0.625" />
         <entry key="app/src/main/res/layout/fragment_board_bottom.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.20923913043478262" />
+        <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_board.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/layout/item_recommended_photos.xml" value="0.21965579710144928" />
       </map>

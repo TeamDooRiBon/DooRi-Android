@@ -171,7 +171,8 @@ class ScheduleFragment : Fragment() {
             override fun onClick(view: View, position: Int) {
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
-                setPlanData(position)
+                //setPlanData(position)
+                //getPlanData(viewModel.getGroupId())
                 modifyClickedView(view, dateAdapter, position)
 
                 // 날짜 리사이클러 뷰 첫 번째 아이템(날짜) 뷰 변경시켜주는 부분
@@ -184,6 +185,10 @@ class ScheduleFragment : Fragment() {
         })
     }
 
+//    private fun getPlanData(groupId : String){
+//        apiModule.travelApi.
+//    }
+
     private fun setTravelDate(dates: MutableList<LocalDate>): List<TravelDate> {
         var travelDateList = listOf<TravelDate>()
         // TODO 끝에 Time list1 주는 것은 변경해야 함
@@ -193,8 +198,7 @@ class ScheduleFragment : Fragment() {
                     "D".plus((i + 1).toString()),
                     dates[i].year,
                     dates[i].monthValue,
-                    dates[i].dayOfMonth,
-                    timeList1
+                    dates[i].dayOfMonth
                 )
             )
         }
@@ -221,22 +225,22 @@ class ScheduleFragment : Fragment() {
     /***
      * 하단 부분 시간 별로 여행 일정을 보여주는 뷰 구현 함수
      */
-    private fun setPlanData(position: Int) {
-        if (datesList[position].planData.isNullOrEmpty()) { // plan이 아직 없다면
-            binding.apply {
-                rvScheduleMain.visibility = View.GONE
-                ivEmptyImg.visibility = View.VISIBLE
-                tvNoSchedule.visibility = View.VISIBLE
-            }
-        } else { // plan이 있다면
-            binding.apply {
-                rvScheduleMain.visibility = View.VISIBLE
-                ivEmptyImg.visibility = View.GONE
-                tvNoSchedule.visibility = View.GONE
-            }
-            setTimeScheduleAdapter(datesList[position].planData) // recyclerview에 plan update
-        }
-    }
+//    private fun setPlanData(position: Int) {
+//        if (datesList[position].planData.isNullOrEmpty()) { // plan이 아직 없다면
+//            binding.apply {
+//                rvScheduleMain.visibility = View.GONE
+//                ivEmptyImg.visibility = View.VISIBLE
+//                tvNoSchedule.visibility = View.VISIBLE
+//            }
+//        } else { // plan이 있다면
+//            binding.apply {
+//                rvScheduleMain.visibility = View.VISIBLE
+//                ivEmptyImg.visibility = View.GONE
+//                tvNoSchedule.visibility = View.GONE
+//            }
+//            setTimeScheduleAdapter(datesList[position].planData) // recyclerview에 plan update
+//        }
+//    }
 
     /**
      * 다른 달 날짜를 클릭하면 달을 표시하는 text를 바꿔줍니다.
