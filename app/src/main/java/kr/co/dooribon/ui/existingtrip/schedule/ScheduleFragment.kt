@@ -32,9 +32,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDate
-import java.time.temporal.ChronoUnit
-import java.util.stream.Collectors
-import java.util.stream.LongStream
 
 class ScheduleFragment : Fragment() {
 
@@ -61,35 +58,77 @@ class ScheduleFragment : Fragment() {
         onAddScheduleBtnClick()
         getDateScheduleList()
 
+//        val s = "2014-05-29"
+//        val e = "2014-06-10"
+//        var start = LocalDate.parse(s)
+//        val end = LocalDate.parse(e)
+//        val totalDates: MutableList<LocalDate> = ArrayList()
+//        while (!start.isAfter(end)) {
+//            totalDates.add(start)
+//            start = start.plusDays(1)
+//        }
+//        for(date in totalDates){
+//            println(date)
+//        }
+
         return binding.root
     }
 
     private fun getDateScheduleList() {
         Log.e("groupId", viewModel.getGroupId())
-        apiModule.travelApi.fetchTravelInfo(viewModel.getGroupId()).enqueue(object : Callback<TravelInfoRes>{
-            override fun onResponse(call: Call<TravelInfoRes>, response: Response<TravelInfoRes>) {
-                if(response.isSuccessful){
-                    Log.e("check", response.body()?.data?.startDate.toString())
-                    val serverStartDateStrs = response.body()?.data?.startDate.toString().split("-")
-                    val serverEndDateStrs = response.body()?.data?.startDate.toString().split("-")
-                    val startYear = serverStartDateStrs[0]
-                    val startMonth = serverStartDateStrs[1]
-                    val startDate = serverStartDateStrs[2]
-                    val endYear = serverEndDateStrs[0]
-                    val endMonth = serverEndDateStrs[1]
-                    val endDate = serverEndDateStrs[2]
-                    // TODO : 두 날짜 사이(startDate, endDate)의 날들을 구해 리스트에 추가하여 리사이클러 뷰에 넘겨줘야 함.
-                }else{
-                    Log.e("response", "fail")
+        apiModule.travelApi.fetchTravelInfo(viewModel.getGroupId())
+            .enqueue(object : Callback<TravelInfoRes> {
+                override fun onResponse(
+                    call: Call<TravelInfoRes>,
+                    response: Response<TravelInfoRes>
+                ) {
+                    if (response.isSuccessful) {
+                        val serverStartDateStrs =
+                            response.body()?.data?.startDate.toString().split("-")
+                        val serverEndDateStrs =
+                            response.body()?.data?.endDate.toString().split("-")
+                        getDatesBetweenTwoDays(serverStartDateStrs, serverEndDateStrs)
+                    } else {
+                        Log.e("response", "fail")
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<TravelInfoRes>, t: Throwable) {
-                Log.e("getDateScheduleListOnFailure", t.message.toString())
-            }
-        })
+                override fun onFailure(call: Call<TravelInfoRes>, t: Throwable) {
+                    Log.e("getDateScheduleListOnFailure", t.message.toString())
+                }
+            })
     }
 
+    private fun getDatesBetweenTwoDays(serverStartDateStrs : List<String>, serverEndDateStrs : List<String>) : MutableList<LocalDate>{
+        val startYear = serverStartDateStrs[0]
+        val startMonth =
+            if (serverStartDateStrs[1].toInt() < 10) "0".plus(serverStartDateStrs[1]) else serverStartDateStrs[1]
+        val startDate =
+            if (serverStartDateStrs[2].toInt() < 10) "0".plus(serverStartDateStrs[2]) else serverStartDateStrs[2]
+        val endYear = serverEndDateStrs[0]
+        val endMonth =
+            if (serverEndDateStrs[1].toInt() < 10) "0".plus(serverEndDateStrs[1]) else serverEndDateStrs[1]
+        val endDate =
+            if (serverEndDateStrs[2].toInt() < 10) "0".plus(serverEndDateStrs[2]) else serverEndDateStrs[2]
+        val startDateStr =
+            startYear.plus("-").plus(startMonth).plus("-").plus(startDate)
+        val endDateStr = endYear.plus("-").plus(endMonth).plus("-").plus(endDate)
+
+        var parsedStartDate = LocalDate.parse(startDateStr)
+        val parsedEndDate = LocalDate.parse(endDateStr)
+        val totalDates = mutableListOf<LocalDate>()
+        while (!parsedStartDate.isAfter(parsedEndDate)) {
+            totalDates.add(parsedStartDate)
+            parsedStartDate = parsedStartDate.plusDays(1)
+        }
+        Log.e("totalDatesSize", totalDates.size.toString())
+
+        for (date in totalDates) {
+            println(date)
+        }
+
+        return totalDates
+    }
 
 
     private fun onAddScheduleBtnClick() {
