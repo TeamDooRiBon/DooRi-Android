@@ -37,6 +37,7 @@ class ScheduleFragment : Fragment() {
     private lateinit var binding: FragmentScheduleBinding
     private lateinit var datesList: List<TravelDate>
     private var onceDone = false // 날짜 리사이클러뷰 아이템 클릭하면 true로 변경.
+    private var curClickedDate = "" // 현재 사용자가 보고 있는 날짜, getPlanDate에 사용하기 위해 선언
 
     private val viewModel by activityViewModels<ExistingTripViewModel>()
 
@@ -172,12 +173,13 @@ class ScheduleFragment : Fragment() {
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
                 //setPlanData(position)
+                curClickedDate = (curDate.year).toString().plus("-")
+                    .plus(if (curDate.month < 10) "0".plus(curDate.month) else curDate.month)
+                    .plus("-")
+                    .plus(if (curDate.date < 10) "0".plus(curDate.date) else curDate.date)
                 getPlanData(
                     viewModel.getGroupId(),
-                    (curDate.year).toString().plus("-")
-                        .plus(if (curDate.month < 10) "0".plus(curDate.month) else curDate.month)
-                        .plus("-")
-                        .plus(if (curDate.date < 10) "0".plus(curDate.date) else curDate.date)
+                    curClickedDate
                 ) // 클릭한 날의 데이터를 가져
                 modifyClickedView(view, dateAdapter, position)
 
@@ -490,6 +492,7 @@ class ScheduleFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         Log.e("deleteSchedule", response.body()!!.message)
+                        getPlanData(viewModel.getGroupId(), curClickedDate)
                     }
                 }
 
