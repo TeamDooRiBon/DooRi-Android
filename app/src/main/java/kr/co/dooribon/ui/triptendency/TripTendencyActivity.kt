@@ -46,8 +46,25 @@ class TripTendencyActivity : AppCompatActivity() {
         observeQuestionPosition()
         observeToastEvent()
         observeTravelTendencyQuestions()
+        observeTravelTendencyResult()
         configureQuestionPager()
         configureTab()
+    }
+
+    private fun observeTravelTendencyResult() {
+        viewModel.travelTendencyResult.observe(this){
+            val imageBundle = Bundle()
+            imageBundle.putString(
+                "resultImageUrl",
+                it.tendencyResultImageUrl
+            )
+            val tripTendencyTestResultLoadingDialog = TripTendencyTestResultLoadingDialog()
+            tripTendencyTestResultLoadingDialog.arguments = imageBundle
+            tripTendencyTestResultLoadingDialog.show(
+                supportFragmentManager,
+                RESULT_LOADING_NAVIGATE_TAG
+            )
+        }
     }
 
     private fun observeTravelTendencyQuestions() {
@@ -98,20 +115,14 @@ class TripTendencyActivity : AppCompatActivity() {
                 .contains(-1) && viewModel.questionPosition.value == MAX_QUESTION_INDEX_COUNT
         ) {
             // 선택한 데이터들을 전부 계산하고
-            synchronized(viewModel.calculateQuestionWeight()){
+            synchronized(viewModel.calculateQuestionWeight()) {
                 viewModel.calculateQuestionWeight()
             }
             runCatching {
                 viewModel.storeMyTravelTendency()
-            }.onSuccess {
-                TripTendencyTestResultLoadingDialog().show(
-                    supportFragmentManager,
-                    RESULT_LOADING_NAVIGATE_TAG
-                )
             }.onFailure {
                 debugE(it)
             }
-
         } else {
             viewModel.nextPage()
         }

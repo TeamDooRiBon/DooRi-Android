@@ -123,7 +123,7 @@ class TripTendencyViewModel(
     }
 
     fun storeMyTravelTendency() =
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             runCatching {
                 _groupId.value?.let {
                     tripTendencyRepository.storeTravelTendency(
@@ -135,7 +135,7 @@ class TripTendencyViewModel(
                     )
                 }
             }.onSuccess {
-                _travelTendencyResult.postValue(it?.data)
+                _travelTendencyResult.value = it?.data
             }.onFailure {
                 debugE(it)
             }
