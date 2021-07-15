@@ -49,9 +49,9 @@ class MemberViewModel(
             runCatching {
                 tripTendencyRepository.fetchGroupTravelTendency(_memberTendencyGroupId.value!!)
             }.onSuccess {
-                if (it.data.otherTravelTendencyResult.isNotEmpty()) {// 다른 그룹의 성향 정보가 있는 경우
+                if (it.data.otherTravelTendencyResult != null && it.data.otherTravelTendencyResult.isNotEmpty()) {// 다른 그룹의 성향 정보가 있는 경우
                     _isOtherTravelTendencyResult.value = false
-                    _otherTravelTendencyResult.value = it?.data.otherTravelTendencyResult
+                    _otherTravelTendencyResult.value = it.data.otherTravelTendencyResult
                 } else {
                     _isOtherTravelTendencyResult.value = true
                     Log.d("otherEvent",_isOtherTravelTendencyResult.value.toString())

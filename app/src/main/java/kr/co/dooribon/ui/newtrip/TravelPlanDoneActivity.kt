@@ -19,6 +19,7 @@ import kr.co.dooribon.utils.getIntent
 import java.util.*
 import kotlin.concurrent.timerTask
 
+// TODO : 이거 뭐...그 ExistingTrip으로 오는 건 좋은데 homeActivity가 백스택에 남아있으면 좋겠음
 class TravelPlanDoneActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTravelPlanDoneBinding
