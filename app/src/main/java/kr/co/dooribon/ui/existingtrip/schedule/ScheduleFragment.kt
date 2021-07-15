@@ -48,10 +48,13 @@ class ScheduleFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
 
+
         setDummyTimeList()
         setTimeScheduleAdapter(timeList1)
         onAddScheduleBtnClick()
         getDateScheduleList()
+
+
 
         return binding.root
     }
@@ -71,6 +74,8 @@ class ScheduleFragment : Fragment() {
                             response.body()?.data?.endDate.toString().split("-")
                         val days = getDatesBetweenTwoDays(serverStartDateStrs, serverEndDateStrs)
                         setDataAdapter(days)
+                        binding.tvYear.text = datesList[0].year.toString()
+                        binding.tvMonth.text = datesList[0].month.toString()
                     } else {
                         Log.e("response", "fail")
                     }
