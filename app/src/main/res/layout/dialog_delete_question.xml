@@ -31,12 +31,12 @@
         android:fontFamily="@font/spoqa_han_sans_neo_medium"
         android:text="@string/i_wont"
         android:textColor="@color/gray_gray_black_4"
-        app:layout_constraintEnd_toStartOf="@id/btn_delete"
+        app:layout_constraintEnd_toStartOf="@id/btn_dialog_delete"
         app:layout_constraintStart_toStartOf="@id/tv_delete_question"
         app:layout_constraintTop_toBottomOf="@id/tv_delete_question" />
 
     <Button
-        android:id="@+id/btn_delete"
+        android:id="@+id/btn_dialog_delete"
         style="@style/RoundButton.DooRiBonOrange"
         android:layout_width="0dp"
         android:layout_height="48dp"
