@@ -33,9 +33,6 @@ class ScheduleFragment : Fragment() {
 
     private lateinit var binding: FragmentScheduleBinding
     private lateinit var datesList: List<TravelDate>
-    private lateinit var timeList1: List<PlanData>
-    private lateinit var timeList2: List<PlanData>
-    private lateinit var timeList3: List<PlanData>
     private var onceDone = false // 날짜 리사이클러뷰 아이템 클릭하면 true로 변경.
 
     private val viewModel by activityViewModels<ExistingTripViewModel>()
@@ -48,12 +45,23 @@ class ScheduleFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
 
-        setDummyTimeList()
-        setTimeScheduleAdapter(timeList1)
         onAddScheduleBtnClick()
         getDateScheduleList()
-
         return binding.root
+    }
+
+    /*
+    * 처음 프래그먼트에 들어왔을 때 보여질 뷰입니다.
+    * 리사이클러뷰에 첫 날의 일정을 보여줍니다.
+    * */
+    private fun setFirstBottomRv(curDate: TravelDate) {
+        getPlanData(
+            viewModel.getGroupId(),
+            (curDate.year).toString().plus("-")
+                .plus(if (curDate.month < 10) "0".plus(curDate.month) else curDate.month)
+                .plus("-")
+                .plus(if (curDate.date < 10) "0".plus(curDate.date) else curDate.date)
+        ) // 클릭한 날의 데이터를 가져
     }
 
     private fun getDateScheduleList() {
@@ -70,8 +78,11 @@ class ScheduleFragment : Fragment() {
                             response.body()?.data?.endDate.toString().split("-")
                         val days = getDatesBetweenTwoDays(serverStartDateStrs, serverEndDateStrs)
                         setDataAdapter(days)
-                        binding.tvYear.text = datesList[0].year.toString()
-                        binding.tvMonth.text = datesList[0].month.toString()
+                        setFirstBottomRv(setTravelDate(days)[0])// 첫 날 일정을 리사이클러 뷰에 띄워준다.
+                        binding.apply {
+                            tvYear.text = datesList[0].year.toString()
+                            tvMonth.text = datesList[0].month.toString()
+                        }
                     } else {
                         Log.e("response", "fail")
                     }
@@ -127,27 +138,6 @@ class ScheduleFragment : Fragment() {
         onBelowItemClickListener(timeAdapter) // 아이템 클릭 리스너
     }
 
-    private fun setDummyTimeList() {
-        timeList1 = listOf( // dummy data
-            PlanData("10:00", "김포공항 앞에서 모이기", "2304 버스 정류장 찾아보기", PlanData.FIRST_DATE_PLAN),
-            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "인천공항으로 출발", "여권 꼭 챙기기", PlanData.LAST_DATE_PLAN)
-        )
-        timeList2 = listOf( // dummy data
-            PlanData("10:00", "여행 가즈아", "여행 갈 곳 찾아보기", PlanData.FIRST_DATE_PLAN),
-            PlanData("12:00", "가즈아 여행", "제주도갈까요", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "송훈기", "기훈송", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "조예진", "진예조", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "이원중", "중원이", PlanData.MIDDLE_DATE_PLAN),
-            PlanData("12:00", "두리번", "두리안", PlanData.LAST_DATE_PLAN)
-        )
-        timeList3 = listOf( // dummy data
-        )
-    }
-
     /**
      * Horizontal Recyclerview adapter 연결하는 부분,
      * 서버에서 data 받기 전까지는 dummy data로 적용시켜봄.
@@ -165,6 +155,9 @@ class ScheduleFragment : Fragment() {
         dateAdapter.setItemClickListener(object : DateScheduleAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 val curDate = datesList[position]
+                if (position == 0) {
+                    setFirstBottomRv(curDate)
+                }
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
                 //setPlanData(position)
