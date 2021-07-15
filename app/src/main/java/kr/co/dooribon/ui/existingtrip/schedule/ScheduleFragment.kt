@@ -137,6 +137,7 @@ class ScheduleFragment : Fragment() {
     private fun onAddScheduleBtnClick() {
         binding.btAddSchedule.setOnClickListener {
             val intent = Intent(requireContext(), ScheduleAddActivity::class.java)
+            intent.putExtra("groupId", viewModel.getGroupId())
             startActivity(intent)
         }
     }
@@ -195,7 +196,6 @@ class ScheduleFragment : Fragment() {
 
     // 서버로부터 date 날짜의 일정을 가져 옴
     private fun getPlanData(groupId: String, date: String) {
-        Log.e("date", date)
         apiModule.scheduleApi.fetchCertainTravelSchedule(groupId, date)
             .enqueue(object : Callback<CertainTravelScheduleRes> {
                 override fun onResponse(
@@ -414,8 +414,8 @@ class ScheduleFragment : Fragment() {
                         val startServerTime = travelData.travelScheduleStartTime
                         val endServerTime = travelData.travelScheduleEndTime
                         Log.e("startAndEnd", "$startServerTime, $endServerTime")
-                        var (startHour, startMin) = startServerTime.split("-")[3].split(":")
-                        var (endHour, endMin) = endServerTime.split("-")[3].split(":")
+                        val (startHour, startMin) = startServerTime.split("-")[3].split(":")
+                        val (endHour, endMin) = endServerTime.split("-")[3].split(":")
                         val startTime = if (startHour.toInt() > 12) {
                             "오후 ".plus(
                                 (
