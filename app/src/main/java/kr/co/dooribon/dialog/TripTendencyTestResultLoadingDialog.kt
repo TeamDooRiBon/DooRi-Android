@@ -16,6 +16,7 @@ import kr.co.dooribon.databinding.DialogTripTendencyTestResultLoadingBinding
 import kr.co.dooribon.ui.traveltendencyresult.TravelTendencyResultActivity
 import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.debugE
+import kr.co.dooribon.utils.debugSSong
 
 class TripTendencyTestResultLoadingDialog : DialogFragment() {
 
@@ -33,12 +34,14 @@ class TripTendencyTestResultLoadingDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        debugE(arguments?.getString("resultImageUrl"))
         val travelTendencyResultIntent = Intent(requireContext(),TravelTendencyResultActivity::class.java)
         travelTendencyResultIntent.putExtra("travelTendencyResultImageUrl",arguments?.getString("resultImageUrl"))
         lifecycleScope.launch {
             delay(2000)
             dismiss()
             startActivity(travelTendencyResultIntent)
+            requireActivity().finish()
         }
     }
 }

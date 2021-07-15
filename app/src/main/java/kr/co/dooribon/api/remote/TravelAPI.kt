@@ -209,7 +209,7 @@ interface TravelAPI {
     suspend fun fetchUserTravel(): HomeTravelRes
 
     // 유저 여행 생성 / 여행 생성 뷰
-    // TODO : 안됨
+    // 해결
     @POST("travel")
     fun createUserTravel(
         @Body createTravelReq: CreateTravelReq

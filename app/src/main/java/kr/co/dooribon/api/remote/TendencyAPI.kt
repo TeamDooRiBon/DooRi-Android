@@ -160,7 +160,7 @@ interface TendencyAPI {
     ): GroupTravelTendencyRes
 
     // 성향테스트 결과 저장
-    // TODO : 결과 뷰만 보여주면 끝임
+    // 해결
     @POST("tendency/{groupId}")
     suspend fun storeTravelTendency(
         @Body storeTravelTendencyReq: StoreTravelTendencyReq,

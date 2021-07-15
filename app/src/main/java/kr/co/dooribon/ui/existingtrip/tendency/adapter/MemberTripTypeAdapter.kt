@@ -10,13 +10,20 @@ import kr.co.dooribon.databinding.ViewOtherMemberTripTypeBinding
 import kr.co.dooribon.domain.entity.MemberTripType
 import kr.co.dooribon.utils.addChip
 
-class MemberTripTypeAdapter :
+class MemberTripTypeAdapter(
+    private val onItemDetailClicked : (imageUrl : String) -> Unit
+) :
     RecyclerView.Adapter<MemberTripTypeAdapter.MemberTripTypeViewHolder>() {
 
     private val memberTripTypeList = mutableListOf<GroupTravelTendencyDTO>()
 
-    class MemberTripTypeViewHolder(private val binding: ViewOtherMemberTripTypeBinding) :
+    inner class MemberTripTypeViewHolder(private val binding: ViewOtherMemberTripTypeBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.onClick = {
+                onItemDetailClicked(memberTripTypeList[adapterPosition].tendencyResultImageUrl)
+            }
+        }
         fun bind(item: GroupTravelTendencyDTO) {
             binding.item = item
         }

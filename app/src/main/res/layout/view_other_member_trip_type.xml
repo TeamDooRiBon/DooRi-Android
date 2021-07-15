@@ -9,6 +9,10 @@
         <variable
             name="item"
             type="kr.co.dooribon.api.remote.GroupTravelTendencyDTO" />
+
+        <variable
+            name="on_click"
+            type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -94,6 +98,7 @@
                 android:fontFamily="@font/spoqa_han_sans_neo_regular"
                 android:includeFontPadding="false"
                 android:text="자세히 보기 >"
+                android:onClick="@{() -> on_click.invoke()}"
                 app:cornerRadius="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

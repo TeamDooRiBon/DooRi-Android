@@ -1,6 +1,5 @@
 package kr.co.dooribon.ui.newtrip.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +7,10 @@ import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ItemRecommendedPhotosBinding
+import kr.co.dooribon.utils.dpToPixel
 
 class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
 
@@ -77,8 +78,14 @@ class RecoImgAdapter : RecyclerView.Adapter<RecoImgAdapter.ImgViewHolder>() {
         fun bind(imgData: String) {
             Glide
                 .with(binding.ivRecoImage.context)
+                .asBitmap()
                 .load(imgData)
+                .override(
+                    binding.ivRecoImage.context.dpToPixel(80),
+                    binding.ivRecoImage.context.dpToPixel(80)
+                )
                 .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .into(binding.ivRecoImage)
         }
     }
