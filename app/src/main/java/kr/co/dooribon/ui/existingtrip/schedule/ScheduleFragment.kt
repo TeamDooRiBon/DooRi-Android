@@ -392,19 +392,69 @@ class ScheduleFragment : Fragment() {
                             .load(travelData.travelScheduleWriter.profileImageUrl)
                             .centerCrop()
                             .into(iv)
+
+                        //작성 시간 수정 부분
+                        val writtenServerTime = travelData.travelScheduleCreateTime.split("-")
+                        var (hour, min) = writtenServerTime[3].split(":")
+                        hour = if (hour.toInt() >= 12) {
+                            " 오후 ".plus((hour.toInt() - 12).toString()).plus(":")
+                        } else {
+                            " 오전 ".plus(hour).plus(":")
+                        }
+                        val writtenTime =
+                            writtenServerTime[0].plus(". ").plus(writtenServerTime[1]).plus(". ")
+                                .plus(writtenServerTime[2])
+                                .plus(
+                                    hour.plus(min)
+                                )
+
+                        //시작~끝 시간 수정 부분
+                        val startServerTime = travelData.travelScheduleStartTime
+                        val endServerTime = travelData.travelScheduleEndTime
+                        Log.e("startAndEnd", "$startServerTime, $endServerTime")
+                        var (startHour, startMin) = startServerTime.split("-")[3].split(":")
+                        var (endHour, endMin) = endServerTime.split("-")[3].split(":")
+                        val startTime = if (startHour.toInt() > 12) {
+                            "오후 ".plus(
+                                (
+                                        if (startHour.toInt() - 12 >= 10) {
+                                            (startHour.toInt() - 12).toString()
+                                        } else {
+                                            "0".plus((startHour.toInt() - 12).toString())
+                                        }
+                                        ).toString()
+                            ).plus(":")
+                                .plus(addZero(startMin))
+                        } else {
+                            "오전 ".plus(addZero(startHour)).plus(":")
+                                .plus(addZero(startMin))
+                        }
+                        val endTime = if (endHour.toInt() > 12) {
+                            "오후 ".plus(
+                                if (endHour.toInt() - 12 >= 10) {
+                                    (endHour.toInt() - 12).toString()
+                                } else {
+                                    "0".plus((endHour.toInt() - 12).toString())
+                                }
+                            ).plus(":").plus(addZero(endMin))
+                        } else {
+                            "오후 ".plus(addZero(endHour)).plus(":")
+                                .plus(addZero(endMin))
+                        }
+
                         findViewById<TextView>(R.id.tv_bottom_sheet_writer).text =
-                            travelData.travelScheduleWriter.name // 작성
+                            travelData.travelScheduleWriter.name.plus("님이 작성") // 작성
                         findViewById<TextView>(R.id.tv_written_time).text =
-                            travelData.travelScheduleCreateTime // 시간
+                            writtenTime.plus(" 마지막 작성") // 시간
                         findViewById<TextView>(R.id.tv_main_todo).text =
                             list[position].mainTodo
                         findViewById<TextView>(R.id.tv_user_time).text =
-                            travelData.travelScheduleStartTime
+                            startTime.plus(" - ").plus(endTime)
                         findViewById<TextView>(R.id.tv_user_place).text =
                             travelData.travelScheduleLocation
                         findViewById<TextView>(R.id.tv_user_memo).text =
                             list[position].subTodo
-                            //travelData.travelScheduleMemo
+                        //travelData.travelScheduleMemo
                     }, 900L)
                     findViewById<Button>(R.id.btn_bottom_sheet_delete).setOnClickListener {
                         val deleteDlg = Dialog(requireContext())
@@ -425,6 +475,14 @@ class ScheduleFragment : Fragment() {
         })
     }
 
+    // TODO 추후에 확장함수로 구현해도 될듯
+    // 시간 앞에 0을 붙여야할 때 이 함수를 사용하면 된다.
+    private fun addZero(n: String) =
+        if (n.toInt() < 10) {
+            "0".plus(n)
+        } else {
+            n
+        }
 
     private fun getDetailScheduleData(scheduleId: String) {
         apiModule.scheduleApi.fetchTravelSchedule(viewModel.getGroupId(), scheduleId)
