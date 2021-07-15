@@ -1,5 +1,6 @@
 package kr.co.dooribon.binding
 
+import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -8,6 +9,7 @@ import kr.co.dooribon.R
 import kr.co.dooribon.domain.entity.PreviousTravel
 import kr.co.dooribon.domain.entity.Travel
 import kr.co.dooribon.domain.entity.UpComingTravel
+import kr.co.dooribon.utils.dpToPixel
 import kotlin.math.roundToInt
 
 object BindingAdapter {
@@ -25,12 +27,23 @@ object BindingAdapter {
             .into(imageView)
     }
 
-
     @JvmStatic
     @BindingAdapter("set_image_url")
     fun setImageWithUrl(imageView: ImageView, imageUrl: String?) {
         Glide.with(imageView.context)
             .load(imageUrl)
+            .override(imageView.context.dpToPixel(200),imageView.context.dpToPixel(160))
+            .dontTransform()
+            .into(imageView)
+    }
+
+    @JvmStatic
+    @BindingAdapter("set_profile_image_url")
+    fun setProfileImageUrl(imageView : ImageView , imageUrl : String?){
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .dontTransform()
+            .override(imageView.context.dpToPixel(20),imageView.context.dpToPixel(20))
             .into(imageView)
     }
 
