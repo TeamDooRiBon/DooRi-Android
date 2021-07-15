@@ -89,7 +89,7 @@
         <item name="android:paddingEnd">12dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
-        <item name="android:drawableLeft">@drawable/ic_airplane_pure_white</item>
+        <item name="android:drawableLeft">@drawable/ic_icon_airplane_fill</item>
         <item name="android:drawablePadding">4dp</item>
     </style>
 
@@ -98,7 +98,7 @@
         <item name="android:paddingEnd">12dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
-        <item name="android:drawableLeft">@drawable/ic_airplane_black_gray4</item>
+        <item name="android:drawableLeft">@drawable/ic_icon_airplane_grayfill</item>
         <item name="android:drawablePadding">4dp</item>
     </style>
 
@@ -107,7 +107,7 @@
         <item name="android:paddingEnd">12dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
-        <item name="android:drawableLeft">@drawable/ic_user_pure_white</item>
+        <item name="android:drawableLeft">@drawable/ic_icon_user_1</item>
         <item name="android:drawablePadding">4dp</item>
     </style>
 
@@ -116,7 +116,7 @@
         <item name="android:paddingEnd">12dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
-        <item name="android:drawableLeft">@drawable/ic_user_black_gray4</item>
+        <item name="android:drawableLeft">@drawable/ic_icon_user_fill</item>
         <item name="android:drawablePadding">4dp</item>
     </style>
 

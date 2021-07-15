@@ -103,6 +103,7 @@
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:gravity="center"
             android:text="@string/goal_detail"
+            android:textColor="@color/gray_gray_5_main"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
