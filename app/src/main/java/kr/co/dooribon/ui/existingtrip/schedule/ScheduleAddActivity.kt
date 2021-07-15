@@ -6,10 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
-import kr.co.dooribon.api.remote.CreateTravelReq
-import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityScheduleAddBinding
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
+import java.time.LocalDate
 
 class ScheduleAddActivity : AppCompatActivity() {
 
@@ -36,22 +35,54 @@ class ScheduleAddActivity : AppCompatActivity() {
         onScheduleAddEtClick()
         onScheduleAddLocClick()
         onScheduleAddMemoClick()
-
-
     }
 
+    /* 시간 선택하는 부분 날짜 선택 */
     private fun setTravelDate() {
         var startDateStr = ""
         val passedYear = intent.getStringExtra("year").toString()
         val passedMonth = intent.getStringExtra("month").toString()
         val passedDate = intent.getStringExtra("date").toString()
         Log.e("passedYear", passedYear)
-        startDateStr = startDateStr.plus(passedYear).plus(".").plus(addZero(passedMonth)).plus(".").plus(addZero(passedDate))
+        val dayOfWeek = getDayOfWeek(
+            startDateStr.plus(passedYear).plus("-").plus(addZero(passedMonth)).plus("-")
+                .plus(addZero(passedDate))
+        )
+        startDateStr = startDateStr.plus(passedYear).plus(".").plus(addZero(passedMonth)).plus(".")
+            .plus(addZero(passedDate)).plus(dayOfWeek)
         binding.tvScheduleTimeStartDate.text = startDateStr
+        binding.tvScheduleTimeEndDate.text = startDateStr
     }
 
-    private fun getDayOfWeek() : String{
-
+    private fun getDayOfWeek(fStr: String): String {
+        val dayOfWeek = LocalDate.parse(fStr).dayOfWeek // 라이브러리 통해 요일 가져오는 코드
+        return when (dayOfWeek.toString()) {
+            "MONDAY" -> {
+                "(월)"
+            }
+            "TUESDAY" -> {
+                "(화)"
+            }
+            "WEDNESDAY" -> {
+                "(수)"
+            }
+            "THURSDAY" -> {
+                "(목)"
+            }
+            "FRIDAY" -> {
+                "(금)"
+            }
+            "SATURDAY" -> {
+                "(토)"
+            }
+            "SUNDAY" -> {
+                "(일)"
+            }
+            else -> {
+                Log.e("ScheduleFragment", "DateParsingError")
+                ""
+            }
+        }
     }
 
     private fun addZero(n: String) =
