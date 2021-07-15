@@ -36,10 +36,12 @@ data class HomeTravelImageRes(
 
 interface TravelImageAPI {
     // 여행 썸네일 이미지 16개 가져오는 api
+    // TODO : 시간이 문제인거지 , API자체는 문제아님 해결
     @GET("image")
     fun fetchDefaultTravelImage(): Call<DefaultTravelImageDTO>
 
     // 홈 화면에서 이미지 큰거 가져오는 api
+    // 해결
     @GET("image/{groupId}")
     suspend fun fetchHomeTravelImage(
         @Path("groupId") groupId: String
