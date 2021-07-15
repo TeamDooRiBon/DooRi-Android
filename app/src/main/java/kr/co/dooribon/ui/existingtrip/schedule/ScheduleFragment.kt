@@ -3,6 +3,8 @@ package kr.co.dooribon.ui.existingtrip.schedule
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.*
@@ -36,8 +39,10 @@ class ScheduleFragment : Fragment() {
     private var onceDone = false // 날짜 리사이클러뷰 아이템 클릭하면 true로 변경.
 
     private val viewModel by activityViewModels<ExistingTripViewModel>()
+
     // 날짜 리사이클러 뷰에서 두 번째 클릭부터는 리사이클러 뷰 첫번째 날짜를 다시
     // 바꿔줄 필요가 없어 true로 변경해서 다시 접근하지 않도록 해준다.
+    private lateinit var travelData: TravelScheduleDTO
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -141,7 +146,7 @@ class ScheduleFragment : Fragment() {
         timeAdapter.setItemList(list)
         timeRV.adapter = timeAdapter
 
-        onBelowItemClickListener(timeAdapter) // 아이템 클릭 리스너
+        onBelowItemClickListener(timeAdapter, list) // 아이템 클릭 리스너
     }
 
     /**
@@ -273,7 +278,8 @@ class ScheduleFragment : Fragment() {
                             formattedTimeStr,
                             list[i].travelScheduleTitle,
                             list[i].travelScheduleMemo,
-                            PlanData.FIRST_DATE_PLAN
+                            PlanData.FIRST_DATE_PLAN,
+                            list[i].travelScheduleId
                         )
                     )
                 }
@@ -283,7 +289,8 @@ class ScheduleFragment : Fragment() {
                             formattedTimeStr,
                             list[i].travelScheduleTitle,
                             list[i].travelScheduleMemo,
-                            PlanData.LAST_DATE_PLAN
+                            PlanData.LAST_DATE_PLAN,
+                            list[i].travelScheduleId
                         )
                     )
                 }
@@ -293,7 +300,8 @@ class ScheduleFragment : Fragment() {
                             formattedTimeStr,
                             list[i].travelScheduleTitle,
                             list[i].travelScheduleMemo,
-                            PlanData.MIDDLE_DATE_PLAN
+                            PlanData.MIDDLE_DATE_PLAN,
+                            list[i].travelScheduleId
                         )
                     )
                 }
@@ -367,7 +375,7 @@ class ScheduleFragment : Fragment() {
         binding.tvDate.text = fullDateStr
     }
 
-    private fun onBelowItemClickListener(timeAdapter: TimeScheduleAdapter) {
+    private fun onBelowItemClickListener(timeAdapter: TimeScheduleAdapter, list: List<PlanData>) {
         timeAdapter.setItemClickListener(object : TimeScheduleAdapter.ItemClickListener {
             override fun onTimeScheduleClick(view: View, position: Int) {
                 val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
@@ -376,7 +384,29 @@ class ScheduleFragment : Fragment() {
                     requireActivity().findViewById(R.id.cl_bottom_sheet_root)
                 )
                 sheetView.apply {
-                    findViewById<Button>(R.id.btn_delete).setOnClickListener {
+                    getDetailScheduleData(list[position].planId) // 서버에서 데이터를 가져옴
+                    // TODO 아래 하드코딩 된 부분을 수정해야 한다.
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val iv = findViewById<ImageView>(R.id.iv_profile_pic)
+                        Glide.with(iv.context)
+                            .load(travelData.travelScheduleWriter.profileImageUrl)
+                            .centerCrop()
+                            .into(iv)
+                        findViewById<TextView>(R.id.tv_bottom_sheet_writer).text =
+                            travelData.travelScheduleWriter.name // 작성
+                        findViewById<TextView>(R.id.tv_written_time).text =
+                            travelData.travelScheduleCreateTime // 시간
+                        findViewById<TextView>(R.id.tv_main_todo).text =
+                            list[position].mainTodo
+                        findViewById<TextView>(R.id.tv_user_time).text =
+                            travelData.travelScheduleStartTime
+                        findViewById<TextView>(R.id.tv_user_place).text =
+                            travelData.travelScheduleLocation
+                        findViewById<TextView>(R.id.tv_user_memo).text =
+                            list[position].subTodo
+                            //travelData.travelScheduleMemo
+                    }, 900L)
+                    findViewById<Button>(R.id.btn_bottom_sheet_delete).setOnClickListener {
                         val deleteDlg = Dialog(requireContext())
                         deleteDlg.setContentView(R.layout.dialog_delete_question)
                         deleteDlg.findViewById<Button>(R.id.btn_no).setOnClickListener {
@@ -393,5 +423,24 @@ class ScheduleFragment : Fragment() {
                 bsDialog.show()
             }
         })
+    }
+
+
+    private fun getDetailScheduleData(scheduleId: String) {
+        apiModule.scheduleApi.fetchTravelSchedule(viewModel.getGroupId(), scheduleId)
+            .enqueue(object : Callback<TravelScheduleRes> {
+                override fun onResponse(
+                    call: Call<TravelScheduleRes>,
+                    response: Response<TravelScheduleRes>
+                ) {
+                    if (response.isSuccessful) {
+                        travelData = response.body()!!.data
+                    }
+                }
+
+                override fun onFailure(call: Call<TravelScheduleRes>, t: Throwable) {
+                    Log.e("getDetailScheduleData", t.message.toString())
+                }
+            })
     }
 }

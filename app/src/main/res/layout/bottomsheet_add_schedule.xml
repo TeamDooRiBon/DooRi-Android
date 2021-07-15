@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_writer"
+            android:id="@+id/tv_bottom_sheet_writer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -45,7 +45,7 @@
             android:background="@color/gray_gray_6"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@id/iv_profile_pic"
-            app:layout_constraintStart_toEndOf="@id/tv_writer"
+            app:layout_constraintStart_toEndOf="@id/tv_bottom_sheet_writer"
             app:layout_constraintTop_toTopOf="@id/iv_profile_pic" />
 
         <TextView
@@ -157,7 +157,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_memo" />
 
         <Button
-            android:id="@+id/btn_delete"
+            android:id="@+id/btn_bottom_sheet_delete"
             style="@style/RoundButton.DooRiBonGray7"
             android:layout_width="0dp"
             android:layout_height="56dp"
@@ -187,7 +187,7 @@
             android:text="@string/edit"
             android:textColor="@color/gray_white_pure_9"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_delete"
+            app:layout_constraintStart_toEndOf="@id/btn_bottom_sheet_delete"
             app:layout_constraintTop_toBottomOf="@id/tv_memo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
