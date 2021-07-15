@@ -64,6 +64,11 @@ class ScheduleFragment : Fragment() {
         ) // 클릭한 날의 데이터를 가져
     }
 
+    /* 처음 화면 로드 시 날짜 설정 추가 */
+    private fun setFirstDate(curDate: TravelDate) {
+        setBelowDate(curDate)
+    }
+
     private fun getDateScheduleList() {
         apiModule.travelApi.fetchTravelInfo(viewModel.getGroupId())
             .enqueue(object : Callback<TravelInfoRes> {
@@ -78,6 +83,7 @@ class ScheduleFragment : Fragment() {
                             response.body()?.data?.endDate.toString().split("-")
                         val days = getDatesBetweenTwoDays(serverStartDateStrs, serverEndDateStrs)
                         setDataAdapter(days)
+                        setFirstDate(setTravelDate(days)[0])
                         setFirstBottomRv(setTravelDate(days)[0])// 첫 날 일정을 리사이클러 뷰에 띄워준다.
                         binding.apply {
                             tvYear.text = datesList[0].year.toString()

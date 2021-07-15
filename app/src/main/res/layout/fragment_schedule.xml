@@ -110,7 +110,7 @@
                 android:layout_marginStart="26dp"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/spoqa_han_sans_neo_light"
-                android:text="2021. 07. 29 수요일"
+                android:text="-"
                 android:textColor="@color/gray_gray_5_main"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_dday"
