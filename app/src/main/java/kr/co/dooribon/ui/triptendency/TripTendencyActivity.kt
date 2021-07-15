@@ -19,6 +19,7 @@ import kr.co.dooribon.utils.shortToast
 /**
  * Issue 사항
  * TODO : 데이터의 선택된 순서는 리스트에 정확하게 들어가는데 문제는 문제지를 뒤로 돌아갔을 떄 데이터가 겹쳐서 보여지는 문제가 발생한다.
+ * TODO : 홈에서 성향테스트 하는 로직이 똑같이 있는데 이건 그냥 GROUPID를 제외한 녀석으로 하면 되기 때문에 복사 붙여넣기 하면 될 거 같음
  */
 class TripTendencyActivity : AppCompatActivity() {
 
