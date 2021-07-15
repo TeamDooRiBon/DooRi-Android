@@ -22,6 +22,7 @@ import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.*
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentScheduleBinding
+import kr.co.dooribon.domain.entity.Travel
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.DateScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.PlanData
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TimeScheduleAdapter
@@ -38,6 +39,7 @@ class ScheduleFragment : Fragment() {
     private lateinit var datesList: List<TravelDate>
     private var onceDone = false // 날짜 리사이클러뷰 아이템 클릭하면 true로 변경.
     private var curClickedDate = "" // 현재 사용자가 보고 있는 날짜, getPlanDate에 사용하기 위해 선언
+    private var curClickedDateTravelDate = TravelDate("", -1, -1, -1)
 
     private val viewModel by activityViewModels<ExistingTripViewModel>()
 
@@ -89,6 +91,8 @@ class ScheduleFragment : Fragment() {
                             response.body()?.data?.endDate.toString().split("-")
                         val days = getDatesBetweenTwoDays(serverStartDateStrs, serverEndDateStrs)
                         setDataAdapter(days)
+                        curClickedDateTravelDate = setTravelDate(days)[0]
+                        curClickedDate = setTravelDate(days)[0].toString() // 처음 프래그먼트 호출 시 설정
                         setFirstDate(setTravelDate(days)[0])
                         setFirstBottomRv(setTravelDate(days)[0])// 첫 날 일정을 리사이클러 뷰에 띄워준다.
                         binding.apply {
@@ -138,6 +142,11 @@ class ScheduleFragment : Fragment() {
         binding.btAddSchedule.setOnClickListener {
             val intent = Intent(requireContext(), ScheduleAddActivity::class.java)
             intent.putExtra("groupId", viewModel.getGroupId())
+            intent.putExtra("curClickedDate", curClickedDate)
+            intent.putExtra("year", curClickedDateTravelDate.year.toString())
+            intent.putExtra("month", curClickedDateTravelDate.month.toString())
+            intent.putExtra("date", curClickedDateTravelDate.date.toString())
+            Log.e("yearBeforeSend", curClickedDateTravelDate.year.toString())
             startActivity(intent)
         }
     }

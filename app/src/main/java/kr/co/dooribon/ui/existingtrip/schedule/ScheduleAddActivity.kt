@@ -1,10 +1,13 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.CreateTravelReq
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityScheduleAddBinding
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
 
@@ -28,26 +31,49 @@ class ScheduleAddActivity : AppCompatActivity() {
         scheduleAddBtnClickListener()
         addBackBtnClickListener()
         chkInputData()
+        setTravelDate()
 
         onScheduleAddEtClick()
         onScheduleAddLocClick()
         onScheduleAddMemoClick()
 
+
     }
 
-    private fun onScheduleAddEtClick(){
+    private fun setTravelDate() {
+        var startDateStr = ""
+        val passedYear = intent.getStringExtra("year").toString()
+        val passedMonth = intent.getStringExtra("month").toString()
+        val passedDate = intent.getStringExtra("date").toString()
+        Log.e("passedYear", passedYear)
+        startDateStr = startDateStr.plus(passedYear).plus(".").plus(addZero(passedMonth)).plus(".").plus(addZero(passedDate))
+        binding.tvScheduleTimeStartDate.text = startDateStr
+    }
+
+    private fun getDayOfWeek() : String{
+
+    }
+
+    private fun addZero(n: String) =
+        if (n.toInt() < 10) {
+            "0".plus(n)
+        } else {
+            n
+        }
+
+    private fun onScheduleAddEtClick() {
         binding.etScheduleAddWhat.addTextChangedListener {
             chkBtnActivate()
         }
     }
 
-    private fun onScheduleAddLocClick(){
+    private fun onScheduleAddLocClick() {
         binding.etScheduleAddLocation.addTextChangedListener {
             chkBtnActivate()
         }
     }
 
-    private fun onScheduleAddMemoClick(){
+    private fun onScheduleAddMemoClick() {
         binding.etScheduleAddMemo.addTextChangedListener {
             chkBtnActivate()
         }
@@ -399,8 +425,17 @@ class ScheduleAddActivity : AppCompatActivity() {
 
     private fun scheduleAddBtnClickListener() {
         binding.btnScheduleAdd.setOnClickListener {
+            sendScheduleData()
             finish()
         }
+    }
+
+    private fun sendScheduleData() {
+        Log.e("groupId", intent.getStringExtra("groupId").toString())
+//        apiModule.scheduleApi.createTravelSchedule(
+//            intent.getStringExtra("groupId").toString(),
+//            //CreateTravelReq(binding.)
+//        )
     }
 
     private fun addBackBtnClickListener() {

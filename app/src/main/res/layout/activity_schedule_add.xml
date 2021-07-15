@@ -133,7 +133,7 @@
                             app:srcCompat="@drawable/ic_time_start_boxline" />
 
                         <TextView
-                            android:id="@+id/tv_schedule_time_start1"
+                            android:id="@+id/tv_schedule_time_start_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:includeFontPadding="false"
@@ -153,7 +153,7 @@
                             android:layout_marginStart="36dp"
                             android:layout_marginTop="4dp"
                             app:layout_constraintStart_toStartOf="@id/iv_schedule_time_start"
-                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_start1">
+                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_start_date">
 
                             <TextView
                                 android:id="@+id/tv_timepicker_ampm1"
