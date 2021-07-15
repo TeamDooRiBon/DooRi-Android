@@ -48,19 +48,15 @@ class ScheduleFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
 
-
         setDummyTimeList()
         setTimeScheduleAdapter(timeList1)
         onAddScheduleBtnClick()
         getDateScheduleList()
 
-
-
         return binding.root
     }
 
     private fun getDateScheduleList() {
-        Log.e("groupId", viewModel.getGroupId())
         apiModule.travelApi.fetchTravelInfo(viewModel.getGroupId())
             .enqueue(object : Callback<TravelInfoRes> {
                 override fun onResponse(
@@ -115,22 +111,12 @@ class ScheduleFragment : Fragment() {
         return totalDates
     }
 
-
     private fun onAddScheduleBtnClick() {
         binding.btAddSchedule.setOnClickListener {
             val intent = Intent(requireContext(), ScheduleAddActivity::class.java)
             startActivity(intent)
         }
     }
-
-//    private fun setTimeScheduleAdapter(planList: List<PlanData>) {
-//        val timeAdapter = TimeScheduleAdapter()
-//        val timeRV = binding.rvScheduleMain
-//        timeAdapter.setItemList(planList)
-//        timeRV.adapter = timeAdapter
-//
-//        onBelowItemClickListener(timeAdapter) // 아이템 클릭 리스너
-//    }
 
     private fun setTimeScheduleAdapter(list: List<PlanData>) {
         val timeAdapter = TimeScheduleAdapter()
@@ -265,15 +251,12 @@ class ScheduleFragment : Fragment() {
                 ivEmptyImg.visibility = View.VISIBLE
                 tvNoSchedule.visibility = View.VISIBLE
             }
-            Log.e("setPlanData", "NoData")
-            Log.e("data : ", list?.size.toString())
         } else {
             binding.apply {
                 rvScheduleMain.visibility = View.VISIBLE
                 ivEmptyImg.visibility = View.GONE
                 tvNoSchedule.visibility = View.GONE
             }
-            Log.e("setPlanData", "setPlanData")
             setTimeScheduleAdapter(changeScheduleDataType(list)) // recyclerview에 plan update
         }
     }
@@ -282,8 +265,8 @@ class ScheduleFragment : Fragment() {
         var planDataList = listOf<PlanData>()
         for (i in 0 until (list?.size ?: 0)) {
             val (hour, minute) = list!![i].travelScheduleFormatTime.split("-")[3].split(":")
-            val formattedTimeStr = (if (hour.toInt() < 10) "0".plus(hour) else hour).plus(":").plus(if (minute.toInt() < 10) "0".plus(minute) else minute)
-            Log.e("serverTime", formattedTimeStr)
+            val formattedTimeStr = (if (hour.toInt() < 10) "0".plus(hour) else hour).plus(":")
+                .plus(if (minute.toInt() < 10) "0".plus(minute) else minute)
             planDataList = when (i) {
                 0 -> { // 첫 데이터일 때
                     planDataList.plus(
@@ -295,7 +278,7 @@ class ScheduleFragment : Fragment() {
                         )
                     )
                 }
-                list!!.size - 1 -> { // 마지막 데이터일 때
+                list.size - 1 -> { // 마지막 데이터일 때
                     planDataList.plus(
                         PlanData(
                             formattedTimeStr,
