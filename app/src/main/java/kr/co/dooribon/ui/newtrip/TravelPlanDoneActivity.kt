@@ -1,16 +1,20 @@
 package kr.co.dooribon.ui.newtrip
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTravelPlanDoneBinding
 import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
+import kr.co.dooribon.utils.debugSSong
 import kr.co.dooribon.utils.getIntent
 import java.util.*
 import kotlin.concurrent.timerTask
@@ -18,14 +22,19 @@ import kotlin.concurrent.timerTask
 class TravelPlanDoneActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTravelPlanDoneBinding
+
+    private val viewModel by viewModels<TravelDoneViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_travel_plan_done)
+        observeInviteCode()
 
-        setTeamCodeEditText()
+        intent.getStringExtra("teamCode")?.let { viewModel.initializeInviteCode(it) }
+
         backBtnClickListener()
 
-        binding.btnLater.setOnClickListener {
+        binding.btnLater.setOnClickListener { // 나중에 할게요
             val intent = Intent(this, ExistingTripActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
             finish() // 현재 액티비티 종료
@@ -33,16 +42,29 @@ class TravelPlanDoneActivity : AppCompatActivity() {
         }
 
         binding.btnCopyCodes.setOnClickListener {
+            val clipBoard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData = ClipData.newPlainText("InviteCode","${viewModel.inviteCode.value}")
+            debugSSong(viewModel.inviteCode.value)
+            clipBoard.setPrimaryClip(clipData)
+
             val dlg = DoneCopyDialog(this)
             dlg.start()
             Timer().schedule(timerTask { moveToExistingTripActivity(dlg) }, 3500)
         }
     }
 
-    private fun setTeamCodeEditText() {
-        val teamCode = intent.getStringExtra("teamCode")
-        Log.e("teamCode", teamCode.toString())
-        //(binding.etCode1 as TextView).text = teamCode.subSequence(0,1)
+    private fun observeInviteCode() {
+        viewModel.inviteCode.observe(this){
+            val teamCodeCharArray = it.toCharArray()
+            binding.apply {
+                etCode1.setText(teamCodeCharArray[0].toString())
+                etCode2.setText(teamCodeCharArray[1].toString())
+                etCode3.setText(teamCodeCharArray[2].toString())
+                etCode4.setText(teamCodeCharArray[3].toString())
+                etCode5.setText(teamCodeCharArray[4].toString())
+                etCode6.setText(teamCodeCharArray[5].toString())
+            }
+        }
     }
 
     private fun moveToExistingTripActivity(dlg: DoneCopyDialog) {

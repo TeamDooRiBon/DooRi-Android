@@ -116,9 +116,7 @@ class TripTendencyActivity : AppCompatActivity() {
                 .contains(-1) && viewModel.questionPosition.value == MAX_QUESTION_INDEX_COUNT
         ) {
             // 선택한 데이터들을 전부 계산하고
-            synchronized(viewModel.calculateQuestionWeight()) {
-                viewModel.calculateQuestionWeight()
-            }
+            synchronized(viewModel.calculateQuestionWeight()) {}
             runCatching {
                 viewModel.storeMyTravelTendency()
             }.onFailure {
