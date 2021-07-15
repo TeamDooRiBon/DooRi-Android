@@ -463,8 +463,10 @@ class ScheduleFragment : Fragment() {
                             deleteDlg.dismiss()
                         }
                         deleteDlg.findViewById<Button>(R.id.btn_dialog_delete).setOnClickListener {
-                            // TODO 서버 삭제 처리
+                            // TODO 해당 리사이클러뷰 리로드
                             deleteSchedule(viewModel.getGroupId(), list[position].planId)
+                            deleteDlg.dismiss()
+                            bsDialog.dismiss()
                         }
                         deleteDlg.show()
                     }
