@@ -386,6 +386,7 @@
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:layout_marginTop="28dp"
                     android:text="@string/schedule_add_btn"
+                    android:enabled="false"
                     android:textColor="@color/gray_gray_black_4"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
