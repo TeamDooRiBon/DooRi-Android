@@ -1,5 +1,6 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
+import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +13,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -38,12 +41,15 @@ class ScheduleFragment : Fragment() {
     private lateinit var datesList: List<TravelDate>
     private var onceDone = false // 날짜 리사이클러뷰 아이템 클릭하면 true로 변경.
     private var curClickedDate = "" // 현재 사용자가 보고 있는 날짜, getPlanDate에 사용하기 위해 선언
+    private var curClickedDateTravelDate = TravelDate("", -1, -1, -1)
 
     private val viewModel by activityViewModels<ExistingTripViewModel>()
 
     // 날짜 리사이클러 뷰에서 두 번째 클릭부터는 리사이클러 뷰 첫번째 날짜를 다시
     // 바꿔줄 필요가 없어 true로 변경해서 다시 접근하지 않도록 해준다.
     private lateinit var travelData: TravelScheduleDTO
+    private lateinit var getResult : ActivityResultLauncher<Intent>
+    private lateinit var bsDialog : BottomSheetDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,9 +57,18 @@ class ScheduleFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         onAddScheduleBtnClick()
         getDateScheduleList()
-        return binding.root
+
+        getResult = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()){ result->
+            bsDialog.dismiss()
+        }
     }
 
     /*
@@ -89,6 +104,8 @@ class ScheduleFragment : Fragment() {
                             response.body()?.data?.endDate.toString().split("-")
                         val days = getDatesBetweenTwoDays(serverStartDateStrs, serverEndDateStrs)
                         setDataAdapter(days)
+                        curClickedDateTravelDate = setTravelDate(days)[0]
+                        curClickedDate = setTravelDate(days)[0].toString() // 처음 프래그먼트 호출 시 설정
                         setFirstDate(setTravelDate(days)[0])
                         setFirstBottomRv(setTravelDate(days)[0])// 첫 날 일정을 리사이클러 뷰에 띄워준다.
                         binding.apply {
@@ -138,6 +155,11 @@ class ScheduleFragment : Fragment() {
         binding.btAddSchedule.setOnClickListener {
             val intent = Intent(requireContext(), ScheduleAddActivity::class.java)
             intent.putExtra("groupId", viewModel.getGroupId())
+            intent.putExtra("curClickedDate", curClickedDate)
+            intent.putExtra("year", curClickedDateTravelDate.year.toString())
+            intent.putExtra("month", curClickedDateTravelDate.month.toString())
+            intent.putExtra("date", curClickedDateTravelDate.date.toString())
+            Log.e("yearBeforeSend", curClickedDateTravelDate.year.toString())
             startActivity(intent)
         }
     }
@@ -174,6 +196,7 @@ class ScheduleFragment : Fragment() {
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
                 //setPlanData(position)
+                curClickedDateTravelDate = datesList[position]
                 curClickedDate = (curDate.year).toString().plus("-")
                     .plus(if (curDate.month < 10) "0".plus(curDate.month) else curDate.month)
                     .plus("-")
@@ -380,7 +403,7 @@ class ScheduleFragment : Fragment() {
     private fun onBelowItemClickListener(timeAdapter: TimeScheduleAdapter, list: List<PlanData>) {
         timeAdapter.setItemClickListener(object : TimeScheduleAdapter.ItemClickListener {
             override fun onTimeScheduleClick(view: View, position: Int) {
-                val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
+                bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
                 val sheetView = LayoutInflater.from(requireContext()).inflate(
                     R.layout.bottomsheet_add_schedule,
                     requireActivity().findViewById(R.id.cl_bottom_sheet_root)
@@ -448,7 +471,7 @@ class ScheduleFragment : Fragment() {
                             travelData.travelScheduleWriter.name.plus("님이 작성") // 작성
                         findViewById<TextView>(R.id.tv_written_time).text =
                             writtenTime.plus(" 마지막 작성") // 시간
-                        findViewById<TextView>(R.id.tv_main_todo).text =
+                        findViewById<TextView>(R.id.tv_main_add_schedule_todo).text =
                             list[position].mainTodo
                         findViewById<TextView>(R.id.tv_user_time).text =
                             startTime.plus(" - ").plus(endTime)
@@ -457,7 +480,7 @@ class ScheduleFragment : Fragment() {
                         findViewById<TextView>(R.id.tv_user_memo).text =
                             list[position].subTodo
                         //travelData.travelScheduleMemo
-                    }, 900L)
+                    }, 950L)
                     findViewById<Button>(R.id.btn_bottom_sheet_delete).setOnClickListener {
                         val deleteDlg = Dialog(requireContext())
                         deleteDlg.setContentView(R.layout.dialog_delete_question)
@@ -473,8 +496,19 @@ class ScheduleFragment : Fragment() {
                         deleteDlg.show()
                     }
                     findViewById<Button>(R.id.btn_edit).setOnClickListener {
+                        // 양이 많아서 번들에 담아주는 것이 좋을 것 같음
                         val intent = Intent(requireContext(), ScheduleEditActivity::class.java)
-                        startActivity(intent)
+                        intent.putExtra("mainTodo", findViewById<TextView>(R.id.tv_main_add_schedule_todo).text.toString())
+                        intent.putExtra("time", findViewById<TextView>(R.id.tv_user_time).text.toString())
+                        intent.putExtra("year", curClickedDateTravelDate.year.toString())
+                        intent.putExtra("month", curClickedDateTravelDate.month.toString())
+                        intent.putExtra("date", curClickedDateTravelDate.date.toString())
+                        intent.putExtra("place", findViewById<TextView>(R.id.tv_user_place).text.toString())
+                        intent.putExtra("memo", findViewById<TextView>(R.id.tv_user_memo).text.toString())
+                        intent.putExtra("groupId", viewModel.getGroupId())
+                        intent.putExtra("scheduleId", list[position].planId)
+                        //startActivity(intent)
+                        getResult.launch(intent)
                     }
                 }
                 bsDialog.setContentView(sheetView)

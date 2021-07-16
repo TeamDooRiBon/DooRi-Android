@@ -39,6 +39,9 @@ class ExistingTripActivity : AppCompatActivity() {
         configureBottomNavigation()
         setGroupId()
     }
+    private fun changeBottomColor(){
+        
+    }
 
     private fun setGroupId() {
         groupCode = intent.getStringExtra("groupId").toString()

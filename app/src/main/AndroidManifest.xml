@@ -14,8 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DooRiBonAndroid"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.traveltendencyresult.TravelTendencyResultActivity"></activity>
+        <activity android:name=".ui.traveltendencyresult.TravelTendencyResultActivity"/>
         <activity android:name=".ui.signin.SignInActivity" />
+        <activity android:name=".ui.splash.OnboardingActivity"/>
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

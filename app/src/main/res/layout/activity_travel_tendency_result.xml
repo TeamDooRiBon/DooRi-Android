@@ -18,6 +18,7 @@
         android:id="@+id/cl_travel_tendency_result"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="never"
         tools:context=".ui.traveltendencyresult.TravelTendencyResultActivity">
 
         <androidx.core.widget.NestedScrollView
