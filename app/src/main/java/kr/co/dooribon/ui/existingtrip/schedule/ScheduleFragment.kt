@@ -183,6 +183,7 @@ class ScheduleFragment : Fragment() {
                 setDate(datesList[position].year, datesList[position].month)
                 setBelowDate(datesList[position])
                 //setPlanData(position)
+                curClickedDateTravelDate = datesList[position]
                 curClickedDate = (curDate.year).toString().plus("-")
                     .plus(if (curDate.month < 10) "0".plus(curDate.month) else curDate.month)
                     .plus("-")
@@ -457,7 +458,7 @@ class ScheduleFragment : Fragment() {
                             travelData.travelScheduleWriter.name.plus("님이 작성") // 작성
                         findViewById<TextView>(R.id.tv_written_time).text =
                             writtenTime.plus(" 마지막 작성") // 시간
-                        findViewById<TextView>(R.id.tv_main_todo).text =
+                        findViewById<TextView>(R.id.tv_main_add_schedule_todo).text =
                             list[position].mainTodo
                         findViewById<TextView>(R.id.tv_user_time).text =
                             startTime.plus(" - ").plus(endTime)
@@ -466,7 +467,7 @@ class ScheduleFragment : Fragment() {
                         findViewById<TextView>(R.id.tv_user_memo).text =
                             list[position].subTodo
                         //travelData.travelScheduleMemo
-                    }, 900L)
+                    }, 950L)
                     findViewById<Button>(R.id.btn_bottom_sheet_delete).setOnClickListener {
                         val deleteDlg = Dialog(requireContext())
                         deleteDlg.setContentView(R.layout.dialog_delete_question)
@@ -482,7 +483,15 @@ class ScheduleFragment : Fragment() {
                         deleteDlg.show()
                     }
                     findViewById<Button>(R.id.btn_edit).setOnClickListener {
+                        // 양이 많아서 번들에 담아주는 것이 좋을 것 같음
                         val intent = Intent(requireContext(), ScheduleEditActivity::class.java)
+                        intent.putExtra("mainTodo", findViewById<TextView>(R.id.tv_main_add_schedule_todo).text.toString())
+                        intent.putExtra("time", findViewById<TextView>(R.id.tv_user_time).text.toString())
+                        intent.putExtra("year", curClickedDateTravelDate.year.toString())
+                        intent.putExtra("month", curClickedDateTravelDate.month.toString())
+                        intent.putExtra("date", curClickedDateTravelDate.date.toString())
+                        intent.putExtra("place", findViewById<TextView>(R.id.tv_user_place).text.toString())
+                        intent.putExtra("memo", findViewById<TextView>(R.id.tv_user_memo).text.toString())
                         startActivity(intent)
                     }
                 }

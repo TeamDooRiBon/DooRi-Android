@@ -2,6 +2,7 @@ package kr.co.dooribon.ui.existingtrip.schedule
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
@@ -10,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityScheduleEditBinding
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
+import java.time.LocalDate
 
 class ScheduleEditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScheduleEditBinding
@@ -20,11 +22,83 @@ class ScheduleEditActivity : AppCompatActivity() {
         binding = ActivityScheduleEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setBasicText()
         timePickerClickListener3()
         timePickerClickListener4()
         notEditClickListener()
         scheduleEditBtnClickListener()
         editBackBtnClickListener()
+    }
+
+    /* 이전 화면에서 넘어온 값들로 텍스트를 설정해둡니다 */
+    private fun setBasicText() {
+        val (startTime, startMin) = intent.getStringExtra("time").toString()
+            .split(" ")[1].split(":")
+        val (endTime, endMin) = intent.getStringExtra("time").toString().split(" ")[4].split(":")
+        val year = intent.getStringExtra("year").toString()
+        val month = intent.getStringExtra("month").toString()
+        val date = intent.getStringExtra("date").toString()
+        binding.apply {
+            etScheduleAddWhat.setText(intent.getStringExtra("mainTodo").toString())
+            tvTimepickerHour3.text = startTime
+            tvTimepickerMinute3.text = startMin
+            tvTimepickerHour4.text = endTime
+            tvTimepickerMinute4.text = endMin
+            tvScheduleTimeStart1.text = (year).plus(".")
+                .plus(addZero(month)).plus(".")
+                .plus(addZero(date)).plus(
+                    getDayOfWeek(
+                        year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                    )
+                )
+            tvScheduleTimeEnd1.text = (year).plus(".")
+                .plus(addZero(month)).plus(".")
+                .plus(addZero(date)).plus(
+                    getDayOfWeek(
+                        year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                    )
+                )
+            etScheduleAddLocation.setText(intent.getStringExtra("place").toString())
+            etScheduleAddMemo.setText(intent.getStringExtra("memo").toString())
+        }
+    }
+
+    private fun addZero(n: String) =
+        if (n.toInt() < 10) {
+            "0".plus(n)
+        } else {
+            n
+        }
+
+    private fun getDayOfWeek(fStr: String): String {
+        val dayOfWeek = LocalDate.parse(fStr).dayOfWeek // 라이브러리 통해 요일 가져오는 코드
+        return when (dayOfWeek.toString()) {
+            "MONDAY" -> {
+                "(월)"
+            }
+            "TUESDAY" -> {
+                "(화)"
+            }
+            "WEDNESDAY" -> {
+                "(수)"
+            }
+            "THURSDAY" -> {
+                "(목)"
+            }
+            "FRIDAY" -> {
+                "(금)"
+            }
+            "SATURDAY" -> {
+                "(토)"
+            }
+            "SUNDAY" -> {
+                "(일)"
+            }
+            else -> {
+                Log.e("ScheduleFragment", "DateParsingError")
+                ""
+            }
+        }
     }
 
     private fun timePickerClickListener3() {

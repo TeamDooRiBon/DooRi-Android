@@ -63,7 +63,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_profile_pic" />
 
         <TextView
-            android:id="@+id/tv_main_todo"
+            android:id="@+id/tv_main_add_schedule_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -86,7 +86,7 @@
             android:textColor="@color/gray_gray_5_main"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/iv_profile_pic"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_todo" />
+            app:layout_constraintTop_toBottomOf="@id/tv_main_add_schedule_todo" />
 
         <TextView
             android:id="@+id/tv_user_time"
