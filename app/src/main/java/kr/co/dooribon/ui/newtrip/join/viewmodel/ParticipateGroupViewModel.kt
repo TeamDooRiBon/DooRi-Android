@@ -2,6 +2,7 @@ package kr.co.dooribon.ui.newtrip.join.viewmodel
 
 import android.text.TextUtils
 import androidx.lifecycle.*
+import kotlinx.coroutines.launch
 import kr.co.dooribon.api.repository.ParticipateGroupRepository
 import kr.co.dooribon.utils.SingleLiveEvent
 import kr.co.dooribon.utils.debugSSong
@@ -68,5 +69,18 @@ class ParticipateGroupViewModel(
 
     fun updateSingleLiveEvent(value : Boolean){
         singleLiveEvent.value = value
+    }
+
+    fun makeInviteCode() : String{
+        val inviteCode = StringBuilder()
+        inviteCode.append(_code1Text.value)
+        inviteCode.append(_code2Text.value)
+        inviteCode.append(_code3Text.value)
+        inviteCode.append(_code4Text.value)
+        inviteCode.append(_code5Text.value)
+        inviteCode.append(_code6Text.value)
+        debugSSong(inviteCode.toString())
+
+        return inviteCode.toString()
     }
 }

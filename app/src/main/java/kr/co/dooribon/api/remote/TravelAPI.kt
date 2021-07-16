@@ -1,6 +1,8 @@
 package kr.co.dooribon.api.remote
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -81,6 +83,7 @@ data class ParticipateTravelRes(
     val data: ParticipateTravelDTO
 )
 
+@Parcelize
 data class ParticipateTravelDTO(
     @SerializedName("groupId")
     val travelGroupId: String,
@@ -96,7 +99,7 @@ data class ParticipateTravelDTO(
     val endDate: String,
     @SerializedName("image")
     val travelThumbnailImageUrl: String
-)
+) : Parcelable
 
 data class TravelInfoRes(
     @SerializedName("status")
@@ -218,9 +221,9 @@ interface TravelAPI {
     // 여행 참여 , 여행 정보 조회 / 참여하는 여행 정보가 맞나요? 뷰 , 각종 여행 정보 조회 시 사용
     // TODO : 안됨
     @GET("travel/group/{inviteCode}")
-    suspend fun participateExistingTravel(
+    fun participateExistingTravel(
         @Path("inviteCode") inviteCode: String
-    ): ParticipateTravelRes
+    ): Call<ParticipateTravelRes>
 
     // 여행 정보 조회 / 여행 정보 조회 시 사용
     // 해결

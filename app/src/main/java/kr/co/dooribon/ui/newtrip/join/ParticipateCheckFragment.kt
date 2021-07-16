@@ -15,6 +15,7 @@ import kr.co.dooribon.ui.home.HomeActivity
 import kr.co.dooribon.ui.newtrip.join.viewmodel.ParticipateGroupViewModel
 import kotlin.concurrent.fixedRateTimer
 
+// TODO : SSong-develop 여기 작업하던 중임!
 class ParticipateCheckFragment : Fragment() {
     private lateinit var binding: FragmentParticipateCheckBinding
 
@@ -25,8 +26,8 @@ class ParticipateCheckFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentParticipateCheckBinding.inflate(inflater, container, false)
-        return binding.root
 
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

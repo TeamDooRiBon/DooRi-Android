@@ -8,11 +8,15 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.ParticipateTravelRes
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentParticipateJoinBinding
 import kr.co.dooribon.ui.newtrip.join.extension.*
 import kr.co.dooribon.ui.newtrip.join.viewmodel.ParticipateGroupViewModel
-import kr.co.dooribon.utils.debugSSong
-import java.util.*
+import kr.co.dooribon.utils.debugE
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ParticipateJoinFragment : Fragment() {
     private lateinit var binding: FragmentParticipateJoinBinding
@@ -95,7 +99,35 @@ class ParticipateJoinFragment : Fragment() {
         fullEditText()
 
         binding.btnParticipatePut.setOnClickListener {
+            apiModule.travelApi.participateExistingTravel(viewModel.makeInviteCode())
+                .enqueue(object : Callback<ParticipateTravelRes> {
+                    override fun onResponse(
+                        call: Call<ParticipateTravelRes>,
+                        response: Response<ParticipateTravelRes>
+                    ) {
+                        // data를 보내줘야 합니다!
+                        if (response.code() == 200 && response.isSuccessful) {
+                            val participateCheckBundle = Bundle()
+                            participateCheckBundle.putParcelable(
+                                "existingGroupContents",
+                                response.body()?.data
+                            )
+                            val participateCheckFragment = ParticipateCheckFragment()
+                            participateCheckFragment.arguments = participateCheckBundle
 
+                            parentFragmentManager.beginTransaction().replace(
+                                R.id.participate_fragment_container_view,
+                                participateCheckFragment
+                            ).commit()
+                        } else {
+                            debugE(response.errorBody())
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ParticipateTravelRes>, t: Throwable) {
+                        debugE(t.message)
+                    }
+                })
         }
     }
 
