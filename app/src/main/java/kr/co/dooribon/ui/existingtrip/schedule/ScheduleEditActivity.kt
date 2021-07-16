@@ -1,15 +1,25 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.EditTravelScheduleReq
+
+import kr.co.dooribon.api.remote.EditTravelScheduleRes
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityScheduleEditBinding
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.time.LocalDate
 
 class ScheduleEditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScheduleEditBinding
@@ -20,11 +30,136 @@ class ScheduleEditActivity : AppCompatActivity() {
         binding = ActivityScheduleEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setBasicText()
         timePickerClickListener3()
         timePickerClickListener4()
         notEditClickListener()
         scheduleEditBtnClickListener()
-        editBackBtnClickListener()
+        onEditBtnClick()
+    }
+
+    /* 이전 화면에서 넘어온 값들로 텍스트를 설정해둡니다 */
+    private fun setBasicText() {
+        val (startTime, startMin) = intent.getStringExtra("time").toString()
+            .split(" ")[1].split(":")
+        val (endTime, endMin) = intent.getStringExtra("time").toString().split(" ")[4].split(":")
+        val year = intent.getStringExtra("year").toString()
+        val month = intent.getStringExtra("month").toString()
+        val date = intent.getStringExtra("date").toString()
+        binding.apply {
+            etScheduleAddWhat.setText(intent.getStringExtra("mainTodo").toString())
+            tvTimepickerHour3.text = startTime
+            tvTimepickerMinute3.text = startMin
+            tvTimepickerHour4.text = endTime
+            tvTimepickerMinute4.text = endMin
+            tvScheduleTimeStart1.text = (year).plus(".")
+                .plus(addZero(month)).plus(".")
+                .plus(addZero(date)).plus(
+                    getDayOfWeek(
+                        year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                    )
+                )
+            tvScheduleTimeEnd1.text = (year).plus(".")
+                .plus(addZero(month)).plus(".")
+                .plus(addZero(date)).plus(
+                    getDayOfWeek(
+                        year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                    )
+                )
+            etScheduleAddLocation.setText(intent.getStringExtra("place").toString())
+            etScheduleAddMemo.setText(intent.getStringExtra("memo").toString())
+        }
+    }
+
+    private fun onEditBtnClick() {
+        val year = intent.getStringExtra("year").toString()
+        val month = intent.getStringExtra("month").toString()
+        val date = intent.getStringExtra("date").toString()
+        binding.btnScheduleEdit.setOnClickListener {
+            val startTime =
+                year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                    .plus(" ").plus(
+                        if (binding.tvTimepickerAmpm3.text == "오후") {
+                            (binding.tvTimepickerHour3.text.toString().toInt() + 12).toString()
+                        } else { // 오전일 때는 그냥 12더하지 않고 추가
+                            binding.tvTimepickerHour3.text.toString()
+                        }
+                    ).plus(":").plus(binding.tvTimepickerMinute3.text.toString())
+            val endTime =
+                year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                    .plus(" ").plus(
+                        if (binding.tvTimepickerAmpm4.text == "오후") {
+                            (binding.tvTimepickerHour4.text.toString().toInt() + 12).toString()
+                        } else { // 오전일 때는 그냥 12더하지 않고 추가
+                            binding.tvTimepickerHour4.text.toString()
+                        }
+                    ).plus(":").plus(binding.tvTimepickerMinute4.text.toString())
+
+            apiModule.scheduleApi.editTravelSchedule(
+                intent.getStringExtra("groupId").toString(),
+                intent.getStringExtra("scheduleId").toString(),
+                EditTravelScheduleReq(
+                    binding.etScheduleAddWhat.text.toString(),
+                    startTime,
+                    endTime,
+                    binding.etScheduleAddLocation.text.toString(),
+                    binding.etScheduleAddMemo.text.toString()
+                )
+            ).enqueue(object : Callback<EditTravelScheduleRes> {
+                override fun onResponse(
+                    call: Call<EditTravelScheduleRes>,
+                    response: Response<EditTravelScheduleRes>
+                ) {
+                    if (response.isSuccessful) {
+                        finish()
+                    } else {
+                        Log.e("responseFail", response.message())
+                    }
+                }
+
+                override fun onFailure(call: Call<EditTravelScheduleRes>, t: Throwable) {
+                    Log.e("onEditBtnClick onFailure", t.message.toString())
+                }
+            })
+        }
+    }
+
+    private fun addZero(n: String) =
+        if (n.toInt() < 10) {
+            "0".plus(n)
+        } else {
+            n
+        }
+
+    private fun getDayOfWeek(fStr: String): String {
+        val dayOfWeek = LocalDate.parse(fStr).dayOfWeek // 라이브러리 통해 요일 가져오는 코드
+        return when (dayOfWeek.toString()) {
+            "MONDAY" -> {
+                "(월)"
+            }
+            "TUESDAY" -> {
+                "(화)"
+            }
+            "WEDNESDAY" -> {
+                "(수)"
+            }
+            "THURSDAY" -> {
+                "(목)"
+            }
+            "FRIDAY" -> {
+                "(금)"
+            }
+            "SATURDAY" -> {
+                "(토)"
+            }
+            "SUNDAY" -> {
+                "(일)"
+            }
+            else -> {
+                Log.e("ScheduleFragment", "DateParsingError")
+                ""
+            }
+        }
     }
 
     private fun timePickerClickListener3() {
@@ -227,15 +362,25 @@ class ScheduleEditActivity : AppCompatActivity() {
 
     private fun scheduleEditBtnClickListener() {
         binding.btnScheduleEdit.setOnClickListener {
+            val intent = Intent(this, ScheduleFragment::class.java)
+            setResult(RESULT_OK, intent)
             finish()
         }
     }
+
+
+//    private fun editBackBtnClickListener() {
+//        binding.ivScheduleEditBack.setOnClickListener {
+//            finish()
+//        }
+//    }
 
     private fun editBackBtnClickListener() {
         binding.ivScheduleEditBack.setOnClickListener {
             setQuestionDialog()
         }
     }
+
 
     override fun onBackPressed() {
         setQuestionDialog()

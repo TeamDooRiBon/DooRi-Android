@@ -73,6 +73,57 @@ class ParticipateJoinFragment : Fragment() {
                 binding.etCode6.setBackgroundResource(R.drawable.text_round)
             }
         }
+        fullEditText()
+        // groupId 받아서 마무리
+        // TODO 수정 필요
+//        apiModule.scheduleApi.createTravelSchedule(
+//            "Test",
+//            CreateTravelScheduleReq("1", Date(1020L), Date(1020L), "대한민국", "살려주세여")
+//        )
+//            .enqueue(object : Callback<CreateTravelScheduleRes> {
+//                override fun onResponse(
+//                    call: Call<CreateTravelScheduleRes>,
+//                    response: Response<CreateTravelScheduleRes>
+//                ) {
+//                    if (response.isSuccessful) {
+//                        Log.d(TAG, "일정 추가 완료")
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<CreateTravelScheduleRes>, t: Throwable) {
+//
+//                }
+//            })
+    }
+
+    private fun fullEditText() {
+        val code1 = binding.etCode1.text
+        val code2 = binding.etCode2.text
+        val code3 = binding.etCode3.text
+        val code4 = binding.etCode4.text
+        val code5 = binding.etCode5.text
+        val code6 = binding.etCode6.text
+
+        binding.etCode6.setOnClickListener {
+            if (code1.isNotEmpty() && code2.isNotEmpty() && code3.isNotEmpty() && code4.isNotEmpty() && code5.isNotEmpty() && code6.isNotEmpty()) {
+                binding.btnParticipatePut.apply {
+                    text = "입력하기"
+                    setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_white_8))
+                    setBackgroundColor(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.doo_ri_bon_orange
+                        )
+                    )
+                }
+                binding.btnParticipatePut.setOnClickListener {
+                    val participatecheckFragment = ParticipateCheckFragment()
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.participate_fragment_container_view, participatecheckFragment)
+                        .commitNow()
+                }
+            }
+        }
 
     }
 }

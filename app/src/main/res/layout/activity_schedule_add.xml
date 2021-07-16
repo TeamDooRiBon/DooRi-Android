@@ -134,7 +134,7 @@
                             app:srcCompat="@drawable/ic_time_start_boxline" />
 
                         <TextView
-                            android:id="@+id/tv_schedule_time_start1"
+                            android:id="@+id/tv_schedule_time_start_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:includeFontPadding="false"
@@ -154,7 +154,7 @@
                             android:layout_marginStart="36dp"
                             android:layout_marginTop="4dp"
                             app:layout_constraintStart_toStartOf="@id/iv_schedule_time_start"
-                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_start1">
+                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_start_date">
 
                             <TextView
                                 android:id="@+id/tv_timepicker_ampm1"
@@ -207,7 +207,7 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/tv_schedule_time_end1"
+                            android:id="@+id/tv_schedule_time_end_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:includeFontPadding="false"
@@ -227,7 +227,7 @@
                             android:layout_marginEnd="40dp"
                             android:layout_marginTop="4dp"
                             app:layout_constraintEnd_toEndOf="@id/iv_schedule_time_end"
-                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_end1">
+                            app:layout_constraintTop_toBottomOf="@id/tv_schedule_time_end_date">
 
                             <TextView
                                 android:id="@+id/tv_timepicker_ampm2"
@@ -387,6 +387,7 @@
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:layout_marginTop="28dp"
                     android:text="@string/schedule_add_btn"
+                    android:enabled="false"
                     android:textColor="@color/gray_gray_black_4"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
