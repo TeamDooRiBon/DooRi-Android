@@ -63,6 +63,7 @@
                 android:id="@+id/frag_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:overScrollMode="never"
                 android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="@id/li_calendar_week_view"
                 app:layout_constraintStart_toStartOf="@id/li_calendar_week_view"

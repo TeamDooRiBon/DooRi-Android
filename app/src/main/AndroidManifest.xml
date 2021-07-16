@@ -3,6 +3,7 @@
     package="kr.co.dooribon">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".application.MainApplication"
@@ -15,6 +16,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.traveltendencyresult.TravelTendencyResultActivity"/>
         <activity android:name=".ui.signin.SignInActivity" />
+        <activity android:name=".ui.splash.OnboardingActivity"/>
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

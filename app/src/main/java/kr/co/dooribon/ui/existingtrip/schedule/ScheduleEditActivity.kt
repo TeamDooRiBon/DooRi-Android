@@ -368,11 +368,19 @@ class ScheduleEditActivity : AppCompatActivity() {
         }
     }
 
+
 //    private fun editBackBtnClickListener() {
 //        binding.ivScheduleEditBack.setOnClickListener {
 //            finish()
 //        }
 //    }
+
+    private fun editBackBtnClickListener() {
+        binding.ivScheduleEditBack.setOnClickListener {
+            setQuestionDialog()
+        }
+    }
+
 
     override fun onBackPressed() {
         setQuestionDialog()

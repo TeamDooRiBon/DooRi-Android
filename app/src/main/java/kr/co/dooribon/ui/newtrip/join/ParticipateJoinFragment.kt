@@ -8,19 +8,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import kr.co.dooribon.R
-import kr.co.dooribon.api.remote.CreateTravelScheduleReq
-import kr.co.dooribon.api.remote.CreateTravelScheduleRes
-import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentParticipateJoinBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.*
 
 class ParticipateJoinFragment : Fragment() {
     private lateinit var binding: FragmentParticipateJoinBinding
-    var count = 0
-    val TAG = "ParticipateJoinFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,7 +72,6 @@ class ParticipateJoinFragment : Fragment() {
             } else {
                 binding.etCode6.setBackgroundResource(R.drawable.text_round)
             }
-
         }
         fullEditText()
         // groupId 받아서 마무리

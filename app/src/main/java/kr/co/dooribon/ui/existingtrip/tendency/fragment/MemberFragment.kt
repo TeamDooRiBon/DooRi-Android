@@ -15,6 +15,7 @@ import kr.co.dooribon.domain.entity.MemberTripType
 import kr.co.dooribon.ui.existingtrip.tendency.adapter.MemberTripTypeAdapter
 import kr.co.dooribon.ui.existingtrip.tendency.contract.TravelTendencyContract
 import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.MemberViewModel
+import kr.co.dooribon.ui.traveltendencyresult.TravelTendencyResultActivity
 import kr.co.dooribon.ui.triptendency.TripTendencyActivity
 import kr.co.dooribon.utils.AutoClearBinding
 import kr.co.dooribon.utils.addChip
@@ -58,7 +59,9 @@ class MemberFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
         binding.memberFragment = this
-        memberTripTypeAdapter = MemberTripTypeAdapter()
+        memberTripTypeAdapter = MemberTripTypeAdapter(onItemDetailClicked = {
+            onItemDetailClicked(it)
+        })
         viewLifecycleOwner.lifecycle.addObserver(viewModel)
 
         observeMemberTendencyGroupId()
@@ -90,5 +93,11 @@ class MemberFragment : Fragment() {
         val intent = Intent(requireContext(),TripTendencyActivity::class.java)
         intent.putExtra("groupId",viewModel.memberTendencyGroupId.value)
         travelTendencyLauncher.launch(intent)
+    }
+
+    private fun onItemDetailClicked(imageUrl : String){
+        val travelTendencyResultIntent = Intent(requireContext(), TravelTendencyResultActivity::class.java)
+        travelTendencyResultIntent.putExtra("travelTendencyResultImageUrl",imageUrl)
+        startActivity(travelTendencyResultIntent)
     }
 }

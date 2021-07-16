@@ -29,6 +29,7 @@
             android:id="@+id/sv_middle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:overScrollMode="never"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/cl_bottom"
             app:layout_constraintTop_toBottomOf="@id/iv_back">

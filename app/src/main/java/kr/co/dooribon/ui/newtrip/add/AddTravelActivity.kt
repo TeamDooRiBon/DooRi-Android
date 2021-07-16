@@ -6,13 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.CreateTravelReq
 import kr.co.dooribon.api.remote.CreateTravelRes
@@ -22,10 +20,10 @@ import kr.co.dooribon.databinding.ActivityNewTravelBinding
 import kr.co.dooribon.dialog.DooRiBonDialog
 import kr.co.dooribon.domain.entity.PickDatePair
 import kr.co.dooribon.ui.newtrip.TravelPlanDoneActivity
-import kr.co.dooribon.ui.newtrip.adapter.ImageData
 import kr.co.dooribon.ui.newtrip.adapter.RecoImgAdapter
 import kr.co.dooribon.ui.newtrip.add.contract.DatePickerActivityContract
 import kr.co.dooribon.utils.RVItemDeco
+import kr.co.dooribon.utils.setOnDebounceClickListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -70,22 +68,13 @@ class AddTravelActivity : AppCompatActivity() {
     }
 
     private fun onStartNewTravelBtnClick() {
-        binding.btStartNewTravel.setOnClickListener {
-            lifecycleScope.launch {
-                delay(2000)
-                sendTravelData()
-            }
-            val intent = Intent(this, TravelPlanDoneActivity::class.java)
-            Log.e("addActivityTeamCode", teamCode)
-            Log.e("temp", "temp")
-            intent.putExtra("teamCode", teamCode)
-            startActivity(intent)
-            //finish() // finish를 하면 액티비티도 종료되서 로그도 찍히지 않음.
+        binding.btStartNewTravel.setOnDebounceClickListener {
+            sendTravelData()
         }
     }
 
     /* 서버에 데이터 보내는 함수 */
-    private fun sendTravelData() {
+    private fun sendTravelData(){
         apiModule.travelApi.createUserTravel(
             CreateTravelReq(
                 binding.etTravelName.text.toString(),
@@ -100,12 +89,12 @@ class AddTravelActivity : AppCompatActivity() {
                 response: Response<CreateTravelRes>
             ) {
                 Log.e("response", response.toString())
+                Log.e("responseBody", response.body().toString())
                 if (response.isSuccessful) {
-                    response.body()?.let { it ->
-                        Log.e("success", "success")
-                        Log.e("teamCode", it.data.inviteCode)
-                        teamCode = it.data.inviteCode
-                    }
+                    val intent = Intent(this@AddTravelActivity, TravelPlanDoneActivity::class.java)
+                    intent.putExtra("teamCode", response.body()?.data?.inviteCode)
+                    startActivity(intent)
+                    finish()
                 } else {
                     Log.e("fail", "fail")
                 }

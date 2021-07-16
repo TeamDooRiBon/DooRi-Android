@@ -52,6 +52,7 @@ object BindingAdapter {
     fun setTravelTendencyResult(imageView : ImageView , imageUrl : String?){
         Glide.with(imageView.context)
             .load(imageUrl)
+            .dontTransform()
             .into(imageView)
     }
 

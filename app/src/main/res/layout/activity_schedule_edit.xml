@@ -44,6 +44,7 @@
             android:id="@+id/nsv_schedule_edit"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:overScrollMode="never"
             android:layout_marginTop="28dp"
             android:background="@drawable/bg_gray_white8_top_round_layout"
             app:layout_constraintBottom_toBottomOf="parent"
