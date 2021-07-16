@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import kr.co.dooribon.R
@@ -35,6 +36,45 @@ class ParticipateJoinFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        changeEtFocus()
+        setEtBgChange()
+
+        fullEditText()
+
+        binding.btnParticipatePut.setOnClickListener {
+            apiModule.travelApi.participateExistingTravel(viewModel.makeInviteCode())
+                .enqueue(object : Callback<ParticipateTravelRes> {
+                    override fun onResponse(
+                        call: Call<ParticipateTravelRes>,
+                        response: Response<ParticipateTravelRes>
+                    ) {
+                        // data를 보내줘야 합니다!
+                        if (response.code() == 200 && response.isSuccessful) {
+                            val participateCheckBundle = Bundle()
+                            participateCheckBundle.putParcelable(
+                                "existingGroupContents",
+                                response.body()?.data
+                            )
+                            val participateCheckFragment = ParticipateCheckFragment()
+                            participateCheckFragment.arguments = participateCheckBundle
+
+                            parentFragmentManager.beginTransaction().replace(
+                                R.id.participate_fragment_container_view,
+                                participateCheckFragment
+                            ).commit()
+                        } else {
+                            debugE(response.errorBody())
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ParticipateTravelRes>, t: Throwable) {
+                        debugE(t.message)
+                    }
+                })
+        }
+    }
+
+    private fun setEtBgChange() {
         binding.etCode1.apply {
             setOnFocusChangeListener { view, hasFocus ->
                 if (hasFocus) {
@@ -95,39 +135,23 @@ class ParticipateJoinFragment : Fragment() {
             }
             initializeCode6Listener(viewModel)
         }
+    }
 
-        fullEditText()
-
-        binding.btnParticipatePut.setOnClickListener {
-            apiModule.travelApi.participateExistingTravel(viewModel.makeInviteCode())
-                .enqueue(object : Callback<ParticipateTravelRes> {
-                    override fun onResponse(
-                        call: Call<ParticipateTravelRes>,
-                        response: Response<ParticipateTravelRes>
-                    ) {
-                        // data를 보내줘야 합니다!
-                        if (response.code() == 200 && response.isSuccessful) {
-                            val participateCheckBundle = Bundle()
-                            participateCheckBundle.putParcelable(
-                                "existingGroupContents",
-                                response.body()?.data
-                            )
-                            val participateCheckFragment = ParticipateCheckFragment()
-                            participateCheckFragment.arguments = participateCheckBundle
-
-                            parentFragmentManager.beginTransaction().replace(
-                                R.id.participate_fragment_container_view,
-                                participateCheckFragment
-                            ).commit()
-                        } else {
-                            debugE(response.errorBody())
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ParticipateTravelRes>, t: Throwable) {
-                        debugE(t.message)
-                    }
-                })
+    private fun changeEtFocus() {
+        binding.etCode1.addTextChangedListener {
+            binding.etCode2.requestFocus()
+        }
+        binding.etCode2.addTextChangedListener {
+            binding.etCode3.requestFocus()
+        }
+        binding.etCode3.addTextChangedListener {
+            binding.etCode4.requestFocus()
+        }
+        binding.etCode4.addTextChangedListener {
+            binding.etCode5.requestFocus()
+        }
+        binding.etCode5.addTextChangedListener {
+            binding.etCode6.requestFocus()
         }
     }
 
