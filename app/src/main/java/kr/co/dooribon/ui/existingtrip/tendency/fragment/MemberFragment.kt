@@ -93,6 +93,14 @@ class MemberFragment : Fragment() {
         travelTendencyLauncher.launch(intent)
     }
 
+    fun navigateMyTravelTendencyResult(){
+        val intent = Intent(requireContext(),TravelTendencyResultActivity::class.java)
+        intent.putExtra("travelTendencyResultImageUrl",
+            viewModel.myTravelTendencyResult.value?.tendencyResultImageUrl
+        )
+        startActivity(intent)
+    }
+
     private fun onItemDetailClicked(imageUrl: String) {
         val travelTendencyResultIntent =
             Intent(requireContext(), TravelTendencyResultActivity::class.java)
