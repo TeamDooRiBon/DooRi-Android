@@ -25,16 +25,20 @@ class OnboardingThirdFragment : Fragment() {
 
         binding.lottie.playAnimation()
         startBtnClick()
+        skipBtnClick()
     }
     fun startBtnClick() {
         binding.btnLoadingStart.setOnClickListener {
             val intent = Intent(getActivity(), SignInActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
             startActivity(intent)
-
-            /*startActivity(getIntent<SignInActivity>())
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-            finish()*/
+        }
+    }
+    fun skipBtnClick(){
+        binding.tvSkip.setOnClickListener {
+            val intent = Intent(getActivity(), SignInActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
+            startActivity(intent)
         }
     }
 }
