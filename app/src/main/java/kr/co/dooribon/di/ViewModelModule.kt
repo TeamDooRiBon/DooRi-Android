@@ -26,4 +26,7 @@ class ViewModelModule(private val application: Application) {
 
     fun provideDetailViewModelFactory() : ViewModelProvider.Factory =
         DetailViewModelFactory(repositoryModule.tripTendencyRepository)
+
+    fun provideParticipateGroupViewModelFactory() : ViewModelProvider.Factory =
+        ParticipateGroupViewModelFactory(repositoryModule.participateGroupRepository)
 }
