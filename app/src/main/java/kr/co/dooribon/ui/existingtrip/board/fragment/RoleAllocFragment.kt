@@ -156,6 +156,9 @@ class RoleAllocFragment : Fragment() {
         sheetView.apply {
             findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener {
                 deleteData(position)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    getCheckListData(arguments?.getString("groupId").toString())
+                },1000)
                 bsDialog.dismiss()
             }
             findViewById<TextView>(R.id.tv_add_board_main_todo).text = todoText
