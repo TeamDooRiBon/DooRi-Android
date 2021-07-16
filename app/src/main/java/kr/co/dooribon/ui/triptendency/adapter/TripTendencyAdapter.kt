@@ -14,7 +14,7 @@ class TripTendencyAdapter(
 
     private val questionList = mutableListOf<ParentTravelTendency>()
 
-    private val parentQuestionNumber = listOf(1,2,3,4,5,6,7,8,9,10)
+    private val parentQuestionNumber = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
     private val adapterList = MutableList(10) { _ ->
         TripTendencyQuestionAdapter(onItemClicked = { idx ->

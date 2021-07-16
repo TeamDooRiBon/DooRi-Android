@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentOnboardingFirstBinding
-import kr.co.dooribon.ui.newtrip.join.ParticipateCheckFragment
 import kr.co.dooribon.ui.signin.SignInActivity
-import kr.co.dooribon.utils.getIntent
 
 class OnboardingFirstFragment : Fragment() {
-    private lateinit var binding : FragmentOnboardingFirstBinding
+    private lateinit var binding: FragmentOnboardingFirstBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +28,8 @@ class OnboardingFirstFragment : Fragment() {
         nextBtnClick()
         skipBtnClick()
     }
-    fun nextBtnClick(){
+
+    fun nextBtnClick() {
         binding.btnLoadingNext.setOnClickListener {
             val onboardingsecondFragment = OnboardingSecondFragment()
 
@@ -39,7 +38,8 @@ class OnboardingFirstFragment : Fragment() {
                 .commitNow()
         }
     }
-    fun skipBtnClick(){
+
+    fun skipBtnClick() {
         binding.tvSkip.setOnClickListener {
             val intent = Intent(getActivity(), SignInActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거

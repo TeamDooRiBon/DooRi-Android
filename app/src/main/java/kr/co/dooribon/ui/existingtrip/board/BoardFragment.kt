@@ -22,7 +22,7 @@ class BoardFragment : Fragment() {
 
     private var binding by AutoClearBinding<FragmentBoardBinding>()
     private val viewModel by activityViewModels<ExistingTripViewModel>()
-    private lateinit var groupId : String
+    private lateinit var groupId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

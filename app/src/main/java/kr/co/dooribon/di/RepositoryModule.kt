@@ -10,7 +10,7 @@ class RepositoryModule {
     val homeRepository by lazy {
         HomeRepository(apiModule.travelApi, apiModule.travelImageApi)
     }
-    
+
     val tripTendencyRepository by lazy {
         TripTendencyRepository(apiModule.tendencyApi)
     }

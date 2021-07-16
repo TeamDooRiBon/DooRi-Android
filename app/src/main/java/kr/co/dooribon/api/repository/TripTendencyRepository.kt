@@ -1,5 +1,6 @@
 package kr.co.dooribon.api.repository
 
+import kr.co.dooribon.api.remote.ResultTravelTendencyScoreDTO
 import kr.co.dooribon.api.remote.StoreTravelTendencyReq
 import kr.co.dooribon.api.remote.TendencyAPI
 
@@ -17,5 +18,9 @@ class TripTendencyRepository(
     suspend fun storeTravelTendency(
         storeTravelTendencyReq: StoreTravelTendencyReq,
         groupId: String
-    ) = tendencyAPI.storeTravelTendency(storeTravelTendencyReq,groupId)
+    ) = tendencyAPI.storeTravelTendency(storeTravelTendencyReq, groupId)
+
+    suspend fun fetchMainResultTravelTendency(
+        resultTravelTendencyScore : ResultTravelTendencyScoreDTO
+    ) = tendencyAPI.fetchMainResultTravelTendency(resultTravelTendencyScore)
 }

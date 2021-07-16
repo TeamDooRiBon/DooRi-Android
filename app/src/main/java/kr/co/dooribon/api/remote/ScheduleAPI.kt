@@ -3,7 +3,6 @@ package kr.co.dooribon.api.remote
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.http.*
-import java.util.*
 
 // 여행 일정 data class
 data class BaseTravelScheduleDTO(
@@ -153,7 +152,7 @@ interface ScheduleAPI {
         @Path("scheduleId") scheduleId: String
     ): Call<TravelScheduleRes>
 
-    // TODO : 미해결
+    // 해결
     @PATCH("schedule/{groupId}/{scheduleId}")
     fun editTravelSchedule(
         @Path("groupId") groupId: String,
@@ -161,7 +160,7 @@ interface ScheduleAPI {
         @Body editTravelScheduleReq: EditTravelScheduleReq
     ): Call<EditTravelScheduleRes>
 
-    // TODO : 미해결
+    // 해결
     @DELETE("schedule/{groupId}/{scheduleId}")
     fun deleteTravelSchedule(
         @Path("groupId") groupId: String,

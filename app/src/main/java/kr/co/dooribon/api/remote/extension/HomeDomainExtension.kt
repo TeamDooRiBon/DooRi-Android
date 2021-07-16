@@ -1,8 +1,9 @@
 package kr.co.dooribon.api.remote
 
-import kr.co.dooribon.domain.entity.*
+import kr.co.dooribon.domain.entity.PreviousTravel
+import kr.co.dooribon.domain.entity.Travel
+import kr.co.dooribon.domain.entity.UpComingTravel
 import kr.co.dooribon.utils.DateUtil
-import java.time.DateTimeException
 
 /**
  * Domain Layout 객체로 변경해주는 확장 함수 모음

@@ -2,9 +2,6 @@ package kr.co.dooribon.utils.extension
 
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import kr.co.dooribon.R
 import kr.co.dooribon.utils.dpToPixel
 
 fun Button.resizeMatchWidth() {

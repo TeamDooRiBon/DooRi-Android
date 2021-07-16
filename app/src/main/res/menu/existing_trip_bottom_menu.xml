@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/nav_people"
         android:icon="@drawable/group_selector"
-        android:title="멤버"/>
+        android:title="그룹"/>
 
     <item android:id="@+id/nav_calendar"
         android:icon="@drawable/schedule_selector"

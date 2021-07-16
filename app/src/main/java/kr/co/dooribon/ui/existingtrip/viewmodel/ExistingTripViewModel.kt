@@ -23,19 +23,19 @@ class ExistingTripViewModel : ViewModel() {
     val homePreviousTravelContents: LiveData<PreviousTravel>
         get() = _homePreviousTravelContents
 
-    fun initializeHomeProceedingTravel(homeProceedingTravel : Travel){
+    fun initializeHomeProceedingTravel(homeProceedingTravel: Travel) {
         _homeProceedingTravelContents.value = homeProceedingTravel
     }
 
-    fun initializeUpComingTravel(upComingTravel: UpComingTravel){
+    fun initializeUpComingTravel(upComingTravel: UpComingTravel) {
         _homeUpComingTravelContents.value = upComingTravel
     }
 
-    fun initializePreviousTravel(previousTravel: PreviousTravel){
+    fun initializePreviousTravel(previousTravel: PreviousTravel) {
         _homePreviousTravelContents.value = previousTravel
     }
 
-    fun setGroupId(groupId : String){
+    fun setGroupId(groupId: String) {
         _groupId = groupId
     }
 

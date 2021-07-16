@@ -21,7 +21,7 @@ fun LinearLayout.addChip(chipText: String) {
 }
 
 @BindingAdapter("set_chip")
-fun LinearLayout.setChipList(chipList : List<String>?){
+fun LinearLayout.setChipList(chipList: List<String>?) {
     chipList?.forEach {
         addChip(it)
     }

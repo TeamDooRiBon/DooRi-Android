@@ -7,11 +7,10 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.api.remote.GroupTravelTendencyDTO
 import kr.co.dooribon.databinding.ViewOtherMemberTripTypeBinding
-import kr.co.dooribon.domain.entity.MemberTripType
 import kr.co.dooribon.utils.addChip
 
 class MemberTripTypeAdapter(
-    private val onItemDetailClicked : (imageUrl : String) -> Unit
+    private val onItemDetailClicked: (imageUrl: String) -> Unit
 ) :
     RecyclerView.Adapter<MemberTripTypeAdapter.MemberTripTypeViewHolder>() {
 
@@ -24,6 +23,7 @@ class MemberTripTypeAdapter(
                 onItemDetailClicked(memberTripTypeList[adapterPosition].tendencyResultImageUrl)
             }
         }
+
         fun bind(item: GroupTravelTendencyDTO) {
             binding.item = item
         }

@@ -10,7 +10,7 @@ class TravelDoneViewModel : ViewModel() {
     val inviteCode: LiveData<String>
         get() = _inviteCode
 
-    fun initializeInviteCode(inviteCode : String){
+    fun initializeInviteCode(inviteCode: String) {
         _inviteCode.value = inviteCode
     }
 }

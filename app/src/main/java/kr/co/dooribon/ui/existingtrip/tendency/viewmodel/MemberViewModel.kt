@@ -30,12 +30,12 @@ class MemberViewModel(
         get() = _myTravelTendencyResult
 
     private val _otherTravelTendencyResult = MutableLiveData<List<GroupTravelTendencyDTO>>()
-    val otherTravelTendencyResult : LiveData<List<GroupTravelTendencyDTO>>
+    val otherTravelTendencyResult: LiveData<List<GroupTravelTendencyDTO>>
         get() = _otherTravelTendencyResult
 
     // 성향 테스트 결과
     private val _travelTendencyResult = MutableLiveData<StoreTravelTendencyDTO>()
-    val travelTendencyResult : LiveData<StoreTravelTendencyDTO>
+    val travelTendencyResult: LiveData<StoreTravelTendencyDTO>
         get() = _travelTendencyResult
 
     fun initializeMemberTendencyGroupId(groupId: String) {
@@ -54,8 +54,8 @@ class MemberViewModel(
                     _otherTravelTendencyResult.value = it.data.otherTravelTendencyResult
                 } else {
                     _isOtherTravelTendencyResult.value = true
-                    Log.d("otherEvent",_isOtherTravelTendencyResult.value.toString())
-                    Log.d("other",_otherTravelTendencyResult.value.toString())
+                    Log.d("otherEvent", _isOtherTravelTendencyResult.value.toString())
+                    Log.d("other", _otherTravelTendencyResult.value.toString())
                 }
 
                 if (it.data.myTravelTendencyResult == null) {
@@ -64,8 +64,8 @@ class MemberViewModel(
                     // 여기 부분 Domain으로 변환 x , 시간 부족함
                     _isMyTravelTendencyResult.value = true
                     _myTravelTendencyResult.value = it.data.myTravelTendencyResult
-                    Log.d("mineEvent",_isMyTravelTendencyResult.value.toString())
-                    Log.d("mine",_myTravelTendencyResult.value.toString())
+                    Log.d("mineEvent", _isMyTravelTendencyResult.value.toString())
+                    Log.d("mine", _myTravelTendencyResult.value.toString())
                 }
             }.onFailure {
                 debugE(it)
@@ -73,7 +73,7 @@ class MemberViewModel(
         }
     }
 
-    fun initializeTravelTendencyResult(storeTravelTendencyDTO: StoreTravelTendencyDTO){
+    fun initializeTravelTendencyResult(storeTravelTendencyDTO: StoreTravelTendencyDTO) {
         _travelTendencyResult.value = storeTravelTendencyDTO
     }
 

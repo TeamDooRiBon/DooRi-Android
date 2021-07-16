@@ -11,14 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kr.co.dooribon.api.remote.StoreTravelTendencyDTO
 import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.FragmentMemberBinding
-import kr.co.dooribon.domain.entity.MemberTripType
 import kr.co.dooribon.ui.existingtrip.tendency.adapter.MemberTripTypeAdapter
 import kr.co.dooribon.ui.existingtrip.tendency.contract.TravelTendencyContract
 import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.MemberViewModel
 import kr.co.dooribon.ui.traveltendencyresult.TravelTendencyResultActivity
 import kr.co.dooribon.ui.triptendency.TripTendencyActivity
 import kr.co.dooribon.utils.AutoClearBinding
-import kr.co.dooribon.utils.addChip
 
 /**
  * Data가 존재하는지 안하는지에 따라서 visibility를 바꾸면 된다
@@ -38,7 +36,7 @@ class MemberFragment : Fragment() {
     }
 
     private val travelTendencyLauncher =
-        registerForActivityResult(TravelTendencyContract()){ result : StoreTravelTendencyDTO? ->
+        registerForActivityResult(TravelTendencyContract()) { result: StoreTravelTendencyDTO? ->
             result?.let { viewModel.initializeTravelTendencyResult(it) }
         }
 
@@ -70,7 +68,7 @@ class MemberFragment : Fragment() {
 
     }
 
-    private fun configureRecyclerView(){
+    private fun configureRecyclerView() {
         binding.rvMemberTripOther.apply {
             adapter = memberTripTypeAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -78,26 +76,35 @@ class MemberFragment : Fragment() {
     }
 
     private fun observeOtherTravelTendencyResult() {
-        viewModel.otherTravelTendencyResult.observe(viewLifecycleOwner){
+        viewModel.otherTravelTendencyResult.observe(viewLifecycleOwner) {
             memberTripTypeAdapter.submitList(it)
         }
     }
 
     private fun observeMemberTendencyGroupId() {
-        viewModel.memberTendencyGroupId.observe(viewLifecycleOwner){
+        viewModel.memberTendencyGroupId.observe(viewLifecycleOwner) {
             viewModel.fetchGroupTravelTendency()
         }
     }
 
-    fun navigateTravelTendencyTest(){
-        val intent = Intent(requireContext(),TripTendencyActivity::class.java)
-        intent.putExtra("groupId",viewModel.memberTendencyGroupId.value)
+    fun navigateTravelTendencyTest() {
+        val intent = Intent(requireContext(), TripTendencyActivity::class.java)
+        intent.putExtra("groupId", viewModel.memberTendencyGroupId.value)
         travelTendencyLauncher.launch(intent)
     }
 
-    private fun onItemDetailClicked(imageUrl : String){
-        val travelTendencyResultIntent = Intent(requireContext(), TravelTendencyResultActivity::class.java)
-        travelTendencyResultIntent.putExtra("travelTendencyResultImageUrl",imageUrl)
+    fun navigateMyTravelTendencyResult(){
+        val intent = Intent(requireContext(),TravelTendencyResultActivity::class.java)
+        intent.putExtra("travelTendencyResultImageUrl",
+            viewModel.myTravelTendencyResult.value?.tendencyResultImageUrl
+        )
+        startActivity(intent)
+    }
+
+    private fun onItemDetailClicked(imageUrl: String) {
+        val travelTendencyResultIntent =
+            Intent(requireContext(), TravelTendencyResultActivity::class.java)
+        travelTendencyResultIntent.putExtra("travelTendencyResultImageUrl", imageUrl)
         startActivity(travelTendencyResultIntent)
     }
 }
