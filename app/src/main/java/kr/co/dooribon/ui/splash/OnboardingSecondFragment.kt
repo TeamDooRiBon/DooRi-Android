@@ -10,8 +10,8 @@ import kr.co.dooribon.R
 import kr.co.dooribon.databinding.FragmentOnboardingSecondBinding
 import kr.co.dooribon.ui.signin.SignInActivity
 
-class OnboardingSecondFragment : Fragment(){
-    private lateinit var binding : FragmentOnboardingSecondBinding
+class OnboardingSecondFragment : Fragment() {
+    private lateinit var binding: FragmentOnboardingSecondBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +28,7 @@ class OnboardingSecondFragment : Fragment(){
         nextBtnClick()
         skipBtnClick()
     }
+
     fun nextBtnClick() {
         binding.btnLoadingNext.setOnClickListener {
             val onboardingthirdFragment = OnboardingThirdFragment()
@@ -37,7 +38,8 @@ class OnboardingSecondFragment : Fragment(){
                 .commitNow()
         }
     }
-    fun skipBtnClick(){
+
+    fun skipBtnClick() {
         binding.tvSkip.setOnClickListener {
             val intent = Intent(getActivity(), SignInActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거

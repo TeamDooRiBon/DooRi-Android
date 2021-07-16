@@ -4,10 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -15,7 +12,6 @@ import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTravelPlanDoneBinding
 import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import kr.co.dooribon.utils.debugSSong
-import kr.co.dooribon.utils.getIntent
 import java.util.*
 import kotlin.concurrent.timerTask
 
@@ -44,7 +40,7 @@ class TravelPlanDoneActivity : AppCompatActivity() {
 
         binding.btnCopyCodes.setOnClickListener {
             val clipBoard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-            val clipData = ClipData.newPlainText("InviteCode","${viewModel.inviteCode.value}")
+            val clipData = ClipData.newPlainText("InviteCode", "${viewModel.inviteCode.value}")
             debugSSong(viewModel.inviteCode.value)
             clipBoard.setPrimaryClip(clipData)
 
@@ -55,7 +51,7 @@ class TravelPlanDoneActivity : AppCompatActivity() {
     }
 
     private fun observeInviteCode() {
-        viewModel.inviteCode.observe(this){
+        viewModel.inviteCode.observe(this) {
             val teamCodeCharArray = it.toCharArray()
             binding.apply {
                 etCode1.setText(teamCodeCharArray[0].toString())
@@ -71,7 +67,7 @@ class TravelPlanDoneActivity : AppCompatActivity() {
     private fun moveToExistingTripActivity(dlg: DoneCopyDialog) {
         val intent = Intent(this, ExistingTripActivity::class.java)
         dlg.dismiss() // 다이얼로그 종료
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // activity back stack 모두 제거
         finish() // 현재 액티비티 종료
         startActivity(intent)
     }

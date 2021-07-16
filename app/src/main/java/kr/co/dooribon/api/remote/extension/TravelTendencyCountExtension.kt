@@ -2,9 +2,7 @@ package kr.co.dooribon.api.remote.extension
 
 import kr.co.dooribon.api.remote.ChildQuestionCountDTO
 import kr.co.dooribon.api.remote.ParentQuestionCountDTO
-import kr.co.dooribon.api.remote.ParentQuestionDTO
 import kr.co.dooribon.domain.entity.AnswerQuestion
-import kr.co.dooribon.domain.entity.ExpandableAnswerQuestion
 
 /*
 data class ParentQuestionCountDTO(
@@ -43,20 +41,20 @@ fun ChildQuestionCountDTO.asDomainChildQuestion(): AnswerQuestion.Question.Child
     )
 }
 
-fun ParentQuestionCountDTO.asDomainParentQuestion() : AnswerQuestion.Question{
+fun ParentQuestionCountDTO.asDomainParentQuestion(): AnswerQuestion.Question {
     return AnswerQuestion.Question(
         questionTitle = this.parentQuestionTitle,
         questionSubject = this.childQuestions.asDomainChildQuestionList()
     )
 }
 
-fun List<ChildQuestionCountDTO>.asDomainChildQuestionList() : List<AnswerQuestion.Question.ChildQuestion> {
+fun List<ChildQuestionCountDTO>.asDomainChildQuestionList(): List<AnswerQuestion.Question.ChildQuestion> {
     return map {
         it.asDomainChildQuestion()
     }
 }
 
-fun List<ParentQuestionCountDTO>.asDomainParentQuestionList() : List<AnswerQuestion.Question>{
+fun List<ParentQuestionCountDTO>.asDomainParentQuestionList(): List<AnswerQuestion.Question> {
     return map {
         it.asDomainParentQuestion()
     }

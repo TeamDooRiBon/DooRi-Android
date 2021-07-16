@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import kr.co.dooribon.R
-import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityDatePickBinding
 import kr.co.dooribon.dialog.DooRiBonDialog
 import kr.co.dooribon.domain.entity.PickDatePair

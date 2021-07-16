@@ -49,6 +49,7 @@ data class TravelTendencyQuestionCountRes(
     @SerializedName("data")
     val data: List<ParentQuestionCountDTO>
 )
+
 data class ParentQuestionCountDTO(
     @SerializedName("title")
     val parentQuestionTitle: String,
@@ -77,9 +78,9 @@ data class GroupTravelTendencyRes(
 
 data class GroupTravelTendencyResultDTO(
     @SerializedName("myResult")
-    val myTravelTendencyResult : GroupTravelTendencyDTO,
+    val myTravelTendencyResult: GroupTravelTendencyDTO,
     @SerializedName("othersResult")
-    val otherTravelTendencyResult : List<GroupTravelTendencyDTO>
+    val otherTravelTendencyResult: List<GroupTravelTendencyDTO>
 )
 
 data class GroupTravelTendencyDTO(

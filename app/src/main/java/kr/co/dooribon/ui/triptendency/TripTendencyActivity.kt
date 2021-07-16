@@ -53,7 +53,7 @@ class TripTendencyActivity : AppCompatActivity() {
     }
 
     private fun observeTravelTendencyResult() {
-        viewModel.travelTendencyResult.observe(this){
+        viewModel.travelTendencyResult.observe(this) {
             val imageBundle = Bundle()
             imageBundle.putString(
                 "resultImageUrl",

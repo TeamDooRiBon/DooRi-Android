@@ -17,5 +17,5 @@ class TripTendencyRepository(
     suspend fun storeTravelTendency(
         storeTravelTendencyReq: StoreTravelTendencyReq,
         groupId: String
-    ) = tendencyAPI.storeTravelTendency(storeTravelTendencyReq,groupId)
+    ) = tendencyAPI.storeTravelTendency(storeTravelTendencyReq, groupId)
 }

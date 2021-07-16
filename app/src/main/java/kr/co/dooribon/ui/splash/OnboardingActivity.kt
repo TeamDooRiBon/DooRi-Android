@@ -4,9 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityOnboardingBinding
-import kr.co.dooribon.ui.newtrip.join.ParticipateJoinFragment
-import kr.co.dooribon.ui.signin.SignInActivity
-import kr.co.dooribon.utils.getIntent
 
 class OnboardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnboardingBinding

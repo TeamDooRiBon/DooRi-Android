@@ -13,8 +13,6 @@ import kr.co.dooribon.R
 import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.ActivityHomeBinding
 import kr.co.dooribon.dialog.NewTripDialog
-import kr.co.dooribon.domain.entity.PreviousTravel
-import kr.co.dooribon.domain.entity.UpComingTravel
 import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import kr.co.dooribon.ui.home.adapter.PreviousTripAdapter
 import kr.co.dooribon.ui.home.adapter.UpComingTripAdapter
@@ -119,7 +117,10 @@ class HomeActivity : AppCompatActivity() {
             "groupId",
             viewModel.homePreviousTravel.value?.get(index)!!.previousTravelId
         )
-        previousIntent.putExtra("previousTravelContents",viewModel.homePreviousTravel.value?.get(index))
+        previousIntent.putExtra(
+            "previousTravelContents",
+            viewModel.homePreviousTravel.value?.get(index)
+        )
         startActivity(previousIntent)
     }
 
@@ -130,7 +131,10 @@ class HomeActivity : AppCompatActivity() {
             "groupId",
             viewModel.homeUpComingTravel.value?.get(index)!!.upComingTravelId
         )
-        upComingIntent.putExtra("upComingTravelContents",viewModel.homeUpComingTravel.value?.get(index))
+        upComingIntent.putExtra(
+            "upComingTravelContents",
+            viewModel.homeUpComingTravel.value?.get(index)
+        )
         startActivity(upComingIntent)
     }
 
@@ -138,7 +142,10 @@ class HomeActivity : AppCompatActivity() {
     fun navigateExistingTrip() {
         val existingTravelIntent = Intent(this, ExistingTripActivity::class.java)
         existingTravelIntent.putExtra("groupId", viewModel.homeProceedingTravel.value?.id)
-        existingTravelIntent.putExtra("proceedingTravelContents",viewModel.homeProceedingTravel.value)
+        existingTravelIntent.putExtra(
+            "proceedingTravelContents",
+            viewModel.homeProceedingTravel.value
+        )
         startActivity(existingTravelIntent)
     }
 

@@ -3,7 +3,6 @@ package kr.co.dooribon.api.remote
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.http.*
-import java.util.*
 
 // 여행 일정 data class
 data class BaseTravelScheduleDTO(

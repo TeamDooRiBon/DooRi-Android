@@ -32,21 +32,21 @@ object TravelTendencyBindingAdapter {
 }
 
 @BindingAdapter("my_travel_tendency_visible_card_view")
-fun CardView.setMyTravelTendencyTest(isTravelTendencyResult : Boolean){
+fun CardView.setMyTravelTendencyTest(isTravelTendencyResult: Boolean) {
     isVisible = isTravelTendencyResult
 }
 
 @BindingAdapter("my_travel_tendency_visible_recyclerview")
-fun RecyclerView.setOtherTravelTendency(isTravelTendencyResult: Boolean){
+fun RecyclerView.setOtherTravelTendency(isTravelTendencyResult: Boolean) {
     isVisible = isTravelTendencyResult
 }
 
 @BindingAdapter("my_travel_tendency_visible_constraint")
-fun ConstraintLayout.setOtherTravelTendency(isTravelTendencyResult : Boolean){
+fun ConstraintLayout.setOtherTravelTendency(isTravelTendencyResult: Boolean) {
     isVisible = isTravelTendencyResult
 }
 
 @BindingAdapter("my_travel_tendency_visible_text_view")
-fun TextView.setMyTravelTendencyTest(isTravelTendencyResult: Boolean){
+fun TextView.setMyTravelTendencyTest(isTravelTendencyResult: Boolean) {
     isVisible = isTravelTendencyResult
 }

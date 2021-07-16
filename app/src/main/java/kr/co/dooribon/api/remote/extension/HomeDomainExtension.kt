@@ -1,6 +1,8 @@
 package kr.co.dooribon.api.remote
 
-import kr.co.dooribon.domain.entity.*
+import kr.co.dooribon.domain.entity.PreviousTravel
+import kr.co.dooribon.domain.entity.Travel
+import kr.co.dooribon.domain.entity.UpComingTravel
 import kr.co.dooribon.utils.DateUtil
 
 /**

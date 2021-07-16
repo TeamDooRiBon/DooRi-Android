@@ -10,7 +10,7 @@ class TravelTendencyContract : ActivityResultContract<Intent, StoreTravelTendenc
     override fun createIntent(context: Context, input: Intent?): Intent = input!!
 
     override fun parseResult(resultCode: Int, intent: Intent?): StoreTravelTendencyDTO? {
-        return when(resultCode){
+        return when (resultCode) {
             Activity.RESULT_OK -> intent?.getParcelableExtra("travelTendencyResult")
             else -> null
         }

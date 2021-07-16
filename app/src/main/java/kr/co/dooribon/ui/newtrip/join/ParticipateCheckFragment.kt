@@ -20,7 +20,7 @@ import kotlin.concurrent.fixedRateTimer
 class ParticipateCheckFragment : Fragment() {
     private lateinit var binding: FragmentParticipateCheckBinding
 
-    private val viewModel : ParticipateGroupViewModel by activityViewModels()
+    private val viewModel: ParticipateGroupViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +53,7 @@ class ParticipateCheckFragment : Fragment() {
 
     }
 
-    private fun navigateToParticipateJoin(){
+    private fun navigateToParticipateJoin() {
         val participateJoinFragment = ParticipateJoinFragment()
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.participate_fragment_container_view, participateJoinFragment)

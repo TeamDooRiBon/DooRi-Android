@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kr.co.dooribon.api.repository.TripTendencyRepository
 import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.DetailViewModel
-import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.MemberViewModel
 
 class DetailViewModelFactory(
     private val tripTendencyRepository: TripTendencyRepository

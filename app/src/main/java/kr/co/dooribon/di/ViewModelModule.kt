@@ -3,8 +3,6 @@ package kr.co.dooribon.di
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider
 import kr.co.dooribon.application.MainApplication.Companion.repositoryModule
-import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.DetailViewModel
-import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.MemberViewModel
 import kr.co.dooribon.ui.factory.*
 
 /**
@@ -21,12 +19,12 @@ class ViewModelModule(private val application: Application) {
     fun provideTendencyViewModelFactory(): ViewModelProvider.Factory =
         TendencyViewModelFactory(repositoryModule.tripTendencyRepository)
 
-    fun provideMemberViewModelFactory() : ViewModelProvider.Factory =
+    fun provideMemberViewModelFactory(): ViewModelProvider.Factory =
         MemberViewModelFactory(repositoryModule.tripTendencyRepository)
 
-    fun provideDetailViewModelFactory() : ViewModelProvider.Factory =
+    fun provideDetailViewModelFactory(): ViewModelProvider.Factory =
         DetailViewModelFactory(repositoryModule.tripTendencyRepository)
 
-    fun provideParticipateGroupViewModelFactory() : ViewModelProvider.Factory =
+    fun provideParticipateGroupViewModelFactory(): ViewModelProvider.Factory =
         ParticipateGroupViewModelFactory(repositoryModule.participateGroupRepository)
 }

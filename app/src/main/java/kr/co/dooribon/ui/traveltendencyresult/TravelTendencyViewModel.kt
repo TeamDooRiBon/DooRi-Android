@@ -8,10 +8,10 @@ import kr.co.dooribon.utils.debugSSong
 class TravelTendencyViewModel : ViewModel() {
 
     private val _travelTendencyResultImageUrl = MutableLiveData<String>()
-    val travelTendencyResultImageUrl : LiveData<String>
+    val travelTendencyResultImageUrl: LiveData<String>
         get() = _travelTendencyResultImageUrl
 
-    fun initializeTravelTendencyResultImageUrl(imageUrl : String){
+    fun initializeTravelTendencyResultImageUrl(imageUrl: String) {
         _travelTendencyResultImageUrl.value = imageUrl
         debugSSong(_travelTendencyResultImageUrl.value)
     }

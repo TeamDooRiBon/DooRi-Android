@@ -1,8 +1,8 @@
 package kr.co.dooribon.ui.newtrip.join.viewmodel
 
-import android.text.TextUtils
-import androidx.lifecycle.*
-import kotlinx.coroutines.launch
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import kr.co.dooribon.api.repository.ParticipateGroupRepository
 import kr.co.dooribon.utils.SingleLiveEvent
 import kr.co.dooribon.utils.debugSSong
@@ -12,27 +12,27 @@ class ParticipateGroupViewModel(
 ) : ViewModel() {
 
     private val _code1Text = MutableLiveData<String>()
-    val code1Text : LiveData<String>
+    val code1Text: LiveData<String>
         get() = _code1Text
 
     private val _code2Text = MutableLiveData<String>()
-    val code2Text : LiveData<String>
+    val code2Text: LiveData<String>
         get() = _code2Text
 
     private val _code3Text = MutableLiveData<String>()
-    val code3Text : LiveData<String>
+    val code3Text: LiveData<String>
         get() = _code3Text
 
     private val _code4Text = MutableLiveData<String>()
-    val code4Text : LiveData<String>
+    val code4Text: LiveData<String>
         get() = _code4Text
 
     private val _code5Text = MutableLiveData<String>()
-    val code5Text : LiveData<String>
+    val code5Text: LiveData<String>
         get() = _code5Text
 
     private val _code6Text = MutableLiveData<String>()
-    val code6Text : LiveData<String>
+    val code6Text: LiveData<String>
         get() = _code6Text
 
     val singleLiveEvent = SingleLiveEvent<Boolean>()
@@ -61,11 +61,11 @@ class ParticipateGroupViewModel(
         _code6Text.value = code6Text
     }
 
-    fun updateSingleLiveEvent(value : Boolean){
+    fun updateSingleLiveEvent(value: Boolean) {
         singleLiveEvent.value = value
     }
 
-    fun makeInviteCode() : String{
+    fun makeInviteCode(): String {
         val inviteCode = StringBuilder()
         inviteCode.append(_code1Text.value)
         inviteCode.append(_code2Text.value)
