@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.BoardContentDTO
+import kr.co.dooribon.api.remote.CreateTravelBoardReq
+import kr.co.dooribon.api.remote.CreateTravelBoardRes
 import kr.co.dooribon.api.remote.InquireTravelBoardRes
 import kr.co.dooribon.application.MainApplication
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
@@ -60,11 +62,37 @@ class MustKnowFragment : Fragment() {
                     dismiss()
                 }
                 findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                    sendData(findViewById<EditText>(R.id.et_add_content)?.text.toString())
                     dismiss()
                 }
                 show()
             }
         }
+    }
+
+    private fun sendData(sendText : String){
+        MainApplication.apiModule.boardApi.createTravelBoard(
+            arguments?.getString("groupId").toString(),
+            "know",
+            CreateTravelBoardReq(
+                sendText
+            )
+        ).enqueue(object : Callback<CreateTravelBoardRes>{
+            override fun onResponse(
+                call: Call<CreateTravelBoardRes>,
+                response: Response<CreateTravelBoardRes>
+            ) {
+                if(response.isSuccessful){
+                    Log.e("success", "must know ${response.body()?.message.toString()}")
+                }else{
+                    Log.e("createTravel", "Not Success")
+                }
+            }
+
+            override fun onFailure(call: Call<CreateTravelBoardRes>, t: Throwable) {
+                Log.e("sendData", t.message.toString())
+            }
+        })
     }
 
     /* 서버에서 수신한 것에 값이 들어있을 때, 디폴트로 들어가있는 값을 지운다. */
