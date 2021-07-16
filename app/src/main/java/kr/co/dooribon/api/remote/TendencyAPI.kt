@@ -140,6 +140,12 @@ data class StoreTravelTendencyRes(
     val data: StoreTravelTendencyDTO
 )
 
+// 메인 성향 테스트
+data class ResultTravelTendencyScoreDTO(
+    @SerializedName("score")
+    val score : List<Int>
+)
+
 interface TendencyAPI {
     // 성향 테스트 질문 조회 , 이건 함
     // 해결
@@ -167,4 +173,10 @@ interface TendencyAPI {
         @Body storeTravelTendencyReq: StoreTravelTendencyReq,
         @Path("groupId") groupId: String
     ): StoreTravelTendencyRes
+
+    // 메인 성향테스트
+    @POST("tendency/result/main")
+    suspend fun fetchMainResultTravelTendency(
+        @Body resultTravelTendencyScore : ResultTravelTendencyScoreDTO
+    ) : StoreTravelTendencyRes
 }

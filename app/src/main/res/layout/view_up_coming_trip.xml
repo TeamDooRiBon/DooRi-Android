@@ -41,8 +41,8 @@
                     android:id="@+id/iv_upcoming_trip"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/dummy_round_view"
+                    android:scaleType="centerCrop"
+                    set_up_coming_travel_image_url="@{item.upComingTravelImageUrl}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

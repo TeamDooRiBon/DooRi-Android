@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import kr.co.dooribon.api.remote.ResultTravelTendencyScoreDTO
 import kr.co.dooribon.api.remote.StoreTravelTendencyDTO
 import kr.co.dooribon.api.remote.StoreTravelTendencyReq
 import kr.co.dooribon.api.remote.extension.asDomainParentQuestionList
@@ -124,13 +125,17 @@ class TripTendencyViewModel(
     fun storeMyTravelTendency() =
         viewModelScope.launch {
             runCatching {
-                _groupId.value?.let {
+                if(_groupId.value == null){
+                    tripTendencyRepository.fetchMainResultTravelTendency(
+                        ResultTravelTendencyScoreDTO(_questionWeightResultList)
+                    )
+                } else {
                     tripTendencyRepository.storeTravelTendency(
                         StoreTravelTendencyReq(
                             _questionWeightResultList,
                             _selectedPositionForServer.value!!
                         ),
-                        it
+                        _groupId.value!!
                     )
                 }
             }.onSuccess {
@@ -139,7 +144,6 @@ class TripTendencyViewModel(
                 debugE(it)
             }
         }
-
 
     companion object {
         private const val MAX_QUESTION_COUNT = 10

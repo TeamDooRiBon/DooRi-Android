@@ -3,6 +3,7 @@ package kr.co.dooribon.binding
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kr.co.dooribon.R
 import kr.co.dooribon.utils.dpToPixel
 import kotlin.math.roundToInt
@@ -51,4 +52,13 @@ object BindingAdapter {
             .into(imageView)
     }
 
+    @JvmStatic
+    @BindingAdapter("set_up_coming_travel_image_url")
+    fun setUpComingTravelImageUrl(imageView : ImageView , imageUrl : String?){
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .override(imageView.context.dpToPixel(120),imageView.context.dpToPixel(120))
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .into(imageView)
+    }
 }
