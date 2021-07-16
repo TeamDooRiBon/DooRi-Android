@@ -1,5 +1,6 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper

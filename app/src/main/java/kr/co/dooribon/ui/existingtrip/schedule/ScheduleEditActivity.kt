@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -361,6 +362,8 @@ class ScheduleEditActivity : AppCompatActivity() {
 
     private fun scheduleEditBtnClickListener() {
         binding.btnScheduleEdit.setOnClickListener {
+            val intent = Intent(this, ScheduleFragment::class.java)
+            setResult(RESULT_OK, intent)
             finish()
         }
     }
