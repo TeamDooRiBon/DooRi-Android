@@ -25,27 +25,15 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="28dp"
-            android:text="●"
-            android:textColor="@color/doo_ri_bon_blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_tendency_detail_parent_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:fontFamily="@font/spoqa_han_sans_neo_bold"
             android:includeFontPadding="false"
-            android:text="@{Integer.toString(question_number)}"
+            android:text="#"
             android:textColor="@color/doo_ri_bon_blue"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_parent_dot"
-            app:layout_constraintStart_toEndOf="@id/tv_tendency_detail_parent_dot"
-            app:layout_constraintTop_toTopOf="@id/tv_tendency_detail_parent_dot"
-            tools:text="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_tendency_detail_question_title"
@@ -58,7 +46,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/tv_tendency_detail_parent_dot"
-            app:layout_constraintStart_toEndOf="@id/tv_tendency_detail_parent_number"
+            app:layout_constraintStart_toEndOf="@id/tv_tendency_detail_parent_dot"
             app:layout_constraintTop_toTopOf="@id/tv_tendency_detail_parent_dot"
             tools:text="돈을 쓸 때 나는?" />
 
