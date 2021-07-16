@@ -22,8 +22,8 @@ data class BaseTravelScheduleDTO(
 // 여행 일정 추가
 data class CreateTravelScheduleReq(
     val travelScheduleTitle: String,
-    val travelScheduleStateTime: Date,
-    val travelScheduleEndTime: Date,
+    val travelScheduleStateTime: String,
+    val travelScheduleEndTime: String,
     val travelScheduleLocation: String,
     val travelScheduleMemo: String
 )
@@ -36,7 +36,7 @@ data class CreateTravelScheduleRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: BaseTravelScheduleDTO
+    val data: List<BaseTravelScheduleDTO>
 )
 
 // 여행 일정 뷰

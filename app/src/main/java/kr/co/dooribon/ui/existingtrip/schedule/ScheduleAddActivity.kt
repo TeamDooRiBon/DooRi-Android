@@ -1,14 +1,25 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.CreateTravelReq
+import kr.co.dooribon.api.remote.CreateTravelScheduleReq
+import kr.co.dooribon.api.remote.CreateTravelScheduleRes
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityScheduleAddBinding
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
+import kr.co.dooribon.utils.DateUtil
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.LocalDate
+import java.util.*
 
 class ScheduleAddActivity : AppCompatActivity() {
 
@@ -18,6 +29,10 @@ class ScheduleAddActivity : AppCompatActivity() {
     private var isStartTimeChk = false // 시작 시간 체크되었는지
     private var isEndTimeChk = false // 끝 시간 체크되었는지
     private var isBtnActivated = false // 버튼 활성화 되었는지 여부, true면 활성화, false면 비활성화
+
+    private var passedYear = ""
+    private var passedMonth = ""
+    private var passedDate = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +55,9 @@ class ScheduleAddActivity : AppCompatActivity() {
     /* 시간 선택하는 부분 날짜 선택 */
     private fun setTravelDate() {
         var startDateStr = ""
-        val passedYear = intent.getStringExtra("year").toString()
-        val passedMonth = intent.getStringExtra("month").toString()
-        val passedDate = intent.getStringExtra("date").toString()
+        passedYear = intent.getStringExtra("year").toString()
+        passedMonth = intent.getStringExtra("month").toString()
+        passedDate = intent.getStringExtra("date").toString()
         Log.e("passedYear", passedYear)
         val dayOfWeek = getDayOfWeek(
             startDateStr.plus(passedYear).plus("-").plus(addZero(passedMonth)).plus("-")
@@ -462,11 +477,59 @@ class ScheduleAddActivity : AppCompatActivity() {
     }
 
     private fun sendScheduleData() {
+        val startTime =
+            passedYear.plus("-").plus(addZero(passedMonth)).plus("-").plus(addZero(passedDate))
+                .plus(" ").plus(
+                    if (binding.tvTimepickerAmpm1.text == "오후") {
+                        (binding.tvTimepickerHour1.text.toString().toInt() + 12).toString()
+                    } else { // 오전일 때는 그냥 12더하지 않고 추가
+                        binding.tvTimepickerHour1.text.toString()
+                    }
+                ).plus(":").plus(binding.tvTimepickerMinute1.text.toString())
+        val endTime =
+            passedYear.plus("-").plus(addZero(passedMonth)).plus("-").plus(addZero(passedDate))
+                .plus(" ").plus(
+                    if (binding.tvTimepickerAmpm2.text == "오후") {
+                        (binding.tvTimepickerHour2.text.toString().toInt() + 12).toString()
+                    } else { // 오전일 때는 그냥 12더하지 않고 추가
+                        binding.tvTimepickerHour2.text.toString()
+                    }
+                ).plus(":").plus(binding.tvTimepickerMinute2.text.toString())
         Log.e("groupId", intent.getStringExtra("groupId").toString())
-//        apiModule.scheduleApi.createTravelSchedule(
-//            intent.getStringExtra("groupId").toString(),
-//            //CreateTravelReq(binding.)
-//        )
+        Log.e("1", binding.etScheduleAddWhat.text.toString())
+        Log.e("2", startTime)
+        Log.e("3", endTime)
+        Log.e("4", binding.etScheduleAddLocation.text.toString())
+        Log.e("5", binding.etScheduleAddMemo.text.toString())
+        apiModule.scheduleApi.createTravelSchedule(
+            intent.getStringExtra("groupId").toString(),
+            CreateTravelScheduleReq(
+                binding.etScheduleAddWhat.text.toString(),
+                startTime,
+                endTime,
+                binding.etScheduleAddLocation.text.toString(),
+                binding.etScheduleAddMemo.text.toString()
+            )
+        ).enqueue(object : Callback<CreateTravelScheduleRes> {
+            override fun onResponse(
+                call: Call<CreateTravelScheduleRes>,
+                response: Response<CreateTravelScheduleRes>
+            ) {
+                if (response.isSuccessful) {
+                    Log.e("isSuccess", response.body()!!.message)
+                } else {
+                    Log.e("not", response.body()?.data.toString())
+                    Log.e("notSuccess", response.message())
+                    Log.e("notSuccess", response.body()?.message.toString())
+                    Log.e("notSuccess", response.errorBody().toString())
+                    Log.e("notSuccess", response.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<CreateTravelScheduleRes>, t: Throwable) {
+                Log.e("onFailure", t.message.toString())
+            }
+        })
     }
 
     private fun addBackBtnClickListener() {
