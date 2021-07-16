@@ -97,6 +97,29 @@ class GoalFragment : Fragment() {
             })
     }
 
+    private fun deleteData(position: Int) {
+        MainApplication.apiModule.boardApi.deleteTravelBoard(
+            arguments?.getString("groupId").toString(),
+            "goal",
+            dataList[position].boardId
+        ).enqueue(object : Callback<DeleteTravelBoardRes> {
+            override fun onResponse(
+                call: Call<DeleteTravelBoardRes>,
+                response: Response<DeleteTravelBoardRes>
+            ) {
+                if (response.isSuccessful) {
+                    Log.e("isNotSuccessful", response.body()?.message.toString())
+                } else {
+                    Log.e("isNotSuccessful", response.body()?.message.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<DeleteTravelBoardRes>, t: Throwable) {
+                Log.e("deleteData onFailure", t.message.toString())
+            }
+        })
+    }
+
     private fun sendData(sendText : String){
         apiModule.boardApi.createTravelBoard(
             arguments?.getString("groupId").toString(),
@@ -203,6 +226,7 @@ class GoalFragment : Fragment() {
         )
         sheetView.apply {
             findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener { // TODO 삭제하는 기능 추가해야함.
+                deleteData(position)
                 bsDialog.dismiss()
             }
             findViewById<TextView>(R.id.tv_add_board_main_todo).text = todoText
