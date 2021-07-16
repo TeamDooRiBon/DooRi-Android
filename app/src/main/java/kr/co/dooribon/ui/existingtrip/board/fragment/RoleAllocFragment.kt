@@ -15,11 +15,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
-import kr.co.dooribon.api.remote.BoardContentDTO
-import kr.co.dooribon.api.remote.CreateTravelBoardReq
-import kr.co.dooribon.api.remote.CreateTravelBoardRes
-import kr.co.dooribon.api.remote.InquireTravelBoardRes
+import kr.co.dooribon.api.remote.*
 import kr.co.dooribon.application.MainApplication
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter
 import retrofit2.Call
@@ -29,6 +27,8 @@ import retrofit2.Response
 class RoleAllocFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
+    private var boardId = ""
+    private var dataList = listOf<BoardContentDTO>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +56,7 @@ class RoleAllocFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     setBoardAdapter(response.body()?.data ?: emptyList())
+                    dataList = dataList.plus(response.body()?.data ?: emptyList())
                     if (response.body()?.data?.isNotEmpty() == true) {
                         makeImageGone()
                     }
@@ -130,7 +131,8 @@ class RoleAllocFragment : Fragment() {
             override fun onClick(view: View, position: Int) {
                 itemClickListener(
                     view.findViewById<TextView>(R.id.tv_board_main).text.toString(),
-                    view.findViewById<TextView>(R.id.tv_board_writer).text.toString()
+                    view.findViewById<TextView>(R.id.tv_board_writer).text.toString(),
+                    position
                 )
             }
         })
@@ -140,7 +142,7 @@ class RoleAllocFragment : Fragment() {
     * todoText : 다이얼로그에 뜰 내용
     * writer : 작성자
     *  */
-    private fun itemClickListener(todoText: String, writer: String) {
+    private fun itemClickListener(todoText: String, writer: String, position: Int) {
         val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
         val sheetView = LayoutInflater.from(requireContext()).inflate(
             R.layout.bottomsheet_add_board_list,
@@ -166,6 +168,10 @@ class RoleAllocFragment : Fragment() {
                         dismiss()
                     }
                     findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                        sendEditData(
+                            findViewById<EditText>(R.id.et_add_content).text.toString(),
+                            position
+                        )
                         dismiss()
                     }
                     show()
@@ -176,21 +182,47 @@ class RoleAllocFragment : Fragment() {
         bsDialog.show()
     }
 
-    private fun sendData(sendText : String){
-        MainApplication.apiModule.boardApi.createTravelBoard(
+    /* 편집 데이터 전송 */
+    private fun sendEditData(sendText: String, position: Int) {
+        apiModule.boardApi.editTravelBoard(
+            EditTravelBoardReq(sendText),
+            arguments?.getString("groupId").toString(),
+            "role",
+            dataList[position].boardId
+        ).enqueue(object : Callback<EditTravelBoardRes> {
+            override fun onResponse(
+                call: Call<EditTravelBoardRes>,
+                response: Response<EditTravelBoardRes>
+            ) {
+                if (response.isSuccessful) {
+                    Log.e("response Success", response.body()?.message.toString())
+                } else {
+                    Log.e("response Fail", response.body()?.message.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<EditTravelBoardRes>, t: Throwable) {
+                Log.e("sendEditData onFailure", t.message.toString())
+            }
+
+        })
+    }
+
+    private fun sendData(sendText: String) {
+        apiModule.boardApi.createTravelBoard(
             arguments?.getString("groupId").toString(),
             "role",
             CreateTravelBoardReq(
                 sendText
             )
-        ).enqueue(object : Callback<CreateTravelBoardRes>{
+        ).enqueue(object : Callback<CreateTravelBoardRes> {
             override fun onResponse(
                 call: Call<CreateTravelBoardRes>,
                 response: Response<CreateTravelBoardRes>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     Log.e("success", "role ${response.body()?.message.toString()}")
-                }else{
+                } else {
                     Log.e("createTravel", "Not Success")
                 }
             }

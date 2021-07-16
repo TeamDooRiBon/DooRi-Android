@@ -59,7 +59,7 @@ data class EditTravelBoardRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: BoardContentDTO
+    val data: List<BoardContentDTO>
 )
 
 // 여행 보드 삭제
@@ -99,7 +99,7 @@ interface BoardAPI {
         @Path("groupId") groupId: String,
         @Path("tag") tag: String,
         @Path("boardId") boardId: String
-    ): EditTravelBoardRes
+    ): Call<EditTravelBoardRes>
 
     // TODO : 해야함
     // 태그별 여행 보드 조회 뷰에서 삭제 할 때
