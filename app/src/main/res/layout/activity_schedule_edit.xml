@@ -44,9 +44,9 @@
             android:id="@+id/nsv_schedule_edit"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:overScrollMode="never"
             android:layout_marginTop="28dp"
             android:background="@drawable/bg_gray_white8_top_round_layout"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,6 +70,7 @@
                     android:text="@string/schedule_what"
                     android:textColor="@color/gray_black_3"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@id/et_schedule_add_what"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,7 +79,6 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="12dp"
                     android:background="@drawable/bg_edit_text_gray"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:includeFontPadding="false"
@@ -86,6 +86,7 @@
                     android:text="@string/schedule_edit_what"
                     android:textColor="@color/gray_black_2"
                     android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_schedule_add_time"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_what"
                     app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_what" />
@@ -100,14 +101,17 @@
                     android:text="@string/schedule_time"
                     android:textColor="@color/gray_black_3"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@id/fl_edit_timebox"
                     app:layout_constraintStart_toStartOf="@id/et_schedule_add_what"
                     app:layout_constraintTop_toBottomOf="@id/et_schedule_add_what" />
 
                 <FrameLayout
                     android:id="@+id/fl_edit_timebox"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_schedule_add_location"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_time"
                     app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_time">
 
@@ -121,7 +125,6 @@
                             android:layout_height="wrap_content"
                             android:background="@color/gray_white_pure_9"
                             android:paddingStart="158dp"
-
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_time_end_boxline" />
@@ -298,12 +301,13 @@
                     android:text="@string/schedule_location"
                     android:textColor="@color/gray_black_3"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@id/et_schedule_add_location"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_time"
                     app:layout_constraintTop_toBottomOf="@id/fl_edit_timebox" />
 
                 <EditText
                     android:id="@+id/et_schedule_add_location"
-                    android:layout_width="208dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_edit_text_gray"
@@ -313,6 +317,8 @@
                     android:text="@string/schedule_edit_location"
                     android:textColor="@color/gray_black_2"
                     android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_schedule_add_memo"
+                    app:layout_constraintEnd_toStartOf="@id/iv_schedule_notadd"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_location"
                     app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_location" />
 
@@ -321,9 +327,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="@id/et_schedule_add_location"
+                    app:layout_constraintEnd_toStartOf="@id/tv_schedule_notadd"
                     app:layout_constraintStart_toEndOf="@id/et_schedule_add_location"
-                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_location"
+                    app:layout_constraintTop_toTopOf="@id/et_schedule_add_location"
                     app:srcCompat="@drawable/ic_btn_notadd" />
 
                 <TextView
@@ -331,14 +338,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:includeFontPadding="false"
                     android:text="@string/schedule_notadd"
                     android:textColor="@color/gray_gray_5_main"
                     android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/et_schedule_add_location"
+                    app:layout_constraintEnd_toEndOf="@id/et_schedule_add_what"
                     app:layout_constraintStart_toEndOf="@id/iv_schedule_notadd"
-                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_location" />
+                    app:layout_constraintTop_toTopOf="@id/et_schedule_add_location" />
 
                 <TextView
                     android:id="@+id/tv_schedule_add_memo"
@@ -350,6 +358,7 @@
                     android:text="@string/schedule_memo"
                     android:textColor="@color/gray_black_3"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@id/et_schedule_add_memo"
                     app:layout_constraintStart_toStartOf="@id/et_schedule_add_location"
                     app:layout_constraintTop_toBottomOf="@id/et_schedule_add_location" />
 
@@ -358,18 +367,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="22dp"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
                     android:includeFontPadding="false"
                     android:text="@string/schedule_memo_condition"
                     android:textColor="@color/main_sub_blue_2"
                     android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_schedule_add_memo"
                     app:layout_constraintStart_toEndOf="@id/tv_schedule_add_memo"
-                    app:layout_constraintTop_toBottomOf="@id/et_schedule_add_location" />
+                    app:layout_constraintTop_toTopOf="@id/tv_schedule_add_memo" />
 
                 <EditText
                     android:id="@+id/et_schedule_add_memo"
-                    android:layout_width="320dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_edit_text_gray"
@@ -380,6 +389,8 @@
                     android:text="@string/schedule_edit_memo"
                     android:textColor="@color/gray_black_2"
                     android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/btn_schedule_edit"
+                    app:layout_constraintEnd_toEndOf="@id/et_schedule_add_what"
                     app:layout_constraintStart_toStartOf="@id/tv_schedule_add_memo"
                     app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_memo" />
 
@@ -394,6 +405,7 @@
                     android:text="@string/schedule_edit_btn"
                     android:textColor="@color/gray_white_8"
                     android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_schedule_add_memo" />
