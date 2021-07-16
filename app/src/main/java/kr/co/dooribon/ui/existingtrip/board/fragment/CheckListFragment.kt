@@ -16,10 +16,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import kr.co.dooribon.R
-import kr.co.dooribon.api.remote.BoardContentDTO
-import kr.co.dooribon.api.remote.CreateTravelBoardReq
-import kr.co.dooribon.api.remote.CreateTravelBoardRes
-import kr.co.dooribon.api.remote.InquireTravelBoardRes
+import kr.co.dooribon.api.remote.*
 import kr.co.dooribon.application.MainApplication
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
@@ -31,6 +28,7 @@ import retrofit2.Response
 class CheckListFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
+    private var dataList = listOf<BoardContentDTO>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,6 +66,32 @@ class CheckListFragment : Fragment() {
                 show()
             }
         }
+    }
+
+    /* 편집 데이터 전송 */
+    private fun sendEditData(sendText: String, position: Int) {
+        apiModule.boardApi.editTravelBoard(
+            EditTravelBoardReq(sendText),
+            arguments?.getString("groupId").toString(),
+            "check",
+            dataList[position].boardId
+        ).enqueue(object : Callback<EditTravelBoardRes> {
+            override fun onResponse(
+                call: Call<EditTravelBoardRes>,
+                response: Response<EditTravelBoardRes>
+            ) {
+                if (response.isSuccessful) {
+                    Log.e("response Success", response.body()?.message.toString())
+                } else {
+                    Log.e("response Fail", response.body()?.message.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<EditTravelBoardRes>, t: Throwable) {
+                Log.e("sendEditData onFailure", t.message.toString())
+            }
+
+        })
     }
 
     private fun sendData(sendText : String){
@@ -126,7 +150,8 @@ class CheckListFragment : Fragment() {
             override fun onClick(view: View, position: Int) {
                 itemClickListener(
                     view.findViewById<TextView>(R.id.tv_board_main).text.toString(),
-                    view.findViewById<TextView>(R.id.tv_board_writer).text.toString()
+                    view.findViewById<TextView>(R.id.tv_board_writer).text.toString(),
+                    position
                 )
             }
         })
@@ -134,13 +159,14 @@ class CheckListFragment : Fragment() {
 
     /* 서버로부터 데이터 받아오고, 리사이클러뷰 어댑터 호출 */
     private fun getCheckListData(groupId: String) {
-        MainApplication.apiModule.boardApi.inquireTravelBoard(groupId, "check").enqueue(object :
+        apiModule.boardApi.inquireTravelBoard(groupId, "check").enqueue(object :
             Callback<InquireTravelBoardRes> {
             override fun onResponse(
                 call: Call<InquireTravelBoardRes>,
                 response: Response<InquireTravelBoardRes>
             ) {
                 if (response.isSuccessful) {
+                    dataList = dataList.plus(response.body()?.data ?: emptyList())
                     setBoardAdapter(response.body()?.data ?: emptyList())
                     if (response.body()?.data?.isNotEmpty() == true) {
                         makeImageGone()
@@ -167,7 +193,7 @@ class CheckListFragment : Fragment() {
     * todoText : 다이얼로그에 뜰 내용
     * writer : 작성자
     *  */
-    private fun itemClickListener(todoText: String, writer: String) {
+    private fun itemClickListener(todoText: String, writer: String, position : Int) {
         val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
         val sheetView = LayoutInflater.from(requireContext()).inflate(
             R.layout.bottomsheet_add_board_list,
@@ -193,6 +219,10 @@ class CheckListFragment : Fragment() {
                         dismiss()
                     }
                     findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                        sendEditData(
+                            findViewById<EditText>(R.id.et_add_content).text.toString(),
+                            position
+                        )
                         dismiss()
                     }
                     show()
