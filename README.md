@@ -12,7 +12,49 @@
 🍀 <b>Pleasurable</b> : 즐거운 어플 사용 경험과 즐거운 여행 경험을 제공<br>
 
 ## 📌 Preview
--> 동영상
+🎥 동영상
+<details>
+  <summary>Splash & Onboarding</summary>
+  ```
+  
+  ```
+</details>
+<details>
+  <summary>새로운 여행 추가</summary>
+  ```
+  ```
+</details>
+<details>
+  <summary>멤버, 성향 결과</summary>
+  ```
+  ```
+</details>
+<details>
+  <summary>살펴보기 기능 추가</summary>
+  ```
+  ```
+</details>
+<details>
+  <summary>살펴보기 기능 편집/삭제</summary>
+  ```
+  ```
+</details>
+<details>
+  <summary>보드 뷰 기능1</summary>
+  ```
+  ```
+</details>
+<details>
+  <summary>보드 뷰 기능2</summary>
+  ```
+  ```
+</details>
+<details>
+  <summary>성향 테스트</summary>
+  ```
+  ```
+</details>
+
 ## 📌 기능 설명
 두리번이 사용자에게 제공하고자 하는 핵심 기능은 다음과 같습니다.<br>
 ✔️ <b>그룹 성향 파악</b><br>
