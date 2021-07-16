@@ -21,10 +21,15 @@ data class BaseTravelScheduleDTO(
 
 // 여행 일정 추가
 data class CreateTravelScheduleReq(
+    @SerializedName("title")
     val travelScheduleTitle: String,
+    @SerializedName("startTime")
     val travelScheduleStateTime: String,
+    @SerializedName("endTime")
     val travelScheduleEndTime: String,
+    @SerializedName("location")
     val travelScheduleLocation: String,
+    @SerializedName("memo")
     val travelScheduleMemo: String
 )
 
@@ -101,7 +106,7 @@ data class EditTravelScheduleRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: BaseTravelScheduleDTO
+    val data: List<BaseTravelScheduleDTO>
 )
 
 // 여행 일정 삭제
@@ -152,7 +157,8 @@ interface ScheduleAPI {
     @PATCH("schedule/{groupId}/{scheduleId}")
     fun editTravelSchedule(
         @Path("groupId") groupId: String,
-        @Path("scheduleId") scheduleId: String
+        @Path("scheduleId") scheduleId: String,
+        @Body editTravelScheduleReq: EditTravelScheduleReq
     ): Call<EditTravelScheduleRes>
 
     // TODO : 미해결

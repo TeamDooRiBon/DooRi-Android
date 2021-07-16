@@ -492,6 +492,8 @@ class ScheduleFragment : Fragment() {
                         intent.putExtra("date", curClickedDateTravelDate.date.toString())
                         intent.putExtra("place", findViewById<TextView>(R.id.tv_user_place).text.toString())
                         intent.putExtra("memo", findViewById<TextView>(R.id.tv_user_memo).text.toString())
+                        intent.putExtra("groupId", viewModel.getGroupId())
+                        intent.putExtra("scheduleId", list[position].planId)
                         startActivity(intent)
                     }
                 }

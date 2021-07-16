@@ -9,8 +9,15 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
+import kr.co.dooribon.api.remote.EditTravelScheduleReq
+
+import kr.co.dooribon.api.remote.EditTravelScheduleRes
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityScheduleEditBinding
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.LocalDate
 
 class ScheduleEditActivity : AppCompatActivity() {
@@ -28,6 +35,7 @@ class ScheduleEditActivity : AppCompatActivity() {
         notEditClickListener()
         scheduleEditBtnClickListener()
         editBackBtnClickListener()
+        onEditBtnClick()
     }
 
     /* 이전 화면에서 넘어온 값들로 텍스트를 설정해둡니다 */
@@ -60,6 +68,45 @@ class ScheduleEditActivity : AppCompatActivity() {
                 )
             etScheduleAddLocation.setText(intent.getStringExtra("place").toString())
             etScheduleAddMemo.setText(intent.getStringExtra("memo").toString())
+        }
+    }
+
+    private fun onEditBtnClick() {
+        binding.btnScheduleEdit.setOnClickListener {
+//            val startTime =
+//                passedYear.plus("-").plus(addZero(passedMonth)).plus("-").plus(addZero(passedDate))
+//                    .plus(" ").plus(
+//                        if (binding.tvTimepickerAmpm1.text == "오후") {
+//                            (binding.tvTimepickerHour1.text.toString().toInt() + 12).toString()
+//                        } else { // 오전일 때는 그냥 12더하지 않고 추가
+//                            binding.tvTimepickerHour1.text.toString()
+//                        }
+//                    ).plus(":").plus(binding.tvTimepickerMinute1.text.toString())
+
+//            apiModule.scheduleApi.editTravelSchedule(
+//                intent.getStringExtra("groupId").toString(),
+//                intent.getStringExtra("scheduleId").toString(),
+//                EditTravelScheduleReq(
+//                    binding.etScheduleAddWhat.toString(),
+//                    binding.
+//                )
+//            ).enqueue(object : Callback<EditTravelScheduleRes>{
+//                override fun onResponse(
+//                    call: Call<EditTravelScheduleRes>,
+//                    response: Response<EditTravelScheduleRes>
+//                ) {
+//                    if(response.isSuccessful){
+//                        Log.e("responseSuccess", response.body()?.message.toString())
+//                        Log.e("responseSuccess", response.body().toString())
+//                    }else{
+//                        Log.e("responseFaile", response.message())
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<EditTravelScheduleRes>, t: Throwable) {
+//                    Log.e("onEditBtnClick onFailure", t.message.toString())
+//                }
+//            })
         }
     }
 
