@@ -168,6 +168,7 @@ class GoalFragment : Fragment() {
                     dismiss()
                 }
                 findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                    // TODO
                     sendData(findViewById<EditText>(R.id.et_add_content)?.text.toString())
                     dismiss()
                 }

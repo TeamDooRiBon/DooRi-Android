@@ -38,6 +38,7 @@
         <entry key="app/src/main/res/drawable/shape_selected_blue_circle.xml" value="0.1255" />
         <entry key="app/src/main/res/drawable/shape_unselected_blue_circle.xml" value="0.1195" />
         <entry key="app/src/main/res/layout/activity_date_pick.xml" value="0.182518115942029" />
+        <entry key="app/src/main/res/layout/activity_existing_trip.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_new_travel.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_partici_check.xml" value="0.21965579710144928" />
         <entry key="app/src/main/res/layout/activity_participate.xml" value="0.11354166666666667" />
