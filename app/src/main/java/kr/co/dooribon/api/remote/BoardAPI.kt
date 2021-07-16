@@ -71,7 +71,7 @@ data class DeleteTravelBoardRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: BoardContentDTO
+    val data: List<BoardContentDTO>
 )
 
 interface BoardAPI {
@@ -108,5 +108,5 @@ interface BoardAPI {
         @Path("groupId") groupId: String,
         @Path("tag") tag: String,
         @Path("boardId") boardId: String
-    ): DeleteTravelBoardRes
+    ): Call<DeleteTravelBoardRes>
 }

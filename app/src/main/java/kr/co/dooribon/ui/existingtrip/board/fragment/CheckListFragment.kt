@@ -94,21 +94,21 @@ class CheckListFragment : Fragment() {
         })
     }
 
-    private fun sendData(sendText : String){
+    private fun sendData(sendText: String) {
         apiModule.boardApi.createTravelBoard(
             arguments?.getString("groupId").toString(),
             "check",
             CreateTravelBoardReq(
                 sendText
             )
-        ).enqueue(object : Callback<CreateTravelBoardRes>{
+        ).enqueue(object : Callback<CreateTravelBoardRes> {
             override fun onResponse(
                 call: Call<CreateTravelBoardRes>,
                 response: Response<CreateTravelBoardRes>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     Log.e("success", response.body()?.message.toString())
-                }else{
+                } else {
                     Log.e("createTravel", "Not Success")
                 }
             }
@@ -193,7 +193,7 @@ class CheckListFragment : Fragment() {
     * todoText : 다이얼로그에 뜰 내용
     * writer : 작성자
     *  */
-    private fun itemClickListener(todoText: String, writer: String, position : Int) {
+    private fun itemClickListener(todoText: String, writer: String, position: Int) {
         val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
         val sheetView = LayoutInflater.from(requireContext()).inflate(
             R.layout.bottomsheet_add_board_list,
@@ -201,6 +201,7 @@ class CheckListFragment : Fragment() {
         )
         sheetView.apply {
             findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener { // TODO 삭제하는 기능 추가해야함.
+                deleteData(position)
                 bsDialog.dismiss()
             }
             findViewById<TextView>(R.id.tv_add_board_main_todo).text = todoText
@@ -231,5 +232,28 @@ class CheckListFragment : Fragment() {
         }
         bsDialog.setContentView(sheetView)
         bsDialog.show()
+    }
+
+    private fun deleteData(position: Int) {
+        apiModule.boardApi.deleteTravelBoard(
+            arguments?.getString("groupId").toString(),
+            "check",
+            dataList[position].boardId
+        ).enqueue(object : Callback<DeleteTravelBoardRes> {
+            override fun onResponse(
+                call: Call<DeleteTravelBoardRes>,
+                response: Response<DeleteTravelBoardRes>
+            ) {
+                if (response.isSuccessful) {
+                    Log.e("isNotSuccessful", response.body()?.message.toString())
+                } else {
+                    Log.e("isNotSuccessful", response.body()?.message.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<DeleteTravelBoardRes>, t: Throwable) {
+                Log.e("deleteData onFailure", t.message.toString())
+            }
+        })
     }
 }
