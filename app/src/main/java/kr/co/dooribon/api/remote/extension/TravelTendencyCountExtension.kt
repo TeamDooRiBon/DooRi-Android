@@ -38,7 +38,6 @@ data class ChildQuestionCountDTO(
 } */
 fun ChildQuestionCountDTO.asDomainChildQuestion(): AnswerQuestion.Question.ChildQuestion {
     return AnswerQuestion.Question.ChildQuestion(
-        questionNumber = 1,
         questionSubject = this.question,
         resultMemberNumber = this.questionAnswerCount
     )
@@ -46,7 +45,6 @@ fun ChildQuestionCountDTO.asDomainChildQuestion(): AnswerQuestion.Question.Child
 
 fun ParentQuestionCountDTO.asDomainParentQuestion() : AnswerQuestion.Question{
     return AnswerQuestion.Question(
-        questionNumber = 1,
         questionTitle = this.parentQuestionTitle,
         questionSubject = this.childQuestions.asDomainChildQuestionList()
     )

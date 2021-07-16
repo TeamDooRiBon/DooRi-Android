@@ -91,7 +91,7 @@
                         android:fontFamily="@font/spoqa_han_sans_neo_bold"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
-                        android:text="번들님은"
+                        android:text="훈기님은"
                         android:textSize="23sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
