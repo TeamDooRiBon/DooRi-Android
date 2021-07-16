@@ -168,9 +168,19 @@ class ParticipateJoinFragment : Fragment() {
     }
 
     private fun chkBtnActivation() {
-        if(chkEtFill()){
-            binding.btnParticipatePut.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.main_point_orange))
-            binding.btnParticipatePut.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        if (chkEtFill()) {
+            binding.btnParticipatePut.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.main_point_orange
+                )
+            )
+            binding.btnParticipatePut.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.white
+                )
+            )
         }
     }
 
