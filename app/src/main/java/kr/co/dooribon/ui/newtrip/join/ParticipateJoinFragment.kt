@@ -42,14 +42,20 @@ class ParticipateJoinFragment : Fragment() {
         fullEditText()
 
         binding.btnParticipatePut.setOnClickListener {
-            apiModule.travelApi.participateExistingTravel(viewModel.makeInviteCode())
+            // 여기부터가 안됨
+            var inviteCode = ""
+            synchronized(inviteCode) {
+                inviteCode = viewModel.makeInviteCode()
+            }
+            debugE(inviteCode)
+            apiModule.travelApi.participateExistingTravel(inviteCode)
                 .enqueue(object : Callback<ParticipateTravelRes> {
                     override fun onResponse(
                         call: Call<ParticipateTravelRes>,
                         response: Response<ParticipateTravelRes>
                     ) {
-                        // data를 보내줘야 합니다!
                         if (response.code() == 200 && response.isSuccessful) {
+                            debugE(response.body())
                             val participateCheckBundle = Bundle()
                             participateCheckBundle.putParcelable(
                                 "existingGroupContents",
@@ -76,7 +82,6 @@ class ParticipateJoinFragment : Fragment() {
 
     private fun chkEtFill() =
         binding.etCode1.text.isNotEmpty() && binding.etCode2.text.isNotEmpty() && binding.etCode3.text.isNotEmpty() && binding.etCode4.text.isNotEmpty() && binding.etCode5.text.isNotEmpty() && binding.etCode6.text.isNotEmpty()
-
 
     private fun setEtBgChange() {
         binding.etCode1.apply {
