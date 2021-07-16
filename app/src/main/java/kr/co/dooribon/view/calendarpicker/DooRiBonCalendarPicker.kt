@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.R
+import kr.co.dooribon.utils.dpToPixel
 import kr.co.dooribon.view.calendarpicker.adapter.CalendarAdapter
 import kr.co.dooribon.view.calendarpicker.entity.*
 import kr.co.dooribon.view.calendarpicker.util.*
@@ -84,6 +85,7 @@ class DooRiBonCalendarPicker : RecyclerView {
         // 배경은 흰색
         setBackgroundColor(ContextCompat.getColor(context, R.color.doo_ri_bon_calendar_picker_bg))
         // 어댑터 , 리스너 초기화
+
         initAdapter()
         initListener()
     }

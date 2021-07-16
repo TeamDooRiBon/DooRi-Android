@@ -65,6 +65,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/bg_white_pure9_round_layout"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:elevation="3dp"
             app:layout_constraintBottom_toBottomOf="parent "
             app:layout_constraintEnd_toEndOf="parent"

@@ -21,13 +21,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gray_white_8_alpha_80"
         tools:context=".ui.home.HomeActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:backgroundTint="@color/gray_white_8_alpha_80"
             android:padding="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +36,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/gray_white_8_alpha_80">
 
                 <ImageView
                     android:id="@+id/iv_home_logo"
@@ -131,7 +133,7 @@
                         style="@style/RoundBlueTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="12dp"
                         android:background="@drawable/bg_main_blue_round_textview"
                         android:fontFamily="@font/spoqa_han_sans_neo_regular"
                         android:includeFontPadding="false"
@@ -150,6 +152,7 @@
                         android:includeFontPadding="false"
                         android:text="@{bindViewModel.homeProceedingTravel.travelStartDate}"
                         android:textColor="@color/white_pure_9"
+                        android:layout_marginBottom="4dp"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_title"
                         app:layout_constraintEnd_toStartOf="@id/tv_home_being_emoji"
                         app:layout_constraintStart_toStartOf="@id/tv_home_place" />
@@ -163,6 +166,7 @@
                         android:includeFontPadding="false"
                         android:textColor="@color/white_pure_9"
                         android:text="~"
+                        android:layout_marginBottom="4dp"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_title"
                         app:layout_constraintEnd_toStartOf="@id/tv_home_end_date"
                         app:layout_constraintStart_toEndOf="@id/tv_home_start_date" />
@@ -176,6 +180,7 @@
                         android:includeFontPadding="false"
                         android:text="@{bindViewModel.homeProceedingTravel.travelEndDate}"
                         android:textColor="@color/white_pure_9"
+                        android:layout_marginBottom="4dp"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_title"
                         app:layout_constraintStart_toEndOf="@id/tv_home_being_emoji" />
 
@@ -184,7 +189,7 @@
                         style="@style/WhiteBoldTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="96dp"
+                        android:layout_marginBottom="16dp"
                         android:fontFamily="@font/spoqa_han_sans_neo_bold"
                         android:includeFontPadding="false"
                         android:text="@{bindViewModel.homeProceedingTravel.travelTitle}"
@@ -288,6 +293,8 @@
                         android:letterSpacing="-0.02"
                         android:onClick="@{() -> navigate_new_trip.invoke()}"
                         android:text="새로운 여행 시작하기"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
                         android:textSize="15sp"
                         app:layout_constraintEnd_toEndOf="@id/vp_home_upcoming_travel_contents"
                         app:layout_constraintStart_toStartOf="@id/vp_home_upcoming_travel_contents"
@@ -298,7 +305,7 @@
                     android:id="@+id/cl_home_previous_travel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="@id/cl_home_upcoming_travel"
                     app:layout_constraintStart_toStartOf="@id/cl_home_upcoming_travel"
                     app:layout_constraintTop_toBottomOf="@id/cl_home_upcoming_travel">
@@ -313,7 +320,8 @@
                         android:text="추억 속 지난 여행"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/rv_home_previous_travel_content"/>
 
                     <TextView
                         android:id="@+id/tv_home_previous_travel_more"
@@ -337,6 +345,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_home_previous_travel_title" />
@@ -347,7 +356,7 @@
                     android:id="@+id/cl_home_tendency"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="@id/cl_home_previous_travel"
                     app:layout_constraintStart_toStartOf="@id/cl_home_previous_travel"
                     app:layout_constraintTop_toBottomOf="@id/cl_home_previous_travel">
@@ -359,7 +368,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/spoqa_han_sans_neo_bold"
                         android:includeFontPadding="false"
-                        android:text="미몽님은"
+                        android:text="훈기님은"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -411,6 +420,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/spoqa_han_sans_neo_medium"
                                 android:includeFontPadding="false"
+                                android:layout_marginTop="8dp"
                                 android:text="여행마다 다른 내 성향"
                                 android:textSize="16sp"
                                 app:layout_constraintEnd_toEndOf="@id/iv_card_home_travel_tendency"
@@ -436,18 +446,20 @@
                                 style="@style/RoundButton.DooRiBonOrange"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
+                                android:layout_marginStart="20dp"
                                 android:layout_marginTop="40dp"
-                                android:layout_marginEnd="4dp"
+                                android:layout_marginEnd="20dp"
                                 android:layout_marginBottom="16dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp"
                                 android:fontFamily="@font/spoqa_han_sans_neo_medium"
                                 android:includeFontPadding="false"
                                 android:onClick="@{() -> homeActivity.navigateTripTendencyTest()}"
                                 android:text="내 여행성향 알아보기"
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@id/iv_card_home_travel_tendency"
-                                app:layout_constraintStart_toStartOf="@id/iv_card_home_travel_tendency"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/tv_card_home_travel_tendency_description2" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>

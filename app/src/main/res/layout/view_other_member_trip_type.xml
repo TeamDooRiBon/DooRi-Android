@@ -19,7 +19,10 @@
         android:id="@+id/card_other_member_trip_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:cardCornerRadius="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,7 +74,7 @@
                 app:image_view_shadow_alpha="0"
                 app:image_view_shadow_color="@color/transparent"
                 app:layout_constraintStart_toStartOf="@id/tv_card_other_member_trip_type_name"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/btn_card_other_member_trip_type_detail"
                 app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             <TextView

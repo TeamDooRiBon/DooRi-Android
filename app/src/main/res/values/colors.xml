@@ -62,4 +62,6 @@
     <color name="doo_ri_bon_calendar_week_font">#333333</color>
 
     <color name="doo_ri_bon_calendar_highlight_background_color">#4D6b8ff9</color>
+
+    <color name="gray_white_8_alpha_80">#ccf7f8f9</color>
 </resources>
