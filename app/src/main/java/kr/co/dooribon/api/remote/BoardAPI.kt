@@ -76,7 +76,6 @@ data class DeleteTravelBoardRes(
 
 interface BoardAPI {
     // 여행 보드 추가 뷰
-    // TODO : 해야함
     @POST("board/{groupId}/{tag}")
     fun createTravelBoard(
         @Path("groupId") groupId: String,
@@ -91,7 +90,6 @@ interface BoardAPI {
         @Path("tag") tag: String
     ): Call<InquireTravelBoardRes>
 
-    // TODO : 해야함
     // 여행 보드 수정 뷰 , 태그별 여행 보드 조회 뷰
     @PATCH("board/{groupId}/{tag}/{boardId}")
     fun editTravelBoard(
@@ -101,7 +99,6 @@ interface BoardAPI {
         @Path("boardId") boardId: String
     ): Call<EditTravelBoardRes>
 
-    // TODO : 해야함
     // 태그별 여행 보드 조회 뷰에서 삭제 할 때
     @DELETE("board/{groupId}/{tag}/{boardId}")
     fun deleteTravelBoard(
