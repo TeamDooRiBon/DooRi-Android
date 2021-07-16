@@ -74,6 +74,10 @@ class ParticipateJoinFragment : Fragment() {
         }
     }
 
+    private fun chkEtFill() =
+        binding.etCode1.text.isNotEmpty() && binding.etCode2.text.isNotEmpty() && binding.etCode3.text.isNotEmpty() && binding.etCode4.text.isNotEmpty() && binding.etCode5.text.isNotEmpty() && binding.etCode6.text.isNotEmpty()
+
+
     private fun setEtBgChange() {
         binding.etCode1.apply {
             setOnFocusChangeListener { view, hasFocus ->
@@ -140,18 +144,33 @@ class ParticipateJoinFragment : Fragment() {
     private fun changeEtFocus() {
         binding.etCode1.addTextChangedListener {
             binding.etCode2.requestFocus()
+            chkBtnActivation()
         }
         binding.etCode2.addTextChangedListener {
             binding.etCode3.requestFocus()
+            chkBtnActivation()
         }
         binding.etCode3.addTextChangedListener {
             binding.etCode4.requestFocus()
+            chkBtnActivation()
         }
         binding.etCode4.addTextChangedListener {
             binding.etCode5.requestFocus()
+            chkBtnActivation()
         }
         binding.etCode5.addTextChangedListener {
             binding.etCode6.requestFocus()
+            chkBtnActivation()
+        }
+        binding.etCode6.addTextChangedListener {
+            chkBtnActivation()
+        }
+    }
+
+    private fun chkBtnActivation() {
+        if(chkEtFill()){
+            binding.btnParticipatePut.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.main_point_orange))
+            binding.btnParticipatePut.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
     }
 
