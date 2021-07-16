@@ -11,7 +11,7 @@
         android:id="@+id/lottie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:lottie_rawRes="@raw/onboarding1_img"
+        app:lottie_rawRes="@raw/onboarding3_img"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqa_han_sans_neo_bold"
         android:includeFontPadding="false"
-        android:text="@string/loading_title"
+        android:text="함께 여행을 만들어요"
         android:textColor="@color/main_point_blue"
         android:textSize="20sp"
         android:layout_marginTop="64dp"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqa_han_sans_neo_regular"
         android:includeFontPadding="false"
-        android:text="@string/loading_description1"
+        android:text="여행 정보를 입력하고 실시간으로 공유하여"
         android:textColor="@color/gray_black_1"
         android:textSize="14sp"
         android:layout_marginTop="8dp"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqa_han_sans_neo_regular"
         android:includeFontPadding="false"
-        android:text="@string/loading_description2"
+        android:text="일정을 체계적으로 관리할 수 있어요"
         android:textColor="@color/gray_black_1"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,25 +66,15 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_loading_description1"/>
 
     <ImageView
-        android:id="@+id/iv_activebtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        app:srcCompat="@drawable/ic_onboarding_1_active"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/iv_inactivebtn"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <ImageView
         android:id="@+id/iv_inactivebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         app:srcCompat="@drawable/ic_onboarding_2"
-        android:layout_marginStart="4dp"
-        app:layout_constraintStart_toEndOf="@id/iv_activebtn"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/iv_inactivebtn2"
-        app:layout_constraintTop_toTopOf="@id/iv_activebtn"
-        app:layout_constraintBottom_toBottomOf="@id/iv_activebtn"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
         android:id="@+id/iv_inactivebtn2"
@@ -92,10 +82,21 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_onboarding_2"
         android:layout_marginStart="4dp"
-        app:layout_constraintTop_toTopOf="@id/iv_activebtn"
         app:layout_constraintStart_toEndOf="@id/iv_inactivebtn"
+        app:layout_constraintEnd_toStartOf="@id/iv_activebtn"
+        app:layout_constraintTop_toTopOf="@id/iv_inactivebtn"
+        app:layout_constraintBottom_toBottomOf="@id/iv_inactivebtn" />
+
+    <ImageView
+        android:id="@+id/iv_activebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_onboarding_1_active"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@id/iv_inactivebtn2"
         app:layout_constraintEnd_toStartOf="@id/tv_skip"
-        app:layout_constraintBottom_toBottomOf="@id/iv_activebtn" />
+        app:layout_constraintBottom_toBottomOf="@id/iv_inactivebtn"
+        app:layout_constraintTop_toTopOf="@id/iv_inactivebtn"/>
 
     <TextView
         android:id="@+id/tv_skip"
@@ -106,21 +107,21 @@
         android:layout_marginStart="12dp"
         android:text="@string/loading_skip"
         android:textSize="14sp"
-        app:layout_constraintTop_toTopOf="@id/iv_activebtn"
-        app:layout_constraintStart_toEndOf="@id/iv_inactivebtn2"
-        app:layout_constraintBottom_toBottomOf="@id/iv_activebtn" />
+        app:layout_constraintStart_toEndOf="@id/iv_activebtn"
+        app:layout_constraintTop_toTopOf="@id/iv_inactivebtn"
+        app:layout_constraintBottom_toBottomOf="@id/iv_inactivebtn" />
 
     <Button
-        android:id="@+id/btn_loading_next"
+        android:id="@+id/btn_loading_start"
         style="@style/RoundButton.DooRiBonOrange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqa_han_sans_neo_bold"
         android:includeFontPadding="false"
-        android:text="@string/loading_next"
+        android:text="@string/loading_start"
         android:textSize="14sp"
-        app:layout_constraintTop_toTopOf="@id/iv_activebtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/iv_activebtn" />
+        app:layout_constraintTop_toTopOf="@id/iv_inactivebtn"
+        app:layout_constraintBottom_toBottomOf="@id/iv_inactivebtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

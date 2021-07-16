@@ -32,9 +32,9 @@ class OnboardingFirstFragment : Fragment() {
         binding.btnLoadingNext.setOnClickListener {
             val onboardingsecondFragment = OnboardingSecondFragment()
 
-            /*startActivity(getIntent<SignInActivity>())
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-            finish()*/
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.onboarding_fragment_container_view, onboardingsecondFragment)
+                .commitNow()
         }
     }
 
