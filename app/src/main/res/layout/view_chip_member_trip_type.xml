@@ -11,7 +11,7 @@
     android:textSize="12sp"
     android:fontFamily="@font/spoqa_han_sans_neo_regular"
     android:includeFontPadding="false"
-    app:chipStrokeColor="@color/member_trip_chip_gray"
+    app:chipStrokeColor="@color/gray_gray_6"
     app:chipStrokeWidth="1dp"
     tools:text="안녕">
 

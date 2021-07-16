@@ -74,7 +74,7 @@
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="2dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     my_travel_tendency_visible_card_view="@{vm.isMyTravelTendencyResult()}"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +102,7 @@
                             android:layout_height="wrap_content"
                             android:includeFontPadding="false"
                             android:fontFamily="@font/spoqa_han_sans_neo_medium"
-                            style="@style/BlackBoldTextView"
+                            android:textColor="@color/black"
                             android:layout_marginStart="12dp"
                             android:layout_marginTop="12dp"
                             android:textSize="14sp"
@@ -131,7 +131,7 @@
                             app:image_view_shadow_alpha="0"
                             app:image_view_shadow_color="@color/transparent"
                             app:layout_constraintStart_toStartOf="@id/tv_card_my_trip_type_name"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@id/btn_card_my_trip_detail"
                             app:shapeAppearanceOverlay="@style/roundedImageView" />
 
                         <TextView
@@ -252,6 +252,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
+                    android:background="@color/gray_white_8_alpha_80"
+                    android:layout_marginTop="8dp"
                     my_travel_tendency_visible_recyclerview="@{!vm.isOtherTravelTendencyResult()}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
