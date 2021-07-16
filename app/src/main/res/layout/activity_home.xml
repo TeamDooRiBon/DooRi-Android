@@ -133,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
                         android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                        android:layout_marginBottom="4dp"
+                        android:layout_marginBottom="8dp"
                         android:background="@drawable/bg_main_blue_round_textview"
                         android:text="진행중"
                         android:textColor="@color/white"

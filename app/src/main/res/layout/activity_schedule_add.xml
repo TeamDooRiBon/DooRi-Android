@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#9ab4ff">
+        android:background="@color/main_point_blue">
 
 
         <ImageView
@@ -31,15 +31,6 @@
             android:textSize="23sp"
             app:layout_constraintStart_toStartOf="@id/iv_schedule_add_back"
             app:layout_constraintTop_toBottomOf="@id/iv_schedule_add_back" />
-
-        <ImageView
-            android:id="@+id/iv_schedule_illust"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_schedule_add_description"
-            app:layout_constraintTop_toTopOf="@+id/iv_schedule_add_back"
-            app:srcCompat="@drawable/ic_schedule_illust" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nsv_schedule_add"
@@ -71,7 +62,7 @@
                     android:text="@string/schedule_what"
                     android:textColor="@color/gray_black_3"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/et_schedule_add_what"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
@@ -86,7 +77,8 @@
                     android:hint="@string/schedule_what_hint"
                     android:textColor="@color/gray_black_2"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="@id/tv_schedule_add_what"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_schedule_add_what" />
 
                 <TextView
