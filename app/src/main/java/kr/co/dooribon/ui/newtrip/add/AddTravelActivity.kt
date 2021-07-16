@@ -73,7 +73,7 @@ class AddTravelActivity : AppCompatActivity() {
     }
 
     /* 서버에 데이터 보내는 함수 */
-    private fun sendTravelData(){
+    private fun sendTravelData() {
         apiModule.travelApi.createUserTravel(
             CreateTravelReq(
                 binding.etTravelName.text.toString(),

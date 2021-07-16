@@ -13,11 +13,11 @@ object DateUtil {
     }
 
     private val simpleDateFormatDotWithTime by lazy {
-        SimpleDateFormat("yyyy-MM-dd`T`HH:mm:ss",Locale.KOREA)
+        SimpleDateFormat("yyyy-MM-dd`T`HH:mm:ss", Locale.KOREA)
     }
 
     private val simpleDateFormatBarWithTime by lazy {
-        SimpleDateFormat("yyyy-MM-dd`T`HH:mm:ss",Locale.KOREA)
+        SimpleDateFormat("yyyy-MM-dd`T`HH:mm:ss", Locale.KOREA)
     }
 
     fun convertStringToDateBar(stringDate: String?): String? {
@@ -28,18 +28,19 @@ object DateUtil {
         }
     }
 
-    fun convertStringToStringWithOutTime(stringDate : String) : String {
+    fun convertStringToStringWithOutTime(stringDate: String): String {
         return convertDateToStringBar(simpleDateFormatBarWithOutTime.parse(stringDate))
     }
 
-    fun convertStringToDate(stringDate: String): Date = simpleDateFormatBarWithOutTime.parse(stringDate)
+    fun convertStringToDate(stringDate: String): Date =
+        simpleDateFormatBarWithOutTime.parse(stringDate)
 
     fun convertDateToStringDot(date: Date): String {
         return simpleDateFormatDotWithOutTime.format(date)
     }
 
     // Date를 bar형태의 String으로 변경
-    fun convertDateToStringBar(date : Date) : String {
+    fun convertDateToStringBar(date: Date): String {
         return simpleDateFormatBarWithOutTime.format(date)
     }
 

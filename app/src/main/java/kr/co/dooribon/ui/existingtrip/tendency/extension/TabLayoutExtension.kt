@@ -7,7 +7,7 @@ import kr.co.dooribon.R
 import kr.co.dooribon.ui.existingtrip.tendency.fragment.DetailFragment
 import kr.co.dooribon.ui.existingtrip.tendency.fragment.MemberFragment
 
-fun TabLayout.initializeTendencyNavigation(fragmentManager: FragmentManager , bundle: Bundle) {
+fun TabLayout.initializeTendencyNavigation(fragmentManager: FragmentManager, bundle: Bundle) {
     val memberFragment = MemberFragment()
     val detailFragment = DetailFragment()
     memberFragment.arguments = bundle
@@ -36,5 +36,5 @@ fun TabLayout.initializeTendencyNavigation(fragmentManager: FragmentManager , bu
         override fun onTabReselected(tab: TabLayout.Tab?) {
         }
     })
-    fragmentManager.beginTransaction().replace(R.id.fcv_tendency,memberFragment).commit()
+    fragmentManager.beginTransaction().replace(R.id.fcv_tendency, memberFragment).commit()
 }

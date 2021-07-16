@@ -14,10 +14,8 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.tabs.TabLayout
 import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.*
-import kr.co.dooribon.application.MainApplication
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter

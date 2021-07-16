@@ -8,6 +8,10 @@
         <variable
             name="item"
             type="kr.co.dooribon.domain.entity.ExpandableAnswerQuestion" />
+
+        <variable
+            name="question_number"
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +30,7 @@
             android:fontFamily="@font/spoqa_han_sans_neo_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:text="@{Integer.toString(item.questionChild.questionNumber)}"
+            android:text="@{Integer.toString(question_number)}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

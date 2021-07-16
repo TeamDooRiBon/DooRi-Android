@@ -1,6 +1,5 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
-import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -48,8 +47,8 @@ class ScheduleFragment : Fragment() {
     // 날짜 리사이클러 뷰에서 두 번째 클릭부터는 리사이클러 뷰 첫번째 날짜를 다시
     // 바꿔줄 필요가 없어 true로 변경해서 다시 접근하지 않도록 해준다.
     private lateinit var travelData: TravelScheduleDTO
-    private lateinit var getResult : ActivityResultLauncher<Intent>
-    private lateinit var bsDialog : BottomSheetDialog
+    private lateinit var getResult: ActivityResultLauncher<Intent>
+    private lateinit var bsDialog: BottomSheetDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,7 +65,8 @@ class ScheduleFragment : Fragment() {
         getDateScheduleList()
 
         getResult = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()){ result->
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
             bsDialog.dismiss()
         }
     }
@@ -499,13 +499,25 @@ class ScheduleFragment : Fragment() {
                     findViewById<Button>(R.id.btn_edit).setOnClickListener {
                         // 양이 많아서 번들에 담아주는 것이 좋을 것 같음
                         val intent = Intent(requireContext(), ScheduleEditActivity::class.java)
-                        intent.putExtra("mainTodo", findViewById<TextView>(R.id.tv_main_add_schedule_todo).text.toString())
-                        intent.putExtra("time", findViewById<TextView>(R.id.tv_user_time).text.toString())
+                        intent.putExtra(
+                            "mainTodo",
+                            findViewById<TextView>(R.id.tv_main_add_schedule_todo).text.toString()
+                        )
+                        intent.putExtra(
+                            "time",
+                            findViewById<TextView>(R.id.tv_user_time).text.toString()
+                        )
                         intent.putExtra("year", curClickedDateTravelDate.year.toString())
                         intent.putExtra("month", curClickedDateTravelDate.month.toString())
                         intent.putExtra("date", curClickedDateTravelDate.date.toString())
-                        intent.putExtra("place", findViewById<TextView>(R.id.tv_user_place).text.toString())
-                        intent.putExtra("memo", findViewById<TextView>(R.id.tv_user_memo).text.toString())
+                        intent.putExtra(
+                            "place",
+                            findViewById<TextView>(R.id.tv_user_place).text.toString()
+                        )
+                        intent.putExtra(
+                            "memo",
+                            findViewById<TextView>(R.id.tv_user_memo).text.toString()
+                        )
                         intent.putExtra("groupId", viewModel.getGroupId())
                         intent.putExtra("scheduleId", list[position].planId)
                         //startActivity(intent)

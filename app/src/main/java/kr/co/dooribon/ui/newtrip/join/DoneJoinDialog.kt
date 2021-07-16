@@ -13,7 +13,7 @@ class DoneJoinDialog(fragment: Fragment) {
     private var chk3 = false
     fun start() {
         dl.setContentView(R.layout.dialog_done_join) // 다이얼로그에 사용할 xml 파일 불러옴
-        Timer().scheduleAtFixedRate(object : TimerTask(){
+        Timer().scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 when {
                     chk1 -> {
@@ -55,7 +55,8 @@ class DoneJoinDialog(fragment: Fragment) {
         dl.setCancelable(false) // 다이얼로그 바깥 부분을 눌렀을 때 다이얼로그가 닫히지 않도록 설정
         dl.show()
     }
-    fun dismiss(){
+
+    fun dismiss() {
         dl.dismiss()
     }
 }

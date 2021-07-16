@@ -121,18 +121,32 @@
                             app:layout_constraintStart_toStartOf="@id/tv_card_my_trip_type_name"
                             app:layout_constraintTop_toBottomOf="@id/tv_card_my_trip_type_name" />
 
+                        <kr.co.dooribon.view.DooRiBonRoundShadowImageView
+                            android:id="@+id/ri_my_trip_profile"
+                            set_profile_image_url="@{vm.myTravelTendencyResult.tendencyUserMember.memberProfileImageUrl}"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:scaleType="centerCrop"
+                            android:layout_marginBottom="8dp"
+                            app:image_view_shadow_alpha="0"
+                            app:image_view_shadow_color="@color/transparent"
+                            app:layout_constraintStart_toStartOf="@id/tv_card_my_trip_type_name"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:shapeAppearanceOverlay="@style/roundedImageView" />
+
                         <TextView
-                            android:id="@+id/tv_card_my_trip_type_user_name"
+                            android:id="@+id/tv_card_other_member_trip_type_user_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:includeFontPadding="false"
                             android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                            android:textSize="10sp"
+                            android:includeFontPadding="false"
+                            android:layout_marginStart="4dp"
                             android:text="@{vm.myTravelTendencyResult.tendencyUserMember.memberName}"
-                            android:layout_marginBottom="16dp"
-                            tools:text="유지인"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            android:textSize="10sp"
+                            app:layout_constraintBottom_toBottomOf="@id/ri_my_trip_profile"
+                            app:layout_constraintStart_toEndOf="@id/ri_my_trip_profile"
+                            app:layout_constraintTop_toTopOf="@id/ri_my_trip_profile"
+                            tools:text="유지인" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_card_my_trip_detail"

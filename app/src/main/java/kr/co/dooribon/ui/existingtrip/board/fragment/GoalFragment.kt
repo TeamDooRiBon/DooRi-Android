@@ -120,21 +120,21 @@ class GoalFragment : Fragment() {
         })
     }
 
-    private fun sendData(sendText : String){
+    private fun sendData(sendText: String) {
         apiModule.boardApi.createTravelBoard(
             arguments?.getString("groupId").toString(),
             "goal",
             CreateTravelBoardReq(
                 sendText
             )
-        ).enqueue(object : Callback<CreateTravelBoardRes>{
+        ).enqueue(object : Callback<CreateTravelBoardRes> {
             override fun onResponse(
                 call: Call<CreateTravelBoardRes>,
                 response: Response<CreateTravelBoardRes>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     Log.e("success", "goal ${response.body()?.message.toString()}")
-                }else{
+                } else {
                     Log.e("createTravel", "Not Success")
                 }
             }
@@ -219,7 +219,7 @@ class GoalFragment : Fragment() {
     * todoText : 다이얼로그에 뜰 내용
     * writer : 작성자
     *  */
-    private fun itemClickListener(todoText: String, writer: String, position : Int) {
+    private fun itemClickListener(todoText: String, writer: String, position: Int) {
         val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
         val sheetView = LayoutInflater.from(requireContext()).inflate(
             R.layout.bottomsheet_add_board_list,

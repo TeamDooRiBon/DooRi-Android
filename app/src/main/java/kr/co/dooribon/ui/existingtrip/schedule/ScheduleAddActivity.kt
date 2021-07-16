@@ -1,26 +1,20 @@
 package kr.co.dooribon.ui.existingtrip.schedule
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
-import kr.co.dooribon.api.remote.CreateTravelReq
 import kr.co.dooribon.api.remote.CreateTravelScheduleReq
 import kr.co.dooribon.api.remote.CreateTravelScheduleRes
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityScheduleAddBinding
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
-import kr.co.dooribon.utils.DateUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDate
-import java.util.*
 
 class ScheduleAddActivity : AppCompatActivity() {
 
