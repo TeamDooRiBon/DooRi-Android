@@ -3,9 +3,7 @@ package kr.co.dooribon.ui.home.viewmodel
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kr.co.dooribon.api.remote.asDomainPreviousTravel
 import kr.co.dooribon.api.remote.asDomainTravel
-import kr.co.dooribon.api.remote.asDomainUpComingTravel
 import kr.co.dooribon.api.remote.extension.asDomainPreviousTravel
 import kr.co.dooribon.api.remote.extension.asDomainUpComingTravel
 import kr.co.dooribon.api.repository.HomeRepository

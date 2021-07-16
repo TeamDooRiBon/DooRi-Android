@@ -5,22 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.FragmentTendencyBinding
 import kr.co.dooribon.ui.existingtrip.tendency.extension.initializeTendencyNavigation
 import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.TendencyViewModel
-import kr.co.dooribon.ui.existingtrip.viewmodel.ExistingTripViewModel
 import kr.co.dooribon.utils.AutoClearBinding
-import kr.co.dooribon.utils.debugE
 import kr.co.dooribon.utils.initializeTab
 
 class TendencyFragment : Fragment() {
 
     private var binding by AutoClearBinding<FragmentTendencyBinding>()
 
-    private val viewModel by viewModels<TendencyViewModel>{
+    private val viewModel by viewModels<TendencyViewModel> {
         viewModelModule.provideTendencyViewModelFactory()
     }
 
@@ -43,14 +40,14 @@ class TendencyFragment : Fragment() {
     }
 
     private fun observeTendencyGroupId() {
-        viewModel.memberTendencyGroupId.observe(viewLifecycleOwner){
+        viewModel.memberTendencyGroupId.observe(viewLifecycleOwner) {
         }
     }
 
     private fun configureTabNavigation() {
         val bundle = Bundle()
-        bundle.putString("tendency_groupId",viewModel.memberTendencyGroupId.value)
+        bundle.putString("tendency_groupId", viewModel.memberTendencyGroupId.value)
         binding.tabTendency.initializeTab(listOf("우리들", "살펴보기"))
-        binding.tabTendency.initializeTendencyNavigation(childFragmentManager,bundle)
+        binding.tabTendency.initializeTendencyNavigation(childFragmentManager, bundle)
     }
 }

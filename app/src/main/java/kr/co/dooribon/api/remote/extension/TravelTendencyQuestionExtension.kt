@@ -17,27 +17,27 @@ fun List<TravelDTO>.asDomainPreviousTravel(): List<PreviousTravel> {
     }
 }
 
-fun ParentQuestionDTO.asDomainParentQuestion() : ParentTravelTendency {
+fun ParentQuestionDTO.asDomainParentQuestion(): ParentTravelTendency {
     return ParentTravelTendency(
         parentQuestionTitle = this.parentQuestionTitle,
         childQuestions = this.childQuestions.asDomainChildQuestionList()
     )
 }
 
-fun ChildQuestionDTO.asDomainChildQuestion() : ParentTravelTendency.ChildTravelTendencyQuestion{
+fun ChildQuestionDTO.asDomainChildQuestion(): ParentTravelTendency.ChildTravelTendencyQuestion {
     return ParentTravelTendency.ChildTravelTendencyQuestion(
         childQuestionTitle = this.questionsTitle,
         childQuestionWeight = this.questionsWeight
     )
 }
 
-fun List<ChildQuestionDTO>.asDomainChildQuestionList() : List<ParentTravelTendency.ChildTravelTendencyQuestion>{
+fun List<ChildQuestionDTO>.asDomainChildQuestionList(): List<ParentTravelTendency.ChildTravelTendencyQuestion> {
     return map {
         it.asDomainChildQuestion()
     }
 }
 
-fun List<ParentQuestionDTO>.asDomainParentQuestionList() : List<ParentTravelTendency> {
+fun List<ParentQuestionDTO>.asDomainParentQuestionList(): List<ParentTravelTendency> {
     return map {
         it.asDomainParentQuestion()
     }

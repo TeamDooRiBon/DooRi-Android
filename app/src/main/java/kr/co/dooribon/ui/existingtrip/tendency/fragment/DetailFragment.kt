@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.FragmentDetailBinding
-import kr.co.dooribon.domain.entity.AnswerQuestion
 import kr.co.dooribon.domain.entity.ExpandableAnswerQuestion
 import kr.co.dooribon.ui.existingtrip.tendency.adapter.TripDetailAdapter
 import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.DetailViewModel
@@ -51,18 +50,23 @@ class DetailFragment : Fragment() {
     }
 
     private fun observeMemberTravelTendencyResult() {
-        viewModel.membersTravelTendencyResult.observe(viewLifecycleOwner){
+        viewModel.membersTravelTendencyResult.observe(viewLifecycleOwner) {
             val expandableList = mutableListOf<ExpandableAnswerQuestion>()
-            synchronized(expandableList){
+            synchronized(expandableList) {
                 it.forEach { AnswerQuestion ->
-                    expandableList.add(ExpandableAnswerQuestion(ExpandableAnswerQuestion.PARENT,AnswerQuestion))
+                    expandableList.add(
+                        ExpandableAnswerQuestion(
+                            ExpandableAnswerQuestion.PARENT,
+                            AnswerQuestion
+                        )
+                    )
                 }
             }
             detailAdapter.submitList(expandableList)
         }
     }
 
-    private fun configureRecyclerView(){
+    private fun configureRecyclerView() {
         binding.rvDetail.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = detailAdapter

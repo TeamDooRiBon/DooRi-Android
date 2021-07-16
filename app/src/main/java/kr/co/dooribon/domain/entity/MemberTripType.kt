@@ -23,4 +23,4 @@ val tendencyResultImageUrl: String,
 @SerializedName("thumbnail")
 val tendencyThumbnailImageUrl: String
 )
-**/
+ **/

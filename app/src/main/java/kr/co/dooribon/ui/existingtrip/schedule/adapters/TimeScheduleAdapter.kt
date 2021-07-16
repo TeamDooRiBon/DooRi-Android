@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.R
-import kr.co.dooribon.api.remote.BaseTravelScheduleDTO
 import kr.co.dooribon.databinding.ItemDateScheduleBinding
 
 class TimeScheduleAdapter : RecyclerView.Adapter<TimeScheduleAdapter.PlanViewHolder>() {

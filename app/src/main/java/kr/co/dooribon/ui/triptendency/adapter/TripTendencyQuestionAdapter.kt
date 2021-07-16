@@ -17,9 +17,10 @@ class TripTendencyQuestionAdapter(
     private val viewModel: TripTendencyViewModel
 ) : RecyclerView.Adapter<TripTendencyQuestionAdapter.TripTendencyQuestionViewHolder>() {
 
-    private val childQuestionList = mutableListOf<ParentTravelTendency.ChildTravelTendencyQuestion>()
+    private val childQuestionList =
+        mutableListOf<ParentTravelTendency.ChildTravelTendencyQuestion>()
 
-    private val childQuestionNumberList = listOf(1,2,3,4)
+    private val childQuestionNumberList = listOf(1, 2, 3, 4)
 
     private val lastSelectedPosition
         get() = viewModel.lastQuestionSelectedPosition.value!![viewModel.questionPosition.value!!]

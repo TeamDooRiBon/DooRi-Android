@@ -19,7 +19,7 @@ class DetailViewModel(
         get() = _memberTendencyGroupId
 
     private val _membersTravelTendencyResult = MutableLiveData<List<AnswerQuestion.Question>>()
-    val membersTravelTendencyResult : LiveData<List<AnswerQuestion.Question>>
+    val membersTravelTendencyResult: LiveData<List<AnswerQuestion.Question>>
         get() = _membersTravelTendencyResult
 
     fun initializeMemberTendencyGroupId(groupId: String) {

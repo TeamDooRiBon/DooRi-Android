@@ -1,7 +1,7 @@
 package kr.co.dooribon.ui.existingtrip
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -27,9 +27,21 @@ class ExistingTripActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         intent?.getStringExtra("groupId")?.let { viewModel.setGroupId(it) }
         intent?.apply {
-            getParcelableExtra<Travel>("proceedingTravelContents")?.let { viewModel.initializeHomeProceedingTravel(it) }
-            getParcelableExtra<UpComingTravel>("upComingTravelContents")?.let { viewModel.initializeUpComingTravel(it) }
-            getParcelableExtra<PreviousTravel>("previousTravelContents")?.let { viewModel.initializePreviousTravel(it) }
+            getParcelableExtra<Travel>("proceedingTravelContents")?.let {
+                viewModel.initializeHomeProceedingTravel(
+                    it
+                )
+            }
+            getParcelableExtra<UpComingTravel>("upComingTravelContents")?.let {
+                viewModel.initializeUpComingTravel(
+                    it
+                )
+            }
+            getParcelableExtra<PreviousTravel>("previousTravelContents")?.let {
+                viewModel.initializePreviousTravel(
+                    it
+                )
+            }
         }
 
         observeProceedingTravelContents()
@@ -40,43 +52,47 @@ class ExistingTripActivity : AppCompatActivity() {
         setGroupId()
     }
 
-
     private fun setGroupId() {
         groupCode = intent.getStringExtra("groupId").toString()
         viewModel.setGroupId(groupCode)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observePreviousTravelContents() {
-        viewModel.homePreviousTravelContents.observe(this){
+        viewModel.homePreviousTravelContents.observe(this) {
             binding.apply {
                 tvExistingTripStartDate.text = it.previousTravelDate
-                tvExistingTripEndDate.text = it.previousTravelDate
+                tvExistingTripEndDate.text =
+                    it.previousTravelDate.substring(6, it.previousTravelDate.length)
                 tvExistingTripTitle.text = it.previousTravelTitle
-                tvExistingTripPeople.text = it.previousTravelPeople.toString()
+                tvExistingTripPeople.text = "훈기님 외에 ${it.previousTravelPeople}명과 함께"
                 tvExistingTripPlace.text = it.previousTravelPlace
             }
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observeUpComingTravelContents() {
-        viewModel.homeUpComingTravelContents.observe(this){
+        viewModel.homeUpComingTravelContents.observe(this) {
             binding.apply {
                 tvExistingTripStartDate.text = it.upComingTravelStartDate
-                tvExistingTripEndDate.text = it.upComingTravelEndDate
+                tvExistingTripEndDate.text =
+                    it.upComingTravelEndDate.substring(6, it.upComingTravelEndDate.length)
                 tvExistingTripTitle.text = it.upComingTravelTitle
-                tvExistingTripPeople.text = it.upComingTravelPersonCount.toString()
+                tvExistingTripPeople.text = "훈기님 외에 ${it.upComingTravelPersonCount}명과 함께"
                 tvExistingTripPlace.text = it.upComingTravelLocation
             }
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observeProceedingTravelContents() {
-        viewModel.homeProceedingTravelContents.observe(this){
+        viewModel.homeProceedingTravelContents.observe(this) {
             binding.apply {
                 tvExistingTripStartDate.text = it.travelStartDate
-                tvExistingTripEndDate.text = it.travelEndDate
+                tvExistingTripEndDate.text = it.travelEndDate.substring(6, it.travelEndDate.length)
                 tvExistingTripTitle.text = it.travelTitle
-                tvExistingTripPeople.text = it.travelMembers.size.toString()
+                tvExistingTripPeople.text = "훈기님 외에 ${it.travelMembers.size}명과 함께"
                 tvExistingTripPlace.text = it.travelDestination
             }
         }
@@ -91,8 +107,11 @@ class ExistingTripActivity : AppCompatActivity() {
     private fun configureBottomNavigation() {
         val tendencyBundle = Bundle()
         tendencyBundle.apply {
-            putString("tendency_groupId",viewModel.getGroupId())
+            putString("tendency_groupId", viewModel.getGroupId())
         }
-        binding.bottomNavExistingTrip.initExistingTripBottomNavigation(supportFragmentManager,tendencyBundle)
+        binding.bottomNavExistingTrip.initExistingTripBottomNavigation(
+            supportFragmentManager,
+            tendencyBundle
+        )
     }
 }

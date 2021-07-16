@@ -1,14 +1,10 @@
 package kr.co.dooribon.binding
 
-import android.annotation.SuppressLint
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kr.co.dooribon.R
-import kr.co.dooribon.domain.entity.PreviousTravel
-import kr.co.dooribon.domain.entity.Travel
-import kr.co.dooribon.domain.entity.UpComingTravel
 import kr.co.dooribon.utils.dpToPixel
 import kotlin.math.roundToInt
 
@@ -32,28 +28,37 @@ object BindingAdapter {
     fun setImageWithUrl(imageView: ImageView, imageUrl: String?) {
         Glide.with(imageView.context)
             .load(imageUrl)
-            .override(imageView.context.dpToPixel(200),imageView.context.dpToPixel(160))
+            .override(imageView.context.dpToPixel(200), imageView.context.dpToPixel(160))
             .dontTransform()
             .into(imageView)
     }
 
     @JvmStatic
     @BindingAdapter("set_profile_image_url")
-    fun setProfileImageUrl(imageView : ImageView , imageUrl : String?){
+    fun setProfileImageUrl(imageView: ImageView, imageUrl: String?) {
         Glide.with(imageView.context)
             .load(imageUrl)
             .dontTransform()
-            .override(imageView.context.dpToPixel(20),imageView.context.dpToPixel(20))
+            .override(imageView.context.dpToPixel(20), imageView.context.dpToPixel(20))
             .into(imageView)
     }
 
     @JvmStatic
     @BindingAdapter("set_travel_tendency_result")
-    fun setTravelTendencyResult(imageView : ImageView , imageUrl : String?){
+    fun setTravelTendencyResult(imageView: ImageView, imageUrl: String?) {
         Glide.with(imageView.context)
             .load(imageUrl)
             .dontTransform()
             .into(imageView)
     }
 
+    @JvmStatic
+    @BindingAdapter("set_up_coming_travel_image_url")
+    fun setUpComingTravelImageUrl(imageView : ImageView , imageUrl : String?){
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .override(imageView.context.dpToPixel(120),imageView.context.dpToPixel(120))
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .into(imageView)
+    }
 }
