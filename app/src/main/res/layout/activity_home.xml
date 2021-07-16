@@ -143,25 +143,25 @@
 
                     <TextView
                         android:id="@+id/tv_home_start_date"
-                        style="@style/WhiteBoldTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/spoqa_han_sans_neo_medium"
                         android:includeFontPadding="false"
                         android:text="@{bindViewModel.homeProceedingTravel.travelStartDate}"
+                        android:textColor="@color/white_pure_9"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_title"
                         app:layout_constraintEnd_toStartOf="@id/tv_home_being_emoji"
                         app:layout_constraintStart_toStartOf="@id/tv_home_place" />
 
                     <TextView
                         android:id="@+id/tv_home_being_emoji"
-                        style="@style/WhiteBoldTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:fontFamily="@font/spoqa_han_sans_neo_medium"
                         android:includeFontPadding="false"
+                        android:textColor="@color/white_pure_9"
                         android:text="~"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_title"
                         app:layout_constraintEnd_toStartOf="@id/tv_home_end_date"
@@ -169,13 +169,13 @@
 
                     <TextView
                         android:id="@+id/tv_home_end_date"
-                        style="@style/WhiteBoldTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:fontFamily="@font/spoqa_han_sans_neo_medium"
                         android:includeFontPadding="false"
                         android:text="@{bindViewModel.homeProceedingTravel.travelEndDate}"
+                        android:textColor="@color/white_pure_9"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_title"
                         app:layout_constraintStart_toEndOf="@id/tv_home_being_emoji" />
 
@@ -322,10 +322,10 @@
                         android:background="@drawable/bg_black_gray4_round_textview"
                         android:fontFamily="@font/spoqa_han_sans_neo_regular"
                         android:includeFontPadding="false"
-                        android:paddingStart="8dp"
-                        android:paddingTop="2dp"
-                        android:paddingEnd="8dp"
-                        android:paddingBottom="2dp"
+                        android:paddingStart="12dp"
+                        android:paddingTop="6dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="6dp"
                         android:text="더보기"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="@id/tv_home_previous_travel_title"

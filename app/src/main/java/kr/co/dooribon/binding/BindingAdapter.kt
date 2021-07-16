@@ -61,4 +61,14 @@ object BindingAdapter {
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .into(imageView)
     }
+
+    @JvmStatic
+    @BindingAdapter("set_previous_travel_image_url")
+    fun setPreviousTravelImageUrl(imageView : ImageView , imageUrl : String?) {
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .override(imageView.context.dpToPixel(100), imageView.context.dpToPixel(100))
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .into(imageView)
+    }
 }
