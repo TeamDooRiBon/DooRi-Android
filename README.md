@@ -13,46 +13,41 @@
 
 ## 📌 Preview
 🎥 동영상
+
 <details>
   <summary>Splash & Onboarding</summary>
-  ```
   
-  ```
+  ![7](https://user-images.githubusercontent.com/80473521/125965541-81823fd8-8223-4b99-b994-6ff440f7e82e.gif)
 </details>
 <details>
   <summary>새로운 여행 추가</summary>
-  ```
-  ```
+  
+  ![8](https://user-images.githubusercontent.com/80473521/125965556-726e76b5-2a36-4349-a9b3-490e26befb34.gif)
 </details>
 <details>
-  <summary>멤버, 성향 결과</summary>
-  ```
-  ```
+  <summary>멤버, 성향 결과 & 성향 테스트</summary>
+  
+  ![6](https://user-images.githubusercontent.com/80473521/125965529-2242872e-075a-452f-8015-2d1d9c2cc85c.gif)
 </details>
 <details>
-  <summary>살펴보기 기능 추가</summary>
-  ```
-  ```
+  <summary>보드 일정</summary>
+  
+![1](https://user-images.githubusercontent.com/80473521/125965054-04be552d-945e-4220-80ad-7b093cd045d0.gif)
 </details>
 <details>
-  <summary>살펴보기 기능 편집/삭제</summary>
-  ```
-  ```
+  <summary>보드 그룹</summary>
+  
+![9](https://user-images.githubusercontent.com/80473521/125965571-ee850cc8-0eb2-45e0-86b6-3dee80cd78a8.gif)
 </details>
 <details>
   <summary>보드 뷰 기능1</summary>
-  ```
-  ```
+  
+![4](https://user-images.githubusercontent.com/80473521/125965505-2d4c4cbd-da93-4652-85bf-8280130252cc.gif)
 </details>
 <details>
   <summary>보드 뷰 기능2</summary>
-  ```
-  ```
-</details>
-<details>
-  <summary>성향 테스트</summary>
-  ```
-  ```
+  
+   ![3](https://user-images.githubusercontent.com/80473521/125965491-6355de26-792d-4b52-936c-bff468d1e5c6.gif)
 </details>
 
 ## 📌 기능 설명
