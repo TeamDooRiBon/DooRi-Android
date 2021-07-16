@@ -147,7 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                        android:fontFamily="@font/spoqa_han_sans_neo_regular"
                         android:includeFontPadding="false"
                         android:text="@{bindViewModel.homeProceedingTravel.travelStartDate}"
                         app:layout_constraintBottom_toTopOf="@id/tv_home_title"
@@ -184,7 +184,7 @@
                         style="@style/WhiteBoldTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="96dp"
                         android:fontFamily="@font/spoqa_han_sans_neo_bold"
                         android:includeFontPadding="false"
                         android:text="@{bindViewModel.homeProceedingTravel.travelTitle}"
@@ -255,7 +255,6 @@
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/vp_home_upcoming_travel_contents"
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -286,6 +285,7 @@
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/spoqa_han_sans_neo_medium"
                         android:includeFontPadding="false"
+                        android:letterSpacing="-0.02"
                         android:onClick="@{() -> navigate_new_trip.invoke()}"
                         android:text="새로운 여행 시작하기"
                         android:textSize="15sp"
