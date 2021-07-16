@@ -12,7 +12,6 @@ import kr.co.dooribon.databinding.FragmentParticipateJoinBinding
 
 class ParticipateJoinFragment : Fragment() {
     private lateinit var binding: FragmentParticipateJoinBinding
-    var count = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,38 +72,6 @@ class ParticipateJoinFragment : Fragment() {
             } else {
                 binding.etCode6.setBackgroundResource(R.drawable.text_round)
             }
-
-        }
-        btnFullCheck()
-    }
-
-    // todo : 버튼 다시 수정 진행
-    private fun btnFullCheck(){
-        binding.etCode6.setOnClickListener {
-            if(binding.etCode1.text.isNotEmpty() && binding.etCode2.text.isNotEmpty() && binding.etCode3.text.isNotEmpty() && binding.etCode4.text.isNotEmpty() && binding.etCode5.text.isNotEmpty()){
-                count ++
-                Log.e("tmp", "count 되는지 확인")
-            }
-            if(count == 1){
-                binding.btnParticipatePut.apply {
-                    isEnabled = true
-                    text = "입력하기"
-                    setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_white_8))
-                    setBackgroundColor(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            R.color.doo_ri_bon_orange
-                        )
-                    )
-                }
-            }
-        }
-
-        binding.btnParticipatePut.setOnClickListener {
-            val participatecheckFragment = ParticipateCheckFragment()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.participate_fragment_container_view, participatecheckFragment)
-                .commitNow()
         }
 
     }

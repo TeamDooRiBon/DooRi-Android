@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityOnboardingBinding
+import kr.co.dooribon.ui.newtrip.join.ParticipateJoinFragment
 import kr.co.dooribon.ui.signin.SignInActivity
 import kr.co.dooribon.utils.getIntent
 
@@ -15,15 +16,9 @@ class OnboardingActivity : AppCompatActivity() {
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.lottie.playAnimation()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.onboarding_fragment_container_view, OnboardingFirstFragment())
+            .commitNow()
+    }
 
-        nextBtnClick()
-    }
-    fun nextBtnClick(){
-        binding.btnLoadingNext.setOnClickListener {
-            startActivity(getIntent<SignInActivity>())
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-            finish()
-        }
-    }
 }
