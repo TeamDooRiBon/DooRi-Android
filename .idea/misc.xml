@@ -44,9 +44,12 @@
         <entry key="app/src/main/res/layout/activity_schedule_add.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_schedule_edit.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_travel_plan_done.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/bottomsheet_add_board_list.xml" value="0.20878623188405798" />
         <entry key="app/src/main/res/layout/bottomsheet_add_schedule.xml" value="0.213768115942029" />
         <entry key="app/src/main/res/layout/dialog_delete_question.xml" value="0.213768115942029" />
         <entry key="app/src/main/res/layout/dialog_done_copy.xml" value="0.625" />
+        <entry key="app/src/main/res/layout/dialog_edit_travel.xml" value="0.16822916666666668" />
+        <entry key="app/src/main/res/layout/fragment_board.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/layout/fragment_board_bottom.xml" value="0.15889381688712215" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.11614583333333334" />
         <entry key="app/src/main/res/layout/fragment_onboarding_first.xml" value="0.18840579710144928" />

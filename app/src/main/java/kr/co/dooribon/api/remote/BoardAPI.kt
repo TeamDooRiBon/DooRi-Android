@@ -30,7 +30,7 @@ data class CreateTravelBoardRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: BoardContentDTO
+    val data: List<BoardContentDTO>
 )
 
 // 여행 보드 조회
@@ -59,7 +59,7 @@ data class EditTravelBoardRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: BoardContentDTO
+    val data: List<BoardContentDTO>
 )
 
 // 여행 보드 삭제
@@ -71,18 +71,17 @@ data class DeleteTravelBoardRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: BoardContentDTO
+    val data: List<BoardContentDTO>
 )
 
 interface BoardAPI {
     // 여행 보드 추가 뷰
-    // TODO : 해야함
     @POST("board/{groupId}/{tag}")
     fun createTravelBoard(
         @Path("groupId") groupId: String,
         @Path("tag") tag: String,
         @Body createTravelBoardReq: CreateTravelBoardReq
-    ): CreateTravelBoardRes
+    ): Call<CreateTravelBoardRes>
 
     // 태그별 여행 보드 조회 뷰
     @GET("board/{groupId}/{tag}")
@@ -91,7 +90,6 @@ interface BoardAPI {
         @Path("tag") tag: String
     ): Call<InquireTravelBoardRes>
 
-    // TODO : 해야함
     // 여행 보드 수정 뷰 , 태그별 여행 보드 조회 뷰
     @PATCH("board/{groupId}/{tag}/{boardId}")
     fun editTravelBoard(
@@ -99,14 +97,13 @@ interface BoardAPI {
         @Path("groupId") groupId: String,
         @Path("tag") tag: String,
         @Path("boardId") boardId: String
-    ): EditTravelBoardRes
+    ): Call<EditTravelBoardRes>
 
-    // TODO : 해야함
     // 태그별 여행 보드 조회 뷰에서 삭제 할 때
     @DELETE("board/{groupId}/{tag}/{boardId}")
     fun deleteTravelBoard(
         @Path("groupId") groupId: String,
         @Path("tag") tag: String,
         @Path("boardId") boardId: String
-    ): DeleteTravelBoardRes
+    ): Call<DeleteTravelBoardRes>
 }
