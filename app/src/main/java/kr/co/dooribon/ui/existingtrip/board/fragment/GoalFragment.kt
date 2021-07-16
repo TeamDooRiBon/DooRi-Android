@@ -15,8 +15,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
-import kr.co.dooribon.api.remote.BoardContentDTO
-import kr.co.dooribon.api.remote.InquireTravelBoardRes
+import kr.co.dooribon.api.remote.*
+import kr.co.dooribon.application.MainApplication
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter
@@ -29,6 +29,7 @@ class GoalFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
     private lateinit var dummyList: List<BoardListData>
+    private var dataList = listOf<BoardContentDTO>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +49,32 @@ class GoalFragment : Fragment() {
         getGoalBoardData(arguments?.getString("groupId").toString())
     }
 
+    /* 편집 데이터 전송 */
+    private fun sendEditData(sendText: String, position: Int) {
+        apiModule.boardApi.editTravelBoard(
+            EditTravelBoardReq(sendText),
+            arguments?.getString("groupId").toString(),
+            "goal",
+            dataList[position].boardId
+        ).enqueue(object : Callback<EditTravelBoardRes> {
+            override fun onResponse(
+                call: Call<EditTravelBoardRes>,
+                response: Response<EditTravelBoardRes>
+            ) {
+                if (response.isSuccessful) {
+                    Log.e("response Success", response.body()?.message.toString())
+                } else {
+                    Log.e("response Fail", response.body()?.message.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<EditTravelBoardRes>, t: Throwable) {
+                Log.e("sendEditData onFailure", t.message.toString())
+            }
+
+        })
+    }
+
     private fun getGoalBoardData(groupId: String) {
         apiModule.boardApi.inquireTravelBoard(groupId, "goal")
             .enqueue(object : Callback<InquireTravelBoardRes> {
@@ -57,6 +84,7 @@ class GoalFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         setBoardAdapter(response.body()?.data ?: emptyList())
+                        dataList = dataList.plus(response.body()?.data ?: emptyList())
                         if (response.body()?.data?.isNotEmpty() == true) {
                             makeImageGone()
                         }
@@ -67,6 +95,54 @@ class GoalFragment : Fragment() {
                     Log.e("getGoalBoardData onFailure", t.message.toString())
                 }
             })
+    }
+
+    private fun deleteData(position: Int) {
+        MainApplication.apiModule.boardApi.deleteTravelBoard(
+            arguments?.getString("groupId").toString(),
+            "goal",
+            dataList[position].boardId
+        ).enqueue(object : Callback<DeleteTravelBoardRes> {
+            override fun onResponse(
+                call: Call<DeleteTravelBoardRes>,
+                response: Response<DeleteTravelBoardRes>
+            ) {
+                if (response.isSuccessful) {
+                    Log.e("isNotSuccessful", response.body()?.message.toString())
+                } else {
+                    Log.e("isNotSuccessful", response.body()?.message.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<DeleteTravelBoardRes>, t: Throwable) {
+                Log.e("deleteData onFailure", t.message.toString())
+            }
+        })
+    }
+
+    private fun sendData(sendText : String){
+        apiModule.boardApi.createTravelBoard(
+            arguments?.getString("groupId").toString(),
+            "goal",
+            CreateTravelBoardReq(
+                sendText
+            )
+        ).enqueue(object : Callback<CreateTravelBoardRes>{
+            override fun onResponse(
+                call: Call<CreateTravelBoardRes>,
+                response: Response<CreateTravelBoardRes>
+            ) {
+                if(response.isSuccessful){
+                    Log.e("success", "goal ${response.body()?.message.toString()}")
+                }else{
+                    Log.e("createTravel", "Not Success")
+                }
+            }
+
+            override fun onFailure(call: Call<CreateTravelBoardRes>, t: Throwable) {
+                Log.e("sendData", t.message.toString())
+            }
+        })
     }
 
     /* 서버에서 수신한 것에 값이 들어있을 때, 디폴트로 들어가있는 값을 지운다. */
@@ -92,6 +168,7 @@ class GoalFragment : Fragment() {
                     dismiss()
                 }
                 findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                    sendData(findViewById<EditText>(R.id.et_add_content)?.text.toString())
                     dismiss()
                 }
                 show()
@@ -130,7 +207,8 @@ class GoalFragment : Fragment() {
             override fun onClick(view: View, position: Int) {
                 itemClickListener(
                     view.findViewById<TextView>(R.id.tv_board_main).text.toString(),
-                    view.findViewById<TextView>(R.id.tv_board_writer).text.toString()
+                    view.findViewById<TextView>(R.id.tv_board_writer).text.toString(),
+                    position
                 )
             }
         })
@@ -140,7 +218,7 @@ class GoalFragment : Fragment() {
     * todoText : 다이얼로그에 뜰 내용
     * writer : 작성자
     *  */
-    private fun itemClickListener(todoText: String, writer: String) {
+    private fun itemClickListener(todoText: String, writer: String, position : Int) {
         val bsDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
         val sheetView = LayoutInflater.from(requireContext()).inflate(
             R.layout.bottomsheet_add_board_list,
@@ -148,6 +226,7 @@ class GoalFragment : Fragment() {
         )
         sheetView.apply {
             findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener { // TODO 삭제하는 기능 추가해야함.
+                deleteData(position)
                 bsDialog.dismiss()
             }
             findViewById<TextView>(R.id.tv_add_board_main_todo).text = todoText
@@ -166,6 +245,10 @@ class GoalFragment : Fragment() {
                         dismiss()
                     }
                     findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                        sendEditData(
+                            findViewById<EditText>(R.id.et_add_content).text.toString(),
+                            position
+                        )
                         dismiss()
                     }
                     show()
