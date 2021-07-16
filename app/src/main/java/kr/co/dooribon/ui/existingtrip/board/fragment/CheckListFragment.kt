@@ -14,10 +14,14 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.tabs.TabLayout
 import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.BoardContentDTO
+import kr.co.dooribon.api.remote.CreateTravelBoardReq
+import kr.co.dooribon.api.remote.CreateTravelBoardRes
 import kr.co.dooribon.api.remote.InquireTravelBoardRes
 import kr.co.dooribon.application.MainApplication
+import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter
 import retrofit2.Call
@@ -58,11 +62,37 @@ class CheckListFragment : Fragment() {
                     dismiss()
                 }
                 findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
+                    sendData(findViewById<EditText>(R.id.et_add_content)?.text.toString())
                     dismiss()
                 }
                 show()
             }
         }
+    }
+
+    private fun sendData(sendText : String){
+        apiModule.boardApi.createTravelBoard(
+            arguments?.getString("groupId").toString(),
+            "check",
+            CreateTravelBoardReq(
+                sendText
+            )
+        ).enqueue(object : Callback<CreateTravelBoardRes>{
+            override fun onResponse(
+                call: Call<CreateTravelBoardRes>,
+                response: Response<CreateTravelBoardRes>
+            ) {
+                if(response.isSuccessful){
+                    Log.e("success", response.body()?.message.toString())
+                }else{
+                    Log.e("createTravel", "Not Success")
+                }
+            }
+
+            override fun onFailure(call: Call<CreateTravelBoardRes>, t: Throwable) {
+                Log.e("sendData", t.message.toString())
+            }
+        })
     }
 
     /***

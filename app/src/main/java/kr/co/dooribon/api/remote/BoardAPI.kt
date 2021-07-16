@@ -30,7 +30,7 @@ data class CreateTravelBoardRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: BoardContentDTO
+    val data: List<BoardContentDTO>
 )
 
 // 여행 보드 조회
@@ -82,7 +82,7 @@ interface BoardAPI {
         @Path("groupId") groupId: String,
         @Path("tag") tag: String,
         @Body createTravelBoardReq: CreateTravelBoardReq
-    ): CreateTravelBoardRes
+    ): Call<CreateTravelBoardRes>
 
     // 태그별 여행 보드 조회 뷰
     @GET("board/{groupId}/{tag}")
