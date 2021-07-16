@@ -34,7 +34,6 @@ class ScheduleEditActivity : AppCompatActivity() {
         timePickerClickListener4()
         notEditClickListener()
         scheduleEditBtnClickListener()
-        editBackBtnClickListener()
         onEditBtnClick()
     }
 
@@ -72,41 +71,55 @@ class ScheduleEditActivity : AppCompatActivity() {
     }
 
     private fun onEditBtnClick() {
+        val year = intent.getStringExtra("year").toString()
+        val month = intent.getStringExtra("month").toString()
+        val date = intent.getStringExtra("date").toString()
         binding.btnScheduleEdit.setOnClickListener {
-//            val startTime =
-//                passedYear.plus("-").plus(addZero(passedMonth)).plus("-").plus(addZero(passedDate))
-//                    .plus(" ").plus(
-//                        if (binding.tvTimepickerAmpm1.text == "오후") {
-//                            (binding.tvTimepickerHour1.text.toString().toInt() + 12).toString()
-//                        } else { // 오전일 때는 그냥 12더하지 않고 추가
-//                            binding.tvTimepickerHour1.text.toString()
-//                        }
-//                    ).plus(":").plus(binding.tvTimepickerMinute1.text.toString())
+            val startTime =
+                year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                    .plus(" ").plus(
+                        if (binding.tvTimepickerAmpm3.text == "오후") {
+                            (binding.tvTimepickerHour3.text.toString().toInt() + 12).toString()
+                        } else { // 오전일 때는 그냥 12더하지 않고 추가
+                            binding.tvTimepickerHour3.text.toString()
+                        }
+                    ).plus(":").plus(binding.tvTimepickerMinute3.text.toString())
+            val endTime =
+                year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                    .plus(" ").plus(
+                        if (binding.tvTimepickerAmpm4.text == "오후") {
+                            (binding.tvTimepickerHour4.text.toString().toInt() + 12).toString()
+                        } else { // 오전일 때는 그냥 12더하지 않고 추가
+                            binding.tvTimepickerHour4.text.toString()
+                        }
+                    ).plus(":").plus(binding.tvTimepickerMinute4.text.toString())
 
-//            apiModule.scheduleApi.editTravelSchedule(
-//                intent.getStringExtra("groupId").toString(),
-//                intent.getStringExtra("scheduleId").toString(),
-//                EditTravelScheduleReq(
-//                    binding.etScheduleAddWhat.toString(),
-//                    binding.
-//                )
-//            ).enqueue(object : Callback<EditTravelScheduleRes>{
-//                override fun onResponse(
-//                    call: Call<EditTravelScheduleRes>,
-//                    response: Response<EditTravelScheduleRes>
-//                ) {
-//                    if(response.isSuccessful){
-//                        Log.e("responseSuccess", response.body()?.message.toString())
-//                        Log.e("responseSuccess", response.body().toString())
-//                    }else{
-//                        Log.e("responseFaile", response.message())
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<EditTravelScheduleRes>, t: Throwable) {
-//                    Log.e("onEditBtnClick onFailure", t.message.toString())
-//                }
-//            })
+            apiModule.scheduleApi.editTravelSchedule(
+                intent.getStringExtra("groupId").toString(),
+                intent.getStringExtra("scheduleId").toString(),
+                EditTravelScheduleReq(
+                    binding.etScheduleAddWhat.text.toString(),
+                    startTime,
+                    endTime,
+                    binding.etScheduleAddLocation.text.toString(),
+                    binding.etScheduleAddMemo.text.toString()
+                )
+            ).enqueue(object : Callback<EditTravelScheduleRes> {
+                override fun onResponse(
+                    call: Call<EditTravelScheduleRes>,
+                    response: Response<EditTravelScheduleRes>
+                ) {
+                    if (response.isSuccessful) {
+                        finish()
+                    } else {
+                        Log.e("responseFail", response.message())
+                    }
+                }
+
+                override fun onFailure(call: Call<EditTravelScheduleRes>, t: Throwable) {
+                    Log.e("onEditBtnClick onFailure", t.message.toString())
+                }
+            })
         }
     }
 
@@ -352,11 +365,11 @@ class ScheduleEditActivity : AppCompatActivity() {
         }
     }
 
-    private fun editBackBtnClickListener() {
-        binding.ivScheduleEditBack.setOnClickListener {
-            finish()
-        }
-    }
+//    private fun editBackBtnClickListener() {
+//        binding.ivScheduleEditBack.setOnClickListener {
+//            finish()
+//        }
+//    }
 
     override fun onBackPressed() {
         setQuestionDialog()

@@ -89,9 +89,9 @@ data class EditTravelScheduleReq(
     @SerializedName("title")
     val travelScheduleTitle: String,
     @SerializedName("startTime")
-    val travelScheduleStartTime: Date,
+    val travelScheduleStartTime: String,
     @SerializedName("endTime")
-    val travelScheduleEndTime: Date,
+    val travelScheduleEndTime: String,
     @SerializedName("location")
     val travelScheduleLocation: String,
     @SerializedName("memo")
