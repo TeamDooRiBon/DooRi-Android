@@ -2,6 +2,8 @@ package kr.co.dooribon.ui.existingtrip.board.fragment
 
 import android.app.Dialog
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -93,6 +95,9 @@ class RoleAllocFragment : Fragment() {
                 }
                 findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
                     sendData(findViewById<EditText>(R.id.et_add_content)?.text.toString())
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        getCheckListData(arguments?.getString("groupId").toString())
+                    },1000)
                     dismiss()
                 }
                 show()
@@ -151,6 +156,9 @@ class RoleAllocFragment : Fragment() {
         sheetView.apply {
             findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener {
                 deleteData(position)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    getCheckListData(arguments?.getString("groupId").toString())
+                },1000)
                 bsDialog.dismiss()
             }
             findViewById<TextView>(R.id.tv_add_board_main_todo).text = todoText

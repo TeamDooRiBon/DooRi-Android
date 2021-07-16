@@ -491,6 +491,9 @@ class ScheduleFragment : Fragment() {
                         deleteDlg.findViewById<Button>(R.id.btn_dialog_delete).setOnClickListener {
                             // TODO 해당 리사이클러뷰 리로드
                             deleteSchedule(viewModel.getGroupId(), list[position].planId)
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                getDateScheduleList()
+                            }, 1000)
                             deleteDlg.dismiss()
                             bsDialog.dismiss()
                         }
@@ -547,6 +550,11 @@ class ScheduleFragment : Fragment() {
                     Log.e("deleteSchedule onFailure", t.message.toString())
                 }
             })
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
     // TODO 추후에 확장함수로 구현해도 될듯
