@@ -413,6 +413,7 @@ class ScheduleFragment : Fragment() {
                     // TODO 아래 하드코딩 된 부분을 수정해야 한다.
                     Handler(Looper.getMainLooper()).postDelayed({
                         val iv = findViewById<ImageView>(R.id.iv_profile_pic)
+
                         Glide.with(iv.context)
                             .load(travelData.travelScheduleWriter.profileImageUrl)
                             .centerCrop()
