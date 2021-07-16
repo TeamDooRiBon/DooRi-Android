@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
             android:includeFontPadding="false"
-            android:text="@{item.previousTravelDate}"
+            android:text="@{item.previousTravelDate.substring(0,7)}"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@id/iv_previous_trip"

@@ -51,7 +51,7 @@ class ExistingTripActivity : AppCompatActivity() {
         viewModel.homePreviousTravelContents.observe(this){
             binding.apply {
                 tvExistingTripStartDate.text = it.previousTravelDate
-                tvExistingTripEndDate.text = it.previousTravelDate.substring(0,5)
+                tvExistingTripEndDate.text = it.previousTravelDate.substring(6,it.previousTravelDate.length)
                 tvExistingTripTitle.text = it.previousTravelTitle
                 tvExistingTripPeople.text = "훈기님 외에 ${it.previousTravelPeople}명과 함께"
                 tvExistingTripPlace.text = it.previousTravelPlace
@@ -64,7 +64,7 @@ class ExistingTripActivity : AppCompatActivity() {
         viewModel.homeUpComingTravelContents.observe(this){
             binding.apply {
                 tvExistingTripStartDate.text = it.upComingTravelStartDate
-                tvExistingTripEndDate.text = it.upComingTravelEndDate.substring(0,5)
+                tvExistingTripEndDate.text = it.upComingTravelEndDate.substring(6,it.upComingTravelEndDate.length)
                 tvExistingTripTitle.text = it.upComingTravelTitle
                 tvExistingTripPeople.text = "훈기님 외에 ${it.upComingTravelPersonCount}명과 함께"
                 tvExistingTripPlace.text = it.upComingTravelLocation
@@ -77,7 +77,7 @@ class ExistingTripActivity : AppCompatActivity() {
         viewModel.homeProceedingTravelContents.observe(this){
             binding.apply {
                 tvExistingTripStartDate.text = it.travelStartDate
-                tvExistingTripEndDate.text = it.travelEndDate.substring(0,5)
+                tvExistingTripEndDate.text = it.travelEndDate.substring(6,it.travelEndDate.length)
                 tvExistingTripTitle.text = it.travelTitle
                 tvExistingTripPeople.text = "훈기님 외에 ${it.travelMembers.size}명과 함께"
                 tvExistingTripPlace.text = it.travelDestination
