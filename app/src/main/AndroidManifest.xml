@@ -3,7 +3,7 @@
     package="kr.co.dooribon">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".application.MainApplication"
@@ -14,29 +14,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DooRiBonAndroid"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.traveltendencyresult.TravelTendencyResultActivity"/>
+        <activity android:name=".ui.traveltendencyresult.TravelTendencyResultActivity" />
         <activity android:name=".ui.signin.SignInActivity" />
-        <activity android:name=".ui.splash.OnboardingActivity">
-
-        </activity>
+        <activity android:name=".ui.splash.OnboardingActivity" />
         <activity android:name=".ui.splash.SplashActivity">
-
-        </activity>
-        <activity android:name=".ui.existingtrip.ExistingTripActivity" />
-        <activity android:name=".ui.triptendency.TripTendencyActivity" />
-        <activity android:name=".ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.existingtrip.ExistingTripActivity" />
+        <activity android:name=".ui.triptendency.TripTendencyActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.newtrip.add.DatePickActivity" />
         <activity android:name=".ui.newtrip.TravelPlanDoneActivity" />
         <activity android:name=".ui.newtrip.join.ParticipateActivity" />
         <activity
             android:name=".ui.newtrip.add.AddTravelActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".ui.existingtrip.schedule.ScheduleAddActivity" />
         <activity android:name=".ui.existingtrip.schedule.ScheduleEditActivity" />
     </application>
