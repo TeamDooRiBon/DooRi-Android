@@ -11,8 +11,23 @@ class TravelTendencyViewModel : ViewModel() {
     val travelTendencyResultImageUrl: LiveData<String>
         get() = _travelTendencyResultImageUrl
 
+    private val _travelTendencyResultName = MutableLiveData<String>()
+    val travelTendencyResultName : LiveData<String>
+        get() = _travelTendencyResultName
+
+    private val _travelTendencyUserName = MutableLiveData<String>()
+    val travelTendencyUserName : LiveData<String>
+        get() = _travelTendencyUserName
+
     fun initializeTravelTendencyResultImageUrl(imageUrl: String) {
         _travelTendencyResultImageUrl.value = imageUrl
-        debugSSong(_travelTendencyResultImageUrl.value)
+    }
+
+    fun initializetTravelTendencyResultName(resultName : String){
+        _travelTendencyResultName.value = resultName
+    }
+
+    fun initializetTravelTendencyResultUserName(userName : String){
+        _travelTendencyUserName.value = userName
     }
 }

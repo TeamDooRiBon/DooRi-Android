@@ -40,6 +40,35 @@
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
                     app:layout_constraintBottom_toTopOf="@id/cl_save_travel_tendency_result"/>
+
+                <TextView
+                    android:id="@+id/tv_travel_tendency_result_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="@{vm.travelTendencyUserName + `님은`}"
+                    tools:text="훈기님은"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_travel_tendency_result_name"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="33sp"
+                    android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="2"
+                    android:text="@{vm.travelTendencyResultName}"
+                    app:layout_constraintStart_toStartOf="@id/tv_travel_tendency_result_user_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_travel_tendency_result_user_name"
+                    tools:text="텐션폭발\n핵인싸"/>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_save_travel_tendency_result"
                     android:layout_width="match_parent"
@@ -87,7 +116,7 @@
             android:textColor="@color/black"
             android:elevation="8dp"
             android:onClick="@{() -> activity.finish()}"
-            app:layout_constraintVertical_bias="0.85"
+            app:layout_constraintVertical_bias="0.88"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

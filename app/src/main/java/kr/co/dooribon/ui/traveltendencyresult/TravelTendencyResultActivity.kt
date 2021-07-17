@@ -36,16 +36,20 @@ class TravelTendencyResultActivity : AppCompatActivity() {
         binding.activity = this
 
         observeTravelTendencyResult()
-        debugSSong(intent.getStringExtra("travelTendencyResultImageUrl"))
 
         intent.getStringExtra("travelTendencyResultImageUrl")?.let {
             viewModel.initializeTravelTendencyResultImageUrl(it)
+        }
+        intent.getStringExtra("travelTendencyResultImageName")?.let {
+            viewModel.initializetTravelTendencyResultName(it)
+        }
+        intent.getStringExtra("travelTendencyUserName")?.let {
+            viewModel.initializetTravelTendencyResultUserName(it)
         }
     }
 
     private fun observeTravelTendencyResult() {
         viewModel.travelTendencyResultImageUrl.observe(this) {
-            debugSSong("heelo")
             Glide.with(this)
                 .asBitmap()
                 .load(it)

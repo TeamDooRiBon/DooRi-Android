@@ -47,26 +47,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_member_trip_re_test"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
-                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:paddingStart="4dp"
-                    android:paddingEnd="4dp"
-                    android:textColor="@color/gray_gray_5_main"
-                    android:background="@drawable/bg_black_gray6_round_textview"
-                    android:text="TEST 다시하기"
-                    android:onClick="@{() -> memberFragment.navigateTravelTendencyTest()}"
-                    android:textSize="12sp"
-                    my_travel_tendency_visible_text_view="@{vm.isMyTravelTendencyResult()}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_my_trip_type"
                     android:layout_width="match_parent"
