@@ -84,7 +84,7 @@ class TripTendencyViewModel(
             if (_lastQuestionSelectedPosition.value!![_questionPosition.value!!] != -1) {
                 _questionPosition.value = _questionPosition.value?.plus(1)
             } else {
-                toastEventLiveData.value = "질문을 클릭해주세요"
+                toastEventLiveData.value = "질문을 선택해주세요"
             }
         }
     }
@@ -94,7 +94,7 @@ class TripTendencyViewModel(
             if (_lastQuestionSelectedPosition.value!![_questionPosition.value!!] != -1) {
                 _questionPosition.value = _questionPosition.value?.minus(1)
             } else {
-                toastEventLiveData.value = "질문을 클릭해주세요"
+                toastEventLiveData.value = "질문을 선택해주세요"
             }
         }
     }

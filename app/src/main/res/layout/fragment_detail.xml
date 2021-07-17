@@ -12,14 +12,59 @@
         android:layout_height="match_parent"
         tools:context=".ui.existingtrip.tendency.fragment.DetailFragment">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_detail_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_pure_9"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tv_detail_description_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이번 여행에서 우리는?"
+                android:textSize="16sp"
+                android:textColor="@color/gray_black_2"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                android:includeFontPadding="false"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_detail_description_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="각 문항별로 함께하는 사람들이 어떤 선택을 했는지 살펴보세요"
+                android:layout_marginTop="2dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:textColor="@color/gray_gray_5_main"
+                android:layout_marginBottom="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_detail_description_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_description_title"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_white_8_alpha_80"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:overScrollMode="never"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_detail_description"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
