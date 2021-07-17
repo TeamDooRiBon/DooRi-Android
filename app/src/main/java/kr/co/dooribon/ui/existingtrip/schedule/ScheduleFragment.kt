@@ -159,7 +159,6 @@ class ScheduleFragment : Fragment() {
             intent.putExtra("year", curClickedDateTravelDate.year.toString())
             intent.putExtra("month", curClickedDateTravelDate.month.toString())
             intent.putExtra("date", curClickedDateTravelDate.date.toString())
-            Log.e("yearBeforeSend", curClickedDateTravelDate.year.toString())
             startActivity(intent)
         }
     }
@@ -226,7 +225,6 @@ class ScheduleFragment : Fragment() {
                     response: Response<CertainTravelScheduleRes>
                 ) {
                     if (response.isSuccessful) {
-                        Log.e("response", response.body()?.data?.travelSchedule.toString())
                         setPlanData(response.body()?.data?.travelSchedule)
                     }
                 }
@@ -437,7 +435,6 @@ class ScheduleFragment : Fragment() {
                         //시작~끝 시간 수정 부분
                         val startServerTime = travelData.travelScheduleStartTime
                         val endServerTime = travelData.travelScheduleEndTime
-                        Log.e("startAndEnd", "$startServerTime, $endServerTime")
                         val (startHour, startMin) = startServerTime.split("-")[3].split(":")
                         val (endHour, endMin) = endServerTime.split("-")[3].split(":")
                         val startTime = if (startHour.toInt() > 12) {

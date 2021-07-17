@@ -490,12 +490,6 @@ class ScheduleAddActivity : AppCompatActivity() {
                         binding.tvTimepickerHour2.text.toString()
                     }
                 ).plus(":").plus(binding.tvTimepickerMinute2.text.toString())
-        Log.e("groupId", intent.getStringExtra("groupId").toString())
-        Log.e("1", binding.etScheduleAddWhat.text.toString())
-        Log.e("2", startTime)
-        Log.e("3", endTime)
-        Log.e("4", binding.etScheduleAddLocation.text.toString())
-        Log.e("5", binding.etScheduleAddMemo.text.toString())
         apiModule.scheduleApi.createTravelSchedule(
             intent.getStringExtra("groupId").toString(),
             CreateTravelScheduleReq(
