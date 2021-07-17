@@ -29,6 +29,7 @@ import kr.co.dooribon.ui.existingtrip.schedule.adapters.PlanData
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TimeScheduleAdapter
 import kr.co.dooribon.ui.existingtrip.schedule.adapters.TravelDate
 import kr.co.dooribon.ui.existingtrip.viewmodel.ExistingTripViewModel
+import kr.co.dooribon.utils.DateUtil.addZero
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -447,10 +448,10 @@ class ScheduleFragment : Fragment() {
                                         }
                                         ).toString()
                             ).plus(":")
-                                .plus(addZero(startMin))
+                                .plus(startMin.addZero())
                         } else {
-                            "오전 ".plus(addZero(startHour)).plus(":")
-                                .plus(addZero(startMin))
+                            "오전 ".plus(startHour.addZero()).plus(":")
+                                .plus(startMin.addZero())
                         }
                         val endTime = if (endHour.toInt() > 12) {
                             "오후 ".plus(
@@ -459,10 +460,10 @@ class ScheduleFragment : Fragment() {
                                 } else {
                                     "0".plus((endHour.toInt() - 12).toString())
                                 }
-                            ).plus(":").plus(addZero(endMin))
+                            ).plus(":").plus(endMin.addZero())
                         } else {
-                            "오후 ".plus(addZero(endHour)).plus(":")
-                                .plus(addZero(endMin))
+                            "오후 ".plus(endHour.addZero()).plus(":")
+                                .plus(endMin.addZero())
                         }
 
                         findViewById<TextView>(R.id.tv_bottom_sheet_writer).text =
@@ -548,20 +549,6 @@ class ScheduleFragment : Fragment() {
                 }
             })
     }
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
-    // TODO 추후에 확장함수로 구현해도 될듯
-    // 시간 앞에 0을 붙여야할 때 이 함수를 사용하면 된다.
-    private fun addZero(n: String) =
-        if (n.toInt() < 10) {
-            "0".plus(n)
-        } else {
-            n
-        }
 
     private fun getDetailScheduleData(scheduleId: String) {
         apiModule.scheduleApi.fetchTravelSchedule(viewModel.getGroupId(), scheduleId)
