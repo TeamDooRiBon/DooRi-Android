@@ -39,6 +39,14 @@ class TripTendencyTestResultLoadingDialog : DialogFragment() {
             "travelTendencyResultImageUrl",
             arguments?.getString("resultImageUrl")
         )
+        travelTendencyResultIntent.putExtra(
+            "travelTendencyResultImageName",
+            arguments?.getString("resultImageName")
+        )
+        travelTendencyResultIntent.putExtra(
+            "travelTendencyUserName",
+            arguments?.getString("resultUserName")
+        )
         lifecycleScope.launch {
             delay(2000)
             dismiss()

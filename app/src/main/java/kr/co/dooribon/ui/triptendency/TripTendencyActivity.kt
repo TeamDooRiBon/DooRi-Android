@@ -59,6 +59,14 @@ class TripTendencyActivity : AppCompatActivity() {
                 "resultImageUrl",
                 it.tendencyResultImageUrl
             )
+            imageBundle.putString(
+                "resultImageName",
+                it.tendencyTitle
+            )
+            imageBundle.putString(
+                "resultUserName",
+                it.memberName
+            )
             val tripTendencyTestResultLoadingDialog = TripTendencyTestResultLoadingDialog()
             tripTendencyTestResultLoadingDialog.arguments = imageBundle
             tripTendencyTestResultLoadingDialog.show(
