@@ -62,4 +62,11 @@ object DateUtil {
         }
     }
 
+    fun String.addZero() =
+        if (this.toInt() < 10) {
+            "0".plus(this)
+        } else {
+            this
+        }
+
 }

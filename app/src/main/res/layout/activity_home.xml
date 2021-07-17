@@ -287,7 +287,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:letterSpacing="0.1"
                         android:fontFamily="@font/spoqa_han_sans_neo_medium"
                         android:includeFontPadding="false"
                         android:letterSpacing="-0.02"
