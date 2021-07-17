@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import kr.co.dooribon.api.remote.GroupTravelTendencyDTO
 import kr.co.dooribon.api.remote.StoreTravelTendencyDTO
 import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.FragmentMemberBinding
@@ -93,18 +94,35 @@ class MemberFragment : Fragment() {
         travelTendencyLauncher.launch(intent)
     }
 
-    fun navigateMyTravelTendencyResult(){
-        val intent = Intent(requireContext(),TravelTendencyResultActivity::class.java)
-        intent.putExtra("travelTendencyResultImageUrl",
+    fun navigateMyTravelTendencyResult() {
+        val intent = Intent(requireContext(), TravelTendencyResultActivity::class.java)
+        intent.putExtra(
+            "travelTendencyResultImageUrl",
             viewModel.myTravelTendencyResult.value?.tendencyResultImageUrl
+        )
+        intent.putExtra(
+            "travelTendencyResultImageName",
+            viewModel.myTravelTendencyResult.value?.tendencyTitle
+        )
+        intent.putExtra(
+            "travelTendencyUserName",
+            viewModel.myTravelTendencyResult.value?.tendencyUserMember?.memberName
         )
         startActivity(intent)
     }
 
-    private fun onItemDetailClicked(imageUrl: String) {
+    private fun onItemDetailClicked(groupTravelTendencyDTO: GroupTravelTendencyDTO) {
         val travelTendencyResultIntent =
             Intent(requireContext(), TravelTendencyResultActivity::class.java)
-        travelTendencyResultIntent.putExtra("travelTendencyResultImageUrl", imageUrl)
+        travelTendencyResultIntent.putExtra("travelTendencyResultImageUrl", groupTravelTendencyDTO.tendencyResultImageUrl)
+        travelTendencyResultIntent.putExtra(
+            "travelTendencyResultImageName",
+            groupTravelTendencyDTO.tendencyTitle
+        )
+        travelTendencyResultIntent.putExtra(
+            "travelTendencyUserName",
+            groupTravelTendencyDTO.tendencyUserMember.memberName
+        )
         startActivity(travelTendencyResultIntent)
     }
 }

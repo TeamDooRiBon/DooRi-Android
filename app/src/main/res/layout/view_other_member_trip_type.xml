@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- 이거 프로필 위치만 잘 조정해주면 될거 같음 -->
     <data>
 
         <variable
