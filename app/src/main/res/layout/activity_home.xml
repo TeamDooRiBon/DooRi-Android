@@ -121,7 +121,7 @@
                         app:gradient_alpha="0.7"
                         app:gradient_corner_radius="32dp"
                         app:gradient_end_color="@color/black"
-                        app:gradient_start_color="@color/white"
+                        app:gradient_start_color="@color/white_pure_9"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
