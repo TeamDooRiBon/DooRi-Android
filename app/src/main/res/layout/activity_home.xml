@@ -28,7 +28,7 @@
             android:id="@+id/appbar_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray_white_8_alpha_80"
+            android:backgroundTint="@color/white"
             android:padding="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,8 +36,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/gray_white_8_alpha_80">
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/iv_home_logo"

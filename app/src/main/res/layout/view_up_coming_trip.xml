@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
                     android:includeFontPadding="false"
-                    android:text="@{item.upComingTravelEndDate.substring(6,item.upComingTravelEndDate.length())}"
+                    android:text="@{item.upComingTravelEndDate}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_upcoming_trip_start_date"
                     app:layout_constraintStart_toEndOf="@id/tv_upcoming_trip_being_emoji"
                     app:layout_constraintTop_toTopOf="@id/tv_upcoming_trip_start_date"
