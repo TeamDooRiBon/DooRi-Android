@@ -8,10 +8,10 @@ object HomeBindingAdapter {
     @SuppressLint("SetTextI18n")
     @JvmStatic
     @BindingAdapter("home_place_text")
-    fun setHomePlaceText(textView : TextView , placeText : String?){
-        if(placeText == null){
+    fun setHomePlaceText(textView: TextView, placeText: String?) {
+        if (placeText == null) {
             textView.text = "OO"
-        }else{
+        } else {
             textView.text = placeText
         }
     }
@@ -19,10 +19,10 @@ object HomeBindingAdapter {
     @SuppressLint("SetTextI18n")
     @JvmStatic
     @BindingAdapter("home_people_text")
-    fun setHomePeopleText(textView : TextView , peopleText : String?){
-        if(peopleText == null){
+    fun setHomePeopleText(textView: TextView, peopleText: String?) {
+        if (peopleText == null) {
             textView.text = "OO"
-        }else {
+        } else {
             textView.text = peopleText
         }
     }
