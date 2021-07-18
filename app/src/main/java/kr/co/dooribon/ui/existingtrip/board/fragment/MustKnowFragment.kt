@@ -29,6 +29,7 @@ class MustKnowFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
     private var dataList = listOf<BoardContentDTO>()
+    private val boardAdapter = BoardAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,9 +64,6 @@ class MustKnowFragment : Fragment() {
                 }
                 findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
                     sendData(findViewById<EditText>(R.id.et_add_content)?.text.toString())
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        getCheckListData(arguments?.getString("groupId").toString())
-                    },1000)
                     dismiss()
                 }
                 show()
@@ -113,6 +111,7 @@ class MustKnowFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     Log.e("success", "must know ${response.body()?.message.toString()}")
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
                 } else {
                     Log.e("createTravel", "Not Success")
                 }
@@ -174,7 +173,6 @@ class MustKnowFragment : Fragment() {
     }
 
     private fun setBoardAdapter(data: List<BoardContentDTO>) {
-        val boardAdapter = BoardAdapter()
         val boardRV = binding.rvTodoList
         boardAdapter.setItemList(data)
         boardRV.adapter = boardAdapter
@@ -206,9 +204,6 @@ class MustKnowFragment : Fragment() {
         sheetView.apply {
             findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener { // TODO 삭제하는 기능 추가해야함.
                 deleteData(position)
-                Handler(Looper.getMainLooper()).postDelayed({
-                    getCheckListData(arguments?.getString("groupId").toString())
-                },1000)
                 bsDialog.dismiss()
             }
             findViewById<TextView>(R.id.tv_add_board_main_todo).text = todoText
@@ -253,6 +248,7 @@ class MustKnowFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     Log.e("isNotSuccessful", response.body()?.message.toString())
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
                 } else {
                     Log.e("isNotSuccessful", response.body()?.message.toString())
                 }

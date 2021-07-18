@@ -2,8 +2,6 @@ package kr.co.dooribon.ui.existingtrip.board.fragment
 
 import android.app.Dialog
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -29,8 +27,8 @@ import retrofit2.Response
 class RoleAllocFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
-    private var boardId = ""
     private var dataList = listOf<BoardContentDTO>()
+    private val boardAdapter = BoardAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,9 +93,6 @@ class RoleAllocFragment : Fragment() {
                 }
                 findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
                     sendData(findViewById<EditText>(R.id.et_add_content)?.text.toString())
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        getCheckListData(arguments?.getString("groupId").toString())
-                    },1000)
                     dismiss()
                 }
                 show()
@@ -124,7 +119,6 @@ class RoleAllocFragment : Fragment() {
     }
 
     private fun setBoardAdapter(data: List<BoardContentDTO>) {
-        val boardAdapter = BoardAdapter()
         val boardRV = binding.rvTodoList
         boardAdapter.setItemList(data)
         boardRV.adapter = boardAdapter
@@ -156,9 +150,6 @@ class RoleAllocFragment : Fragment() {
         sheetView.apply {
             findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener {
                 deleteData(position)
-                Handler(Looper.getMainLooper()).postDelayed({
-                    getCheckListData(arguments?.getString("groupId").toString())
-                },1000)
                 bsDialog.dismiss()
             }
             findViewById<TextView>(R.id.tv_add_board_main_todo).text = todoText
@@ -217,6 +208,7 @@ class RoleAllocFragment : Fragment() {
         })
     }
 
+    /* 추가하기 클릭시 데이터 전송 */
     private fun sendData(sendText: String) {
         apiModule.boardApi.createTravelBoard(
             arguments?.getString("groupId").toString(),
@@ -231,6 +223,7 @@ class RoleAllocFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     Log.e("success", "role ${response.body()?.message.toString()}")
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
                 } else {
                     Log.e("createTravel", "Not Success")
                 }
@@ -254,6 +247,7 @@ class RoleAllocFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     Log.e("isNotSuccessful", response.body()?.message.toString())
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
                 } else {
                     Log.e("isNotSuccessful", response.body()?.message.toString())
                 }
