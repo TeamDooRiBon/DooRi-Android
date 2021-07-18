@@ -123,14 +123,14 @@ class CheckListFragment : Fragment() {
 
     /* 보여줄 데이터가 있을 때 기본으로 들어가 있는 이미지를 없앤다.
     * 보여줄 데이터가 없으면 다시 이미지를 생성한다. */
-    private fun setBgImg(){
+    private fun setBgImg() {
         if (dataList.isNotEmpty()) {
             binding.apply {
                 ivTopic.visibility = View.GONE
                 tvMainTodo.visibility = View.GONE
                 tvSubTodo.visibility = View.GONE
             }
-        }else{
+        } else {
             binding.apply {
                 ivTopic.visibility = View.VISIBLE
                 tvMainTodo.visibility = View.VISIBLE

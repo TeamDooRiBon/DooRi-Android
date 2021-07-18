@@ -26,7 +26,7 @@ import retrofit2.Response
 class GoalFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
-    private var dataList = listOf<BoardContentDTO>()
+    private var dataList = mutableListOf<BoardContentDTO>()
     private val boardAdapter = BoardAdapter()
 
     override fun onCreateView(
@@ -81,10 +81,8 @@ class GoalFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         setBoardAdapter(response.body()?.data ?: emptyList())
-                        dataList = dataList.plus(response.body()?.data ?: emptyList())
-                        if (response.body()?.data?.isNotEmpty() == true) {
-                            makeImageGone()
-                        }
+                        dataList = response.body()?.data?.toMutableList() ?: mutableListOf()
+                        setBgImg()
                     }
                 }
 
@@ -107,6 +105,8 @@ class GoalFragment : Fragment() {
                 if (response.isSuccessful) {
                     Log.e("isNotSuccessful", response.body()?.message.toString())
                     boardAdapter.setItemList(response.body()?.data ?: emptyList())
+                    dataList.removeAt(position)
+                    setBgImg()
                 } else {
                     Log.e("isNotSuccessful", response.body()?.message.toString())
                 }
@@ -132,8 +132,9 @@ class GoalFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     Log.e("success", "goal ${response.body()?.message.toString()}")
-                    Log.e("success", "goal ${response.body()?.data.toString()}")
+                    dataList = response.body()?.data?.toMutableList() ?: mutableListOf()
                     boardAdapter.setItemList(response.body()?.data ?: emptyList())
+                    setBgImg()
                 } else {
                     Log.e("createTravel", "Not Success")
                 }
@@ -143,6 +144,24 @@ class GoalFragment : Fragment() {
                 Log.e("sendData", t.message.toString())
             }
         })
+    }
+
+    /* 보여줄 데이터가 있을 때 기본으로 들어가 있는 이미지를 없앤다.
+    * 보여줄 데이터가 없으면 다시 이미지를 생성한다. */
+    private fun setBgImg() {
+        if (dataList.isNotEmpty()) {
+            binding.apply {
+                ivTopic.visibility = View.GONE
+                tvMainTodo.visibility = View.GONE
+                tvSubTodo.visibility = View.GONE
+            }
+        } else {
+            binding.apply {
+                ivTopic.visibility = View.VISIBLE
+                tvMainTodo.visibility = View.VISIBLE
+                tvSubTodo.visibility = View.VISIBLE
+            }
+        }
     }
 
     /* 서버에서 수신한 것에 값이 들어있을 때, 디폴트로 들어가있는 값을 지운다. */
