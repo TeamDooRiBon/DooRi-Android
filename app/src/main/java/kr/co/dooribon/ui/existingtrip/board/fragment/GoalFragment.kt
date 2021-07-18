@@ -60,6 +60,8 @@ class GoalFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     Log.e("response Success", response.body()?.message.toString())
+                    dataList = response.body()?.data?.toMutableList() ?: mutableListOf()
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
                 } else {
                     Log.e("response Fail", response.body()?.message.toString())
                 }
@@ -268,6 +270,7 @@ class GoalFragment : Fragment() {
                             position
                         )
                         dismiss()
+                        bsDialog.dismiss()
                     }
                     show()
                 }

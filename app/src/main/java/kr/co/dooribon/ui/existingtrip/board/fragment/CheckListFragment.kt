@@ -81,6 +81,8 @@ class CheckListFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     Log.e("response Success", response.body()?.message.toString())
+                    dataList = response.body()?.data?.toMutableList() ?: mutableListOf()
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
                 } else {
                     Log.e("response Fail", response.body()?.message.toString())
                 }
@@ -233,6 +235,7 @@ class CheckListFragment : Fragment() {
                             position
                         )
                         dismiss()
+                        bsDialog.dismiss()
                     }
                     show()
                 }
