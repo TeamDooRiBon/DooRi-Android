@@ -62,4 +62,15 @@ object DateUtil {
         }
     }
 
+    /**
+     * 서버에서 데이터를 받거나 보내줄 때, 달, 날짜를 표현하기 위해
+     * 앞에 0을 붙이는 경우가 많다. 그 때 addzero를 통해 활용하면 편한다.
+     * */
+    fun String.addZero() =
+        if (this.toInt() < 10) {
+            "0".plus(this)
+        } else {
+            this
+        }
+
 }

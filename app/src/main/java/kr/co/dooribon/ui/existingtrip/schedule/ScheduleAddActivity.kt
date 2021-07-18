@@ -11,6 +11,7 @@ import kr.co.dooribon.api.remote.CreateTravelScheduleRes
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityScheduleAddBinding
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
+import kr.co.dooribon.utils.DateUtil.addZero
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,11 +56,11 @@ class ScheduleAddActivity : AppCompatActivity() {
         passedDate = intent.getStringExtra("date").toString()
         Log.e("passedYear", passedYear)
         val dayOfWeek = getDayOfWeek(
-            startDateStr.plus(passedYear).plus("-").plus(addZero(passedMonth)).plus("-")
-                .plus(addZero(passedDate))
+            startDateStr.plus(passedYear).plus("-").plus(passedMonth.addZero()).plus("-")
+                .plus(passedDate.addZero())
         )
-        startDateStr = startDateStr.plus(passedYear).plus(".").plus(addZero(passedMonth)).plus(".")
-            .plus(addZero(passedDate)).plus(dayOfWeek)
+        startDateStr = startDateStr.plus(passedYear).plus(".").plus(passedMonth.addZero()).plus(".")
+            .plus(passedDate.addZero()).plus(dayOfWeek)
         binding.tvScheduleTimeStartDate.text = startDateStr
         binding.tvScheduleTimeEndDate.text = startDateStr
     }
@@ -94,13 +95,6 @@ class ScheduleAddActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun addZero(n: String) =
-        if (n.toInt() < 10) {
-            "0".plus(n)
-        } else {
-            n
-        }
 
     private fun onScheduleAddEtClick() {
         binding.etScheduleAddWhat.addTextChangedListener {
@@ -473,7 +467,7 @@ class ScheduleAddActivity : AppCompatActivity() {
 
     private fun sendScheduleData() {
         val startTime =
-            passedYear.plus("-").plus(addZero(passedMonth)).plus("-").plus(addZero(passedDate))
+            passedYear.plus("-").plus(passedMonth.addZero()).plus("-").plus(passedDate.addZero())
                 .plus(" ").plus(
                     if (binding.tvTimepickerAmpm1.text == "오후") {
                         (binding.tvTimepickerHour1.text.toString().toInt() + 12).toString()
@@ -482,7 +476,7 @@ class ScheduleAddActivity : AppCompatActivity() {
                     }
                 ).plus(":").plus(binding.tvTimepickerMinute1.text.toString())
         val endTime =
-            passedYear.plus("-").plus(addZero(passedMonth)).plus("-").plus(addZero(passedDate))
+            passedYear.plus("-").plus(passedMonth.addZero()).plus("-").plus(passedDate.addZero())
                 .plus(" ").plus(
                     if (binding.tvTimepickerAmpm2.text == "오후") {
                         (binding.tvTimepickerHour2.text.toString().toInt() + 12).toString()
