@@ -96,13 +96,6 @@ class ScheduleAddActivity : AppCompatActivity() {
         }
     }
 
-    private fun addZero(n: String) =
-        if (n.toInt() < 10) {
-            "0".plus(n)
-        } else {
-            n
-        }
-
     private fun onScheduleAddEtClick() {
         binding.etScheduleAddWhat.addTextChangedListener {
             chkBtnActivate()
