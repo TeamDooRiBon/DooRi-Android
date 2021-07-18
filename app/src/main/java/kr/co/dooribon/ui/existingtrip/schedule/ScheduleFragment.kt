@@ -3,8 +3,6 @@ package kr.co.dooribon.ui.existingtrip.schedule
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -50,6 +48,8 @@ class ScheduleFragment : Fragment() {
     private lateinit var travelData: TravelScheduleDTO
     private lateinit var getResult: ActivityResultLauncher<Intent>
     private lateinit var bsDialog: BottomSheetDialog
+
+    private val timeAdapter = TimeScheduleAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -165,7 +165,6 @@ class ScheduleFragment : Fragment() {
     }
 
     private fun setTimeScheduleAdapter(list: List<PlanData>) {
-        val timeAdapter = TimeScheduleAdapter()
         val timeRV = binding.rvScheduleMain
         timeAdapter.setItemList(list)
         timeRV.adapter = timeAdapter
@@ -408,78 +407,12 @@ class ScheduleFragment : Fragment() {
                     requireActivity().findViewById(R.id.cl_bottom_sheet_root)
                 )
                 sheetView.apply {
-                    getDetailScheduleData(list[position].planId) // 서버에서 데이터를 가져옴
-                    // TODO 아래 하드코딩 된 부분을 수정해야 한다.
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        val iv = findViewById<ImageView>(R.id.iv_profile_pic)
-
-                        Glide.with(iv.context)
-                            .load(travelData.travelScheduleWriter.profileImageUrl)
-                            .centerCrop()
-                            .into(iv)
-
-                        //작성 시간 수정 부분
-                        val writtenServerTime = travelData.travelScheduleCreateTime.split("-")
-                        var (hour, min) = writtenServerTime[3].split(":")
-                        hour = if (hour.toInt() >= 12) {
-                            " 오후 ".plus((hour.toInt() - 12).toString()).plus(":")
-                        } else {
-                            " 오전 ".plus(hour).plus(":")
-                        }
-                        val writtenTime =
-                            writtenServerTime[0].plus(". ").plus(writtenServerTime[1]).plus(". ")
-                                .plus(writtenServerTime[2])
-                                .plus(
-                                    hour.plus(min)
-                                )
-
-                        //시작~끝 시간 수정 부분
-                        val startServerTime = travelData.travelScheduleStartTime
-                        val endServerTime = travelData.travelScheduleEndTime
-                        val (startHour, startMin) = startServerTime.split("-")[3].split(":")
-                        val (endHour, endMin) = endServerTime.split("-")[3].split(":")
-                        val startTime = if (startHour.toInt() > 12) {
-                            "오후 ".plus(
-                                (
-                                        if (startHour.toInt() - 12 >= 10) {
-                                            (startHour.toInt() - 12).toString()
-                                        } else {
-                                            "0".plus((startHour.toInt() - 12).toString())
-                                        }
-                                        ).toString()
-                            ).plus(":")
-                                .plus(startMin.addZero())
-                        } else {
-                            "오전 ".plus(startHour.addZero()).plus(":")
-                                .plus(startMin.addZero())
-                        }
-                        val endTime = if (endHour.toInt() > 12) {
-                            "오후 ".plus(
-                                if (endHour.toInt() - 12 >= 10) {
-                                    (endHour.toInt() - 12).toString()
-                                } else {
-                                    "0".plus((endHour.toInt() - 12).toString())
-                                }
-                            ).plus(":").plus(endMin.addZero())
-                        } else {
-                            "오후 ".plus(endHour.addZero()).plus(":")
-                                .plus(endMin.addZero())
-                        }
-
-                        findViewById<TextView>(R.id.tv_bottom_sheet_writer).text =
-                            travelData.travelScheduleWriter.name.plus("님이 작성") // 작성
-                        findViewById<TextView>(R.id.tv_written_time).text =
-                            writtenTime.plus(" 마지막 작성") // 시간
-                        findViewById<TextView>(R.id.tv_main_add_schedule_todo).text =
-                            list[position].mainTodo
-                        findViewById<TextView>(R.id.tv_user_time).text =
-                            startTime.plus(" - ").plus(endTime)
-                        findViewById<TextView>(R.id.tv_user_place).text =
-                            travelData.travelScheduleLocation
-                        findViewById<TextView>(R.id.tv_user_memo).text =
-                            list[position].subTodo
-                        //travelData.travelScheduleMemo
-                    }, 950L)
+                    getDetailScheduleData(
+                        list[position].planId,
+                        view,
+                        list,
+                        position
+                    ) // 서버에서 데이터를 가져옴
                     findViewById<Button>(R.id.btn_bottom_sheet_delete).setOnClickListener {
                         val deleteDlg = Dialog(requireContext())
                         deleteDlg.setContentView(R.layout.dialog_delete_question)
@@ -489,9 +422,6 @@ class ScheduleFragment : Fragment() {
                         deleteDlg.findViewById<Button>(R.id.btn_dialog_delete).setOnClickListener {
                             // TODO 해당 리사이클러뷰 리로드
                             deleteSchedule(viewModel.getGroupId(), list[position].planId)
-                            Handler(Looper.getMainLooper()).postDelayed({
-                                getDateScheduleList()
-                            }, 1000)
                             deleteDlg.dismiss()
                             bsDialog.dismiss()
                         }
@@ -531,6 +461,74 @@ class ScheduleFragment : Fragment() {
         })
     }
 
+    private fun setDetailScheduleData(view: View, list: List<PlanData>, position: Int) {
+        val iv = bsDialog.findViewById<ImageView>(R.id.iv_schedule_profile_pic)
+        Glide.with(iv!!.context)
+            .load(travelData.travelScheduleWriter.profileImageUrl)
+            .centerCrop()
+            .into(iv)
+        //작성 시간 수정 부분
+        val writtenServerTime = travelData.travelScheduleCreateTime.split("-")
+        var (hour, min) = writtenServerTime[3].split(":")
+        hour = if (hour.toInt() >= 12) {
+            " 오후 ".plus((hour.toInt() - 12).toString()).plus(":")
+        } else {
+            " 오전 ".plus(hour).plus(":")
+        }
+        val writtenTime =
+            writtenServerTime[0].plus(". ").plus(writtenServerTime[1]).plus(". ")
+                .plus(writtenServerTime[2])
+                .plus(
+                    hour.plus(min)
+                )
+        //시작~끝 시간 수정 부분
+        val startServerTime = travelData.travelScheduleStartTime
+        val endServerTime = travelData.travelScheduleEndTime
+        val (startHour, startMin) = startServerTime.split("-")[3].split(":")
+        val (endHour, endMin) = endServerTime.split("-")[3].split(":")
+        val startTime = if (startHour.toInt() > 12) {
+            "오후 ".plus(
+                (
+                        if (startHour.toInt() - 12 >= 10) {
+                            (startHour.toInt() - 12).toString()
+                        } else {
+                            "0".plus((startHour.toInt() - 12).toString())
+                        }
+                        ).toString()
+            ).plus(":")
+                .plus(startMin.addZero())
+        } else {
+            "오전 ".plus(startHour.addZero()).plus(":")
+                .plus(startMin.addZero())
+        }
+        val endTime = if (endHour.toInt() > 12) {
+            "오후 ".plus(
+                if (endHour.toInt() - 12 >= 10) {
+                    (endHour.toInt() - 12).toString()
+                } else {
+                    "0".plus((endHour.toInt() - 12).toString())
+                }
+            ).plus(":").plus(endMin.addZero())
+        } else {
+            "오후 ".plus(endHour.addZero()).plus(":")
+                .plus(endMin.addZero())
+        }
+        bsDialog.apply {
+            findViewById<TextView>(R.id.tv_bottom_sheet_writer)?.text =
+                travelData.travelScheduleWriter.name.plus("님이 작성") // 작성
+            findViewById<TextView>(R.id.tv_written_time)?.text =
+                writtenTime.plus(" 마지막 작성") // 시간
+            findViewById<TextView>(R.id.tv_main_add_schedule_todo)?.text =
+                list[position].mainTodo
+            findViewById<TextView>(R.id.tv_user_time)?.text =
+                startTime.plus(" - ").plus(endTime)
+            findViewById<TextView>(R.id.tv_user_place)?.text =
+                travelData.travelScheduleLocation
+            findViewById<TextView>(R.id.tv_user_memo)?.text =
+                list[position].subTodo
+        }
+    }
+
     private fun deleteSchedule(groupId: String, scheduleId: String) {
         apiModule.scheduleApi.deleteTravelSchedule(groupId, scheduleId)
             .enqueue(object : Callback<DeleteTravelScheduleRes> {
@@ -541,6 +539,11 @@ class ScheduleFragment : Fragment() {
                     if (response.isSuccessful) {
                         Log.e("deleteSchedule", response.body()!!.message)
                         getPlanData(viewModel.getGroupId(), curClickedDate)
+                        timeAdapter.setItemList(
+                            changeScheduleDataType(
+                                response.body()?.data ?: emptyList()
+                            )
+                        )
                     }
                 }
 
@@ -550,7 +553,12 @@ class ScheduleFragment : Fragment() {
             })
     }
 
-    private fun getDetailScheduleData(scheduleId: String) {
+    private fun getDetailScheduleData(
+        scheduleId: String,
+        view: View,
+        list: List<PlanData>,
+        position: Int
+    ) {
         apiModule.scheduleApi.fetchTravelSchedule(viewModel.getGroupId(), scheduleId)
             .enqueue(object : Callback<TravelScheduleRes> {
                 override fun onResponse(
@@ -559,6 +567,7 @@ class ScheduleFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         travelData = response.body()!!.data
+                        setDetailScheduleData(view, list, position)
                     }
                 }
 

@@ -2,8 +2,6 @@ package kr.co.dooribon.ui.existingtrip.board.fragment
 
 import android.app.Dialog
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +26,8 @@ import retrofit2.Response
 class MustKnowFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
-    private var dataList = listOf<BoardContentDTO>()
+    private var dataList = mutableListOf<BoardContentDTO>()
+    private val boardAdapter = BoardAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,9 +62,6 @@ class MustKnowFragment : Fragment() {
                 }
                 findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
                     sendData(findViewById<EditText>(R.id.et_add_content)?.text.toString())
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        getCheckListData(arguments?.getString("groupId").toString())
-                    },1000)
                     dismiss()
                 }
                 show()
@@ -86,7 +82,9 @@ class MustKnowFragment : Fragment() {
                 response: Response<EditTravelBoardRes>
             ) {
                 if (response.isSuccessful) {
-                    Log.e("response Success", response.body()?.message.toString())
+                    Log.e("success", response.body()?.message.toString())
+                    dataList = response.body()?.data?.toMutableList() ?: mutableListOf()
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
                 } else {
                     Log.e("response Fail", response.body()?.message.toString())
                 }
@@ -112,7 +110,10 @@ class MustKnowFragment : Fragment() {
                 response: Response<CreateTravelBoardRes>
             ) {
                 if (response.isSuccessful) {
-                    Log.e("success", "must know ${response.body()?.message.toString()}")
+                    Log.e("success", response.body()?.message.toString())
+                    dataList = response.body()?.data?.toMutableList() ?: mutableListOf()
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
+                    setBgImg()
                 } else {
                     Log.e("createTravel", "Not Success")
                 }
@@ -160,7 +161,7 @@ class MustKnowFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     setBoardAdapter(response.body()?.data ?: emptyList())
-                    dataList = dataList.plus(response.body()?.data ?: emptyList())
+                    dataList = response.body()?.data?.toMutableList() ?: mutableListOf()
                     if (response.body()?.data?.isNotEmpty() == true) {
                         makeImageGone()
                     }
@@ -174,7 +175,6 @@ class MustKnowFragment : Fragment() {
     }
 
     private fun setBoardAdapter(data: List<BoardContentDTO>) {
-        val boardAdapter = BoardAdapter()
         val boardRV = binding.rvTodoList
         boardAdapter.setItemList(data)
         boardRV.adapter = boardAdapter
@@ -206,9 +206,6 @@ class MustKnowFragment : Fragment() {
         sheetView.apply {
             findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener { // TODO 삭제하는 기능 추가해야함.
                 deleteData(position)
-                Handler(Looper.getMainLooper()).postDelayed({
-                    getCheckListData(arguments?.getString("groupId").toString())
-                },1000)
                 bsDialog.dismiss()
             }
             findViewById<TextView>(R.id.tv_add_board_main_todo).text = todoText
@@ -232,6 +229,7 @@ class MustKnowFragment : Fragment() {
                             position
                         )
                         dismiss()
+                        bsDialog.dismiss()
                     }
                     show()
                 }
@@ -253,6 +251,9 @@ class MustKnowFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     Log.e("isNotSuccessful", response.body()?.message.toString())
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
+                    dataList.removeAt(position)
+                    setBgImg()
                 } else {
                     Log.e("isNotSuccessful", response.body()?.message.toString())
                 }
@@ -262,5 +263,23 @@ class MustKnowFragment : Fragment() {
                 Log.e("deleteData onFailure", t.message.toString())
             }
         })
+    }
+
+    /* 보여줄 데이터가 있을 때 기본으로 들어가 있는 이미지를 없앤다.
+    * 보여줄 데이터가 없으면 다시 이미지를 생성한다. */
+    private fun setBgImg() {
+        if (dataList.isNotEmpty()) {
+            binding.apply {
+                ivTopic.visibility = View.GONE
+                tvMainTodo.visibility = View.GONE
+                tvSubTodo.visibility = View.GONE
+            }
+        } else {
+            binding.apply {
+                ivTopic.visibility = View.VISIBLE
+                tvMainTodo.visibility = View.VISIBLE
+                tvSubTodo.visibility = View.VISIBLE
+            }
+        }
     }
 }
