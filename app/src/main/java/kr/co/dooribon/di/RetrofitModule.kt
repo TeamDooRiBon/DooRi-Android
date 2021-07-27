@@ -18,17 +18,19 @@ import kotlin.reflect.KClass
 class RetrofitModule {
 
     // 401 에러가 났을때의 exception 처리도 해줘야 함
-    // JWT TOKEN이 만료가 되면 , accessToken으로 refresh를 해줘서 다시 JWT Token을 발급 받아야 한다고 합니다.
-    private val authTokenInterceptor = Interceptor { chain ->
-        val originalRequest = chain.request()
-        val requestBuilder = originalRequest.newBuilder().header(
-            HEADER_TOKEN, BuildConfig.JWT_TOKEN
-        ).addHeader("Content-Type", MEDIA_TYPE).addHeader("Accept", MEDIA_TYPE)
-        val request = requestBuilder.build()
-        return@Interceptor chain.proceed(request)
+    // JWT TOKEN이 만료가 되면 , access Token으로 refresh를 해줘서 다시 JWT Token을 발급 받아야 한다고 합니다.
+    private val authTokenInterceptor by lazy {
+        Interceptor { chain ->
+            val originalRequest = chain.request()
+            val requestBuilder = originalRequest.newBuilder().header(
+                HEADER_TOKEN, BuildConfig.JWT_TOKEN
+            ).addHeader("Content-Type", MEDIA_TYPE).addHeader("Accept", MEDIA_TYPE)
+            val request = requestBuilder.build()
+            return@Interceptor chain.proceed(request)
+        }
     }
 
-    private fun provideOkHttpClient() =
+    private val okHttpClient by lazy {
         OkHttpClient.Builder()
             .addInterceptor(authTokenInterceptor)
             .connectTimeout(10, TimeUnit.SECONDS)
@@ -36,16 +38,18 @@ class RetrofitModule {
             .protocols(listOf(Protocol.HTTP_1_1))
             .connectionPool(ConnectionPool(0, 5, TimeUnit.MINUTES))
             .build()
+    }
 
-    private fun provideRetrofit(): Retrofit =
+    private val retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(provideOkHttpClient())
+            .client(okHttpClient)
             .build()
+    }
 
     // api 만들어주는 확장 함수
-    fun <T : Any> createApi(clazz: KClass<T>): T = provideRetrofit().create(clazz.java)
+    fun <T : Any> createApi(clazz: KClass<T>): T = retrofit.create(clazz.java)
 
     companion object {
         private const val MEDIA_TYPE = "application/json"
