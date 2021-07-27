@@ -14,13 +14,11 @@ import kotlin.reflect.KClass
  * Retrofit 객체 생성해주는 Module
  *
  * jwt Token만 있으면 됩니다.
- *
- * TODO : Lazy로 캐시를 좀 해놔야지 훈기야 왜 하나만 생각하고 둘은 생각을 못하니;;;
  */
 class RetrofitModule {
 
     // 401 에러가 났을때의 exception 처리도 해줘야 함
-    // JWT TOKEN이 만료가 되면 , accessToken으로 refresh를 해줘서 다시 JWT Token을 발급 받아야 한다고 합니다.
+    // JWT TOKEN이 만료가 되면 , access Token으로 refresh를 해줘서 다시 JWT Token을 발급 받아야 한다고 합니다.
     private val authTokenInterceptor by lazy {
         Interceptor { chain ->
             val originalRequest = chain.request()
