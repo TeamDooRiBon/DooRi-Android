@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.21203703703703702" />
+        <entry key="..\:/Users/thdgn/AndroidStudioProjects/DooRiBonAndroid/app/src/main/res/drawable/bg_select_day.xml" value="0.26564102564102565" />
+        <entry key="..\:/Users/thdgn/AndroidStudioProjects/DooRiBonAndroid/app/src/main/res/layout/calendar_day_view.xml" value="0.4676524953789279" />
+        <entry key="..\:/Users/thdgn/AndroidStudioProjects/DooRiBonAndroid/app/src/main/res/layout/calendar_empty_view.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/thdgn/AndroidStudioProjects/DooRiBonAndroid/app/src/main/res/layout/calendar_month_view.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/thdgn/AndroidStudioProjects/DooRiBonAndroid/app/src/main/res/layout/calendar_week_view.xml" value="0.2324074074074074" />
         <entry key="app/src/main/res/drawable/bg_gray_white8_top_round_layout.xml" value="0.22314814814814815" />
         <entry key="app/src/main/res/drawable/bg_selected_img_stroke.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/bg_text_gray.xml" value="0.1296875" />
