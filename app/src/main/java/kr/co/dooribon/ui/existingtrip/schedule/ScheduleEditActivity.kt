@@ -11,11 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.EditTravelScheduleReq
-
 import kr.co.dooribon.api.remote.EditTravelScheduleRes
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.ActivityScheduleEditBinding
 import kr.co.dooribon.databinding.DialogScheduleTimeBottomSheetBinding
+import kr.co.dooribon.utils.DateUtil.addZero
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,17 +53,17 @@ class ScheduleEditActivity : AppCompatActivity() {
             tvTimepickerHour4.text = endTime
             tvTimepickerMinute4.text = endMin
             tvScheduleTimeStart1.text = (year).plus(".")
-                .plus(addZero(month)).plus(".")
-                .plus(addZero(date)).plus(
+                .plus(month.addZero()).plus(".")
+                .plus(date.addZero()).plus(
                     getDayOfWeek(
-                        year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                        year.plus("-").plus(month.addZero()).plus("-").plus(date.addZero())
                     )
                 )
             tvScheduleTimeEnd1.text = (year).plus(".")
-                .plus(addZero(month)).plus(".")
-                .plus(addZero(date)).plus(
+                .plus(month.addZero()).plus(".")
+                .plus(date.addZero()).plus(
                     getDayOfWeek(
-                        year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                        year.plus("-").plus(month.addZero()).plus("-").plus(date.addZero())
                     )
                 )
             etScheduleAddLocation.setText(intent.getStringExtra("place").toString())
@@ -77,7 +77,7 @@ class ScheduleEditActivity : AppCompatActivity() {
         val date = intent.getStringExtra("date").toString()
         binding.btnScheduleEdit.setOnClickListener {
             val startTime =
-                year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                year.plus("-").plus(month.addZero()).plus("-").plus(date.addZero())
                     .plus(" ").plus(
                         if (binding.tvTimepickerAmpm3.text == "오후") {
                             (binding.tvTimepickerHour3.text.toString().toInt() + 12).toString()
@@ -86,7 +86,7 @@ class ScheduleEditActivity : AppCompatActivity() {
                         }
                     ).plus(":").plus(binding.tvTimepickerMinute3.text.toString())
             val endTime =
-                year.plus("-").plus(addZero(month)).plus("-").plus(addZero(date))
+                year.plus("-").plus(month.addZero()).plus("-").plus(date.addZero())
                     .plus(" ").plus(
                         if (binding.tvTimepickerAmpm4.text == "오후") {
                             (binding.tvTimepickerHour4.text.toString().toInt() + 12).toString()
@@ -123,13 +123,6 @@ class ScheduleEditActivity : AppCompatActivity() {
             })
         }
     }
-
-    private fun addZero(n: String) =
-        if (n.toInt() < 10) {
-            "0".plus(n)
-        } else {
-            n
-        }
 
     private fun getDayOfWeek(fStr: String): String {
         val dayOfWeek = LocalDate.parse(fStr).dayOfWeek // 라이브러리 통해 요일 가져오는 코드

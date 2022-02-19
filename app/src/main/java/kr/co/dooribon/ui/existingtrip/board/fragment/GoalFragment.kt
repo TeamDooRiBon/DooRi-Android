@@ -2,8 +2,6 @@ package kr.co.dooribon.ui.existingtrip.board.fragment
 
 import android.app.Dialog
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,11 +16,9 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kr.co.dooribon.R
 import kr.co.dooribon.api.remote.*
-import kr.co.dooribon.application.MainApplication
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
 import kr.co.dooribon.databinding.FragmentBoardBottomBinding
 import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardAdapter
-import kr.co.dooribon.ui.existingtrip.board.fragment.adapter.BoardListData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,8 +26,8 @@ import retrofit2.Response
 class GoalFragment : Fragment() {
 
     private lateinit var binding: FragmentBoardBottomBinding
-    private lateinit var dummyList: List<BoardListData>
-    private var dataList = listOf<BoardContentDTO>()
+    private var dataList = mutableListOf<BoardContentDTO>()
+    private val boardAdapter = BoardAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +42,6 @@ class GoalFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.e("chk", arguments?.getString("groupId").toString())
         setFragmentDetails()
-        setDummyList()
         onAddBtnClickListener()
         getGoalBoardData(arguments?.getString("groupId").toString())
     }
@@ -65,6 +60,8 @@ class GoalFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     Log.e("response Success", response.body()?.message.toString())
+                    dataList = response.body()?.data?.toMutableList() ?: mutableListOf()
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
                 } else {
                     Log.e("response Fail", response.body()?.message.toString())
                 }
@@ -86,10 +83,8 @@ class GoalFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         setBoardAdapter(response.body()?.data ?: emptyList())
-                        dataList = dataList.plus(response.body()?.data ?: emptyList())
-                        if (response.body()?.data?.isNotEmpty() == true) {
-                            makeImageGone()
-                        }
+                        dataList = response.body()?.data?.toMutableList() ?: mutableListOf()
+                        setBgImg()
                     }
                 }
 
@@ -100,7 +95,7 @@ class GoalFragment : Fragment() {
     }
 
     private fun deleteData(position: Int) {
-        MainApplication.apiModule.boardApi.deleteTravelBoard(
+        apiModule.boardApi.deleteTravelBoard(
             arguments?.getString("groupId").toString(),
             "goal",
             dataList[position].boardId
@@ -111,6 +106,9 @@ class GoalFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     Log.e("isNotSuccessful", response.body()?.message.toString())
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
+                    dataList.removeAt(position)
+                    setBgImg()
                 } else {
                     Log.e("isNotSuccessful", response.body()?.message.toString())
                 }
@@ -136,6 +134,9 @@ class GoalFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     Log.e("success", "goal ${response.body()?.message.toString()}")
+                    dataList = response.body()?.data?.toMutableList() ?: mutableListOf()
+                    boardAdapter.setItemList(response.body()?.data ?: emptyList())
+                    setBgImg()
                 } else {
                     Log.e("createTravel", "Not Success")
                 }
@@ -145,6 +146,24 @@ class GoalFragment : Fragment() {
                 Log.e("sendData", t.message.toString())
             }
         })
+    }
+
+    /* 보여줄 데이터가 있을 때 기본으로 들어가 있는 이미지를 없앤다.
+    * 보여줄 데이터가 없으면 다시 이미지를 생성한다. */
+    private fun setBgImg() {
+        if (dataList.isNotEmpty()) {
+            binding.apply {
+                ivTopic.visibility = View.GONE
+                tvMainTodo.visibility = View.GONE
+                tvSubTodo.visibility = View.GONE
+            }
+        } else {
+            binding.apply {
+                ivTopic.visibility = View.VISIBLE
+                tvMainTodo.visibility = View.VISIBLE
+                tvSubTodo.visibility = View.VISIBLE
+            }
+        }
     }
 
     /* 서버에서 수신한 것에 값이 들어있을 때, 디폴트로 들어가있는 값을 지운다. */
@@ -171,9 +190,6 @@ class GoalFragment : Fragment() {
                 }
                 findViewById<Button>(R.id.bt_edit_travel_ok).setOnClickListener {
                     sendData(findViewById<EditText>(R.id.et_add_content)?.text.toString())
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        getGoalBoardData(arguments?.getString("groupId").toString())
-                    },1000)
                     dismiss()
                 }
                 show()
@@ -200,7 +216,6 @@ class GoalFragment : Fragment() {
     }
 
     private fun setBoardAdapter(data: List<BoardContentDTO>) {
-        val boardAdapter = BoardAdapter()
         val boardRV = binding.rvTodoList
         boardAdapter.setItemList(data)
         boardRV.adapter = boardAdapter
@@ -232,9 +247,6 @@ class GoalFragment : Fragment() {
         sheetView.apply {
             findViewById<Button>(R.id.btn_add_board_delete).setOnClickListener { // TODO 삭제하는 기능 추가해야함.
                 deleteData(position)
-                Handler(Looper.getMainLooper()).postDelayed({
-                    getGoalBoardData(arguments?.getString("groupId").toString())
-                },1000)
                 bsDialog.dismiss()
             }
             findViewById<TextView>(R.id.tv_add_board_main_todo).text = todoText
@@ -258,6 +270,7 @@ class GoalFragment : Fragment() {
                             position
                         )
                         dismiss()
+                        bsDialog.dismiss()
                     }
                     show()
                 }
@@ -265,19 +278,5 @@ class GoalFragment : Fragment() {
         }
         bsDialog.setContentView(sheetView)
         bsDialog.show()
-    }
-
-    private fun setDummyList() {
-        dummyList = listOf(
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("제주도 한라산 등산하기! 아침에 일찍 일어나서 꼭 갈거야 한라산...", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영"),
-            BoardListData("인생 사진 찍어오기!", "김민영")
-        )
     }
 }
