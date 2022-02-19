@@ -3,6 +3,8 @@ package kr.co.dooribon.ui.triptendency.adapter
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.MainThread
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ViewTestTripTendencyQuestionBinding

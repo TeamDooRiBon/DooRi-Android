@@ -1,5 +1,6 @@
 package kr.co.dooribon.ui.triptendency.viewModel
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -125,7 +126,7 @@ class TripTendencyViewModel(
     fun storeMyTravelTendency() =
         viewModelScope.launch {
             runCatching {
-                if(_groupId.value == null){
+                if (_groupId.value == null) {
                     tripTendencyRepository.fetchMainResultTravelTendency(
                         ResultTravelTendencyScoreDTO(_questionWeightResultList)
                     )

@@ -45,7 +45,7 @@ object DateUtil {
     }
 
     fun countDday(date: Date): Long {
-        try {
+        return try {
             // Date를 받아서 이를 변환해주도록 하는게 함수를 호출할 때 깔끔해질거 같음
             val todayCalendar = Calendar.getInstance()
             val dDayCalendar = Calendar.getInstance()
@@ -55,10 +55,10 @@ object DateUtil {
             val todayTime = todayCalendar.timeInMillis
             val dDayTime = dDayCalendar.timeInMillis
 
-            return ((dDayTime - todayTime) / oneDayTime) + 1
+            ((dDayTime - todayTime) / oneDayTime) + 1
         } catch (e: Exception) {
             debugE(e.toString())
-            return -1
+            -1
         }
     }
 
