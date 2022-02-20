@@ -14,10 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DooRiBonAndroid"
         android:usesCleartextTraffic="true">
+        <service
+            android:name=".ui.traveltendencyresult.service.TravelTendencyResultService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity android:name=".ui.traveltendencyresult.TravelTendencyResultActivity" />
         <activity android:name=".ui.signin.SignInActivity" />
         <activity android:name=".ui.splash.OnboardingActivity" />
-        <activity android:name=".ui.splash.SplashActivity">
+        <activity android:name=".ui.splash.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -8,7 +8,7 @@ import kr.co.dooribon.ui.existingtrip.tendency.viewmodel.TendencyViewModel
 class TendencyViewModelFactory(
     private val tripTendencyRepository: TripTendencyRepository
 ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         require(
             modelClass.isAssignableFrom(
                 TendencyViewModel::class.java

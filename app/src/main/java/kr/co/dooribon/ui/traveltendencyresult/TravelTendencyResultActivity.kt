@@ -15,9 +15,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTravelTendencyResultBinding
-import kr.co.dooribon.utils.debugSSong
+import kr.co.dooribon.ui.traveltendencyresult.service.TravelTendencyResultService
 import kr.co.dooribon.utils.dpToPixel
+import kr.co.dooribon.utils.getIntent
 import kr.co.dooribon.utils.shortToast
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -60,8 +62,13 @@ class TravelTendencyResultActivity : AppCompatActivity() {
         }
     }
 
+    // TODO : Service로 업무 분담
     fun downloadBitmapInGallery() {
-        val fileName = "${System.currentTimeMillis()}.jpg" // 사진 파일 이름
+
+        startService(getIntent<TravelTendencyResultService>().also { intent ->
+            intent.putExtra("image", parseBitmapToByteArray())
+        })
+        /*val fileName = "${System.currentTimeMillis()}.jpg" // 사진 파일 이름
         val travelTendencyResultBitmap =
             binding.ivTravelTendencyResult.drawable.toBitmap() // 저장할 사진 bitmap
         var outputStream: OutputStream? = null
@@ -99,6 +106,18 @@ class TravelTendencyResultActivity : AppCompatActivity() {
             travelTendencyResultBitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
             shortToast("저장 성공")
             finish()
-        }
+        }*/
+    }
+
+    private fun parseBitmapToByteArray(): ByteArray {
+        val stream = ByteArrayOutputStream()
+        val bitmap = binding.ivTravelTendencyResult.drawable.toBitmap()
+        val scale: Float = (bitmap.width / 1024).toFloat()
+        val imageWidth: Int = (bitmap.width * scale).toInt()
+        val imageHeight: Int = (bitmap.height * scale).toInt()
+        val resizeBitmap = Bitmap.createScaledBitmap(bitmap, imageWidth, imageHeight, true)
+        resizeBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+
+        return stream.toByteArray()
     }
 }
