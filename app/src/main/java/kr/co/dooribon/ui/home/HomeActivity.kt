@@ -123,28 +123,16 @@ class HomeActivity : AppCompatActivity() {
     // 추억 속의 여행 아이템 클릭
     private fun onPreviousTripItemClick(index: Int) {
         startActivity(getIntent<ExistingTripActivity>().apply {
-            putExtra(
-                GROUP_ID,
-                viewModel.homePreviousTravel.value?.get(index)!!.previousTravelId
-            )
-            putExtra(
-                PREVIOUS_TRAVEL_CONTENTS,
-                viewModel.homePreviousTravel.value?.get(index)
-            )
+            putExtra(GROUP_ID, viewModel.homePreviousTravel.value?.get(index)!!.previousTravelId)
+            putExtra(PREVIOUS_TRAVEL_CONTENTS, viewModel.homePreviousTravel.value?.get(index))
         })
     }
 
     // 두근두근 다가오는 여행 아이템 클릭
     private fun onUpComingTripItemClick(index: Int) {
         startActivity(getIntent<ExistingTripActivity>().apply {
-            putExtra(
-                GROUP_ID,
-                viewModel.homeUpComingTravel.value?.get(index)!!.upComingTravelId
-            )
-            putExtra(
-                UPCOMING_TRAVEL_CONTENTS,
-                viewModel.homeUpComingTravel.value?.get(index)
-            )
+            putExtra(GROUP_ID, viewModel.homeUpComingTravel.value?.get(index)!!.upComingTravelId)
+            putExtra(UPCOMING_TRAVEL_CONTENTS, viewModel.homeUpComingTravel.value?.get(index))
         })
     }
 
