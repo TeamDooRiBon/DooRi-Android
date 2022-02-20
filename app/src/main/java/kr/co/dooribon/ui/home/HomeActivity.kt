@@ -122,41 +122,38 @@ class HomeActivity : AppCompatActivity() {
 
     // 추억 속의 여행 아이템 클릭
     private fun onPreviousTripItemClick(index: Int) {
-        val previousIntent = getIntent<ExistingTripActivity>().also { intent ->
-            intent.putExtra(
+        startActivity(getIntent<ExistingTripActivity>().apply {
+            putExtra(
                 GROUP_ID,
                 viewModel.homePreviousTravel.value?.get(index)!!.previousTravelId
             )
-            intent.putExtra(
+            putExtra(
                 PREVIOUS_TRAVEL_CONTENTS,
                 viewModel.homePreviousTravel.value?.get(index)
             )
-        }
-        startActivity(previousIntent)
+        })
     }
 
     // 두근두근 다가오는 여행 아이템 클릭
     private fun onUpComingTripItemClick(index: Int) {
-        val upComingIntent = getIntent<ExistingTripActivity>().also { intent ->
-            intent.putExtra(
+        startActivity(getIntent<ExistingTripActivity>().apply {
+            putExtra(
                 GROUP_ID,
                 viewModel.homeUpComingTravel.value?.get(index)!!.upComingTravelId
             )
-            intent.putExtra(
+            putExtra(
                 UPCOMING_TRAVEL_CONTENTS,
                 viewModel.homeUpComingTravel.value?.get(index)
             )
-        }
-        startActivity(upComingIntent)
+        })
     }
 
     // Proceeding
     fun navigateExistingTrip() {
-        val existingTravelIntent = getIntent<ExistingTripActivity>().also { intent ->
-            intent.putExtra(GROUP_ID, viewModel.homeProceedingTravel.value?.id)
+        startActivity(getIntent<ExistingTripActivity>().apply {
+            putExtra(GROUP_ID, viewModel.homeProceedingTravel.value?.id)
             intent.putExtra(PROCEEDING_TRAVEL_CONTENTS, viewModel.homeProceedingTravel.value)
-        }
-        startActivity(existingTravelIntent)
+        })
     }
 
     // 성향테스트로 가는 Navigate 함수

@@ -2,6 +2,7 @@ package kr.co.dooribon.ui.home.viewmodel
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kr.co.dooribon.api.remote.asDomainTravel
 import kr.co.dooribon.api.remote.extension.asDomainPreviousTravel
@@ -12,10 +13,15 @@ import kr.co.dooribon.domain.entity.Travel
 import kr.co.dooribon.domain.entity.UpComingTravel
 import kr.co.dooribon.utils.MockData
 import kr.co.dooribon.utils.debugE
+import kr.co.dooribon.vo.Resource
+import kr.co.dooribon.vo.TravelType
 
 class HomeViewModel(
     private val homeRepository: HomeRepository
 ) : ViewModel(), LifecycleObserver {
+
+    // Loading
+    val loading = MutableStateFlow(Resource.loading(null))
 
     private val _homeProceedingTravel = MutableLiveData<Travel>()
     val homeProceedingTravel: LiveData<Travel>
@@ -42,20 +48,20 @@ class HomeViewModel(
             }.onSuccess { HomeTravelRes ->
                 HomeTravelRes.data.forEach { HomeTravelDTO ->
                     when (HomeTravelDTO.travelType) {
-                        "nowTravels" -> {
+                        TravelType.CURRENT_TRAVELS.type -> {
                             if (HomeTravelDTO.travelGroup.isNotEmpty()) _homeProceedingTravel.postValue(
                                 HomeTravelDTO.travelGroup[0].asDomainTravel()
                             )
                             // 현재 비어있는 경우여서 전부 MockData로 대체해놨습니다.
                             else _homeProceedingTravel.postValue(MockData.provideHomeData())
                         }
-                        "comeTravels" -> {
+                        TravelType.UPCOMING_TRAVELS.type -> {
                             if (HomeTravelDTO.travelGroup.isNotEmpty()) _homeUpComingTravel.postValue(
                                 HomeTravelDTO.travelGroup.asDomainUpComingTravel()
                             )
                             else _homeUpComingTravel.postValue(MockData.provideUpComingData())
                         }
-                        "endTravels" -> {
+                        TravelType.ENDED_TRAVELS.type -> {
                             if (HomeTravelDTO.travelGroup.isNotEmpty()) _homePreviousTravel.postValue(
                                 HomeTravelDTO.travelGroup.asDomainPreviousTravel()
                             )
