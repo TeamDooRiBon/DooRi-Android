@@ -89,6 +89,13 @@ class DooRiBonCalendarPicker : RecyclerView {
         initListener()
     }
 
+    // FIXME SSong-develop
+    // clear function
+    fun clear() {
+        startDateSelection = null
+        endDateSelection = null
+    }
+
     // region setter
     // Range Date를 set하게 해주는 함수
     fun setRangeDate(startDate: Date, endDate: Date) {
@@ -370,6 +377,7 @@ class DooRiBonCalendarPicker : RecyclerView {
             )]
         typedArray.recycle()
     }
+
 
     data class SelectedDate(val day: CalendarEntity.Day, val position: Int)
 }

@@ -25,6 +25,10 @@ class DatePickActivity : AppCompatActivity() {
         configureCalendar()
         configureBackButton()
         configureEnterButton()
+
+        binding.clearText.setOnClickListener {
+            binding.fragCalendar.clear()
+        }
     }
 
     private fun configureEnterButton() {

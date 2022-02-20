@@ -26,9 +26,9 @@
             android:id="@+id/tv_when_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:fontFamily="@font/spoqa_han_sans_neo_bold"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:includeFontPadding="false"
             android:text="@string/next_travel_date"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -37,6 +37,18 @@
             app:layout_constraintStart_toStartOf="@id/iv_back"
             app:layout_constraintTop_toBottomOf="@id/iv_back"
             tools:text="@string/next_travel_date" />
+
+        <TextView
+            android:id="@+id/clear_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="6dp"
+            android:text="초기화"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/cl_calendar_picker"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_calendar_picker"
@@ -64,15 +76,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray_white_8_alpha_80"
-                app:layout_constraintTop_toBottomOf="@id/li_calendar_week_view"
-                app:layout_constraintBottom_toTopOf="@id/frag_calendar"/>
+                app:layout_constraintBottom_toTopOf="@id/frag_calendar"
+                app:layout_constraintTop_toBottomOf="@id/li_calendar_week_view" />
 
             <kr.co.dooribon.view.calendarpicker.DooRiBonCalendarPicker
                 android:id="@+id/frag_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never"
                 android:background="@color/white"
+                android:overScrollMode="never"
                 app:layout_constraintEnd_toEndOf="@id/li_calendar_week_view"
                 app:layout_constraintStart_toStartOf="@id/li_calendar_week_view"
                 app:layout_constraintTop_toBottomOf="@id/view_week_divider"
@@ -96,12 +108,12 @@
                 style="@style/RoundButton.DooRiBonStrokeOrange"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:includeFontPadding="false"
-                android:fontFamily="@font/spoqa_han_sans_neo_medium"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="15dp"
-                android:textColor="@color/main_point_orange"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:includeFontPadding="false"
                 android:text="@string/please_enter_date"
+                android:textColor="@color/main_point_orange"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
