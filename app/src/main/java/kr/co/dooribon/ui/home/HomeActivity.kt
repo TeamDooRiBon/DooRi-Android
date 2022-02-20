@@ -17,6 +17,7 @@ import kr.co.dooribon.ui.existingtrip.ExistingTripActivity
 import kr.co.dooribon.ui.home.adapter.PreviousTripAdapter
 import kr.co.dooribon.ui.home.adapter.UpComingTripAdapter
 import kr.co.dooribon.ui.home.viewmodel.HomeViewModel
+import kr.co.dooribon.ui.mypage.MyPageActivity
 import kr.co.dooribon.ui.splash.SplashActivity
 import kr.co.dooribon.ui.triptendency.TripTendencyActivity
 import kr.co.dooribon.utils.extension.resizeHomeProgressTripImageView
@@ -153,6 +154,10 @@ class HomeActivity : AppCompatActivity() {
     // 성향테스트로 가는 Navigate 함수
     fun navigateTripTendencyTest() {
         startActivity(getIntent<TripTendencyActivity>())
+    }
+
+    fun navigateMyPage() {
+        startActivity(getIntent<MyPageActivity>())
     }
 
     companion object {

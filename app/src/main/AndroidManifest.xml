@@ -35,6 +35,7 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".ui.existingtrip.schedule.ScheduleAddActivity" />
         <activity android:name=".ui.existingtrip.schedule.ScheduleEditActivity" />
+        <activity android:name=".ui.mypage.MyPageActivity" />
     </application>
 
 </manifest>
