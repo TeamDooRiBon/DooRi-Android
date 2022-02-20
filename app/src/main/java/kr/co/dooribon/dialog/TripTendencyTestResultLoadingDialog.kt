@@ -14,7 +14,9 @@ import kotlinx.coroutines.launch
 import kr.co.dooribon.databinding.DialogTripTendencyTestResultLoadingBinding
 import kr.co.dooribon.ui.traveltendencyresult.TravelTendencyResultActivity
 import kr.co.dooribon.utils.AutoClearBinding
+import kr.co.dooribon.utils.constant.Constant
 import kr.co.dooribon.utils.debugE
+import kr.co.dooribon.utils.getIntent
 
 class TripTendencyTestResultLoadingDialog : DialogFragment() {
 
@@ -33,24 +35,24 @@ class TripTendencyTestResultLoadingDialog : DialogFragment() {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         debugE(arguments?.getString("resultImageUrl"))
-        val travelTendencyResultIntent =
-            Intent(requireContext(), TravelTendencyResultActivity::class.java)
-        travelTendencyResultIntent.putExtra(
-            "travelTendencyResultImageUrl",
-            arguments?.getString("resultImageUrl")
-        )
-        travelTendencyResultIntent.putExtra(
-            "travelTendencyResultImageName",
-            arguments?.getString("resultImageName")
-        )
-        travelTendencyResultIntent.putExtra(
-            "travelTendencyUserName",
-            arguments?.getString("resultUserName")
-        )
         lifecycleScope.launch {
             delay(2000)
             dismiss()
-            startActivity(travelTendencyResultIntent)
+            startActivity(
+                requireContext().getIntent<TravelTendencyResultActivity>().apply {
+                putExtra(
+                    Constant.TRAVEL_TENDENCY_RESULT_IMAGE_URL,
+                    arguments?.getString("resultImageUrl")
+                )
+                putExtra(
+                    Constant.TRAVEL_TENDENCY_RESULT_IMAGE_NAME,
+                    arguments?.getString("resultImageName")
+                )
+                putExtra(
+                    Constant.TRAVEL_TENDENCY_USER_NAME,
+                    arguments?.getString("resultUserName")
+                )
+            })
             requireActivity().finish()
         }
     }

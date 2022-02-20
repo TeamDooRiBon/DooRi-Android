@@ -16,6 +16,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityTravelTendencyResultBinding
 import kr.co.dooribon.ui.traveltendencyresult.service.TravelTendencyResultService
+import kr.co.dooribon.utils.constant.Constant
 import kr.co.dooribon.utils.dpToPixel
 import kr.co.dooribon.utils.getIntent
 import kr.co.dooribon.utils.shortToast
@@ -39,13 +40,13 @@ class TravelTendencyResultActivity : AppCompatActivity() {
 
         observeTravelTendencyResult()
 
-        intent.getStringExtra("travelTendencyResultImageUrl")?.let {
+        intent.getStringExtra(Constant.TRAVEL_TENDENCY_RESULT_IMAGE_URL)?.let {
             viewModel.initializeTravelTendencyResultImageUrl(it)
         }
-        intent.getStringExtra("travelTendencyResultImageName")?.let {
+        intent.getStringExtra(Constant.TRAVEL_TENDENCY_RESULT_IMAGE_NAME)?.let {
             viewModel.initializetTravelTendencyResultName(it)
         }
-        intent.getStringExtra("travelTendencyUserName")?.let {
+        intent.getStringExtra(Constant.TRAVEL_TENDENCY_USER_NAME)?.let {
             viewModel.initializetTravelTendencyResultUserName(it)
         }
     }
