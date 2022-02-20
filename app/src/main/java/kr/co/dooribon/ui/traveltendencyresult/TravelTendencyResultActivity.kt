@@ -26,28 +26,32 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 
 class TravelTendencyResultActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityTravelTendencyResultBinding
+    private val binding : ActivityTravelTendencyResultBinding by lazy {
+        DataBindingUtil.setContentView(this, R.layout.activity_travel_tendency_result)
+    }
 
     private val viewModel by viewModels<TravelTendencyViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_travel_tendency_result)
-        binding.lifecycleOwner = this
-        binding.vm = viewModel
-        binding.activity = this
+        with(binding){
+            lifecycleOwner = this@TravelTendencyResultActivity
+            vm = viewModel
+            activity = this@TravelTendencyResultActivity
+        }
 
         observeTravelTendencyResult()
 
-        intent.getStringExtra(Constant.TRAVEL_TENDENCY_RESULT_IMAGE_URL)?.let {
-            viewModel.initializeTravelTendencyResultImageUrl(it)
-        }
-        intent.getStringExtra(Constant.TRAVEL_TENDENCY_RESULT_IMAGE_NAME)?.let {
-            viewModel.initializetTravelTendencyResultName(it)
-        }
-        intent.getStringExtra(Constant.TRAVEL_TENDENCY_USER_NAME)?.let {
-            viewModel.initializetTravelTendencyResultUserName(it)
+        intent.run {
+            getStringExtra(Constant.TRAVEL_TENDENCY_RESULT_IMAGE_URL)?.let {
+                viewModel.initializeTravelTendencyResultImageUrl(it)
+            }
+            getStringExtra(Constant.TRAVEL_TENDENCY_RESULT_IMAGE_NAME)?.let {
+                viewModel.initializeTravelTendencyResultName(it)
+            }
+            getStringExtra(Constant.TRAVEL_TENDENCY_USER_NAME)?.let {
+                viewModel.initializeTravelTendencyResultUserName(it)
+            }
         }
     }
 

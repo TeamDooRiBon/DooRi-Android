@@ -34,26 +34,30 @@ class TripTendencyTestResultLoadingDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        debugE(arguments?.getString("resultImageUrl"))
+        debugE(arguments?.getString(Constant.RESULT_IMAGE_URL))
         lifecycleScope.launch {
-            delay(2000)
+            delay(2 * SECOND)
             dismiss()
             startActivity(
                 requireContext().getIntent<TravelTendencyResultActivity>().apply {
                 putExtra(
                     Constant.TRAVEL_TENDENCY_RESULT_IMAGE_URL,
-                    arguments?.getString("resultImageUrl")
+                    arguments?.getString(Constant.RESULT_IMAGE_URL)
                 )
                 putExtra(
                     Constant.TRAVEL_TENDENCY_RESULT_IMAGE_NAME,
-                    arguments?.getString("resultImageName")
+                    arguments?.getString(Constant.RESULT_IMAGE_NAME)
                 )
                 putExtra(
                     Constant.TRAVEL_TENDENCY_USER_NAME,
-                    arguments?.getString("resultUserName")
+                    arguments?.getString(Constant.RESULT_USER_NAME)
                 )
             })
             requireActivity().finish()
         }
+    }
+
+    companion object {
+        private const val SECOND = 1000L
     }
 }
