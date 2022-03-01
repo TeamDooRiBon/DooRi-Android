@@ -66,32 +66,308 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cdv_my_travel"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_my_travel"
             android:layout_width="0dp"
             android:layout_height="124dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="6dp"
-            android:background="@color/gray_white_pure_9"
-            app:layout_constraintEnd_toStartOf="@id/cdv_my_tendency"
+            android:background="@drawable/bg_white_pure9_round_layout"
+            app:layout_constraintEnd_toStartOf="@id/cl_my_tendency"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cl_top_profile_layout" >
+            app:layout_constraintTop_toBottomOf="@id/cl_top_profile_layout">
 
-        </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/iv_plane_bg"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/circle_main_bg_blue"
+                app:layout_constraintStart_toStartOf="@id/tv_my_travel_count"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cdv_my_tendency"
+            <ImageView
+                android:id="@+id/iv_plane"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_union"
+                app:layout_constraintBottom_toBottomOf="@id/iv_plane_bg"
+                app:layout_constraintEnd_toEndOf="@id/iv_plane_bg"
+                app:layout_constraintStart_toStartOf="@id/iv_plane_bg"
+                app:layout_constraintTop_toTopOf="@id/iv_plane_bg" />
+
+            <TextView
+                android:id="@+id/tv_my_travel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:text="@string/my_travel"
+                android:textColor="@color/gray_black_1"
+                app:layout_constraintBottom_toTopOf="@id/tv_my_travel_count"
+                app:layout_constraintStart_toStartOf="@id/tv_my_travel_count" />
+
+            <TextView
+                android:id="@+id/tv_my_travel_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/_0"
+                android:textColor="@color/main_point_orange"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_my_tendency"
             android:layout_width="0dp"
-            android:layout_height="124dp"
+            android:layout_height="0dp"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@id/cdv_my_travel"
+            android:background="@drawable/bg_white_pure9_round_layout"
+            app:layout_constraintBottom_toBottomOf="@id/cl_my_travel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/cdv_my_travel"
-            app:layout_constraintTop_toTopOf="@id/cdv_my_travel" >
+            app:layout_constraintStart_toEndOf="@id/cl_my_travel"
+            app:layout_constraintTop_toTopOf="@id/cl_my_travel">
 
-        </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/iv_user_icon_bg"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/circle_main_bg_blue"
+                app:layout_constraintStart_toStartOf="@id/tv_my_travel_tendency_count"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_user_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_user_fill"
+                app:layout_constraintBottom_toBottomOf="@id/iv_user_icon_bg"
+                app:layout_constraintEnd_toEndOf="@id/iv_user_icon_bg"
+                app:layout_constraintStart_toStartOf="@id/iv_user_icon_bg"
+                app:layout_constraintTop_toTopOf="@id/iv_user_icon_bg" />
+
+            <TextView
+                android:id="@+id/tv_my_travel_tendency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:text="@string/my_trip_tendency_result"
+                android:textColor="@color/gray_black_1"
+                app:layout_constraintBottom_toTopOf="@id/tv_my_travel_tendency_count"
+                app:layout_constraintStart_toStartOf="@id/tv_my_travel_tendency_count" />
+
+            <TextView
+                android:id="@+id/tv_my_travel_tendency_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/_0"
+                android:textColor="@color/main_point_orange"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_div_line_1"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/gray_gray_7_line"
+            app:layout_constraintTop_toBottomOf="@id/cl_my_travel" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_set_profile"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:layout_constraintTop_toBottomOf="@id/view_div_line_1">
+
+            <TextView
+                android:id="@+id/tv_set_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:text="@string/set_profile"
+                android:textColor="@color/gray_black_1"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_icon_go_detail"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_div_line_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_gray_7_line"
+            app:layout_constraintTop_toBottomOf="@id/cl_set_profile" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_set_alarm"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:layout_constraintTop_toBottomOf="@id/view_div_line_2">
+
+            <TextView
+                android:id="@+id/tv_set_alarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:text="@string/set_alarm"
+                android:textColor="@color/gray_black_1"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_icon_go_detail"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_div_line_3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_gray_7_line"
+            app:layout_constraintTop_toBottomOf="@id/cl_set_alarm" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_question"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:layout_constraintTop_toBottomOf="@id/view_div_line_3">
+
+            <TextView
+                android:id="@+id/tv_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:text="@string/ask_question"
+                android:textColor="@color/gray_black_1"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_icon_go_detail"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_div_line_4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_gray_7_line"
+            app:layout_constraintTop_toBottomOf="@id/cl_question" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_frequent_question"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:layout_constraintTop_toBottomOf="@id/view_div_line_4">
+
+            <TextView
+                android:id="@+id/tv_frequent_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:text="@string/frequent_question"
+                android:textColor="@color/gray_black_1"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_icon_go_detail"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_div_line_5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_gray_7_line"
+            app:layout_constraintTop_toBottomOf="@id/cl_frequent_question" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_log_out"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:layout_constraintTop_toBottomOf="@id/view_div_line_5">
+
+            <TextView
+                android:id="@+id/tv_log_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:text="@string/log_out"
+                android:textColor="@color/gray_black_1"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_icon_go_detail"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_div_line_6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_gray_7_line"
+            app:layout_constraintTop_toBottomOf="@id/cl_log_out" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
