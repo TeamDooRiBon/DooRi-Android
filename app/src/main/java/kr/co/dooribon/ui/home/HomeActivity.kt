@@ -1,6 +1,7 @@
 package kr.co.dooribon.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
+import com.kakao.sdk.common.util.Utility
 import kr.co.dooribon.R
 import kr.co.dooribon.application.MainApplication.Companion.viewModelModule
 import kr.co.dooribon.databinding.ActivityHomeBinding
@@ -49,6 +51,7 @@ class HomeActivity : AppCompatActivity() {
             homeActivity = this@HomeActivity
             navigateNewTrip = { navigateNewTripDialog() }
         }
+
         lifecycle.addObserver(viewModel)
         initialize()
 

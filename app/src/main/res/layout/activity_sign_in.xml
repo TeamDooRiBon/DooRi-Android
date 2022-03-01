@@ -5,6 +5,14 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="kr.co.dooribon.ui.signin.AuthViewModel" />
+
+        <variable
+            name="activity"
+            type="kr.co.dooribon.ui.signin.SignInActivity" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

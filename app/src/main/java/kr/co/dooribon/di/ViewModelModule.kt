@@ -10,7 +10,7 @@ import kr.co.dooribon.ui.factory.*
  * ViewModelFactory를 주입시켜주는 Module
  *
  */
-class ViewModelModule(private val application: Application) {
+class ViewModelModule {
 
     fun provideHomeViewModelFactory(): ViewModelProvider.Factory =
         HomeViewModelFactory(repositoryModule.homeRepository)
@@ -29,4 +29,8 @@ class ViewModelModule(private val application: Application) {
 
     fun provideParticipateGroupViewModelFactory(): ViewModelProvider.Factory =
         ParticipateGroupViewModelFactory(repositoryModule.participateGroupRepository)
+
+    val authViewModel by lazy {
+        AuthViewModelFactory(repositoryModule.authRepository)
+    }
 }

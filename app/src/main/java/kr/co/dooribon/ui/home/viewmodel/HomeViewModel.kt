@@ -41,7 +41,6 @@ class HomeViewModel(
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun initializeHome() {
-        debugE("Initializing calling")
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 homeRepository.fetchHomeTravel()

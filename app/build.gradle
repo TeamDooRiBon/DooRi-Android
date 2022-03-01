@@ -52,6 +52,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
 
+    implementation"androidx.lifecycle:lifecycle-runtime-ktx:$version_lifecycle"
+
     // viewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
 
@@ -96,6 +98,9 @@ dependencies {
 
     // security
     implementation "androidx.security:security-crypto:$version_androidx_security"
+
+    // kakao sdk
+    implementation "com.kakao.sdk:v2-user:$version_kakao_sdk"
 }
 
 dependencies {

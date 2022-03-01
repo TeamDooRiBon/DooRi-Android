@@ -1,9 +1,12 @@
 package kr.co.dooribon.di
 
+import kr.co.dooribon.api.repository.AuthRepository
 import kr.co.dooribon.api.repository.HomeRepository
 import kr.co.dooribon.api.repository.ParticipateGroupRepository
 import kr.co.dooribon.api.repository.TripTendencyRepository
 import kr.co.dooribon.application.MainApplication.Companion.apiModule
+import kr.co.dooribon.application.MainApplication.Companion.keyStorageModule
+import kr.co.dooribon.application.MainApplication.Companion.sharedPreferenceModule
 
 class RepositoryModule {
 
@@ -17,5 +20,9 @@ class RepositoryModule {
 
     val participateGroupRepository by lazy {
         ParticipateGroupRepository(apiModule.travelApi)
+    }
+
+    val authRepository by lazy {
+        AuthRepository(apiModule.authApi, keyStorageModule.dooRiBonKeyStorage)
     }
 }

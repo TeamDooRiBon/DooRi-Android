@@ -12,6 +12,8 @@ buildscript {
         version_coroutine = "1.5.0"
         version_veil = "1.1.2"
         version_androidx_security = "1.0.0"
+        version_kakao_sdk = "2.8.6"
+
 
     }
     repositories {
@@ -31,6 +33,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/'}
     }
 }
 
