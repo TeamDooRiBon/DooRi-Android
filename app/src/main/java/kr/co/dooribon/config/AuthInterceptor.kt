@@ -1,7 +1,9 @@
 package kr.co.dooribon.config
 
+import android.util.Log
 import kr.co.dooribon.api.local.DooRiBonKeyStorage
 import kr.co.dooribon.utils.debugE
+import kr.co.dooribon.utils.debugSSong
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Response
@@ -35,7 +37,7 @@ class AuthInterceptor(
             return response
         } catch (exception: Exception) {
             return Response.Builder().code(500).protocol(Protocol.HTTP_1_1)
-                .message("Internal Server Error")
+                .message("Internal Server Error_SSong-develop")
                 .request(newRequest).body("$exception".toResponseBody(null)).build()
         }
     }

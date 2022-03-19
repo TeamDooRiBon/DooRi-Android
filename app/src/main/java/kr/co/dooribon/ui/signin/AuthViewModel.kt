@@ -49,10 +49,29 @@ class AuthViewModel(
                     }
                 )
             }.onSuccess {
-
+                _loading.value = UIState.Complete
             }.onFailure {
                 _loading.value = UIState.Error
                 errorToastLiveData.postValue(it.toString())
+            }
+        }
+
+        viewModelScope.launch {
+            authRepository.loginApi(
+                onStart = {
+
+                },
+                onComplete = {
+
+                },
+                onError = {
+
+                }
+            ).collect {
+                // TODO
+                // Collect를 해서 나온 데이터를 뭐..... StateFlow에 담아서 이 값을 Collect 하도록 한다던가
+                // 여러 형태로 변환해서 만들 수 있을 거 같음
+
             }
         }
     }

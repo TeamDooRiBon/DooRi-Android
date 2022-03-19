@@ -22,7 +22,6 @@ class RetrofitModule {
 
     // 401 에러가 났을때의 exception 처리도 해줘야 함
     // JWT TOKEN이 만료가 되면 , access Token으로 refresh를 해줘서 다시 JWT Token을 발급 받아야 한다고 합니다.
-
     private val authInterceptor = AuthInterceptor(keyStorageModule.dooRiBonKeyStorage)
 
     private val okHttpClient by lazy {
