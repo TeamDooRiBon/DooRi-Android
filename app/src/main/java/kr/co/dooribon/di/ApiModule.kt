@@ -24,4 +24,8 @@ class ApiModule {
     val tendencyApi by lazy {
         retrofitModule.createApi(TendencyAPI::class)
     }
+
+    val authApi by lazy {
+        retrofitModule.createApi(AuthAPI::class)
+    }
 }

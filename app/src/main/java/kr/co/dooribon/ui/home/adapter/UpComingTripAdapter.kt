@@ -24,6 +24,12 @@ class UpComingTripAdapter(
 
     override fun getItemCount(): Int = itemList.size
 
+    fun submitItem(list: List<UpComingTravel>) {
+        itemList.clear()
+        itemList.addAll(list)
+        notifyDataSetChanged()
+    }
+
     inner class UpComingTripViewHolder(private val binding: ViewUpComingTripBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
@@ -35,11 +41,5 @@ class UpComingTripAdapter(
         fun bind(viewItem: UpComingTravel) {
             binding.item = viewItem
         }
-    }
-
-    fun submitItem(list: List<UpComingTravel>) {
-        itemList.clear()
-        itemList.addAll(list)
-        notifyDataSetChanged()
     }
 }

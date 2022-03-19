@@ -23,11 +23,11 @@ class TravelTendencyViewModel : ViewModel() {
         _travelTendencyResultImageUrl.value = imageUrl
     }
 
-    fun initializetTravelTendencyResultName(resultName : String){
+    fun initializeTravelTendencyResultName(resultName : String){
         _travelTendencyResultName.value = resultName
     }
 
-    fun initializetTravelTendencyResultUserName(userName : String){
+    fun initializeTravelTendencyResultUserName(userName : String){
         _travelTendencyUserName.value = userName
     }
 }

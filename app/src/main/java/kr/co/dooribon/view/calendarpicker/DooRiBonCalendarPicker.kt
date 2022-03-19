@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.dooribon.R
-import kr.co.dooribon.utils.dpToPixel
 import kr.co.dooribon.view.calendarpicker.adapter.CalendarAdapter
 import kr.co.dooribon.view.calendarpicker.entity.*
 import kr.co.dooribon.view.calendarpicker.util.*
@@ -90,6 +89,13 @@ class DooRiBonCalendarPicker : RecyclerView {
         initListener()
     }
 
+    // FIXME SSong-develop
+    // clear function
+    fun clear() {
+        startDateSelection = null
+        endDateSelection = null
+    }
+
     // region setter
     // Range Date를 set하게 해주는 함수
     fun setRangeDate(startDate: Date, endDate: Date) {
@@ -111,7 +117,7 @@ class DooRiBonCalendarPicker : RecyclerView {
     fun setSelectionDate(startDate: Date, endDate: Date? = null) {
         itemAnimator = null
         selectDate(startDate)
-        if (endDate != null) selectDate(endDate)
+        if (endDate != null) selectDate (endDate)
     }
 
     fun setMode(mode: SelectionMode) {
@@ -371,6 +377,7 @@ class DooRiBonCalendarPicker : RecyclerView {
             )]
         typedArray.recycle()
     }
+
 
     data class SelectedDate(val day: CalendarEntity.Day, val position: Int)
 }

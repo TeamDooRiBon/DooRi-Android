@@ -14,10 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DooRiBonAndroid"
         android:usesCleartextTraffic="true">
+        <service
+            android:name=".ui.traveltendencyresult.service.TravelTendencyResultService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity android:name=".ui.traveltendencyresult.TravelTendencyResultActivity" />
         <activity android:name=".ui.signin.SignInActivity" />
         <activity android:name=".ui.splash.OnboardingActivity" />
-        <activity android:name=".ui.splash.SplashActivity">
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +42,21 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".ui.existingtrip.schedule.ScheduleAddActivity" />
         <activity android:name=".ui.existingtrip.schedule.ScheduleEditActivity" />
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao20b5a489718efe1008ff1dfbb41fa0f3" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

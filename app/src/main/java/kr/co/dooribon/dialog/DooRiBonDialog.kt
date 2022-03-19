@@ -14,6 +14,8 @@ import kr.co.dooribon.utils.setDooRiBonDialogSize
 /**
  * Created by SSong-develop 2021.07.12
  *
+ * TODO by SSong-develop , Need to refactor Builder Pattern
+ *
  */
 class DooRiBonDialog(
     private val dooribonDialogTitle: String = DEFAULT_DIALOG_TITLE,

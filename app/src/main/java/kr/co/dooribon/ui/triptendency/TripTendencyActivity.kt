@@ -13,6 +13,7 @@ import kr.co.dooribon.dialog.TripTendencyTestExitDialog
 import kr.co.dooribon.dialog.TripTendencyTestResultLoadingDialog
 import kr.co.dooribon.ui.triptendency.adapter.TripTendencyAdapter
 import kr.co.dooribon.ui.triptendency.viewModel.TripTendencyViewModel
+import kr.co.dooribon.utils.constant.Constant
 import kr.co.dooribon.utils.debugE
 import kr.co.dooribon.utils.shortToast
 
@@ -56,15 +57,15 @@ class TripTendencyActivity : AppCompatActivity() {
         viewModel.travelTendencyResult.observe(this) {
             val imageBundle = Bundle()
             imageBundle.putString(
-                "resultImageUrl",
+                Constant.RESULT_IMAGE_URL,
                 it.tendencyResultImageUrl
             )
             imageBundle.putString(
-                "resultImageName",
+                Constant.RESULT_IMAGE_NAME,
                 it.tendencyTitle
             )
             imageBundle.putString(
-                "resultUserName",
+                Constant.RESULT_USER_NAME,
                 it.memberName
             )
             val tripTendencyTestResultLoadingDialog = TripTendencyTestResultLoadingDialog()
