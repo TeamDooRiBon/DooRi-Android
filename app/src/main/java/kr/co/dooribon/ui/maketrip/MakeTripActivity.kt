@@ -37,6 +37,7 @@ class MakeTripActivity : BaseActivity<ActivityMakeTripBinding>(R.layout.activity
     private fun initAdapter() {
         val pagerAdapter = SlidePagerAdapter(this)
         binding.vpMain.adapter = pagerAdapter
+        binding.vpMain.isUserInputEnabled = false
     }
 
     private fun collectFlows() {
