@@ -91,4 +91,12 @@
     <string name="example_take_picture">Ex. 인생사진 찍어오기!</string>
     <string name="cancel">취소</string>
     <string name="ok">확인</string>
+    <string name="log_out">로그아웃</string>
+    <string name="frequent_question">자주 묻는 질문</string>
+    <string name="ask_question">문의하기</string>
+    <string name="set_alarm">알림 설정</string>
+    <string name="set_profile">프로필 설정</string>
+    <string name="_0">0</string>
+    <string name="my_trip_tendency_result">내 여행성향 결과</string>
+    <string name="my_travel">내 여행</string>
 </resources>
