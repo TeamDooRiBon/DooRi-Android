@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import kr.co.dooribon.databinding.DialogNewTripBinding
+import kr.co.dooribon.ui.maketrip.MakeTripActivity
 import kr.co.dooribon.ui.newtrip.add.AddTravelActivity
 import kr.co.dooribon.ui.newtrip.join.ParticipateActivity
 import kr.co.dooribon.utils.AutoClearBinding
@@ -36,7 +37,7 @@ class NewTripDialog : DialogFragment() {
     }
 
     fun navigateNewTrip() {
-        startActivity(requireContext().getIntent<AddTravelActivity>())
+        startActivity(MakeTripActivity.intent(requireContext()))
         dismiss()
     }
 
