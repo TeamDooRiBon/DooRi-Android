@@ -8,4 +8,8 @@ import kotlinx.parcelize.Parcelize
 data class PickDatePair(
     val startDate: String,
     val endDate: String
-) : Parcelable
+) : Parcelable {
+    companion object {
+        val EMPTY = PickDatePair("", "")
+    }
+}

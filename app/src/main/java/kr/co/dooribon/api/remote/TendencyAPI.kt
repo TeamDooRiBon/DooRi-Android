@@ -127,7 +127,11 @@ data class StoreTravelTendencyDTO(
     val tendencyResultImageUrl: String,
     @SerializedName("thumbnail")
     val tendencyThumbnailImageUrl: String
-) : Parcelable
+) : Parcelable {
+    companion object {
+        val EMPTY = StoreTravelTendencyDTO("", "", emptyList(), "", "")
+    }
+}
 
 data class StoreTravelTendencyRes(
     @SerializedName("status")
@@ -143,7 +147,7 @@ data class StoreTravelTendencyRes(
 // 메인 성향 테스트
 data class ResultTravelTendencyScoreDTO(
     @SerializedName("score")
-    val score : List<Int>
+    val score: List<Int>
 )
 
 interface TendencyAPI {
@@ -177,6 +181,6 @@ interface TendencyAPI {
     // 메인 성향테스트
     @POST("tendency/result/main")
     suspend fun fetchMainResultTravelTendency(
-        @Body resultTravelTendencyScore : ResultTravelTendencyScoreDTO
-    ) : StoreTravelTendencyRes
+        @Body resultTravelTendencyScore: ResultTravelTendencyScoreDTO
+    ): StoreTravelTendencyRes
 }

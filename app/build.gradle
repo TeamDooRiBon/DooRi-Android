@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -81,6 +81,9 @@ dependencies {
 
     // MaterialDesign
     implementation "com.google.android.material:material:$version_material_design"
+
+    // lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$version_lifecycle"
 }
 
 dependencies {
