@@ -3,14 +3,12 @@ package kr.co.dooribon.ui.maketrip
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-//import androidx.lifecycle.repeatOnLifecycle
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityMakeTripBinding
 import kr.co.dooribon.ui.maketrip.MakeTripConstants.DETAIL_PAGE_COUNT
@@ -56,6 +54,14 @@ class MakeTripActivity : BaseActivity<ActivityMakeTripBinding>(R.layout.activity
         val currentPercentage =
             (((currentPosition.toDouble() / DETAIL_PAGE_COUNT.toDouble())) * 100).toInt()
         binding.progressBar.progress = currentPercentage
+    }
+
+    override fun onBackPressed() {
+        if (viewModel.currentPagerPosition.value == 0) {
+            super.onBackPressed()
+        } else {
+            viewModel.minusCurrentPosition()
+        }
     }
 
     companion object {

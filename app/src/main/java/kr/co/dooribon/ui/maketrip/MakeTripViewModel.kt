@@ -11,4 +11,8 @@ class MakeTripViewModel : ViewModel() {
     fun addCurrentPosition() {
         _currentPagerPosition.value += 1
     }
+
+    fun minusCurrentPosition() {
+        _currentPagerPosition.value -= 1
+    }
 }
