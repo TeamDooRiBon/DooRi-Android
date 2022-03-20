@@ -3,6 +3,7 @@ package kr.co.dooribon.ui.maketrip
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +13,7 @@ import kotlinx.coroutines.launch
 //import androidx.lifecycle.repeatOnLifecycle
 import kr.co.dooribon.R
 import kr.co.dooribon.databinding.ActivityMakeTripBinding
+import kr.co.dooribon.ui.maketrip.MakeTripConstants.DETAIL_PAGE_COUNT
 import kr.co.dooribon.utils.base.BaseActivity
 
 class MakeTripActivity : BaseActivity<ActivityMakeTripBinding>(R.layout.activity_make_trip) {
@@ -25,7 +27,13 @@ class MakeTripActivity : BaseActivity<ActivityMakeTripBinding>(R.layout.activity
     }
 
     private fun initView() {
+        initViewModel()
         initAdapter()
+    }
+
+    private fun initViewModel() {
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
     }
 
     private fun initAdapter() {
@@ -38,9 +46,16 @@ class MakeTripActivity : BaseActivity<ActivityMakeTripBinding>(R.layout.activity
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.currentPagerPosition.collectLatest { currentPagerPosition ->
                     binding.vpMain.currentItem = currentPagerPosition
+                    setProgressBarPercentage(currentPagerPosition)
                 }
             }
         }
+    }
+
+    private fun setProgressBarPercentage(currentPosition: Int) {
+        val currentPercentage =
+            (((currentPosition.toDouble() / DETAIL_PAGE_COUNT.toDouble())) * 100).toInt()
+        binding.progressBar.progress = currentPercentage
     }
 
     companion object {
